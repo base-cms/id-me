@@ -1,7 +1,6 @@
-const express = require('express');
+const app = require('./app');
 
 const { log } = console;
-const app = express();
 const { PORT = 3759 } = process.env;
 
 app.get('/', (req, res) => {
