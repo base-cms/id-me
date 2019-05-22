@@ -1,0 +1,21 @@
+{
+  "name": "@base-cms/id-me-graphql",
+  "version": "0.0.0",
+  "description": "The ID|Me GraphQL API server.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/id-me/tree/master/packages/graphql",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "../../node_modules/.bin/gulp"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.5.0",
+    "deep-assign": "^3.0.0",
+    "express": "^4.17.0",
+    "graphql": "^14.3.0",
+    "graphql-tag": "^2.10.1",
+    "graphql-tools": "^4.0.4"
+  }
+}
