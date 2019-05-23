@@ -13,7 +13,11 @@
   "dependencies": {
     "@base-cms/env": "^0.9.25",
     "@base-cms/micro": "^0.9.26",
-    "micro": "^9.3.4"
+    "micro": "^9.3.4",
+    "mongoose": "^5.5.11",
+    "slug": "^1.1.0",
+    "unique-push-id": "^1.0.2",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
