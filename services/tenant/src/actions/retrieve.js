@@ -1,6 +1,8 @@
-const { createError } = require('micro');
+const { service } = require('@base-cms/micro');
+
+const { createRequiredParamError } = service;
 
 module.exports = async ({ key }) => {
-  if (!key) createError(400, 'No tenant key was provided.');
+  if (!key) throw createRequiredParamError('key');
   return { key };
 };
