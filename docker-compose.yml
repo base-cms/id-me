@@ -1,0 +1,48 @@
+version: '3.7'
+
+x-env-defaults: &env
+  YARN_CACHE_FOLDER: /.yarn-cache
+  NODE_ENV: development
+
+x-node-defaults: &node
+  tty: true
+  init: true
+  image: node:10.15
+  working_dir: /id-me
+  volumes:
+    - .:/id-me:cached
+    - ./node_modules:/id-me/node_modules:delegated
+    - yarn-cache:/.yarn-cache
+  environment:
+    <<: *env
+
+services:
+  commands:
+    <<: *node
+    entrypoint: ["tail"]
+    command: ["-f", "/dev/null"]
+
+  mongodb:
+    tty: true
+    image: mongo:3.6
+    volumes:
+      - mongodb:/data/db
+    ports:
+      - "12000:27017"
+
+  tenant:
+    <<: *node
+    working_dir: /id-me/services/tenant
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80"]
+    environment:
+      <<: *env
+      CORE_DSN: ${CORE_DSN-mongodb://mongodb:27017/id-me}
+    depends_on:
+      - mongodb
+    ports:
+      - "12001:80"
+
+volumes:
+  mongodb: {}
+  yarn-cache: {}
