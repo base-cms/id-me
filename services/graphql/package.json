@@ -11,9 +11,9 @@
     "dev": "../../node_modules/.bin/gulp"
   },
   "dependencies": {
+    "@base-cms/env": "^0.9.25",
     "apollo-server-express": "^2.5.0",
     "deep-assign": "^3.0.0",
-    "envalid": "^5.0.0",
     "es6-promisify": "^6.0.1",
     "express": "^4.17.0",
     "graphql": "^14.3.0",

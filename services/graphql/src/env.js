@@ -1,18 +1,10 @@
 const {
   cleanEnv,
-  makeValidator,
+  validators,
   port,
-} = require('envalid');
+} = require('@base-cms/env');
 
-const nonemptystr = makeValidator((v) => {
-  const err = new Error('Expected a non-empty string');
-  if (v === undefined || v === null || v === '') {
-    throw err;
-  }
-  const trimmed = String(v).trim();
-  if (!trimmed) throw err;
-  return trimmed;
-});
+const { nonemptystr } = validators;
 
 module.exports = cleanEnv(process.env, {
   TENANT_KEY: nonemptystr({ desc: 'The tenant key. Is used for querying the account information and settings from the core database connection.' }),
