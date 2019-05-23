@@ -14,11 +14,13 @@
     "apollo-server-express": "^2.5.0",
     "deep-assign": "^3.0.0",
     "envalid": "^5.0.0",
+    "es6-promisify": "^6.0.1",
     "express": "^4.17.0",
     "graphql": "^14.3.0",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
     "mongoose": "^5.5.11",
+    "redis": "^2.8.0",
     "slug": "^1.1.0",
     "unique-push-id": "^1.0.2",
     "uuid": "^3.3.2"
