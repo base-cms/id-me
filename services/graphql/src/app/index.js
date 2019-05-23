@@ -1,5 +1,5 @@
 const express = require('express');
-const graphql = require('./graphql/server');
+const graphql = require('../graphql/server');
 
 const app = express();
 
