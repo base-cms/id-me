@@ -38,10 +38,10 @@
     envalid "^5.0.0"
     validator "^11.0.0"
 
-"@base-cms/micro@^0.9.26":
-  version "0.9.26"
-  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-0.9.26.tgz#760d52e5ca77f6f0326d17f349ec0b5deaddb4e2"
-  integrity sha512-CGJRUrwXq3TwNmqRhzm+PE4ix5DrusgRdVDq3G3UEW8NZIceK0KgimFdbVDvVTCQ1Ov770WSpo0Umc4qbKw8uQ==
+"@base-cms/micro@^0.9.27":
+  version "0.9.27"
+  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-0.9.27.tgz#a13ae9220faa81b7fb0c62aeab337a596601231d"
+  integrity sha512-3/SWNb+Mm42nWNY3j5pktjtfxUUTv1QQKuDaGBwgiWCU81NORf3uUs7GcX3ikM46/PQbIQbMmKVW4WzaLAawZw==
   dependencies:
     node-fetch "^2.6.0"
 
