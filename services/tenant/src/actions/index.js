@@ -1,3 +1,12 @@
-const retrieve = require('./retrieve');
+const tenant = require('./tenant');
 
-module.exports = { retrieve };
+const { keys } = Object;
+
+const load = (root, obj) => keys(obj).reduce((o, key) => {
+  const k = `${root}.${key}`;
+  return { ...o, [k]: obj[key] };
+}, {});
+
+module.exports = {
+  ...load('tenant', tenant),
+};
