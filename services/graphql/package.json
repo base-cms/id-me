@@ -24,5 +24,14 @@
     "slug": "^1.1.0",
     "unique-push-id": "^1.0.2",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^5.0.0",
+    "lerna": "^3.14.1"
   }
 }
