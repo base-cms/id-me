@@ -41,8 +41,14 @@ const schema = new Schema({
     type: String,
     maxlength: 54,
     lowercase: true,
+    required: true,
     unique: true,
     set: v => slug(v),
+  },
+  deleted: {
+    type: Boolean,
+    required: true,
+    default: false,
   },
   settings: {
     type: settingsSchema,
@@ -50,5 +56,7 @@ const schema = new Schema({
     default: () => ({}),
   },
 }, { timestamps: true });
+
+schema.index({ deleted: 1, key: 1 });
 
 module.exports = schema;
