@@ -13,6 +13,7 @@
   "dependencies": {
     "@base-cms/env": "^0.9.25",
     "@base-cms/micro": "^0.9.27",
+    "@base-cms/utils": "^0.9.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
     "slug": "^1.1.0",
