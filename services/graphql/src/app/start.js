@@ -1,5 +1,5 @@
-const connection = require('./mongodb/connection');
-const models = require('./mongodb/models');
+const connection = require('../mongodb/connection');
+const models = require('../mongodb/models');
 
 const { log } = console;
 
