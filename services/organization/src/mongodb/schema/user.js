@@ -1,21 +1,6 @@
-const pushId = require('unique-push-id');
-const uuid = require('uuid/v4');
 const validator = require('validator');
 const { Schema } = require('mongoose');
 const connection = require('../connection');
-
-const apiSchema = new Schema({
-  key: {
-    type: String,
-    required: true,
-    default: () => uuid(),
-  },
-  secret: {
-    type: String,
-    required: true,
-    default: () => pushId(),
-  },
-});
 
 const schema = new Schema({
   email: {
@@ -33,18 +18,12 @@ const schema = new Schema({
       },
     ],
   },
-  api: {
-    type: apiSchema,
-    default: () => ({}),
-  },
   givenName: {
     type: String,
-    required: true,
     trim: true,
   },
   familyName: {
     type: String,
-    required: true,
     trim: true,
   },
 }, { timestamps: true });
