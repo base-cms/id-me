@@ -1,4 +1,4 @@
-const connection = require('../mongodb/connection');
+const mongodb = require('../mongodb/connection');
 const models = require('../mongodb/models');
 
 const { log } = console;
@@ -21,6 +21,6 @@ const indexModel = Model => new Promise((resolve, reject) => {
 const indexModels = () => Promise.all(Object.keys(models).map(name => indexModel(models[name])));
 
 module.exports = () => Promise.all([
-  start(connection, 'MongoDB', m => m.client.s.url),
+  start(mongodb, 'MongoDB', m => m.client.s.url),
   indexModels().then(() => log('> Model indexes created.')),
 ]);
