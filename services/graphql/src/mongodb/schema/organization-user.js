@@ -8,6 +8,23 @@ const {
   referencePlugin,
 } = require('../plugins');
 
+const organizationSchema = new Schema({
+  role: {
+    type: String,
+    default: 'Member',
+    required: true,
+    enum: ['Restricted', 'Member', 'Administrator'],
+  },
+});
+
+organizationSchema.plugin(referencePlugin, {
+  name: '_id',
+  modelName: 'organization',
+  options: { required: true },
+  connection,
+});
+
+
 const schema = new Schema({
   email: {
     type: String,
@@ -56,12 +73,6 @@ const schema = new Schema({
     required: true,
     default: false,
   },
-  role: {
-    type: String,
-    default: 'Member',
-    required: true,
-    enum: ['Restricted', 'Member', 'Administrator'],
-  },
   photoURL: {
     type: String,
     trim: true,
@@ -80,15 +91,8 @@ const schema = new Schema({
   timestamps: true,
 });
 
-schema.plugin(referencePlugin, {
-  name: 'organizationId',
-  modelName: 'organization',
-  options: { required: true },
-  connection,
-});
-
 schema.plugin(deleteablePlugin, {
-  index: { deleted: 1, organizationId: 1, email: 1 },
+  index: { deleted: 1, email: 1 },
   indexOptions: { unique: true },
 });
 
