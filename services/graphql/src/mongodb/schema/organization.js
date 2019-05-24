@@ -1,5 +1,4 @@
 const pushId = require('unique-push-id');
-const slug = require('slug');
 const uuid = require('uuid/v4');
 const { Schema } = require('mongoose');
 
@@ -37,14 +36,6 @@ const schema = new Schema({
     required: true,
     trim: true,
   },
-  key: {
-    type: String,
-    maxlength: 54,
-    lowercase: true,
-    required: true,
-    unique: true,
-    set: v => slug(v),
-  },
   deleted: {
     type: Boolean,
     required: true,
@@ -57,6 +48,6 @@ const schema = new Schema({
   },
 }, { timestamps: true });
 
-schema.index({ deleted: 1, key: 1 });
+schema.index({ deleted: 1 });
 
 module.exports = schema;

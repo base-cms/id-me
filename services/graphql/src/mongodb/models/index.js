@@ -1,3 +1,3 @@
-const tenant = require('./tenant');
+const organization = require('./organization');
 
-module.exports = { tenant };
+module.exports = { organization };
