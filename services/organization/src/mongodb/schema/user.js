@@ -54,7 +54,7 @@ schema.static('normalizeEmail', (email) => {
   return String(email).trim().toLowerCase();
 });
 
-schema.method('findByEmail', async function findByEmail(value, fields) {
+schema.static('findByEmail', async function findByEmail(value, fields) {
   const email = connection.model('user').normalizeEmail(value);
   if (!email) throw new Error('Unable to find user: no email address was provided.');
   return this.findOne({ email }, fields);
