@@ -1,6 +1,7 @@
 const pushId = require('unique-push-id');
 const uuid = require('uuid/v4');
 const { Schema } = require('mongoose');
+const { deleteablePlugin } = require('../plugins');
 
 const sessionSchema = new Schema({
   globalSecret: {
@@ -48,6 +49,6 @@ const schema = new Schema({
   },
 }, { timestamps: true });
 
-schema.index({ deleted: 1 });
+schema.plugin(deleteablePlugin);
 
 module.exports = schema;
