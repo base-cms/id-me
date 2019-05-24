@@ -1,14 +1,17 @@
 module.exports = function deleteablePlugin(schema, {
   index = { deleted: 1 },
+  indexOptions,
+  fieldOptions,
 } = {}) {
   schema.add({
     deleted: {
       type: Boolean,
       required: true,
       default: false,
+      ...fieldOptions,
     },
   });
-  if (index) schema.index(index);
+  if (index) schema.index(index, indexOptions);
 
   /**
    *
