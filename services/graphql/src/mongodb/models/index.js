@@ -1,7 +1,7 @@
-const organization = require('./organization');
-const organizationUser = require('./organization-user');
+const Organization = require('./organization');
+const OrganizationUser = require('./organization-user');
 
 module.exports = {
-  organization,
-  organizationUser,
+  Organization,
+  OrganizationUser,
 };
