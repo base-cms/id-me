@@ -64,8 +64,17 @@ services:
     command: ["--port", "80"]
     depends_on:
       - mongodb
+      - token
     ports:
       - "12003:80"
+
+  token:
+    <<: *node
+    working_dir: /id-me/services/token
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80"]
+    ports:
+      - "12004:80"
 
 volumes:
   mongodb: {}
