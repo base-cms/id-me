@@ -1,9 +1,6 @@
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid/v4');
-const { service } = require('@base-cms/micro');
 const { TOKEN_SECRET } = require('../env');
-
-const { createRequiredParamError } = service;
 
 /**
  * Creates an encoded JWT for the provided payload.
@@ -12,16 +9,13 @@ const { createRequiredParamError } = service;
  * If an `exp` values is provided in the payload, it will override the `ttl` argument.
  *
  * @param {object} params
- * @param {string} params.action The action the token is for.
  * @param {object} [params.payload={}] The JWT payload object.
  * @param {number} [params.ttl] The token TTL, in seconds
  */
 module.exports = async ({
-  action,
   payload = {},
   ttl,
 } = {}) => {
-  if (!action) throw createRequiredParamError('action');
   const now = new Date();
   const iat = Math.floor(now.valueOf() / 1000);
 
@@ -32,7 +26,6 @@ module.exports = async ({
   const toSign = {
     ...initial,
     ...payload,
-    act: action,
   };
   const token = jwt.sign(toSign, TOKEN_SECRET);
   return { token, payload: toSign };
