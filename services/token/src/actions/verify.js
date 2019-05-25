@@ -18,6 +18,7 @@ module.exports = async ({ action, encoded }) => {
 
   try {
     const verified = jwt.verify(encoded, TOKEN_SECRET, { algorithms: ['HS256'] });
+    if (verified.act !== action) throw createError(400, 'Token actions are mis-matched.');
     return verified;
   } catch (e) {
     const { message } = e;
