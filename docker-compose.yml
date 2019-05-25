@@ -68,6 +68,7 @@ services:
     depends_on:
       - mongodb
       - token
+      - mailer
     ports:
       - "12003:80"
 
@@ -81,6 +82,17 @@ services:
       TOKEN_SECRET: ${TOKEN_SECRET-thisisntverysecret}
     ports:
       - "12004:80"
+
+  mailer:
+    <<: *node
+    working_dir: /id-me/services/mailer
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80"]
+    environment:
+      <<: *env
+      SENDGRID_API_KEY: ${SENDGRID_API_KEY}
+    ports:
+      - "12005:80"
 
 volumes:
   mongodb: {}
