@@ -4,7 +4,7 @@
   "description": "The ID|Me organization service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
-  "repository": "https://github.com/base-cms/id-me/tree/master/packages/organization",
+  "repository": "https://github.com/base-cms/id-me/tree/master/services/organization",
   "license": "MIT",
   "private": true,
   "scripts": {

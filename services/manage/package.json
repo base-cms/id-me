@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "ID|Me manage application",
-  "repository": "https://github.com/base-cms/id-me/tree/master/packages/manage",
+  "repository": "https://github.com/base-cms/id-me/tree/master/services/manage",
   "license": "MIT",
   "author": "Jacob Bare <jacob@limit0.io>",
   "directories": {
