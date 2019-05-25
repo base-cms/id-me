@@ -16,9 +16,6 @@
     "@base-cms/utils": "^0.9.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
-    "slug": "^1.1.0",
-    "unique-push-id": "^1.0.2",
-    "uuid": "^3.3.2",
     "validator": "^11.0.0"
   },
   "devDependencies": {
