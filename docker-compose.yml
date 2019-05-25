@@ -62,6 +62,9 @@ services:
     working_dir: /id-me/services/organization
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
+    environment:
+      <<: *env
+      TOKEN_SERVICE_URL: ${TOKEN_SERVICE_URL-http://token}
     depends_on:
       - mongodb
       - token
@@ -73,6 +76,9 @@ services:
     working_dir: /id-me/services/token
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
+    environment:
+      <<: *env
+      TOKEN_SECRET: ${TOKEN_SECRET-thisisntverysecret}
     ports:
       - "12004:80"
 
