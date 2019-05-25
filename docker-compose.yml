@@ -65,6 +65,7 @@ services:
     environment:
       <<: *env
       TOKEN_SERVICE_URL: ${TOKEN_SERVICE_URL-http://token}
+      MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
     depends_on:
       - mongodb
       - token

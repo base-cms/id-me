@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
+    "@base-cms/id-me-mailer-client": "^0.0.0",
+    "@base-cms/id-me-token-client": "^0.0.0",
     "@base-cms/micro": "^0.9.27",
     "@base-cms/utils": "^0.9.0",
     "micro": "^9.3.4",
