@@ -32,6 +32,7 @@ module.exports = async ({
   const toSign = {
     ...initial,
     ...payload,
+    action,
   };
   const token = jwt.sign(toSign, TOKEN_SECRET);
   return { token, payload: toSign };
