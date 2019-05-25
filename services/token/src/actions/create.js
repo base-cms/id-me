@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const uuid = require('uuid/v4');
 const { service } = require('@base-cms/micro');
+const { TOKEN_SECRET } = require('../env');
 
 const { createRequiredParamError } = service;
 
@@ -12,18 +13,15 @@ const { createRequiredParamError } = service;
  *
  * @param {object} params
  * @param {string} params.action The action the token is for.
- * @param {string} params.secret The secret to sign the token with.
  * @param {object} [params.payload={}] The JWT payload object.
  * @param {number} [params.ttl] The token TTL, in seconds
  */
 module.exports = async ({
   action,
-  secret,
   payload = {},
   ttl,
 } = {}) => {
   if (!action) throw createRequiredParamError('action');
-  if (!secret) throw createRequiredParamError('secret');
   const now = new Date();
   const iat = Math.floor(now.valueOf() / 1000);
 
@@ -35,6 +33,6 @@ module.exports = async ({
     ...initial,
     ...payload,
   };
-  const token = jwt.sign(toSign, secret);
+  const token = jwt.sign(toSign, TOKEN_SECRET);
   return { token, payload: toSign };
 };

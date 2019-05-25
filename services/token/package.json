@@ -11,6 +11,7 @@
     "dev": "micro-dev"
   },
   "dependencies": {
+    "@base-cms/env": "^0.9.25",
     "@base-cms/micro": "^0.9.27",
     "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",

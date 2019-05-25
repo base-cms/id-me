@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { createError } = require('micro');
 const { service } = require('@base-cms/micro');
+const { TOKEN_SECRET } = require('../env');
 
 const { createRequiredParamError } = service;
 
@@ -10,15 +11,13 @@ const { createRequiredParamError } = service;
  * @param {object} params
  * @param {string} params.action The corresponding action for the token.
  * @param {string} params.encoded The encoded JWT value.
- * @param {string} params.secret The secret used to sign the JWT.
  */
-module.exports = async ({ action, encoded, secret }) => {
+module.exports = async ({ action, encoded }) => {
   if (!action) throw createRequiredParamError('action');
   if (!encoded) throw createRequiredParamError('encoded');
-  if (!secret) throw createRequiredParamError('secret');
 
   try {
-    const verified = jwt.verify(encoded, secret, { algorithms: ['HS256'] });
+    const verified = jwt.verify(encoded, TOKEN_SECRET, { algorithms: ['HS256'] });
     return verified;
   } catch (e) {
     const { message } = e;
