@@ -30,12 +30,11 @@ module.exports = async ({
   const $set = invite.toObject();
   delete $set._id;
 
-  const payload = {
+  const { token } = await tokenService.request('create', {
     sub: 'invite-user-to-org',
     oid: organizationId,
     email: user.email,
-  };
-  const { token } = await tokenService.request('create', { params: { payload } });
+  });
 
   await OrgInvitation.update({ email: user.email, organizationId }, { $set }, { upsert: true });
 
@@ -49,12 +48,10 @@ module.exports = async ({
     </html>
   `;
   await mailerService.request('send', {
-    params: {
-      to: user.email,
-      from: 'ID|Me Platform <noreply@base-cms.io>',
-      subject: `You've been invited to join ${org.name}`,
-      html,
-    },
+    to: user.email,
+    from: 'ID|Me Platform <noreply@base-cms.io>',
+    subject: `You've been invited to join ${org.name}`,
+    html,
   });
   return 'ok';
 };
