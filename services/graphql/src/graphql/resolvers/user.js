@@ -1,10 +1,10 @@
-const organizationService = require('@base-cms/id-me-organization-client');
+const userService = require('@base-cms/id-me-user-client');
 
 module.exports = {
   Mutation: {
-    inviteUserToOrg: async (_, { input }) => {
-      const res = await organizationService.request('user.inviteToOrg', input);
-      return res;
+    inviteUserToOrg: (_, { input }) => {
+      const { email, organizationId } = input;
+      return userService.request('inviteToOrg', { email, organizationId });
     },
   },
 };
