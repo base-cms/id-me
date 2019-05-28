@@ -1,4 +1,3 @@
-const { isArray } = Array;
 const { log } = console;
 
 const start = (promise, name, url) => {
@@ -24,7 +23,7 @@ module.exports = ({
   models,
 } = {}) => () => {
   const p = [];
-  if (isArray(models)) p.push(indexModels(models).then(() => log('> Model indexes created.')));
+  if (models) p.push(indexModels(models).then(() => log('> Model indexes created.')));
   if (connection) p.push(start(connection, 'MongoDB', m => m.client.s.url));
   return Promise.all(p);
 };

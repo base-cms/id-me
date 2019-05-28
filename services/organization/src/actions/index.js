@@ -1,14 +1,7 @@
-const organization = require('./organization');
-const user = require('./user');
-
-const { keys } = Object;
-
-const load = (root, obj) => keys(obj).reduce((o, key) => {
-  const k = `${root}.${key}`;
-  return { ...o, [k]: obj[key] };
-}, {});
+const create = require('./create');
+const findById = require('./find-by-id');
 
 module.exports = {
-  ...load('organization', organization),
-  ...load('user', user),
+  create,
+  findById,
 };

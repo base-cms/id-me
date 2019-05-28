@@ -1,10 +1,10 @@
-const { createError } = require('micro');
-const tokenService = require('@base-cms/id-me-token-client');
 const mailerService = require('@base-cms/id-me-mailer-client');
-const Organization = require('../organization');
+const orgService = require('@base-cms/id-me-organization-client');
+const tokenService = require('@base-cms/id-me-token-client');
+const { createError } = require('micro');
+const { createRequiredParamError } = require('@base-cms/micro').service;
 const createUser = require('./create');
-const validateParams = require('../validate-required-params');
-const { OrgMembership, OrgInvitation } = require('../../mongodb/models');
+const { OrgMembership, OrgInvitation } = require('../mongodb/models');
 
 
 module.exports = async ({
@@ -12,14 +12,12 @@ module.exports = async ({
   email,
   role,
 } = {}) => {
-  validateParams({
-    organizationId,
-    email,
-  });
+  if (!organizationId) throw createRequiredParamError('organizationId');
+  if (!email) throw createRequiredParamError('email');
 
   const [org, membership, user] = await Promise.all([
-    Organization.findById({ id: organizationId, fields: ['id', 'name'] }),
-    OrgMembership.findOne({ email, organizationId }, { _id: 1 }),
+    orgService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
+    OrgMembership.findFor(organizationId, email, { _id: 1 }),
     createUser({ email, fields: ['id', 'email'] }),
   ]);
   if (!org) throw createError(404, `No organization was found for '${organizationId}'`);

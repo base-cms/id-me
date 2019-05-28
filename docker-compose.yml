@@ -68,8 +68,6 @@ services:
     command: ["--port", "80"]
     depends_on:
       - mongodb
-      - token
-      - mailer
     ports:
       - "12003:80"
 
@@ -102,6 +100,9 @@ services:
     command: ["--port", "80"]
     depends_on:
       - mongodb
+      - organization
+      - token
+      - mailer
     ports:
       - "12006:80"
 

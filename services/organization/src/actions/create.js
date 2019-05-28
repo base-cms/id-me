@@ -1,7 +1,7 @@
+const { handleError } = require('@base-cms/id-me-utils').mongoose;
 const { isObject } = require('@base-cms/utils');
 const { service } = require('@base-cms/micro');
-const Organization = require('../../mongodb/models/organization');
-const handleError = require('../handle-error');
+const Organization = require('../mongodb/models/organization');
 
 const { createRequiredParamError } = service;
 

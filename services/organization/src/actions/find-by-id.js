@@ -1,5 +1,5 @@
 const { service } = require('@base-cms/micro');
-const Organization = require('../../mongodb/models/organization');
+const Organization = require('../mongodb/models/organization');
 
 const { createRequiredParamError } = service;
 
