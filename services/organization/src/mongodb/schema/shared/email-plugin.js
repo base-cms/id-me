@@ -9,6 +9,7 @@ module.exports = function emailPlugin(schema, { connection, fieldOptions = {} } 
       required: true,
       trim: true,
       lowercase: true,
+      set: normalizeEmail,
       validate: emailValidator,
     },
   });
