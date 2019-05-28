@@ -7,7 +7,6 @@ extend type Mutation {
 }
 
 input InviteUserToOrgMutationInput {
-  organizationId: String!
   email: String!
   role: OrganizationRole = Member
 }
