@@ -9,13 +9,13 @@ const { createRequiredParamError } = service;
  * Verifies the provided encoded token.
  *
  * @param {object} params
- * @param {string} params.encoded The encoded JWT value.
+ * @param {string} params.token The encoded JWT value.
  */
-module.exports = async ({ encoded }) => {
-  if (!encoded) throw createRequiredParamError('encoded');
+module.exports = async ({ token }) => {
+  if (!token) throw createRequiredParamError('token');
 
   try {
-    const verified = jwt.verify(encoded, TOKEN_SECRET, { algorithms: ['HS256'] });
+    const verified = jwt.verify(token, TOKEN_SECRET, { algorithms: ['HS256'] });
     return verified;
   } catch (e) {
     const { message } = e;
