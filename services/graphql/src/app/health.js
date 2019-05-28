@@ -1,23 +1,14 @@
 const { HealthCheckError } = require('@godaddy/terminus');
-const mongoose = require('../mongodb/connection');
-const pkg = require('../../package.json');
 
 const { log } = console;
 
+// eslint-disable-next-line no-unused-vars
 const ping = (promise, name) => promise.then(() => `${name} pinged successfully.`);
-
-const mongodb = () => {
-  const args = [{ _id: pkg.name }, { $set: { last: new Date() } }, { upsert: true }];
-  return Promise.all([
-    mongoose.db.command({ ping: 1 }),
-    mongoose.db.collection('pings').updateOne(...args),
-  ]);
-};
 
 module.exports = () => {
   const errors = [];
   return Promise.all([
-    ping(mongodb(), 'MongoDB'),
+
   ].map(p => p.catch((err) => {
     errors.push(err);
   }))).then((res) => {

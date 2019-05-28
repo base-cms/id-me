@@ -1,7 +1,6 @@
-const mongodb = require('../mongodb/connection');
-
 const { log } = console;
 
+// eslint-disable-next-line no-unused-vars
 const stop = (promise, name) => {
   log(`> Disconnecting from ${name}...`);
   return promise.then((r) => {
@@ -11,5 +10,4 @@ const stop = (promise, name) => {
 };
 
 module.exports = () => Promise.all([
-  stop(mongodb.close(), 'MongoDB'),
 ]);
