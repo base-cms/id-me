@@ -699,10 +699,10 @@
     envalid "^5.0.0"
     validator "^11.0.0"
 
-"@base-cms/micro@^0.9.27":
-  version "0.9.27"
-  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-0.9.27.tgz#a13ae9220faa81b7fb0c62aeab337a596601231d"
-  integrity sha512-3/SWNb+Mm42nWNY3j5pktjtfxUUTv1QQKuDaGBwgiWCU81NORf3uUs7GcX3ikM46/PQbIQbMmKVW4WzaLAawZw==
+"@base-cms/micro@^0.9.28":
+  version "0.9.28"
+  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-0.9.28.tgz#74e8117c234d3e4484c9d5615767dc1540fd24f1"
+  integrity sha512-sSU0zNS2pCPQeIhXm88+4z2IkPmn1tAmZ+bNfxwI8WwS644XoD85HVX6TLi+IMZiSJqmuwmOc9b8/jhVKVez3Q==
   dependencies:
     node-fetch "^2.6.0"
 
