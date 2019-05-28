@@ -37,6 +37,7 @@ services:
     entrypoint: ["node_modules/.bin/gulp"]
     environment:
       <<: *env
+      ORGANIZATION_SERVICE_URL: ${ORGANIZATION_SERVICE_URL-http://organization}
       INTERNAL_PORT: 80
       EXTERNAL_PORT: 12001
     depends_on:
