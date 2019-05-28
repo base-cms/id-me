@@ -6,5 +6,6 @@ const {
 const { nonemptystr } = validators;
 
 module.exports = cleanEnv(process.env, {
+  MONGO_DSN: nonemptystr({ desc: 'The MongoDB DSN to connect to.' }),
   TOKEN_SECRET: nonemptystr({ desc: 'The token signing secret.' }),
 });

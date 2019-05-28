@@ -12,9 +12,11 @@
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
+    "@base-cms/id-me-utils": "^0.0.0",
     "@base-cms/micro": "^0.9.28",
     "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",
+    "mongoose": "^5.5.11",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

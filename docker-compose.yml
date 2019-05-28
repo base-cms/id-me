@@ -80,6 +80,8 @@ services:
     environment:
       <<: *env
       TOKEN_SECRET: ${TOKEN_SECRET-thisisntverysecret}
+    depends_on:
+      - mongodb
     ports:
       - "12004:80"
 
