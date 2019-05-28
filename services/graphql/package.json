@@ -22,7 +22,8 @@
     "graphql": "^14.3.0",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
-    "mongodb": "3.2.5"
+    "mongodb": "3.2.5",
+    "object-path": "^0.11.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
