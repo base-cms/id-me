@@ -1,7 +1,10 @@
-const createOrg = require('./organization');
+const orgContext = require('./organization');
+const userContext = require('./user');
 
 module.exports = async ({ req }) => {
-  const organizationId = req.get('x-organization-id');
-  const org = await createOrg(organizationId);
-  return { org };
+  const [org, user] = await Promise.all([
+    orgContext(req.get('x-organization-id')),
+    userContext(req.get('authorization')),
+  ]);
+  return { org, user };
 };

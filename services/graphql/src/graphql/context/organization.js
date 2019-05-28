@@ -2,28 +2,51 @@ const orgService = require('@base-cms/id-me-organization-client');
 const { UserInputError } = require('apollo-server-express');
 const { get } = require('object-path');
 
-module.exports = async (id, fields) => {
-  const org = id ? await orgService.request('findById', { id, fields }) : null;
+class OrgContext {
+  constructor(id) {
+    this.id = id;
+    this.org = {};
+  }
 
-  const prototype = {
-    getId() {
-      return this.get('_id');
-    },
+  async load() {
+    const { id } = this;
+    if (id) {
+      try {
+        this.org = await orgService.request('findById', { id }) || {};
+      } catch (e) {
+        this.error = e;
+      }
+    }
+  }
 
-    get(path, def) {
-      return get(org, path, def);
-    },
+  errored() {
+    if (this.error) return true;
+    return false;
+  }
 
-    exists() {
-      if (org) return true;
-      return false;
-    },
+  getId() {
+    return this.get('_id');
+  }
 
-    check() {
-      if (!this.exists()) throw new UserInputError('No organization ID was provided with the request.');
-      return true;
-    },
-  };
+  get(path, def) {
+    return get(this.org, path, def);
+  }
 
-  return Object.create(prototype);
+  exists() {
+    if (this.errored()) return false;
+    if (this.org) return true;
+    return false;
+  }
+
+  check() {
+    if (this.errored()) throw this.error;
+    if (!this.exists()) throw new UserInputError('No organization ID was provided with this request.');
+    return true;
+  }
+}
+
+module.exports = async (id) => {
+  const context = new OrgContext(id);
+  await context.load();
+  return context;
 };
