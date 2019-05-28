@@ -1,9 +1,13 @@
 version: '3.7'
 
 x-env-defaults: &env
-  YARN_CACHE_FOLDER: /.yarn-cache
-  NODE_ENV: development
+  MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017/id-me}
+  NODE_ENV: development
+  ORGANIZATION_SERVICE_URL: ${ORGANIZATION_SERVICE_URL-http://organization}
+  TOKEN_SERVICE_URL: ${TOKEN_SERVICE_URL-http://token}
+  USER_SERVICE_URL: ${USER_SERVICE_URL-http://user}
+  YARN_CACHE_FOLDER: /.yarn-cache
 
 x-node-defaults: &node
   tty: true
@@ -37,7 +41,6 @@ services:
     entrypoint: ["node_modules/.bin/gulp"]
     environment:
       <<: *env
-      ORGANIZATION_SERVICE_URL: ${ORGANIZATION_SERVICE_URL-http://organization}
       INTERNAL_PORT: 80
       EXTERNAL_PORT: 12001
     depends_on:
@@ -63,10 +66,6 @@ services:
     working_dir: /id-me/services/organization
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
-    environment:
-      <<: *env
-      TOKEN_SERVICE_URL: ${TOKEN_SERVICE_URL-http://token}
-      MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
     depends_on:
       - mongodb
       - token
@@ -95,6 +94,16 @@ services:
       SENDGRID_API_KEY: ${SENDGRID_API_KEY}
     ports:
       - "12005:80"
+
+  user:
+    <<: *node
+    working_dir: /id-me/services/user
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80"]
+    depends_on:
+      - mongodb
+    ports:
+      - "12006:80"
 
 volumes:
   mongodb: {}
