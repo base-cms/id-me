@@ -11,16 +11,16 @@ module.exports = async ({ email } = {}) => {
 
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
-  const payload = {
-    sub: 'user-login',
-    email: user.email,
-  };
-  const { token } = await tokenService.request('create', { payload, ttl: 60 * 60 });
+  const { token } = await tokenService.request('create', {
+    payload: { aud: user.email },
+    sub: 'user-login-link',
+    ttl: 60 * 60,
+  });
 
   const html = `
     <html>
       <body>
-        <h1>You're personal login link.</h1>
+        <h1>Your personal login link.</h1>
         <p>The login link is good for one hour. If you did not request this link, simply ignore this email or contact support.</p>
         <p><a href="http://www.google.com/login/${token}">Login to ID|Me</a></p>
       </body>
@@ -29,7 +29,7 @@ module.exports = async ({ email } = {}) => {
   await mailerService.request('send', {
     to: user.email,
     from: 'ID|Me Platform <noreply@base-cms.io>',
-    subject: 'You\'re personal login link',
+    subject: 'Your personal login link',
     html,
   });
   return 'ok';

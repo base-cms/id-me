@@ -6,9 +6,7 @@ const findByEmail = require('./find-by-email');
 module.exports = async ({ token } = {}) => {
   if (!token) throw createRequiredParamError('token');
 
-  const { sub, email } = await tokenService.request('verify', { token });
-  console.log(sub);
-  if (sub !== 'user-authentication') throw createError(400, 'Token subject mismatch encountered.');
+  const { aud: email } = await tokenService.request('verify', { sub: 'user-auth', token });
   if (!email) throw createError(400, 'No email address was provided in the token payload');
 
   const user = await findByEmail({ email, fields: ['id', 'email'] });
