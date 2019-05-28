@@ -28,11 +28,12 @@ module.exports = async ({
   const $set = invite.toObject();
   delete $set._id;
 
-  const { token } = await tokenService.request('create', {
+  const payload = {
     sub: 'invite-user-to-org',
     oid: organizationId,
     email: user.email,
-  });
+  };
+  const { token } = await tokenService.request('create', { payload });
 
   await OrgInvitation.update({ email: user.email, organizationId }, { $set }, { upsert: true });
 
