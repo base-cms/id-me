@@ -7,8 +7,8 @@ module.exports = async ({ token } = {}) => {
   if (!token) throw createRequiredParamError('token');
 
   const { sub, email } = await tokenService.request('verify', { token });
-  if (sub !== 'user-login') createError(400, 'Token subject mismatch encountered.');
-  if (!email) createError(400, 'No email address was provided in the token payload');
+  if (sub !== 'user-login') throw createError(400, 'Token subject mismatch encountered.');
+  if (!email) throw createError(400, 'No email address was provided in the token payload');
 
   const user = await findByEmail({ email, fields: ['id', 'email'] });
   if (!user) throw createError(404, `No user was found for '${email}'`);
