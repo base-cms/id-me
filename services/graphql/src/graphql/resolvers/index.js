@@ -1,5 +1,5 @@
 const deepAssign = require('deep-assign');
-const { DateType } = require('../types');
+const { DateType, ObjectIDType } = require('../types');
 
 module.exports = deepAssign(
   {
@@ -7,6 +7,7 @@ module.exports = deepAssign(
      * Custom scalar types.
      */
     Date: DateType,
+    ObjectID: ObjectIDType,
 
     /**
      * Root queries.
