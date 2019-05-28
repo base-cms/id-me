@@ -1,0 +1,20 @@
+{
+  "name": "@base-cms/id-me-mongoose-plugins",
+  "version": "0.0.0",
+  "description": "A collection of Mongoose plugins for ID|Me schemas.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/id-me/tree/master/packages/mongoose-plugins",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@base-cms/id-me-utils": "^0.0.0",
+    "mongoose": "^5.5.11",
+    "validator": "^11.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2"
+  }
+}
