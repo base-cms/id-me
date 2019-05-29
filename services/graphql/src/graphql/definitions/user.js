@@ -5,7 +5,7 @@ module.exports = gql`
 extend type Mutation {
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String
   sendUserLoginLink(input: SendUserLoginLinkMutationInput!): String
-  userLogin(input: UserLoginMutationInput!): String
+  userLogin(input: UserLoginMutationInput!): UserAuthentication!
 }
 
 type UserAuthentication {
@@ -20,6 +20,7 @@ type User {
 
 type UserAuthToken {
   id: String!
+  value: String!
 }
 
 input InviteUserToOrgMutationInput {

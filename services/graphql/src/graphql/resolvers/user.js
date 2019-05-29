@@ -11,10 +11,9 @@ module.exports = {
       return userService.request('sendLoginLink', { email });
     },
 
-    userLogin: async (_, { input }) => {
+    userLogin: (_, { input }) => {
       const { token } = input;
-      const { authToken } = await userService.request('login', { token });
-      return authToken;
+      return userService.request('login', { token });
     },
 
     inviteUserToOrg: (_, { input }, { org }) => {
