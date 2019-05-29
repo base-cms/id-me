@@ -4,7 +4,9 @@ const organizationPlugin = require('./plugins/organization');
 
 const schema = new Schema({}, { timestamps: true });
 
-schema.plugin(emailPlugin);
+schema.plugin(emailPlugin, {
+  options: { index: true },
+});
 schema.plugin(orgRolePlugin);
 schema.plugin(organizationPlugin);
 
