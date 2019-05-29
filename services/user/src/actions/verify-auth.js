@@ -12,7 +12,6 @@ module.exports = async ({ token, fields } = {}) => {
 
     const user = await findByEmail({ email, fields });
     if (!user) throw createError(404, `No user was found for '${email}'`);
-    console.log(email, user.email);
     if (user.email !== email) throw createError(401, 'The user email does not match the token email.');
 
     return { user, token: verified };
