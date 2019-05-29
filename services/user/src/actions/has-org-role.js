@@ -18,5 +18,8 @@ module.exports = async ({ email, organizationId, roles }) => {
 
   if (!org) throw createError(404, `No organization was found for '${organizationId}'`);
   if (!membership) return false;
+  // An empty set of roles means _any_ role has access.
+  if (!roles.length) return true;
+  // Otherwise, ensure the user has the required role.
   return r.includes(membership.role);
 };
