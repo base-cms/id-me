@@ -67,6 +67,14 @@ module.exports = {
     /**
      *
      */
+    userLogout: async (_, args, { user }) => {
+      await userService.request('logout', { token: user.token });
+      return 'ok';
+    },
+
+    /**
+     *
+     */
     inviteUserToOrg: (_, { input }, { org }) => {
       const { email } = input;
       return userService.request('inviteToOrg', { email, organizationId: org.getId() });

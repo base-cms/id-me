@@ -12,6 +12,7 @@ extend type Mutation {
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   sendUserLoginLink(input: SendUserLoginLinkMutationInput!): String
   userLogin(input: UserLoginMutationInput!): UserAuthentication!
+  userLogout: String! @requiresAuth
 }
 
 type UserAuthentication {
