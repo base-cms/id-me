@@ -10,6 +10,7 @@ extend type Query {
 extend type Mutation {
   createOrganization(input: CreateOrganizationMutationInput!): Organization! @requiresAuth
   setOrganizationName(input: SetOrganizationNameMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+  setOrganizationDescription(input: SetOrganizationDescriptionMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 type Organization {
@@ -24,6 +25,11 @@ input CreateOrganizationMutationInput {
 
 input OrganizationUsersQueryInput {
   sort: Boolean # @todo Implement this input.
+}
+
+input SetOrganizationDescriptionMutationInput {
+  id: String!
+  value: String!
 }
 
 input SetOrganizationNameMutationInput {
