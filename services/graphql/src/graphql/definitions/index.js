@@ -6,6 +6,8 @@ module.exports = gql`
 scalar Date
 scalar ObjectID
 
+directive @requiresOrgRole(roles: [OrganizationRole!]!) on FIELD_DEFINITION
+
 enum OrganizationRole {
   Owner
   Administrator

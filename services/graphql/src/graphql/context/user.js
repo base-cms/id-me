@@ -46,6 +46,10 @@ class UserContext {
     return false;
   }
 
+  hasOrgRole(organizationId, roles) {
+    return userService.request('hasOrgRole', { email: this.get('email'), organizationId, roles });
+  }
+
   check() {
     if (this.errored()) throw new AuthenticationError(this.error.message);
     if (!this.exists()) throw new UserInputError('No user authorization was provided with this request.');
