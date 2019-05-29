@@ -59,7 +59,7 @@ services:
 
   manage:
     <<: *node
-    image: danlynn/ember-cli:3.9.0
+    image: danlynn/ember-cli:3.10.1
     working_dir: /identity-x/services/manage
     entrypoint: ["node_modules/.bin/ember"]
     command: ["serve", "--port", "12002", "--proxy", "http://graphql"]
