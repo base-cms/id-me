@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  userMemberships(input: UserMembershipsQueryInput = {}): [UserMembership]! @requiresAuth
+  userOrganizations(input: UserOrganizationsQueryInput = {}): [UserMembership]! @requiresAuth
 }
 
 extend type Mutation {
@@ -20,6 +20,7 @@ type UserAuthentication {
 
 type UserMembership {
   id: String!
+  user: User!
   organization: Organization!
   role: OrganizationRole!
 }
@@ -59,7 +60,7 @@ input UserLoginMutationInput {
   token: String!
 }
 
-input UserMembershipsQueryInput {
+input UserOrganizationsQueryInput {
   sort: Boolean # @todo Implement this input.
 }
 

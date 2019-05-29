@@ -9,10 +9,11 @@ module.exports = {
   UserMembership: {
     id: membership => membership._id,
     organization: membership => orgService.request('findById', { id: membership.organizationId }),
+    user: membership => userService.request('findByEmail', { email: membership.email }),
   },
 
   Query: {
-    userMemberships: async (_, args, { user }) => {
+    userOrganizations: async (_, args, { user }) => {
       const email = user.get('email');
       return userService.request('orgMemberships', { email });
     },
