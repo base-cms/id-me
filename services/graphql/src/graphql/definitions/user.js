@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Mutation {
-  inviteUserToOrg(input: InviteUserToOrgMutationInput!): String
+  inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   sendUserLoginLink(input: SendUserLoginLinkMutationInput!): String
   userLogin(input: UserLoginMutationInput!): UserAuthentication!
 }
