@@ -6,6 +6,13 @@ module.exports = {
     id: org => org._id,
   },
 
+  Query: {
+    organizationUsers: async (_, args, { org }) => {
+      const id = org.getId();
+      return userService.request('findForOrg', { id });
+    },
+  },
+
   Mutation: {
     createOrganization: async (_, { input }, { user }) => {
       const { name } = input;
