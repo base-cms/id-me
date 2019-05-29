@@ -6,6 +6,7 @@ const inviteToOrg = require('./invite-to-org');
 const login = require('./login');
 const logout = require('./logout');
 const sendLoginLink = require('./send-login-link');
+const setOrgMembership = require('./set-org-membership');
 const verifyAuth = require('./verify-auth');
 
 module.exports = {
@@ -17,5 +18,6 @@ module.exports = {
   login,
   logout,
   sendLoginLink,
+  setOrgMembership,
   verifyAuth,
 };
