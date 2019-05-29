@@ -7,7 +7,12 @@ module.exports = {
   },
 
   Query: {
-    organizationUsers: async (_, args, { org }) => {
+    activeOrganization: (_, args, { org }) => {
+      const id = org.getId();
+      return orgService.request('findById', { id });
+    },
+
+    organizationUsers: (_, args, { org }) => {
       const id = org.getId();
       return userService.request('findForOrg', { id });
     },

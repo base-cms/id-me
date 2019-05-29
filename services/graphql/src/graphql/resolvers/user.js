@@ -13,6 +13,11 @@ module.exports = {
   },
 
   Query: {
+    activeUser: (_, args, { user }) => {
+      const email = user.get('email');
+      return userService.request('findByEmail', { email });
+    },
+
     userOrganizations: async (_, args, { user }) => {
       const email = user.get('email');
       return userService.request('orgMemberships', { email });
