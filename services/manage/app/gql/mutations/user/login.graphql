@@ -1,0 +1,7 @@
+#import '@base-cms/id-me-manage/gql/fragments/authentication'
+
+mutation Login($input: UserLoginMutationInput!) {
+	userLogin(input: $input){
+    ...AuthenticationFragment
+  }
+}

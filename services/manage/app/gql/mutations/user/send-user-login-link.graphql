@@ -1,5 +1,0 @@
-#import '@base-cms/id-me-manage/gql/fragments/authentication'
-
-mutation SendUserLoginLink($input: SendUserLoginLinkMutationInput!) {
-	sendUserLoginLink(input: $input)
-}

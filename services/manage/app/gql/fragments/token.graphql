@@ -1,0 +1,4 @@
+fragment TokenFragment on UserAuthToken {
+  id
+  value
+}

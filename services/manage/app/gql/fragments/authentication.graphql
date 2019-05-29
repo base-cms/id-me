@@ -1,0 +1,11 @@
+#import '@base-cms/id-me-manage/gql/fragments/token'
+#import '@base-cms/id-me-manage/gql/fragments/user'
+
+fragment AuthenticationFragment on UserAuthentication {
+  token {
+    ...TokenFragment
+  }
+  user {
+    ...UserFragment
+  }
+}

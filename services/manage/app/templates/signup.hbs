@@ -4,91 +4,97 @@
   <div class="row">
     <div class="col-md-8 col-lg-6 mx-auto">
       <div class="card">
-        <form {{action "submit" on="submit"}}>
+        {{#if sent}}
           <div class="card-header"></div>
           <div class="card-body">
-            <h1 class="card-title">Welcome to ID|Me!</h1>
-            <small>{{#link-to "login"}} Been here before? {{/link-to}}</small>
-            <hr>
-
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="signup-given-name">First name</label>
-                  <div class="input-group">
-                    {{input
-                      id="signup-given-name"
-                      required=true
-                      autofocus=true
-                      class="form-control form-control-lg"
-                      value=givenName
-                      autocomplete="username given-name"
-                    }}
+            <h1 class="card-title">Welcome to ID|Me</h1>
+            <p>Thanks for signing up! Check your email to continue.</p>
+          </div>
+        {{else}}
+          <form {{action "submit" on="submit"}}>
+            <div class="card-header"></div>
+            <div class="card-body">
+              <h1 class="card-title">Welcome to ID|Me</h1>
+              <small>{{#link-to "login"}} Been here before? {{/link-to}}</small>
+              <hr>
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="signup-given-name">First name</label>
+                    <div class="input-group">
+                      {{input
+                        id="signup-given-name"
+                        required=true
+                        autofocus=true
+                        class="form-control form-control-lg"
+                        value=givenName
+                        autocomplete="username given-name"
+                      }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-6">
+                  <div class="form-group">
+                    <label for="signup-family-name">Last name</label>
+                    <div class="input-group">
+                      {{input
+                        id="signup-family-name"
+                        required=true
+                        class="form-control form-control-lg"
+                        value=familyName
+                        autocomplete="username family-name"
+                      }}
+                    </div>
                   </div>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="signup-family-name">Last name</label>
-                  <div class="input-group">
-                    {{input
-                      id="signup-family-name"
-                      required=true
-                      class="form-control form-control-lg"
-                      value=familyName
-                      autocomplete="username family-name"
-                    }}
+              <div class="form-group">
+                <label for="signup-email">Email address</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">{{entypo-icon "email"}}</span>
                   </div>
+                  {{input
+                    id="signup-email"
+                    required=true
+                    class="form-control form-control-lg"
+                    type="email"
+                    value=email
+                    autocomplete="username email"
+                  }}
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="signup-orgname">Organization name</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">{{entypo-icon "v-card"}}</span>
+                  </div>
+                  {{input
+                    id="signup-orgname"
+                    required=true
+                    class="form-control form-control-lg"
+                    type="text"
+                    value=orgName
+                    autocomplete="organization name"
+                  }}
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label for="signup-email">Email address</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">{{entypo-icon "email"}}</span>
-                </div>
-                {{input
-                  id="signup-email"
-                  required=true
-                  class="form-control form-control-lg"
-                  type="email"
-                  value=email
-                  autocomplete="username email"
-                }}
-              </div>
+            <div class="card-footer">
+              <button
+                type="submit"
+                class="btn btn-block btn-lg btn-primary"
+                disabled={{isActionRunning}}
+              >
+                {{entypo-icon "login" class="mr-1"}} Sign up
+              </button>
+              {{#if errorMessage}}
+                <div class="alert-danger mt-3 mb-0 alert" role="alert"><strong>Oh Snap!</strong> {{errorMessage}}</div>
+              {{/if}}
             </div>
-            <div class="form-group">
-              <label for="signup-orgname">Organization name</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">{{entypo-icon "v-card"}}</span>
-                </div>
-                {{input
-                  id="signup-orgname"
-                  required=true
-                  class="form-control form-control-lg"
-                  type="text"
-                  value=orgname
-                  autocomplete="organization name"
-                }}
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <button
-              type="submit"
-              class="btn btn-block btn-lg btn-primary"
-              disabled={{isActionRunning}}
-            >
-              {{entypo-icon "login" class="mr-1"}} Sign up
-            </button>
-            {{#if errorMessage}}
-              <div class="alert-danger mt-3 mb-0 alert" role="alert"><strong>Oh Snap!</strong> {{errorMessage}}</div>
-            {{/if}}
-          </div>
-          {{progress-bar show=isActionRunning}}
-        </form>
+          </form>
+        {{/if}}
       </div>
     </div>
   </div>

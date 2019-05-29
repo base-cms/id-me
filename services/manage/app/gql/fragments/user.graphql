@@ -1,0 +1,9 @@
+fragment UserFragment on User {
+  id
+  email
+  familyName
+  givenName
+  photoURL
+  createdAt
+  updatedAt
+}
