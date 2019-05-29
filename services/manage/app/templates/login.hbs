@@ -1,0 +1,48 @@
+{{promo-nav}}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <div class="card">
+        <form {{action "submit" on="submit"}}>
+          <div class="card-header"></div>
+          <div class="card-body">
+            <h1 class="card-title">Welcome back!</h1>
+            <small>{{#link-to "signup"}} Need an account? {{/link-to}}</small>
+            <hr>
+            <div class="form-group">
+              <label for="login-email">Email address</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">{{entypo-icon "email"}}</span>
+                </div>
+                {{input
+                  id="login-email"
+                  autofocus=true
+                  required=true
+                  class="form-control form-control-lg"
+                  type="email"
+                  value=email
+                  autocomplete="email"
+                }}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button
+              type="submit"
+              class="btn btn-block btn-lg btn-primary"
+              disabled={{isActionRunning}}
+            >
+              {{entypo-icon "login" class="mr-1"}} Sign in
+            </button>
+            {{#if errorMessage}}
+              <div class="alert-danger mt-3 mb-0 alert" role="alert"><strong>Oh Snap!</strong> {{errorMessage}}</div>
+            {{/if}}
+          </div>
+          {{progress-bar show=isActionRunning}}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

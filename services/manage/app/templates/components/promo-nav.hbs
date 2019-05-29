@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  {{#link-to "index" class="navbar-brand"}}ID<span class="text-secondary">|Me</span>{{/link-to}}
+
+  <ul class="navbar-nav mr-auto">
+    {{#link-to "features" tagName="li" class="nav-item" title="Features"}}
+      {{#link-to "features" class="nav-link"}}Features{{/link-to}}
+    {{/link-to}}
+    {{#link-to "pricing" tagName="li" class="nav-item" title="Pricing"}}
+      {{#link-to "pricing" class="nav-link"}}Pricing{{/link-to}}
+    {{/link-to}}
+  </ul>
+
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a
+        href="https://as3.gitbook.io/id-me"
+        title="Application Documentation"
+        class="nav-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {{entypo-icon "text-document"}} <span class="d-none d-md-inline">Documentation</span>
+      </a>
+    </li>
+
+    {{#if user.isAuthenticated}}
+      {{#link-to "manage.index" title="Return to the Application"}}
+        Dashboard
+      {{/link-to}}
+      {{#link-to "logout" title="Sign out of the Application"}}Sign out{{/link-to}}
+    {{else}}
+      {{#link-to "login" tagName="li" class="nav-item" title="Sign in"}}
+        {{#link-to "login" class="nav-link"}}Sign in{{/link-to}}
+      {{/link-to}}
+      {{#link-to "signup" tagName="li" class="nav-item" title="Sign up"}}
+        {{#link-to "signup" class="nav-link"}}Sign up{{/link-to}}
+      {{/link-to}}
+    {{/if}}
+
+  </ul>
+
+</nav>
+
+{{loading-progress class="bg-dark"}}
