@@ -24,7 +24,7 @@ module.exports = async ({
     payload: { aud: user.email },
   });
 
-  // Invalidate the login link token.
+  // Invalidate the login link token (but do not await)
   tokenService.request('invalidate', { jti });
 
   // Save the login with the auth token ID (but do not await)
