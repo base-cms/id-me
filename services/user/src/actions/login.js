@@ -1,9 +1,15 @@
 const tokenService = require('@base-cms/id-me-token-client');
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
+const UserLogin = require('../mongodb/models/user-login');
 const findByEmail = require('./find-by-email');
 
-module.exports = async ({ token, fields } = {}) => {
+module.exports = async ({
+  token,
+  fields,
+  ip,
+  ua,
+} = {}) => {
   if (!token) throw createRequiredParamError('token');
 
   const { aud: email, jti } = await tokenService.request('verify', { sub: 'user-login-link', token });
@@ -20,6 +26,14 @@ module.exports = async ({ token, fields } = {}) => {
 
   // Invalidate the login link token.
   tokenService.request('invalidate', { jti });
+
+  // Save the login with the auth token ID (but do not await)
+  UserLogin.create({
+    email: user.email,
+    tokenId: payload.jti,
+    ip,
+    ua,
+  });
 
   return { user: user.toObject(), token: { id: payload.jti, value: authToken } };
 };
