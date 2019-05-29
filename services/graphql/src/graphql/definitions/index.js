@@ -7,6 +7,7 @@ module.exports = gql`
 scalar Date
 scalar ObjectID
 
+directive @requiresAuth on FIELD_DEFINITION
 directive @requiresOrgRole(roles: [OrganizationRole!] = []) on FIELD_DEFINITION
 
 enum OrganizationRole {
