@@ -11,9 +11,10 @@ module.exports = {
       return userService.request('sendLoginLink', { email });
     },
 
-    userLogin: (_, { input }) => {
+    userLogin: (_, { input }, { req }) => {
       const { token } = input;
-      return userService.request('login', { token });
+      const ua = req.get('user-agent');
+      return userService.request('login', { token, ip: req.ip, ua });
     },
 
     inviteUserToOrg: (_, { input }, { org }) => {

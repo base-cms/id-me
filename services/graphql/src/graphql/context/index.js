@@ -6,5 +6,5 @@ module.exports = async ({ req }) => {
     orgContext(req.get('x-organization-id')),
     userContext(req.get('authorization')),
   ]);
-  return { org, user };
+  return { org, user, req };
 };
