@@ -40,7 +40,7 @@ class OrgContext {
 
   check() {
     if (this.errored()) throw this.error;
-    if (!this.exists()) throw new UserInputError('No organization ID was provided with this request.');
+    if (!this.exists()) throw new UserInputError('Unable to find an organization for this request.');
     return true;
   }
 }
