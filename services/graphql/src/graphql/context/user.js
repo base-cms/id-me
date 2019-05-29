@@ -6,7 +6,7 @@ class UserContext {
   constructor(authorization) {
     this.authorization = authorization;
     this.user = {};
-    this.token = {};
+    this.decoded = {};
   }
 
   async load() {
@@ -15,7 +15,8 @@ class UserContext {
       try {
         const token = authorization.replace('Bearer ', '');
         const { token: decoded, user } = token ? await userService.request('verifyAuth', { token }) : {};
-        this.token = decoded;
+        this.token = token;
+        this.decoded = decoded;
         this.user = user;
       } catch (e) {
         this.error = e;
@@ -29,7 +30,7 @@ class UserContext {
   }
 
   getTokenId() {
-    return get(this.token, 'jti');
+    return get(this.decoded, 'jti');
   }
 
   getId() {
