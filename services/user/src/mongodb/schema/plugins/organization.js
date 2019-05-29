@@ -14,4 +14,10 @@ module.exports = function organizationPlugin(schema) {
     if (!organizationId) throw new Error('Unable to find: no organization ID was provided.');
     return this.findOne({ organizationId, email }, fields);
   });
+
+  schema.static('findForUser', async function findForUser(emailAddress, fields) {
+    const email = connection.model('user').normalizeEmail(emailAddress);
+    if (!email) throw new Error('Unable to find: no email address was provided.');
+    return this.find({ email }, fields);
+  });
 };
