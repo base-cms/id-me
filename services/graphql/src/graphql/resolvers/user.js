@@ -58,6 +58,24 @@ module.exports = {
     /**
      *
      */
+    setActiveUserFamilyName: (_, { input }, { user }) => {
+      const { value } = input;
+      const email = user.get('email');
+      return userService.request('updateField', { email, path: 'familyName', value });
+    },
+
+    /**
+     *
+     */
+    setActiveUserGivenName: (_, { input }, { user }) => {
+      const { value } = input;
+      const email = user.get('email');
+      return userService.request('updateField', { email, path: 'givenName', value });
+    },
+
+    /**
+     *
+     */
     userLogin: (_, { input }, { req }) => {
       const { token } = input;
       const ua = req.get('user-agent');
