@@ -20,4 +20,9 @@ module.exports = function organizationPlugin(schema) {
     if (!email) throw new Error('Unable to find: no email address was provided.');
     return this.find({ email }, fields);
   });
+
+  schema.static('findForOrganization', async function findForOrganization(organizationId, fields) {
+    if (!organizationId) throw new Error('Unable to find: no organization ID was provided.');
+    return this.find({ organizationId }, fields);
+  });
 };
