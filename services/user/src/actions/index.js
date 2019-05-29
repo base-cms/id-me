@@ -9,6 +9,7 @@ const logout = require('./logout');
 const orgMemberships = require('./org-memberships');
 const sendLoginLink = require('./send-login-link');
 const setOrgMembership = require('./set-org-membership');
+const updateField = require('./update-field');
 const verifyAuth = require('./verify-auth');
 
 module.exports = {
@@ -23,5 +24,6 @@ module.exports = {
   orgMemberships,
   sendLoginLink,
   setOrgMembership,
+  updateField,
   verifyAuth,
 };
