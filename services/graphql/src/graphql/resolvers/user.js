@@ -6,6 +6,18 @@ module.exports = {
     id: user => user._id,
   },
 
+  UserMembership: {
+    id: membership => membership._id,
+    organization: membership => orgService.request('findById', { id: membership.organizationId }),
+  },
+
+  Query: {
+    userMemberships: async (_, args, { user }) => {
+      const email = user.get('email');
+      return userService.request('orgMemberships', { email });
+    },
+  },
+
   Mutation: {
     /**
      * @todo This should require reCaptcha to prevent spam.

@@ -2,6 +2,10 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
+extend type Query {
+  userMemberships(input: UserMembershipsQueryInput = {}): [UserMembership]! @requiresAuth
+}
+
 extend type Mutation {
   registerNewUser(input: RegisterNewUserMutationInput!): UserRegistration!
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
@@ -12,6 +16,12 @@ extend type Mutation {
 type UserAuthentication {
   user: User!
   token: UserAuthToken!
+}
+
+type UserMembership {
+  id: String!
+  organization: Organization!
+  role: OrganizationRole!
 }
 
 type User {
@@ -34,6 +44,13 @@ input InviteUserToOrgMutationInput {
   role: OrganizationRole = Member
 }
 
+input RegisterNewUserMutationInput {
+  email: String!
+  givenName: String!
+  familyName: String!
+  orgName: String!
+}
+
 input SendUserLoginLinkMutationInput {
   email: String!
 }
@@ -42,11 +59,8 @@ input UserLoginMutationInput {
   token: String!
 }
 
-input RegisterNewUserMutationInput {
-  email: String!
-  givenName: String!
-  familyName: String!
-  orgName: String!
+input UserMembershipsQueryInput {
+  sort: Boolean # @todo Implement this input.
 }
 
 `;
