@@ -4,7 +4,7 @@ import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import mutation from '@base-cms/id-me-manage/gql/mutations/user/send-user-login-link';
 
 export default Controller.extend(ActionMixin, ObjectQueryManager, {
-  email: 'josh@limit0.io', //null,
+  email: null,
   sent: false,
 
   actions: {
@@ -13,8 +13,7 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
       const email = this.get('email');
       const variables = { input: { email } };
       try {
-        const response = await this.get('apollo').mutate({ mutation, variables }, 'sendUserLoginLink');
-        console.log(response);
+        await this.get('apollo').mutate({ mutation, variables }, 'sendUserLoginLink');
         this.set('sent', true);
       } catch (e) {
         this.get('graphErrors').show(e);
