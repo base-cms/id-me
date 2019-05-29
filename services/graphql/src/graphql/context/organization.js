@@ -34,7 +34,7 @@ class OrgContext {
 
   exists() {
     if (this.errored()) return false;
-    if (this.org) return true;
+    if (this.getId()) return true;
     return false;
   }
 

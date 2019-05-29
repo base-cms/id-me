@@ -42,7 +42,7 @@ class UserContext {
 
   exists() {
     if (this.errored()) return false;
-    if (this.user) return true;
+    if (this.getId()) return true;
     return false;
   }
 
@@ -52,7 +52,7 @@ class UserContext {
 
   check() {
     if (this.errored()) throw new AuthenticationError(this.error.message);
-    if (!this.exists()) throw new UserInputError('No user authorization was provided with this request.');
+    if (!this.exists()) throw new UserInputError('No user authetication was provided with this request.');
     return true;
   }
 }
