@@ -4,7 +4,8 @@ module.exports = gql`
 
 extend type Query {
   activeOrganization: Organization! @requiresOrgRole
-  organizationUsers(input: OrganizationUsersQueryInput = {}): [OrganizationMembership] @requiresOrgRole
+  organizationUsers: [OrganizationMembership] @requiresOrgRole
+  organizationInvitations: [OrganizationInvitation] @requiresOrgRole
 }
 
 extend type Mutation {
@@ -35,10 +36,6 @@ type OrganizationInvitation {
 
 input CreateOrganizationMutationInput {
   name: String!
-}
-
-input OrganizationUsersQueryInput {
-  sort: Boolean # @todo Implement this input.
 }
 
 input SetOrganizationDescriptionMutationInput {

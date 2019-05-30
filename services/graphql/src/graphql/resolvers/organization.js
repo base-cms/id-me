@@ -24,6 +24,11 @@ module.exports = {
       const id = org.getId();
       return userService.request('findForOrg', { id });
     },
+
+    organizationInvitations: (_, args, { org }) => {
+      const id = org.getId();
+      return userService.request('invitesForOrg', { id });
+    },
   },
 
   Mutation: {
