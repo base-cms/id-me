@@ -43,13 +43,15 @@ module.exports = {
       return org;
     },
 
-    setOrganizationDescription: (_, { input }) => {
-      const { id, value } = input;
+    setOrganizationDescription: (_, { input }, { org }) => {
+      const id = org.getId();
+      const { value } = input;
       return orgService.request('updateField', { id, path: 'description', value });
     },
 
-    setOrganizationName: (_, { input }) => {
-      const { id, value } = input;
+    setOrganizationName: (_, { input }, { org }) => {
+      const id = org.getId();
+      const { value } = input;
       return orgService.request('updateField', { id, path: 'name', value });
     },
   },

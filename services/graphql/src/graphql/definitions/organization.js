@@ -39,12 +39,10 @@ input CreateOrganizationMutationInput {
 }
 
 input SetOrganizationDescriptionMutationInput {
-  id: String!
   value: String!
 }
 
 input SetOrganizationNameMutationInput {
-  id: String!
   value: String!
 }
 
