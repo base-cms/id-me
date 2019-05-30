@@ -5,6 +5,7 @@ const findByEmail = require('./find-by-email');
 const findForOrg = require('./find-for-org');
 const hasOrgRole = require('./has-org-role');
 const inviteToOrg = require('./invite-to-org');
+const invitesForOrg = require('./invites-for-org');
 const login = require('./login');
 const logout = require('./logout');
 const orgInvitations = require('./org-invitations');
@@ -22,6 +23,7 @@ module.exports = {
   findForOrg,
   hasOrgRole,
   inviteToOrg,
+  invitesForOrg,
   login,
   logout,
   orgInvitations,
