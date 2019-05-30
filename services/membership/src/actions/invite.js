@@ -9,7 +9,7 @@ const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 
 const { OrgMembership, OrgInvitation } = require('../mongodb/models');
-const { MANAGE_SERVICE_URL } = require('../env');
+const { APPLICATION_URL } = require('../env');
 
 const createInvite = async ({ email, organizationId, role }) => {
   const invite = new OrgInvitation({ email, organizationId, role });
@@ -42,7 +42,7 @@ module.exports = async ({
   const { token } = await createLoginToken(tokenService, { email: user.email, ttl });
   await OrgInvitation.update(query, { $set: invite }, { upsert: true });
 
-  const url = `${MANAGE_SERVICE_URL}/authenticate/${token}?route=manage.invitations`;
+  const url = `${APPLICATION_URL}/authenticate/${token}?route=manage.invitations`;
   const html = `
     <html>
       <body>
