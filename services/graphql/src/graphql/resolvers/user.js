@@ -59,6 +59,15 @@ module.exports = {
     /**
      *
      */
+    removeUserInvite: async (_, { input }, { org }) => {
+      const { email } = input;
+      const organizationId = org.getId();
+      await userService.request('deleteInvite', { email, organizationId });
+    },
+
+    /**
+     *
+     */
     sendUserLoginLink: (_, { input }) => {
       const { email } = input;
       return userService.request('sendLoginLink', { email });
