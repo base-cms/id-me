@@ -1,7 +1,6 @@
-const membershipService = require('@base-cms/id-me-membership-client');
-const userService = require('@base-cms/id-me-user-client');
 const { UserInputError, AuthenticationError } = require('apollo-server-express');
 const { get } = require('object-path');
+const { membershipService, userService } = require('@base-cms/id-me-service-clients');
 
 class UserContext {
   constructor(authorization) {
