@@ -1,6 +1,8 @@
 const acceptOrgInvite = require('./accept-org-invite');
 const changeOrgRole = require('./change-org-role');
 const create = require('./create');
+const deleteInvite = require('./delete-invite');
+const deleteMembership = require('./delete-membership');
 const findByEmail = require('./find-by-email');
 const findForOrg = require('./find-for-org');
 const hasOrgRole = require('./has-org-role');
@@ -19,6 +21,8 @@ module.exports = {
   acceptOrgInvite,
   changeOrgRole,
   create,
+  deleteInvite,
+  deleteMembership,
   findByEmail,
   findForOrg,
   hasOrgRole,

@@ -15,6 +15,13 @@ module.exports = function organizationPlugin(schema) {
     return this.findOne({ organizationId, email }, fields);
   });
 
+  schema.static('deleteFor', async function deleteFor(organizationId, emailAddress) {
+    const email = connection.model('user').normalizeEmail(emailAddress);
+    if (!email) throw new Error('Unable to remove: no email address was provided.');
+    if (!organizationId) throw new Error('Unable to remove: no organization ID was provided.');
+    return this.deleteOne({ organizationId, email });
+  });
+
   schema.static('findForUser', async function findForUser(emailAddress, fields) {
     const email = connection.model('user').normalizeEmail(emailAddress);
     if (!email) throw new Error('Unable to find: no email address was provided.');
