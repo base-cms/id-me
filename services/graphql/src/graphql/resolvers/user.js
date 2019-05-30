@@ -1,5 +1,6 @@
 const orgService = require('@base-cms/id-me-organization-client');
 const userService = require('@base-cms/id-me-user-client');
+const { UserInputError } = require('apollo-server-express');
 
 module.exports = {
   User: {
@@ -71,6 +72,16 @@ module.exports = {
       const { value } = input;
       const email = user.get('email');
       return userService.request('updateField', { email, path: 'givenName', value });
+    },
+
+    /**
+     *
+     */
+    updateUserOrgRole: (_, { input }, { org, user }) => {
+      const { email, role } = input;
+      const organizationId = org.getId();
+      if (email === user.get('email')) throw new UserInputError('As owner, you cannot change your own role.');
+      return userService.request('changeOrgRole', { organizationId, email, role });
     },
 
     /**
