@@ -1,7 +1,9 @@
+const createLoginToken  = require('./create-login-token');
 const mongoose = require('./mongoose');
 const normalizeEmail = require('./nomalize-email');
 
 module.exports = {
-  normalizeEmail,
+  createLoginToken,
   mongoose,
+  normalizeEmail,
 };
