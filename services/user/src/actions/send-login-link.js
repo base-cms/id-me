@@ -1,8 +1,8 @@
 const mailerService = require('@base-cms/id-me-mailer-client');
 const { createError } = require('micro');
+const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 const findByEmail = require('./find-by-email');
-const createLoginToken = require('../utils/create-login-token');
 
 module.exports = async ({ email } = {}) => {
   if (!email) throw createRequiredParamError('email');
