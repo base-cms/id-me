@@ -1,3 +1,4 @@
+const membershipService = require('@base-cms/id-me-membership-client');
 const userService = require('@base-cms/id-me-user-client');
 const { UserInputError, AuthenticationError } = require('apollo-server-express');
 const { get } = require('object-path');
@@ -48,7 +49,7 @@ class UserContext {
   }
 
   hasOrgRole(organizationId, roles) {
-    return userService.request('hasOrgRole', { email: this.get('email'), organizationId, roles });
+    return membershipService.request('hasRole', { email: this.get('email'), organizationId, roles });
   }
 
   check() {

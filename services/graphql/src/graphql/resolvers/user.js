@@ -1,3 +1,4 @@
+const membershipService = require('@base-cms/id-me-membership-client');
 const orgService = require('@base-cms/id-me-organization-client');
 const userService = require('@base-cms/id-me-user-client');
 const { UserInputError } = require('apollo-server-express');
@@ -15,12 +16,12 @@ module.exports = {
 
     userOrganizations: (_, args, { user }) => {
       const email = user.get('email');
-      return userService.request('orgMemberships', { email });
+      return membershipService.request('listForUser', { email });
     },
 
     userInvitations: (_, args, { user }) => {
       const email = user.get('email');
-      return userService.request('orgInvitations', { email });
+      return membershipService.request('listInvitesForUser', { email });
     },
   },
 
@@ -31,7 +32,7 @@ module.exports = {
     acceptOrgInvite: async (_, { input }, { user }) => {
       const { organizationId } = input;
       const email = user.get('email');
-      await userService.request('acceptOrgInvite', { email, organizationId });
+      await membershipService.request('acceptInvite', { email, organizationId });
       return 'ok';
     },
 
@@ -41,7 +42,7 @@ module.exports = {
     inviteUserToOrg: (_, { input }, { org }) => {
       const { email, role } = input;
       const organizationId = org.getId();
-      return userService.request('inviteToOrg', { email, organizationId, role });
+      return membershipService.request('invite', { email, organizationId, role });
     },
 
     /**
@@ -57,7 +58,7 @@ module.exports = {
       const userPayload = { givenName, familyName };
       const user = await userService.request('create', { email, payload: userPayload });
       const organization = await orgService.request('create', { payload: { name: orgName } });
-      await userService.request('setOrgMembership', {
+      await membershipService.request('create', {
         organizationId: organization._id,
         email: user.email,
         role: 'Owner',
@@ -73,7 +74,7 @@ module.exports = {
       const { email } = input;
       const organizationId = org.getId();
       if (email === user.get('email')) throw new UserInputError('As an organization owner, you cannot remove yourself.');
-      return userService.request('deleteMembership', { organizationId, email });
+      return membershipService.request('delete', { organizationId, email });
     },
 
     /**
@@ -82,7 +83,7 @@ module.exports = {
     removeUserInvite: async (_, { input }, { org }) => {
       const { email } = input;
       const organizationId = org.getId();
-      await userService.request('deleteInvite', { email, organizationId });
+      await membershipService.request('deleteInvite', { email, organizationId });
     },
 
     /**
@@ -118,7 +119,7 @@ module.exports = {
       const { email, role } = input;
       const organizationId = org.getId();
       if (email === user.get('email')) throw new UserInputError('As an organization owner, you cannot change your role.');
-      return userService.request('changeOrgRole', { organizationId, email, role });
+      return membershipService.request('changeRole', { organizationId, email, role });
     },
 
     /**

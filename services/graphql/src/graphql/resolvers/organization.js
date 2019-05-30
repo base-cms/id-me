@@ -1,3 +1,4 @@
+const membershipService = require('@base-cms/id-me-membership-client');
 const orgService = require('@base-cms/id-me-organization-client');
 const userService = require('@base-cms/id-me-user-client');
 
@@ -22,12 +23,12 @@ module.exports = {
 
     organizationUsers: (_, args, { org }) => {
       const id = org.getId();
-      return userService.request('findForOrg', { id });
+      return membershipService.request('listForOrg', { id });
     },
 
     organizationInvitations: (_, args, { org }) => {
       const id = org.getId();
-      return userService.request('invitesForOrg', { id });
+      return membershipService.request('listInvitesForOrg', { id });
     },
   },
 
@@ -36,7 +37,7 @@ module.exports = {
       const { name } = input;
       const payload = { name };
       const org = await orgService.request('create', { payload });
-      await userService.request('setOrgMembership', {
+      await membershipService.request('create', {
         organizationId: org._id,
         email: user.get('email'),
         role: 'Owner',
