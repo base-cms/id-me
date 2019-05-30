@@ -6,12 +6,11 @@ export default Base.extend({
   auth: inject(),
 
   getToken(data) {
-    return get(data, 'session.token');
+    return get(data, 'token.value');
   },
 
-  restore(data) {
-    const token = this.getToken(data);
-    return this.get('auth').check(token);
+  async restore(data) {
+    return data;
   },
 
   authenticate(loginToken) {

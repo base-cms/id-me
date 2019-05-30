@@ -3,23 +3,20 @@ import { computed } from "@ember/object";
 import { inject as service } from '@ember/service';
 import { setContext } from 'apollo-link-context';
 import { get } from '@ember/object';
-import { Promise } from 'rsvp';
-
-const authorize = (session) => {
-  if (!get(session, 'isAuthenticated')) return { headers: {} };
-  return new Promise((resolve) => {
-    const token = get(session, 'data.authenticated.session.token');
-    const headers = { Authorization: `Bearer ${token}` };
-    resolve({ headers })
-  });
-};
 
 export default ApolloService.extend({
   session: service(),
 
   link: computed(function() {
+    const session = this.get('session');
     const link = this._super(...arguments);
-    const authLink = setContext(() => authorize(this.get('session')));
+    const authLink = setContext(async () => {
+      const headers = {};
+      const auth = get(session, 'isAuthenticated');
+      const token = get(session, 'data.authenticated.token.value');
+      if (auth && token) headers.Authorization = `Bearer ${token}`;
+      return { headers };
+    });
     return authLink.concat(link);
   }),
 });
