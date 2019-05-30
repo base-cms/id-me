@@ -20,6 +20,7 @@ const schema = new Schema({
   },
   organization: {
     type: organizationSchema,
+    required: true,
   },
 }, { timestamps: true });
 
