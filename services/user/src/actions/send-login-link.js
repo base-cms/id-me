@@ -1,8 +1,8 @@
-const mailerService = require('@base-cms/id-me-mailer-client');
-const tokenService = require('@base-cms/id-me-token-client');
 const { createError } = require('micro');
 const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
+const { tokenService, mailerService } = require('@base-cms/id-me-service-clients');
+
 const findByEmail = require('./find-by-email');
 
 module.exports = async ({ email } = {}) => {

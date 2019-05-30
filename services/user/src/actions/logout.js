@@ -1,6 +1,6 @@
-const tokenService = require('@base-cms/id-me-token-client');
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
+const { tokenService } = require('@base-cms/id-me-service-clients');
 
 module.exports = async ({ token } = {}) => {
   if (!token) throw createRequiredParamError('token');
