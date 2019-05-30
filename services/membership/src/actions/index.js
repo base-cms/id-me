@@ -6,6 +6,7 @@ const deleteInvite = require('./delete-invite');
 const hasRole = require('./has-role');
 const invite = require('./invite');
 const listForOrg = require('./list-for-org');
+const listInvitesForOrg = require('./list-invites-for-org');
 
 module.exports = {
   acceptInvite,
@@ -16,4 +17,5 @@ module.exports = {
   hasRole,
   invite,
   listForOrg,
+  listInvitesForOrg,
 };
