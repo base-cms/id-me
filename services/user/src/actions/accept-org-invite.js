@@ -3,6 +3,7 @@ const { createRequiredParamError } = require('@base-cms/micro').service;
 const setOrgMembership = require('./set-org-membership');
 const { OrgMembership, OrgInvitation } = require('../mongodb/models');
 const findByEmail = require('./find-by-email');
+const deleteInvite = require('./delete-invite');
 
 module.exports = async ({
   organizationId,
@@ -24,7 +25,7 @@ module.exports = async ({
   await setOrgMembership({ organizationId, email, role: invite.role });
 
   // Remove the invitation (but do not await)
-  OrgInvitation.remove({ email: user.email, organizationId });
+  deleteInvite({ email: user.email, organizationId });
 
   return 'ok';
 };
