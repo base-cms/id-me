@@ -1,0 +1,7 @@
+#import '@base-cms/id-me-manage/gql/fragments/user'
+
+query ActiveUser {
+  activeUser {
+    ...UserFragment
+  }
+}

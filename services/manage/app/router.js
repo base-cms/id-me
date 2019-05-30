@@ -12,6 +12,7 @@ Router.map(function() {
   this.route('features');
   this.route('pricing');
   this.route('manage');
+  this.route('authenticate', { path: '/authenticate/:token' });
 });
 
 export default Router;

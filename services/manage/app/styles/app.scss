@@ -1,2 +1,9 @@
 // Bootstrap theme
+@import "pulse/variables";
 @import "bootstrap";
+@import "pulse/bootswatch";
+
+// Showing progress cursor when transitioning/loading.
+body.transitioning {
+  cursor: progress;
+}

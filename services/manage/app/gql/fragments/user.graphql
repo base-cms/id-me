@@ -3,7 +3,7 @@ fragment UserFragment on User {
   email
   familyName
   givenName
-  photoURL
-  createdAt
-  updatedAt
+  # photoURL
+  # createdAt
+  # updatedAt
 }

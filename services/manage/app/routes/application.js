@@ -1,10 +1,34 @@
 import Route from '@ember/routing/route';
+import { inject as service } from '@ember/service';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import { get } from '@ember/object';
 
 export default Route.extend(ApplicationRouteMixin, ActionMixin, {
   routeAfterAuthentication: 'manage',
+  user: service(),
+
+  beforeModel(transition) {
+    this._super(...arguments);
+    const token = get(transition, 'to.queryParams.token');
+    if (token) {
+      return new Promise(async (resolve, reject) => {
+        try {
+          const data = await this.user.login(token);
+          if (data) {
+            delete transition.to.queryParams.token;
+            transition.abort();
+            this.transitionTo(transition.to.name, { queryParams: {} });
+            resolve();
+          } else {
+            reject(new Error('An invalid token was encountered'));
+          }
+        } catch (e) {
+          reject(e);
+        }
+      });
+    }
+  },
 
   actions: {
     showLoading() {

@@ -12,11 +12,8 @@ export default Service.extend(ObjectQueryManager, {
    * @param {string} token
    * @return {Promise}
    */
-  check(token) {
-    const variables = {
-      input: { token },
-    };
-    return this.get('apollo').watchQuery({ query: activeUser, variables, fetchPolicy: 'network-only' }, 'activeUser').then((auth) => {
+  check() {
+    return this.get('apollo').watchQuery({ query: activeUser, fetchPolicy: 'network-only' }, 'activeUser').then((auth) => {
       this.set('response', auth);
       return auth;
     });
@@ -29,9 +26,9 @@ export default Service.extend(ObjectQueryManager, {
    * @param {string} password
    * @return {Promise}
    */
-  submit(email, password) {
+  submit(token) {
     const variables = {
-      input: { email, password },
+      input: { token },
     };
     return this.get('apollo').mutate({ mutation: userLogin, variables }, 'userLogin').then((auth) => {
       this.set('response', auth);
