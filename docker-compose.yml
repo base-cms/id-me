@@ -1,6 +1,7 @@
 version: '3.7'
 
 x-env-defaults: &env
+  APPLICATION_SERVICE_URL: ${APPLICATION_SERVICE_URL-http://application}
   MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
   MEMBERSHIP_SERVICE_URL: ${MEMBERSHIP_SERVICE_URL-http://membership}
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017/id-me}
@@ -45,6 +46,7 @@ services:
       INTERNAL_PORT: 80
       EXTERNAL_PORT: 12001
     depends_on:
+      - application
       - membership
       - organization
       - user
