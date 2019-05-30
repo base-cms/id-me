@@ -27,6 +27,15 @@ module.exports = {
 
   Mutation: {
     /**
+     *
+     */
+    inviteUserToOrg: (_, { input }, { org }) => {
+      const { email, role } = input;
+      const organizationId = org.getId();
+      return userService.request('inviteToOrg', { email, organizationId, role });
+    },
+
+    /**
      * @todo This should require reCaptcha to prevent spam.
      */
     registerNewUser: async (_, { input }) => {
@@ -99,14 +108,6 @@ module.exports = {
     userLogout: async (_, args, { user }) => {
       await userService.request('logout', { token: user.token });
       return 'ok';
-    },
-
-    /**
-     *
-     */
-    inviteUserToOrg: (_, { input }, { org }) => {
-      const { email } = input;
-      return userService.request('inviteToOrg', { email, organizationId: org.getId() });
     },
   },
 };
