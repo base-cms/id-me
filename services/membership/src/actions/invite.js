@@ -33,15 +33,11 @@ module.exports = async ({
   if (!org) throw createError(404, `No organization was found for '${organizationId}'`);
   if (membership) throw createError(400, `This user is already a member of ${org.name}.`);
 
-  const invite = await createInvite({ email: user.email, organizationId, role });
-  const { token } = await createLoginToken(tokenService, {
-    email: user.email,
-    ttl: 60 * 60 * 24 * 30,
-  });
-  await OrgInvitation.update({
-    email: user.email,
-    organizationId,
-  }, { $set: invite }, { upsert: true });
+  const ttl = 60 * 60 * 24 * 30;
+  const query = { email: user.email, organizationId };
+  const invite = await createInvite({ ...query, role });
+  const { token } = await createLoginToken(tokenService, { email: user.email, ttl });
+  await OrgInvitation.update(query, { $set: invite }, { upsert: true });
 
   const html = `
     <html>
