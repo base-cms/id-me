@@ -1,7 +1,9 @@
-const mailerService = require('@base-cms/id-me-mailer-client');
-const orgService = require('@base-cms/id-me-organization-client');
-const tokenService = require('@base-cms/id-me-token-client');
-const userService = require('@base-cms/id-me-user-client');
+const {
+  mailerService,
+  orgService,
+  tokenService,
+  userService,
+} = require('@base-cms/id-me-service-clients');
 const { createError } = require('micro');
 const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;

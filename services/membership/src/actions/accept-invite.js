@@ -1,6 +1,6 @@
-const userService = require('@base-cms/id-me-user-client');
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
+const { userService } = require('@base-cms/id-me-service-clients');
 
 const createMembership = require('./create');
 const deleteInvite = require('./delete-invite');

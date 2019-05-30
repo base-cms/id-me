@@ -1,6 +1,7 @@
-const orgService = require('@base-cms/id-me-organization-client');
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
+const { orgService } = require('@base-cms/id-me-service-clients');
+
 const OrgMembership = require('../mongodb/models/org-membership');
 
 const { isArray } = Array;
