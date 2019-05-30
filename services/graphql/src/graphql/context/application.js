@@ -28,13 +28,17 @@ class AppContext {
     return this.get('_id');
   }
 
+  getOrgId() {
+    return this.get('organization._id');
+  }
+
   get(path, def) {
     return get(this.app, path, def);
   }
 
   exists() {
     if (this.errored()) return false;
-    if (this.getId()) return true;
+    if (this.getId() && this.getOrgId()) return true;
     return false;
   }
 
