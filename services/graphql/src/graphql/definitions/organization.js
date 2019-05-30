@@ -26,7 +26,7 @@ type OrganizationMembership {
   role: OrganizationRole!
 }
 
-type OrganizationInvite {
+type OrganizationInvitation {
   id: String!
   user: User!
   organization: Organization!

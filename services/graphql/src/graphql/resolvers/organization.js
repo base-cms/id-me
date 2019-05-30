@@ -11,7 +11,7 @@ module.exports = {
   Organization: {
     id: org => org._id,
   },
-  OrganizationInvite: membershipResolvers,
+  OrganizationInvitation: membershipResolvers,
   OrganizationMembership: membershipResolvers,
 
   Query: {
