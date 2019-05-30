@@ -13,12 +13,12 @@ module.exports = {
       return userService.request('findByEmail', { email });
     },
 
-    userOrganizations: async (_, args, { user }) => {
+    userOrganizations: (_, args, { user }) => {
       const email = user.get('email');
       return userService.request('orgMemberships', { email });
     },
 
-    userInvitations: async (_, args, { user }) => {
+    userInvitations: (_, args, { user }) => {
       const email = user.get('email');
       return userService.request('orgInvitations', { email });
     },
