@@ -5,7 +5,7 @@ const userContext = require('./user');
 module.exports = async ({ req }) => {
   const [app, org, user] = await Promise.all([
     applicationContext(req.get('x-app-id')),
-    orgContext(req.get('x-organization-id')),
+    orgContext(req.get('x-org-id')),
     userContext(req.get('authorization')),
   ]);
   return {
