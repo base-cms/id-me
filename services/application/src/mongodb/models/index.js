@@ -1,5 +1,5 @@
-const Organization = require('./organization');
+const Application = require('./application');
 
 module.exports = {
-  Organization,
+  Application,
 };
