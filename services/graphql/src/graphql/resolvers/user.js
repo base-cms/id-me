@@ -59,6 +59,16 @@ module.exports = {
     /**
      *
      */
+    removeUserFromOrg: async (_, { input }, { org, user }) => {
+      const { email } = input;
+      const organizationId = org.getId();
+      if (email === user.get('email')) throw new UserInputError('As an organization owner, you cannot remove yourself.');
+      return userService.request('deleteMembership', { organizationId, email });
+    },
+
+    /**
+     *
+     */
     removeUserInvite: async (_, { input }, { org }) => {
       const { email } = input;
       const organizationId = org.getId();
@@ -97,7 +107,7 @@ module.exports = {
     updateUserOrgRole: (_, { input }, { org, user }) => {
       const { email, role } = input;
       const organizationId = org.getId();
-      if (email === user.get('email')) throw new UserInputError('As owner, you cannot change your own role.');
+      if (email === user.get('email')) throw new UserInputError('As an organization owner, you cannot change your role.');
       return userService.request('changeOrgRole', { organizationId, email, role });
     },
 

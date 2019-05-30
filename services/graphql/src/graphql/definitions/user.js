@@ -13,6 +13,7 @@ extend type Mutation {
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   removeUserInvite(input: RemoveUserInviteMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   updateUserOrgRole(input: UpdateUserOrgRoleMutationInput!): OrganizationMembership! @requiresOrgRole(roles: [Owner])
+  removeUserFromOrg(input: RemoveUserFromOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   sendUserLoginLink(input: SendUserLoginLinkMutationInput!): String
   userLogin(input: UserLoginMutationInput!): UserAuthentication!
   userLogout: String! @requiresAuth
@@ -47,6 +48,14 @@ input InviteUserToOrgMutationInput {
   role: OrganizationRole = Member
 }
 
+input RemoveUserFromOrgMutationInput {
+  email: String!
+}
+
+input RemoveUserInviteMutationInput {
+  email: String!
+}
+
 input RegisterNewUserMutationInput {
   email: String!
   givenName: String!
@@ -55,10 +64,6 @@ input RegisterNewUserMutationInput {
 }
 
 input SendUserLoginLinkMutationInput {
-  email: String!
-}
-
-input RemoveUserInviteMutationInput {
   email: String!
 }
 
