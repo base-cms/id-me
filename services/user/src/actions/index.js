@@ -7,6 +7,7 @@ const hasOrgRole = require('./has-org-role');
 const inviteToOrg = require('./invite-to-org');
 const login = require('./login');
 const logout = require('./logout');
+const orgInvitations = require('./org-invitations');
 const orgMemberships = require('./org-memberships');
 const sendLoginLink = require('./send-login-link');
 const setOrgMembership = require('./set-org-membership');
@@ -23,6 +24,7 @@ module.exports = {
   inviteToOrg,
   login,
   logout,
+  orgInvitations,
   orgMemberships,
   sendLoginLink,
   setOrgMembership,
