@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+  {{#link-to "manage" class="navbar-brand"}}ID<span class="text-secondary">|Me</span>{{/link-to}}
+
+  <ul class="navbar-nav mr-auto">
+    {{#if user.isAuthenticated}}
+      {{!-- {{#link-to "manage.organizations" tagName="li" class="nav-item" title="Organizations"}}
+        {{#link-to "manage.organizations" class="nav-link"}}Organizations{{/link-to}}
+      {{/link-to}} --}}
+    {{/if}}
+  </ul>
+
+  {{-nav-user}}
+
+</nav>
+
+{{loading-progress class="bg-dark"}}

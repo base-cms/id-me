@@ -9,10 +9,11 @@ const Router = EmberRouter.extend({
 Router.map(function() {
   this.route('login');
   this.route('signup');
-  this.route('features');
-  this.route('pricing');
-  this.route('manage');
+  this.route('logout');
   this.route('authenticate', { path: '/authenticate/:token' });
+  this.route('manage', { path: '' }, function() {
+    this.route('invitations');
+  });
 });
 
 export default Router;

@@ -1,0 +1,24 @@
+<li class="nav-item">
+  <a
+    href="https://as3.gitbook.io/id-me"
+    title="Application Documentation"
+    class="nav-link"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {{entypo-icon "text-document"}} <span class="d-none d-md-inline">Documentation</span>
+  </a>
+</li>
+
+{{#if user.isAuthenticated}}
+  {{#link-to "logout" tagName="li" class="nav-item" title="Sign out of the Application"}}
+    {{#link-to "logout" class="nav-link"}}Sign out{{/link-to}}
+  {{/link-to}}
+{{else}}
+  {{#link-to "login" tagName="li" class="nav-item" title="Sign in"}}
+    {{#link-to "login" class="nav-link"}}Sign in{{/link-to}}
+  {{/link-to}}
+  {{#link-to "signup" tagName="li" class="nav-item" title="Sign up"}}
+    {{#link-to "signup" class="nav-link"}}Sign up{{/link-to}}
+  {{/link-to}}
+{{/if}}
