@@ -26,6 +26,13 @@ type OrganizationMembership {
   role: OrganizationRole!
 }
 
+type OrganizationInvite {
+  id: String!
+  user: User!
+  organization: Organization!
+  role: OrganizationRole!
+}
+
 input CreateOrganizationMutationInput {
   name: String!
 }

@@ -1,17 +1,18 @@
 const orgService = require('@base-cms/id-me-organization-client');
 const userService = require('@base-cms/id-me-user-client');
 
+const membershipResolvers = {
+  id: membership => membership._id,
+  organization: membership => orgService.request('findById', { id: membership.organizationId }),
+  user: membership => userService.request('findByEmail', { email: membership.email }),
+};
+
 module.exports = {
   Organization: {
     id: org => org._id,
   },
-
-  OrganizationMembership: {
-    id: membership => membership._id,
-    organization: membership => orgService.request('findById', { id: membership.organizationId }),
-    user: membership => userService.request('findByEmail', { email: membership.email }),
-  },
-
+  OrganizationInvite: membershipResolvers,
+  OrganizationMembership: membershipResolvers,
 
   Query: {
     activeOrganization: (_, args, { org }) => {
