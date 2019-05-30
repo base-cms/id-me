@@ -1,4 +1,5 @@
 const mailerService = require('@base-cms/id-me-mailer-client');
+const tokenService = require('@base-cms/id-me-token-client');
 const { createError } = require('micro');
 const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
@@ -11,7 +12,7 @@ module.exports = async ({ email } = {}) => {
 
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
-  const { token } = await createLoginToken(user.email);
+  const { token } = await createLoginToken(tokenService, { email: user.email });
 
   const html = `
     <html>
