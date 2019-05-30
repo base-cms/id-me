@@ -3,6 +3,7 @@ const changeRole = require('./change-role');
 const create = require('./create');
 const deleteMembership = require('./delete');
 const deleteInvite = require('./delete-invite');
+const hasRole = require('./has-role');
 const invite = require('./invite');
 
 module.exports = {
@@ -11,5 +12,6 @@ module.exports = {
   create,
   delete: deleteMembership,
   deleteInvite,
+  hasRole,
   invite,
 };
