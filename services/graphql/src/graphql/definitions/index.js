@@ -1,4 +1,5 @@
 const gql = require('graphql-tag');
+const application = require('./application');
 const organization = require('./organization');
 const user = require('./user');
 
@@ -25,6 +26,7 @@ type Mutation {
   ping: String!
 }
 
+${application}
 ${organization}
 ${user}
 

@@ -1,9 +1,12 @@
 const deepAssign = require('deep-assign');
-const { DateType, ObjectIDType } = require('../types');
+
+const application = require('./application');
 const organization = require('./organization');
 const user = require('./user');
+const { DateType, ObjectIDType } = require('../types');
 
 module.exports = deepAssign(
+  application,
   organization,
   user,
   {
