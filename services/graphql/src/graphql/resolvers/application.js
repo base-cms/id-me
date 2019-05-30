@@ -18,5 +18,14 @@ module.exports = {
         payload,
       });
     },
+
+    /**
+     *
+     */
+    setApplicationName: (_, { input }, { app }) => {
+      const id = app.getId();
+      const { value } = input;
+      return applicationService.request('updateField', { id, path: 'name', value });
+    },
   },
 };

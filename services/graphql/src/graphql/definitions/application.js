@@ -4,6 +4,7 @@ module.exports = gql`
 
 extend type Mutation {
   createApplication(input: CreateApplicationMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
+  setApplicationName(input: SetApplicationNameMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
 }
 
 type Application {
@@ -15,6 +16,10 @@ type Application {
 input CreateApplicationMutationInput {
   name: String!
   description: String
+}
+
+input SetApplicationNameMutationInput {
+  value: String!
 }
 
 `;
