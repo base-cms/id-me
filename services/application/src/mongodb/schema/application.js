@@ -25,4 +25,9 @@ const schema = new Schema({
 
 schema.index({ 'organization._id': 1 });
 
+schema.static('findForOrganization', async function findForOrganization(organizationId, fields) {
+  if (!organizationId) throw new Error('Unable to find: no organization ID was provided.');
+  return this.find({ organizationId }, fields);
+});
+
 module.exports = schema;
