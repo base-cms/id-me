@@ -1,20 +1,8 @@
 const { Schema } = require('mongoose');
 const { normalizeEmail } = require('@base-cms/id-me-utils');
-const { emailValidator } = require('@base-cms/id-me-mongoose-plugins');
-
-const applicationSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-});
+const { emailValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
 
 const schema = new Schema({
-  application: {
-    type: applicationSchema,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
@@ -33,6 +21,8 @@ const schema = new Schema({
     trim: true,
   },
 }, { timestamps: true });
+
+schema.plugin(applicationPlugin);
 
 schema.virtual('domain').get(function domain() {
   const { email } = this;
