@@ -1,15 +1,11 @@
 import Service, { inject } from '@ember/service';
 import { isPresent } from '@ember/utils';
-import $ from 'jquery';
 
 export default Service.extend({
-  // notify: inject(),
   user: inject(),
 
   isReady() {
-    const element = $('.ember-notify-default');
-    if (element.length) return true;
-    return false;
+    return true;
   },
 
   handle(e) {
@@ -50,9 +46,6 @@ export default Service.extend({
   },
 
   show(e) {
-    const error = this.handle(e);
-    if (!e.loggingOut) {
-      // this.get('notify').error(error.message, { closeAfter: null });
-    }
+    this.handle(e);
   }
 });
