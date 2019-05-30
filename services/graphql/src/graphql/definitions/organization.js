@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   activeOrganization: Organization! @requiresOrgRole
-  organizationUsers(input: OrganizationUsersQueryInput = {}): [UserMembership] @requiresOrgRole
+  organizationUsers(input: OrganizationUsersQueryInput = {}): [OrganizationMembership] @requiresOrgRole
 }
 
 extend type Mutation {
@@ -17,6 +17,13 @@ type Organization {
   id: String!
   name: String!
   description: String
+}
+
+type OrganizationMembership {
+  id: String!
+  user: User!
+  organization: Organization!
+  role: OrganizationRole!
 }
 
 input CreateOrganizationMutationInput {

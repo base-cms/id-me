@@ -4,13 +4,13 @@ module.exports = gql`
 
 extend type Query {
   activeUser: User! @requiresAuth
-  userOrganizations(input: UserOrganizationsQueryInput = {}): [UserMembership]! @requiresAuth
+  userOrganizations(input: UserOrganizationsQueryInput = {}): [OrganizationMembership]! @requiresAuth
 }
 
 extend type Mutation {
   registerNewUser(input: RegisterNewUserMutationInput!): UserRegistration!
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
-  updateUserOrgRole(input: UpdateUserOrgRoleMutationInput!): UserMembership! @requiresOrgRole(roles: [Owner])
+  updateUserOrgRole(input: UpdateUserOrgRoleMutationInput!): OrganizationMembership! @requiresOrgRole(roles: [Owner])
   sendUserLoginLink(input: SendUserLoginLinkMutationInput!): String
   userLogin(input: UserLoginMutationInput!): UserAuthentication!
   userLogout: String! @requiresAuth
@@ -21,13 +21,6 @@ extend type Mutation {
 type UserAuthentication {
   user: User!
   token: UserAuthToken!
-}
-
-type UserMembership {
-  id: String!
-  user: User!
-  organization: Organization!
-  role: OrganizationRole!
 }
 
 type User {

@@ -6,6 +6,13 @@ module.exports = {
     id: org => org._id,
   },
 
+  OrganizationMembership: {
+    id: membership => membership._id,
+    organization: membership => orgService.request('findById', { id: membership.organizationId }),
+    user: membership => userService.request('findByEmail', { email: membership.email }),
+  },
+
+
   Query: {
     activeOrganization: (_, args, { org }) => {
       const id = org.getId();
