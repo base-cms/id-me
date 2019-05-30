@@ -2,6 +2,7 @@ version: '3.7'
 
 x-env-defaults: &env
   MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
+  MEMBERSHIP_SERVICE_URL: ${MEMBERSHIP_SERVICE_URL-http://membership}
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017/id-me}
   NODE_ENV: development
   ORGANIZATION_SERVICE_URL: ${ORGANIZATION_SERVICE_URL-http://organization}
@@ -44,6 +45,7 @@ services:
       INTERNAL_PORT: 80
       EXTERNAL_PORT: 12001
     depends_on:
+      - membership
       - organization
       - user
     ports:
@@ -103,7 +105,6 @@ services:
     command: ["--port", "80"]
     depends_on:
       - mongodb
-      - organization
       - token
       - mailer
     ports:
