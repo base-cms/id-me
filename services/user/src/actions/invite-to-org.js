@@ -1,10 +1,10 @@
 const mailerService = require('@base-cms/id-me-mailer-client');
 const orgService = require('@base-cms/id-me-organization-client');
-const tokenService = require('@base-cms/id-me-token-client');
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 const createUser = require('./create');
 const { OrgMembership, OrgInvitation } = require('../mongodb/models');
+const createLoginToken = require('../utils/create-login-token');
 
 
 module.exports = async ({
@@ -28,10 +28,7 @@ module.exports = async ({
   const $set = invite.toObject();
   delete $set._id;
 
-  const { token } = await tokenService.request('create', {
-    sub: 'invite-user-to-org',
-    payload: { aud: user.email, oid: organizationId },
-  });
+  const { token } = await createLoginToken(user.email, 60 * 60 * 24 * 30);
 
   await OrgInvitation.update({ email: user.email, organizationId }, { $set }, { upsert: true });
 
@@ -40,7 +37,7 @@ module.exports = async ({
       <body>
         <h1>You've been invited to join an organization on ID|Me.</h1>
         <h2>${org.name}</h2>
-        <p><a href="http://www.google.com/join/${token}">Join the ${org.name} organization.</a></p>
+        <p><a href="http://www.google.com/join/${token}">Login to join the ${org.name} organization.</a></p>
       </body>
     </html>
   `;
