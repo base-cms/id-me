@@ -109,6 +109,20 @@ services:
     ports:
       - "12006:80"
 
+  membership:
+    <<: *node
+    working_dir: /id-me/services/membership
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80"]
+    depends_on:
+      - mailer
+      - mongodb
+      - organization
+      - token
+      - user
+    ports:
+      - "12007:80"
+
 volumes:
   mongodb: {}
   yarn-cache: {}

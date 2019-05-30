@@ -1,0 +1,33 @@
+{
+  "name": "@base-cms/id-me-membership-service",
+  "version": "0.0.0",
+  "description": "The ID|Me organization membership service.",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "repository": "https://github.com/base-cms/id-me/tree/master/services/membership",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "micro-dev"
+  },
+  "dependencies": {
+    "@base-cms/env": "^0.9.25",
+    "@base-cms/id-me-mailer-client": "^0.0.0",
+    "@base-cms/id-me-mongoose-plugins": "^0.0.0",
+    "@base-cms/id-me-organization-client": "^0.0.0",
+    "@base-cms/id-me-token-client": "^0.0.0",
+    "@base-cms/id-me-user-client": "^0.0.0",
+    "@base-cms/id-me-utils": "^0.0.0",
+    "@base-cms/micro": "^0.9.28",
+    "@base-cms/utils": "^0.9.0",
+    "micro": "^9.3.4",
+    "mongoose": "^5.5.11",
+    "validator": "^11.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "micro-dev": "^3.0.0"
+  }
+}
