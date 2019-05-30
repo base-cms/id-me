@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   activeUser: User! @requiresAuth
   userOrganizations(input: UserOrganizationsQueryInput = {}): [OrganizationMembership]! @requiresAuth
+  userInvitations(input: UserInvitationQueryInput = {}): [OrganizationInvitation]! @requiresAuth
 }
 
 extend type Mutation {
@@ -67,6 +68,10 @@ input SetActiveUserGivenNameMutationInput {
 input UpdateUserOrgRoleMutationInput {
   email: String!
   role: OrganizationRole!
+}
+
+input UserInvitationQueryInput {
+  sort: Boolean # @todo Implement this input.
 }
 
 input UserLoginMutationInput {

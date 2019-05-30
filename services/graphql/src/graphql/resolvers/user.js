@@ -17,6 +17,11 @@ module.exports = {
       const email = user.get('email');
       return userService.request('orgMemberships', { email });
     },
+
+    userInvitations: async (_, args, { user }) => {
+      const email = user.get('email');
+      return userService.request('orgInvitations', { email });
+    },
   },
 
   Mutation: {
