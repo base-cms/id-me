@@ -1,18 +1,19 @@
 import Service from '@ember/service';
-import jQuery from 'jquery';
 
 export default Service.extend({
   isShowing: false,
   show() {
     if (!this.get('isShowing')) {
       this.set('isShowing', true);
-      jQuery('body').addClass('transitioning');
+      const body = document.getElementsByTagName('body')[0];
+      body.classList.add('transitioning');
     }
   },
   hide() {
     window.setTimeout(() => {
       this.set('isShowing', false);
-      jQuery('body').removeClass('transitioning');
+      const body = document.getElementsByTagName('body')[0];
+      body.classList.remove('transitioning');
     }, 100);
   },
 });
