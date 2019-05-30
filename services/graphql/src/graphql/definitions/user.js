@@ -11,6 +11,7 @@ extend type Query {
 extend type Mutation {
   registerNewUser(input: RegisterNewUserMutationInput!): UserRegistration!
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
+  acceptOrgInvite(input: AcceptOrgInviteMutationInput!): String @requiresAuth
   removeUserInvite(input: RemoveUserInviteMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   updateUserOrgRole(input: UpdateUserOrgRoleMutationInput!): OrganizationMembership! @requiresOrgRole(roles: [Owner])
   removeUserFromOrg(input: RemoveUserFromOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
@@ -41,6 +42,10 @@ type UserAuthToken {
 type UserRegistration {
   user: User!
   organization: Organization!
+}
+
+input AcceptOrgInviteMutationInput {
+  organizationId: String!
 }
 
 input InviteUserToOrgMutationInput {

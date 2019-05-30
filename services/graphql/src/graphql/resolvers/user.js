@@ -28,6 +28,16 @@ module.exports = {
     /**
      *
      */
+    acceptOrgInvite: async (_, { input }, { user }) => {
+      const { organizationId } = input;
+      const email = user.get('email');
+      await userService.request('acceptOrgInvite', { email, organizationId });
+      return 'ok';
+    },
+
+    /**
+     *
+     */
     inviteUserToOrg: (_, { input }, { org }) => {
       const { email, role } = input;
       const organizationId = org.getId();
