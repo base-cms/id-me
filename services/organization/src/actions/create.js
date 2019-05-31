@@ -1,3 +1,4 @@
+const { createError } = require('micro');
 const { handleError } = require('@base-cms/id-me-utils').mongoose;
 const { isObject } = require('@base-cms/utils');
 const { service } = require('@base-cms/micro');
@@ -11,6 +12,6 @@ module.exports = async ({ payload } = {}) => {
     const org = await Organization.create(payload);
     return org;
   } catch (e) {
-    throw handleError(e);
+    throw handleError(createError, e);
   }
 };

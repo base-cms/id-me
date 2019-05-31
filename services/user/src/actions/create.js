@@ -1,3 +1,4 @@
+const { createError } = require('micro');
 const { handleError } = require('@base-cms/id-me-utils').mongoose;
 const { service } = require('@base-cms/micro');
 const User = require('../mongodb/models/user');
@@ -13,6 +14,6 @@ module.exports = async ({ email, payload, fields } = {}) => {
     await User.update({ email }, { $setOnInsert: user }, { upsert: true });
     return findByEmail({ email, fields });
   } catch (e) {
-    throw handleError(e);
+    throw handleError(createError, e);
   }
 };

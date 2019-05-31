@@ -20,6 +20,6 @@ module.exports = async ({ organizationId, payload } = {}) => {
     });
     return app;
   } catch (e) {
-    throw handleError(e);
+    throw handleError(createError, e);
   }
 };

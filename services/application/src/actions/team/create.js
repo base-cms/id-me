@@ -19,6 +19,6 @@ module.exports = async ({ applicationId, payload } = {}) => {
     });
     return level;
   } catch (e) {
-    throw handleError(e);
+    throw handleError(createError, e);
   }
 };
