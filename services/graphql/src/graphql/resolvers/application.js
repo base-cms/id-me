@@ -2,7 +2,7 @@ const { applicationService } = require('@base-cms/id-me-service-clients');
 
 module.exports = {
   Application: {
-    id: createApplication => createApplication._id,
+    id: app => app._id,
   },
 
   Mutation: {

@@ -1,4 +1,5 @@
 const gql = require('graphql-tag');
+const accessLevel = require('./access-level');
 const application = require('./application');
 const organization = require('./organization');
 const user = require('./user');
@@ -27,6 +28,7 @@ type Mutation {
   ping: String!
 }
 
+${accessLevel}
 ${application}
 ${organization}
 ${user}
