@@ -2,6 +2,7 @@ const accessLevel = require('./access-level');
 const create = require('./create');
 const findById = require('./find-by-id');
 const listForOrg = require('./list-for-org');
+const team = require('./team');
 const updateField = require('./update-field');
 const updateMany = require('./update-many');
 
@@ -14,6 +15,7 @@ const load = (root, obj) => keys(obj).reduce((o, key) => {
 
 module.exports = {
   ...load('access-level', accessLevel),
+  ...load('team', team),
   create,
   findById,
   listForOrg,
