@@ -10,11 +10,12 @@ export default ApolloService.extend({
   link: computed(function() {
     const session = this.get('session');
     const link = this._super(...arguments);
-    const authLink = setContext(async () => {
+    const authLink = setContext(async (_, { orgId }) => {
       const headers = {};
       const auth = get(session, 'isAuthenticated');
       const token = get(session, 'data.authenticated.token.value');
       if (auth && token) headers.Authorization = `Bearer ${token}`;
+      if (orgId) headers['x-org-id'] = orgId;
       return { headers };
     });
     return authLink.concat(link);
