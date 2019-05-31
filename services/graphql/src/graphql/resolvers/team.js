@@ -16,7 +16,7 @@ module.exports = {
     /**
      *
      */
-    createAccessLevel: (_, { input }, { app }) => {
+    createTeam: (_, { input }, { app }) => {
       const applicationId = app.getId();
       return applicationService.request('team.create', {
         applicationId,
