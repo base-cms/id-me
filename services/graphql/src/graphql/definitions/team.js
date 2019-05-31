@@ -2,6 +2,10 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
+extend type Query {
+  teams: [Team] @requiresApp
+}
+
 extend type Mutation {
   createTeam(input: CreateTeamMutationInput!): Team! @requiresAppRole(roles: [Owner, Administrator, Member])
 }

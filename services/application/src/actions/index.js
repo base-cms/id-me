@@ -1,10 +1,16 @@
+const {
+  findById,
+  find,
+  listForOrg,
+  updateField,
+  updateMany,
+} = require('@base-cms/id-me-utils').actions;
+
+const Application = require('../mongodb/models/application');
+
 const accessLevel = require('./access-level');
 const create = require('./create');
-const findById = require('./find-by-id');
-const listForOrg = require('./list-for-org');
 const team = require('./team');
-const updateField = require('./update-field');
-const updateMany = require('./update-many');
 
 const { keys } = Object;
 
@@ -17,8 +23,9 @@ module.exports = {
   ...load('access-level', accessLevel),
   ...load('team', team),
   create,
-  findById,
-  listForOrg,
-  updateField,
-  updateMany,
+  find: params => find(Application, params),
+  findById: params => findById(Application, params),
+  listForOrg: params => listForOrg(Application, params),
+  updateField: params => updateField(Application, params),
+  updateMany: params => updateMany(Application, params),
 };

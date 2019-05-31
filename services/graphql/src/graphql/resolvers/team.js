@@ -12,6 +12,16 @@ module.exports = {
     },
   },
 
+  Query: {
+    /**
+     *
+     */
+    teams: (_, args, { app }) => {
+      const id = app.getId();
+      return applicationService.request('team.listForApp', { id });
+    },
+  },
+
   Mutation: {
     /**
      *
