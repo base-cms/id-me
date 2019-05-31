@@ -5,6 +5,16 @@ module.exports = {
     id: level => level._id,
   },
 
+  Query: {
+    /**
+     *
+     */
+    accessLevels: (_, args, { app }) => {
+      const id = app.getId();
+      return applicationService.request('access-level.listForApp', { id });
+    },
+  },
+
   Mutation: {
     /**
      *
