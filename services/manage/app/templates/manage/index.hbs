@@ -1,0 +1,15 @@
+<NavBar @userOrganizations={{model}} />
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <ul class="list-group">
+        {{#each model as |userOrg|}}
+          {{#link-to "manage.organization.index" userOrg.organization.id class="list-group-item"}}
+            {{ userOrg.organization.name }}
+          {{/link-to}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

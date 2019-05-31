@@ -13,6 +13,10 @@ Router.map(function() {
   this.route('authenticate', { path: '/authenticate/:token' });
   this.route('manage', { path: '' }, function() {
     this.route('invitations');
+    this.route('organization', { path: 'organization/:id' }, function() {
+      this.route('user');
+      this.route('app');
+    })
   });
 });
 
