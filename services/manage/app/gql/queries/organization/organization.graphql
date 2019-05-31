@@ -1,0 +1,7 @@
+query Organization($input: OrganizationQueryInput!) {
+  organization(input: $input) {
+    id
+    name
+    description
+  }
+}
