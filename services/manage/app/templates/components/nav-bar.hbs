@@ -1,16 +1,17 @@
-{{#if organization}}
-  {{#link-to "manage.organization.index" organization.id class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
-{{else}}
-  {{#link-to "manage" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
-{{/if}}
+{{#link-to "manage" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
 
 <ul class="navbar-nav mr-auto">
   {{#if organization}}
-    {{#link-to "manage.organization.user" tagName="li" class="nav-item" title="Users"}}
-      {{#link-to "manage.organization.user" class="nav-link"}}Users{{/link-to}}
+    {{#link-to "manage.organizations.index" organization.id tagName="li" class="nav-item" title=organiation.name}}
+      {{#link-to "manage.organizations.index" organization.id class="nav-link"}}
+        Organization {{entypo-icon "chevron-right"}}
+      {{/link-to}}
     {{/link-to}}
-    {{#link-to "manage.organization.app" tagName="li" class="nav-item" title="Applications"}}
-      {{#link-to "manage.organization.app" class="nav-link"}}Applications{{/link-to}}
+    {{#link-to "manage.organizations.users" tagName="li" class="nav-item" title="Users"}}
+      {{#link-to "manage.organizations.users" class="nav-link"}}Users{{/link-to}}
+    {{/link-to}}
+    {{#link-to "manage.organizations.applications" tagName="li" class="nav-item" title="Applications"}}
+      {{#link-to "manage.organizations.applications" class="nav-link"}}Applications{{/link-to}}
     {{/link-to}}
   {{/if}}
 </ul>
@@ -42,7 +43,7 @@
       <div class="dropdown-menu dropdown-menu-right">
         <span class="dropdown-header">Select an organization</span>
         {{#each organizations as |org|}}
-          {{#link-to "manage.organization.index" org.id class="dropdown-item dropdown-item d-flex justify-content-between"}}
+          {{#link-to "manage.organizations.index" org.id class="dropdown-item dropdown-item d-flex justify-content-between"}}
             <img src="{{org.photoURL}}" class="icon icon-sm mr-1"> {{org.name}}
           {{/link-to}}
         {{/each}}
