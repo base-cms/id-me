@@ -7,7 +7,7 @@ extend type Query {
 }
 
 extend type Mutation {
-  createAccessLevel(input: CreateAccessLevelMutationInput!): AccessLevel! @requiresAppRole(roles: [Owner, Administrator])
+  createAccessLevel(input: CreateAccessLevelMutationInput!): AccessLevel! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 type AccessLevel {
