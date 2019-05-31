@@ -1,10 +1,11 @@
 const validator = require('validator');
 
-module.exports = [
-  {
-    validator(value) {
-      return validator.isIP(value);
-    },
-    message: 'Invalid IP address {VALUE}',
+const { isArray } = Array;
+
+module.exports = {
+  validator(value) {
+    if (isArray(value)) return value.every(v => validator.isIP(v));
+    return validator.isIP(value);
   },
-];
+  message: 'Invalid IP address {VALUE}',
+};
