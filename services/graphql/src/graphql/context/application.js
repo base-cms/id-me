@@ -29,7 +29,7 @@ class AppContext {
   }
 
   getOrgId() {
-    return this.get('organization._id');
+    return this.get('organizationId');
   }
 
   get(path, def) {
