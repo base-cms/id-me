@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  organization(input: OrganizationQueryInput!): Organization! @requiresOrgRole
   activeOrganization: Organization! @requiresOrgRole
   organizationUsers: [OrganizationMembership] @requiresOrgRole
   organizationInvitations: [OrganizationInvitation] @requiresOrgRole
@@ -32,6 +33,10 @@ type OrganizationInvitation {
   user: User!
   organization: Organization!
   role: OrganizationRole!
+}
+
+input OrganizationQueryInput {
+  id: String!
 }
 
 input CreateOrganizationMutationInput {

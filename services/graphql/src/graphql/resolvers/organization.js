@@ -14,6 +14,11 @@ module.exports = {
   OrganizationMembership: membershipResolvers,
 
   Query: {
+    organization: (_, { input }) => {
+      const { id } = input;
+      return orgService.request('findById', { id });
+    },
+
     activeOrganization: (_, args, { org }) => {
       const id = org.getId();
       return orgService.request('findById', { id });
