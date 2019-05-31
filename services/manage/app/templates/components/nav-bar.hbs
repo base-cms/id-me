@@ -1,4 +1,8 @@
-{{#link-to "manage" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+{{#if organization}}
+  {{#link-to "manage.organization.index" organization.id class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+{{else}}
+  {{#link-to "manage" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+{{/if}}
 
 <ul class="navbar-nav mr-auto">
   {{#if organization}}

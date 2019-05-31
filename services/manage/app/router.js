@@ -14,8 +14,10 @@ Router.map(function() {
   this.route('manage', { path: '' }, function() {
     this.route('invitations');
     this.route('organization', { path: 'organization/:id' }, function() {
-      this.route('user');
-      this.route('app');
+      this.route('user', function() {
+      });
+      this.route('app', function() {
+      });
     })
   });
 });
