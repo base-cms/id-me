@@ -9,7 +9,7 @@ const applicationSchema = new Schema({
 });
 
 
-module.exports = function emailPlugin(schema, { options = {} } = {}) {
+module.exports = function applicationPlugin(schema, { options = {} } = {}) {
   schema.add({
     application: {
       ...options,
