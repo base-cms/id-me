@@ -10,13 +10,13 @@ module.exports = async ({ organizationId, payload } = {}) => {
   if (!organizationId) throw createRequiredParamError('organizationId');
   if (!isObject(payload)) throw createRequiredParamError('payload');
 
-  const organization = await orgService.request('findById', { id: organizationId, fields: ['id', 'name'] });
+  const organization = await orgService.request('findById', { id: organizationId, fields: ['id'] });
   if (!organization) throw createError(404, `No organization was found for '${organizationId}'`);
 
   try {
     const app = await Application.create({
       ...payload,
-      organization,
+      organizationId,
     });
     return app;
   } catch (e) {

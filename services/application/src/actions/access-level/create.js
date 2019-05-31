@@ -9,13 +9,13 @@ module.exports = async ({ applicationId, payload } = {}) => {
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!isObject(payload)) throw createRequiredParamError('payload');
 
-  const application = await Application.findById(applicationId, ['id', 'name']);
+  const application = await Application.findById(applicationId, ['id']);
   if (!application) throw createError(404, `No application was found for '${applicationId}'`);
 
   try {
     const level = await AccessLevel.create({
       ...payload,
-      application,
+      applicationId,
     });
     return level;
   } catch (e) {

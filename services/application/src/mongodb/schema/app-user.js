@@ -33,7 +33,7 @@ schema.virtual('domain').get(function domain() {
   return email.split('@')[1];
 });
 
-schema.index({ 'application._id': 1, email: 1 }, { unique: true });
+schema.index({ applicationId: 1, email: 1 }, { unique: true });
 
 schema.static('normalizeEmail', normalizeEmail);
 

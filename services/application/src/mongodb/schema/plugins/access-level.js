@@ -1,20 +1,11 @@
 const { Schema } = require('mongoose');
 
-const accessLevelSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-});
-
 module.exports = function accessLevelPlugin(schema) {
   schema.add({
-    accessLevels: {
-      type: [accessLevelSchema],
+    accessLevelIds: {
+      type: [Schema.Types.ObjectId],
+      index: true,
       default: () => [],
     },
   });
-
-  schema.index({ 'accessLevel._id': 1 });
 };
