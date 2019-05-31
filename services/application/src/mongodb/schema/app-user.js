@@ -1,6 +1,8 @@
 const { Schema } = require('mongoose');
 const { normalizeEmail } = require('@base-cms/id-me-utils');
 const { emailValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const accessLevelPlugin = require('./plugins/access-level');
+const teamPlugin = require('./plugins/team');
 
 const schema = new Schema({
   email: {
@@ -23,6 +25,8 @@ const schema = new Schema({
 }, { timestamps: true });
 
 schema.plugin(applicationPlugin);
+schema.plugin(accessLevelPlugin);
+schema.plugin(teamPlugin);
 
 schema.virtual('domain').get(function domain() {
   const { email } = this;
