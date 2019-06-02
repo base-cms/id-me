@@ -11,6 +11,7 @@ const Application = require('../mongodb/models/application');
 const accessLevel = require('./access-level');
 const create = require('./create');
 const team = require('./team');
+const user = require('./user');
 
 const { keys } = Object;
 
@@ -22,6 +23,7 @@ const load = (root, obj) => keys(obj).reduce((o, key) => {
 module.exports = {
   ...load('access-level', accessLevel),
   ...load('team', team),
+  ...load('user', user),
   create,
   find: params => find(Application, params),
   findById: params => findById(Application, params),
