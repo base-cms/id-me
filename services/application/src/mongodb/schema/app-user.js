@@ -41,10 +41,11 @@ schema.index({ applicationId: 1, email: 1 }, { unique: true });
 
 schema.static('normalizeEmail', normalizeEmail);
 
-schema.static('findByEmail', async function findByEmail(value, fields) {
+schema.static('findByEmail', async function findByEmail(applicationId, value, fields) {
   const email = normalizeEmail(value);
   if (!email) throw new Error('Unable to find user: no email address was provided.');
-  return this.findOne({ email }, fields);
+  if (!applicationId) throw new Error('Unable to find user: no application ID was provided.');
+  return this.findOne({ applicationId, email }, fields);
 });
 
 module.exports = schema;
