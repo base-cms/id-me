@@ -2,6 +2,10 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
+extend type Query {
+  appUser(input: AppUserQueryInput!): AppUser @requiresApp
+}
+
 extend type Mutation {
   createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp
 }
@@ -14,6 +18,10 @@ type AppUser {
   familyName: String
   accessLevels: [AccessLevel]
   teams: [Team]
+}
+
+input AppUserQueryInput {
+  email: String!
 }
 
 input CreateAppUserMutationInput {

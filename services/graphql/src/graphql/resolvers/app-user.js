@@ -17,6 +17,20 @@ module.exports = {
     },
   },
 
+  Query: {
+    /**
+     *
+     */
+    appUser: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { email } = input;
+      return applicationService.request('user.findByEmail', {
+        applicationId,
+        email,
+      });
+    },
+  },
+
   Mutation: {
     /**
      *
