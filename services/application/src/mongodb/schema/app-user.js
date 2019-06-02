@@ -14,6 +14,10 @@ const schema = new Schema({
     set: normalizeEmail,
     validate: emailValidator,
   },
+  domain: {
+    type: String,
+    required: true,
+  },
   givenName: {
     type: String,
     trim: true,
@@ -28,7 +32,7 @@ schema.plugin(applicationPlugin);
 schema.plugin(accessLevelPlugin);
 schema.plugin(teamPlugin);
 
-schema.virtual('domain').get(function domain() {
+schema.pre('save', async function domain() {
   const { email } = this;
   return email.split('@')[1];
 });
