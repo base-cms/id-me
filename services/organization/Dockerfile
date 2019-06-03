@@ -6,4 +6,4 @@ WORKDIR /id-me
 RUN yarn --production
 
 WORKDIR /id-me/services/organization
-ENTRYPOINT [ "./node_modules/.bin/micro" ]
+ENTRYPOINT [ "./node_modules/.bin/micro", "-l", "tcp://0.0.0.0:80" ]
