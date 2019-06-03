@@ -2062,6 +2062,15 @@ apollo-link@^1.2.3:
     tslib "^1.9.3"
     zen-observable-ts "^0.8.18"
 
+apollo-newrelic-extension@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/apollo-newrelic-extension/-/apollo-newrelic-extension-0.1.1.tgz#5245af01f4a64e7227c3af1061aa9bee3f131a9b"
+  integrity sha512-NxfDIZih0fmdBBxNfR4i0PD7wY7qizLg4+jleuCF76VROiOv/J0CYUDeNxJXCDwOUkyWzGa3Z5N7EPqyUGxUOw==
+  dependencies:
+    graphql "^0.13.2"
+    graphql-extensions "^0.1.2"
+    ramda "^0.25.0"
+
 apollo-server-caching@0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/apollo-server-caching/-/apollo-server-caching-0.4.0.tgz#e82917590d723c0adc1fa52900e79e93ad65e4d9"
@@ -2094,6 +2103,14 @@ apollo-server-core@2.5.0:
     sha.js "^2.4.11"
     subscriptions-transport-ws "^0.9.11"
     ws "^6.0.0"
+
+apollo-server-env@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/apollo-server-env/-/apollo-server-env-2.0.3.tgz#3c13552cd33f400160076cf8e1c9b24be4d27e13"
+  integrity sha512-uIfKFH8n8xKO0eLb9Fa79+s2DdMuVethgznvW6SrOYq5VzgkIIobqKEuZPKa5wObw9CkCyju/+Sr7b7WWMFxUQ==
+  dependencies:
+    node-fetch "^2.1.2"
+    util.promisify "^1.0.0"
 
 apollo-server-env@2.3.0:
   version "2.3.0"
@@ -6903,6 +6920,13 @@ graphql-extensions@0.6.0:
   dependencies:
     "@apollographql/apollo-tools" "^0.3.6-alpha.1"
 
+graphql-extensions@^0.1.2:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/graphql-extensions/-/graphql-extensions-0.1.3.tgz#f8cabaf543619e7dec1db5e274981d2a44c13ab6"
+  integrity sha512-q+d1bTR7GW4qRiZP17SXN0TZo+k/I1FEKYd6H4JMbxzpY8mqTLbg8MzrLu7LxafF+mPEJwRfipcEcA375k3eXA==
+  dependencies:
+    apollo-server-env "2.0.3"
+
 graphql-subscriptions@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/graphql-subscriptions/-/graphql-subscriptions-1.1.0.tgz#5f2fa4233eda44cf7570526adfcf3c16937aef11"
@@ -6935,6 +6959,13 @@ graphql-upload@^8.0.2:
     fs-capacitor "^2.0.1"
     http-errors "^1.7.2"
     object-path "^0.11.4"
+
+graphql@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.2.tgz#4c740ae3c222823e7004096f832e7b93b2108270"
+  integrity sha512-QZ5BL8ZO/B20VA8APauGBg3GyEgZ19eduvpLWoq5x7gMmWnHoy8rlQWPLmWgFvo1yNgjSEFMesmS4R6pPr7xog==
+  dependencies:
+    iterall "^1.2.1"
 
 graphql@^14.3.0:
   version "14.3.0"
@@ -10446,6 +10477,11 @@ qunit@~2.6.0:
     resolve "1.5.0"
     sane "^2.5.2"
     walk-sync "0.3.2"
+
+ramda@^0.25.0:
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.25.0.tgz#8fdf68231cffa90bc2f9460390a0cb74a29b29a9"
+  integrity sha512-GXpfrYVPwx3K7RQ6aYT8KPS8XViSXUVJT1ONhoKPE9VAleW42YE+U+8VEyGWt41EnEQW7gwecYJriTI0pKoecQ==
 
 range-parser@~1.2.1:
   version "1.2.1"
