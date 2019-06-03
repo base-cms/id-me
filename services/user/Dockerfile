@@ -6,4 +6,4 @@ WORKDIR /id-me
 RUN yarn --production
 
 WORKDIR /id-me/services/user
-ENTRYPOINT [ "micro" ]
+ENTRYPOINT [ "./node_modules/.bin/micro" ]
