@@ -32,9 +32,10 @@ schema.plugin(applicationPlugin);
 schema.plugin(accessLevelPlugin);
 schema.plugin(teamPlugin);
 
-schema.pre('save', async function domain() {
+schema.pre('validate', async function setDomain() {
   const { email } = this;
-  return email.split('@')[1];
+  const [, domain] = email.split('@');
+  this.domain = domain;
 });
 
 schema.index({ applicationId: 1, email: 1 }, { unique: true });
