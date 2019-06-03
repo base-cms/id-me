@@ -16,8 +16,10 @@
     "@base-cms/id-me-service-clients": "^0.0.0",
     "@base-cms/id-me-utils": "^0.0.0",
     "@base-cms/micro": "^0.9.28",
+    "@newrelic/native-metrics": "^4.1.0",
     "micro": "^9.3.4",
-    "mongoose": "^5.5.11"
+    "mongoose": "^5.5.11",
+    "newrelic": "^5.9.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

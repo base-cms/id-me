@@ -1,3 +1,4 @@
+require('./newrelic');
 const { service } = require('@base-cms/micro');
 const actions = require('./actions');
 
