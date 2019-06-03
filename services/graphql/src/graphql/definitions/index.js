@@ -10,6 +10,7 @@ module.exports = gql`
 
 scalar Date
 scalar ObjectID
+scalar JSON
 
 directive @requiresApp on FIELD_DEFINITION
 directive @requiresAppRole(roles: [OrganizationRole!] = []) on FIELD_DEFINITION
