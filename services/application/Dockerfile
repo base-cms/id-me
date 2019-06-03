@@ -6,4 +6,4 @@ WORKDIR /id-me
 RUN yarn --production
 
 WORKDIR /id-me/services/application
-ENTRYPOINT [ "node", "src/index.js" ]
+ENTRYPOINT [ "micro" ]
