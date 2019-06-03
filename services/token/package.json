@@ -8,15 +8,18 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "micro-dev"
+    "dev": "micro-dev",
+    "test": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
     "@base-cms/id-me-utils": "^0.0.0",
     "@base-cms/micro": "^0.9.28",
+    "@newrelic/native-metrics": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
+    "newrelic": "^5.9.1",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

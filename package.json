@@ -4,6 +4,9 @@
   "author": "Jacob Bare <jacob@limit0.io>",
   "private": true,
   "repository": "https://github.com/base-cms/id-me.git",
+  "scripts": {
+    "test": "lerna run test"
+  },
   "workspaces": [
     "packages/*",
     "services/*"
