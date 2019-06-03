@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-IMAGE=basecms/$1:$2
+IMAGE=basecms/identity-x-$1-service:$2
 echo -e "  Installing deployment utility."
 yarn global add @endeavorb2b/rancher2cli --silent --no-progress 2>&1 >/dev/null
 echo -e "  Triggering deployment."
