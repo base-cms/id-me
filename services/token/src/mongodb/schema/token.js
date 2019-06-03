@@ -9,6 +9,10 @@ const schema = new Schema({
     required: true,
     index: true,
   },
+  iss: {
+    type: String,
+    index: true,
+  },
   payload: {
     type: Schema.Types.Mixed,
     required: true,
