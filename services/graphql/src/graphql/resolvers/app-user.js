@@ -37,9 +37,12 @@ module.exports = {
      */
     createAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
+      const { email, givenName, familyName } = input;
+      const payload = { givenName, familyName };
       return applicationService.request('user.create', {
         applicationId,
-        payload: input,
+        email,
+        payload,
       });
     },
   },
