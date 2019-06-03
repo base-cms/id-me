@@ -8,6 +8,7 @@ extend type Query {
 
 extend type Mutation {
   createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp
+  sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp
 }
 
 type AppUser {
@@ -26,8 +27,14 @@ input AppUserQueryInput {
 
 input CreateAppUserMutationInput {
   email: String!
-  givenName: String!
-  familyName: String!
+  givenName: String
+  familyName: String
+}
+
+input SendAppUserLoginLinkMutationInput {
+  email: String!
+  authUrl: String!
+  fields: JSON
 }
 
 `;

@@ -45,5 +45,19 @@ module.exports = {
         payload,
       });
     },
+
+    /**
+     *
+     */
+    sendAppUserLoginLink: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { email, fields, authUrl } = input;
+      return applicationService.request('user.sendLoginLink', {
+        applicationId,
+        authUrl,
+        email,
+        fields,
+      });
+    },
   },
 };
