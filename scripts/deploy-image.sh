@@ -6,7 +6,7 @@ mv services ../
 mkdir services
 mv ../services/$1 services/
 
-mv "services/$1/Dockerfile" Dockerfile
+cp "services/$1/Dockerfile" Dockerfile
 docker build -q -t "$1:$2" --build-arg SERVICE=$1 .
 
 mv ../services/* services/
