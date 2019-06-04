@@ -8,22 +8,25 @@ const AppUserLogin = require('../../mongodb/models/app-user-login');
 const findByEmail = require('./find-by-email');
 
 module.exports = async ({
+  applicationId,
   token,
   fields,
   ip,
   ua,
 } = {}) => {
   if (!token) throw createRequiredParamError('token');
+  if (!applicationId) throw createRequiredParamError('applicationId');
 
   const {
     aud: email,
-    iss: applicationId,
+    iss,
     jti,
     fields: input = {},
   } = await tokenService.request('verify', { sub: 'app-user-login-link', token });
 
   if (!email) throw createError(400, 'No email address was provided in the token payload');
-  if (!applicationId) throw createError(400, 'No application ID was provided in the token payload');
+  if (!iss) throw createError(400, 'No application ID was provided in the token payload');
+  if (iss !== applicationId) throw createError(400, 'The requested application ID does not match the token payload');
 
   const user = await findByEmail({ applicationId, email, fields });
   if (!user) throw createError(404, `No user was found for '${email}'`);
