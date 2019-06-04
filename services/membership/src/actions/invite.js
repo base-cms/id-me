@@ -44,7 +44,7 @@ module.exports = async ({
   const html = `
     <html>
       <body>
-        <h1>You've been invited to join an organization on ID|Me.</h1>
+        <h1>You've been invited to join an organization on IdentityX.</h1>
         <h2>${org.name}</h2>
         <p><a href="http://www.google.com/join/${token}">Login to join the ${org.name} organization.</a></p>
       </body>
@@ -52,7 +52,7 @@ module.exports = async ({
   `;
   await mailerService.request('send', {
     to: user.email,
-    from: 'ID|Me Platform <noreply@base-cms.io>',
+    from: 'IdentityX <noreply@identity-x.base-cms.io>',
     subject: `You've been invited to join ${org.name}`,
     html,
   });

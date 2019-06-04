@@ -19,13 +19,13 @@ module.exports = async ({ email } = {}) => {
       <body>
         <h1>Your personal login link.</h1>
         <p>The login link is good for one hour. If you did not request this link, simply ignore this email or contact support.</p>
-        <p><a href="http://www.google.com/login/${token}">Login to ID|Me</a></p>
+        <p><a href="http://www.google.com/login/${token}">Login to IdentityX</a></p>
       </body>
     </html>
   `;
   await mailerService.request('send', {
     to: user.email,
-    from: 'ID|Me Platform <noreply@base-cms.io>',
+    from: 'IdentityX <noreply@identity-x.base-cms.io>',
     subject: 'Your personal login link',
     html,
   });
