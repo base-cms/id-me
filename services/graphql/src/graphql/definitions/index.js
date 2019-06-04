@@ -14,7 +14,7 @@ scalar JSON
 
 directive @requiresApp on FIELD_DEFINITION
 directive @requiresAppRole(roles: [OrganizationRole!] = []) on FIELD_DEFINITION
-directive @requiresAuth on FIELD_DEFINITION
+directive @requiresAuth(type: AuthorizationType = OrgUser) on FIELD_DEFINITION
 directive @requiresOrgRole(roles: [OrganizationRole!] = []) on FIELD_DEFINITION
 
 enum OrganizationRole {
@@ -22,6 +22,11 @@ enum OrganizationRole {
   Administrator
   Member
   Guest
+}
+
+enum AuthorizationType {
+  OrgUser
+  AppUser
 }
 
 type Query {

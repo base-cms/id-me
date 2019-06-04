@@ -14,7 +14,7 @@ class RequiresAppRoleDirective extends SchemaDirectiveVisitor {
     field.resolve = async (...args) => {
       const [, , { app, user }] = args;
       app.check();
-      user.check();
+      user.check('OrgUser');
 
       const hasRole = await user.hasOrgRole(app.getOrgId(), roles);
       if (!hasRole) {

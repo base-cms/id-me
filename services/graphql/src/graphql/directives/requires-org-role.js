@@ -14,7 +14,7 @@ class RequiresOrgRoleDirective extends SchemaDirectiveVisitor {
     field.resolve = async (...args) => {
       const [, , { org, user }] = args;
       org.check();
-      user.check();
+      user.check('OrgUser');
 
       const hasRole = await user.hasOrgRole(org.getId(), roles);
       if (!hasRole) {

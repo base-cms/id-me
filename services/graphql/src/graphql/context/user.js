@@ -1,6 +1,8 @@
 const { UserInputError, AuthenticationError } = require('apollo-server-express');
 const { get } = require('object-path');
-const { membershipService, userService } = require('@base-cms/id-me-service-clients');
+const { membershipService, userService, applicationService } = require('@base-cms/id-me-service-clients');
+
+const allowedTypes = ['OrgUser', 'AppUser'];
 
 class UserContext {
   constructor(authorization) {
@@ -13,15 +15,32 @@ class UserContext {
     const { authorization } = this;
     if (authorization) {
       try {
-        const token = authorization.replace('Bearer ', '');
-        const { token: decoded, user } = token ? await userService.request('verifyAuth', { token }) : {};
+        const [type, token] = authorization.split(' ');
+        if (!allowedTypes.includes(type)) throw new Error(`Invalid authorization type. Allowed types are ${allowedTypes.join(' ')}`);
+        this.type = type;
         this.token = token;
-        this.decoded = decoded;
-        this.user = user;
+
+        if (type === 'OrgUser') {
+          await this.loadForOrg(token);
+        } else {
+          await this.loadForApp(token);
+        }
       } catch (e) {
         this.error = e;
       }
     }
+  }
+
+  async loadForOrg(token) {
+    const { token: decoded, user } = await userService.request('verifyAuth', { token });
+    this.decoded = decoded;
+    this.user = user;
+  }
+
+  async loadForApp(token) {
+    const { token: decoded, user } = await applicationService.request('user.verifyAuth', { token });
+    this.decoded = decoded;
+    this.user = user;
   }
 
   errored() {
@@ -47,13 +66,27 @@ class UserContext {
     return false;
   }
 
+  getAppId() {
+    if (this.type !== 'AppUser') return undefined;
+    return get(this.decoded, 'iss');
+  }
+
+  hasAppId() {
+    const id = this.getAppId();
+    if (id) return true;
+    return false;
+  }
+
   hasOrgRole(organizationId, roles) {
+    if (this.type !== 'OrgUser') return false;
     return membershipService.request('hasRole', { email: this.get('email'), organizationId, roles });
   }
 
-  check() {
+  check(type) {
     if (this.errored()) throw new AuthenticationError(this.error.message);
     if (!this.exists()) throw new UserInputError('No user authetication was provided with this request.');
+    if (type !== this.type) throw new AuthenticationError('The wrong user authorization type was provided.');
+    if (this.type === 'AppUser' && !this.hasAppId()) throw new Error('No user associated application ID was found');
     return true;
   }
 }
