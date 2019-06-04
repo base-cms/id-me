@@ -64,6 +64,18 @@ module.exports = {
     /**
      *
      */
+    logoutAppUser: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { token } = input;
+      return applicationService.request('user.logout', {
+        applicationId,
+        token,
+      });
+    },
+
+    /**
+     *
+     */
     sendAppUserLoginLink: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { email, fields, authUrl } = input;

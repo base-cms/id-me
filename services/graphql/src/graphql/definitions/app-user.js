@@ -10,6 +10,7 @@ extend type Mutation {
   createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp
+  logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp
 }
 
 type AppUser {
@@ -43,6 +44,10 @@ input CreateAppUserMutationInput {
 }
 
 input LoginAppUserMutationInput {
+  token: String!
+}
+
+input LogoutAppUserMutationInput {
   token: String!
 }
 
