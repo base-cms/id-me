@@ -69,5 +69,10 @@ module.exports = {
       const { value } = input;
       return orgService.request('updateField', { id, path: 'name', value });
     },
+
+    setOrganizationPhotoURL: (_, { input }) => {
+      const { id, value } = input;
+      return orgService.request('updateField', { id, path: 'photoURL', value });
+    },
   },
 };

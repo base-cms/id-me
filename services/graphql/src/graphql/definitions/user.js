@@ -20,6 +20,7 @@ extend type Mutation {
   userLogout: String! @requiresAuth
   setActiveUserGivenName(input: SetActiveUserGivenNameMutationInput!): User! @requiresAuth
   setActiveUserFamilyName(input: SetActiveUserFamilyNameMutationInput!): User! @requiresAuth
+  setActiveUserPhotoURL(input: SetActiveUserPhotoURLMutationInput!): User! @requiresAuth
 }
 
 type UserAuthentication {
@@ -74,6 +75,10 @@ input SendUserLoginLinkMutationInput {
 }
 
 input SetActiveUserFamilyNameMutationInput {
+  value: String!
+}
+
+input SetActiveUserPhotoURLMutationInput {
   value: String!
 }
 

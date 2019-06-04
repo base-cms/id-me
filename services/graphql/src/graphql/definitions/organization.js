@@ -14,6 +14,7 @@ extend type Mutation {
   createOrganization(input: CreateOrganizationMutationInput!): Organization! @requiresAuth
   setOrganizationName(input: SetOrganizationNameMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationDescription(input: SetOrganizationDescriptionMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+  setOrganizationPhotoURL(input: SetOrganizationPhotoURLMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 type Organization {
@@ -46,6 +47,11 @@ input CreateOrganizationMutationInput {
 }
 
 input SetOrganizationDescriptionMutationInput {
+  value: String!
+}
+
+input SetOrganizationPhotoURLMutationInput {
+  id: String!
   value: String!
 }
 
