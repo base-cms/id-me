@@ -49,6 +49,21 @@ module.exports = {
     /**
      *
      */
+    loginAppUser: (_, { input }, { req, app }) => {
+      const applicationId = app.getId();
+      const { token } = input;
+      const ua = req.get('user-agent');
+      return applicationService.request('user.login', {
+        applicationId,
+        token,
+        ip: req.ip,
+        ua,
+      });
+    },
+
+    /**
+     *
+     */
     sendAppUserLoginLink: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { email, fields, authUrl } = input;
