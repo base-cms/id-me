@@ -29,7 +29,7 @@ module.exports = async ({
   const [org, membership, user] = await Promise.all([
     orgService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
     OrgMembership.findFor(organizationId, email, ['id']),
-    userService.createUser({ email, fields: ['id', 'email'] }),
+    userService.request('createUser', { email, fields: ['id', 'email'] }),
   ]);
 
   if (!org) throw createError(404, `No organization was found for '${organizationId}'`);
