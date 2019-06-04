@@ -33,7 +33,7 @@
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
         {{#if organization}}
-          <img src="{{organization.photoURL}}" class="icon icon-sm mr-1">
+          <img alt="Organization avatar" src={{organization.photoURL}} class="icon icon-sm mr-1">
           <span class="d-none d-md-inline">{{organization.name}}</span>
         {{else}}
           Select organization
@@ -44,7 +44,7 @@
         <span class="dropdown-header">Select an organization</span>
         {{#each organizations as |org|}}
           {{#link-to "manage.organizations.index" org.id class="dropdown-item dropdown-item d-flex justify-content-between"}}
-            <img src="{{org.photoURL}}" class="icon icon-sm mr-1"> {{org.name}}
+            <img alt="Organization avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
           {{/link-to}}
         {{/each}}
       </div>

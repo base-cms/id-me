@@ -1,0 +1,10 @@
+<th scope="row"><img src={{invitation.user.photoURL}} class="icon icon-md md-3"></th>
+<td class="align-middle">{{invitation.user.givenName}} {{invitation.user.familyName}}</td>
+<td class="align-middle">{{invitation.role}}</td>
+<td class="align-middle">{{invitation.user.email}}</td>
+<td title={{invitation.createdAt}}>{{invitation.createdAt}}</td>
+<th class="align-middle text-center">
+  {{#if canModify}}
+    <a href="#" class="text-danger" title="Revoke invitation" {{action "removeInvitation" invitation.id}}>{{entypo-icon "trash"}}</a>
+  {{/if}}
+</th>

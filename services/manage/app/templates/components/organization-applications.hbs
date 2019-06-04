@@ -1,0 +1,19 @@
+<div class="card-body">
+  <h5 class="card-title">Applications</h5>
+  <p class="card-text">Manage your organization's applications.</p>
+  <ul class="list-group">
+    {{#each applications as |application|}}
+      <li class="list-group-item">
+        {{#link-to "manage.organizations.applications" organization.id application.id}}
+          {{ application.id }}
+          <button title="Modify application" class="float-right btn btn-sm">
+            {{entypo-icon "cog"}}
+          </button>
+        {{/link-to}}
+      </li>
+    {{/each}}
+  </ul>
+  <a href="#" {{action "createApplication"}}>
+    {{entypo-icon "plus"}} New application
+  </a>
+</div>

@@ -10,7 +10,7 @@ export default Mixin.create(ObjectQueryManager, {
         ...options.context,
       },
     };
-    return this.apollo.query(params, queryName);
+    return this.apollo.watchQuery(params, queryName);
   },
   mutate(orgId, options, queryName) {
     const params = {
