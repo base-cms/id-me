@@ -16,7 +16,7 @@ module.exports = ({ app, path }) => {
     engine: isProduction ? { apiKey: ENGINE_API_KEY } : false,
     extensions: isProduction ? [() => new ApolloNewrelicExtension()] : [],
     // Enable in dev
-    introspection: !isProduction,
+    introspection: true,
     debug: !isProduction,
     playground: !isProduction ? { endpoint: path } : false,
   });
