@@ -21,6 +21,18 @@ module.exports = {
     /**
      *
      */
+    activeAppUser: (_, args, { user }) => {
+      const email = user.get('email');
+      const applicationId = user.getAppId();
+      return applicationService.request('user.findByEmail', {
+        applicationId,
+        email,
+      });
+    },
+
+    /**
+     * @todo This should be secured, otherwise anyone could guess by email
+     */
     appUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { email } = input;

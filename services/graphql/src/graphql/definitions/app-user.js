@@ -4,6 +4,7 @@ module.exports = gql`
 
 extend type Query {
   appUser(input: AppUserQueryInput!): AppUser @requiresApp
+  activeAppUser: AppUser @requiresAuth(type: AppUser)
 }
 
 extend type Mutation {
