@@ -3,8 +3,7 @@ const { createRequiredParamError } = require('@base-cms/micro').service;
 const { updateField } = require('@base-cms/id-me-utils').actions;
 const { tokenService } = require('@base-cms/id-me-service-clients');
 
-const AppUser = require('../../mongodb/models/app-user');
-const AppUserLogin = require('../../mongodb/models/app-user-login');
+const { Application, AppUser, AppUserLogin } = require('../../mongodb/models');
 const findByEmail = require('./find-by-email');
 
 module.exports = async ({
@@ -16,6 +15,9 @@ module.exports = async ({
 } = {}) => {
   if (!token) throw createRequiredParamError('token');
   if (!applicationId) throw createRequiredParamError('applicationId');
+
+  const app = await Application.findById(applicationId, ['id']);
+  if (!app) throw createError(404, `No application was found for '${applicationId}'`);
 
   const {
     aud: email,

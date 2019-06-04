@@ -1,6 +1,7 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 const { tokenService, mailerService } = require('@base-cms/id-me-service-clients');
+const { Application } = require('../../mongodb/models');
 
 const findByEmail = require('./find-by-email');
 
@@ -27,8 +28,12 @@ module.exports = async ({
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!email) throw createRequiredParamError('email');
 
-  const user = await findByEmail({ applicationId, email, fields: ['id', 'email'] });
+  const [app, user] = await Promise.all([
+    Application.findById(applicationId, ['id']),
+    findByEmail({ applicationId, email, fields: ['id', 'email'] }),
+  ]);
 
+  if (!app) throw createError(404, `No application was found for '${applicationId}'`);
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
   const { token } = await createLoginToken({ applicationId, email: user.email, fields });

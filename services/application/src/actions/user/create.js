@@ -1,8 +1,8 @@
 const { createError } = require('micro');
 const { handleError } = require('@base-cms/id-me-utils').mongoose;
 const { service } = require('@base-cms/micro');
-const AppUser = require('../../mongodb/models/app-user');
 const findByEmail = require('./find-by-email');
+const { AppUser, Application } = require('../../mongodb/models');
 
 const { createRequiredParamError } = service;
 
@@ -12,7 +12,12 @@ module.exports = async ({
   payload,
   fields,
 } = {}) => {
+  if (!applicationId) throw createRequiredParamError('applicationId');
   if (!email) throw createRequiredParamError('email');
+
+  const app = await Application.findById(applicationId, ['id']);
+  if (!app) throw createError(404, `No application was found for '${applicationId}'`);
+
   try {
     const user = new AppUser({ ...payload, applicationId, email });
     await user.validate();
