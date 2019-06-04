@@ -10,6 +10,13 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
+  photoURL: {
+    type: String,
+    trim: false,
+    default() {
+      return `https://robohash.org/${this.id}?set=set3&bgset=bg2`;
+    },
+  },
 }, { timestamps: true });
 
 module.exports = schema;

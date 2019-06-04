@@ -1,0 +1,12 @@
+query OrganizationInvitations {
+  organizationInvitations {
+    id
+    user {
+      id
+      email
+      givenName
+      familyName
+    }
+    role
+  }
+}

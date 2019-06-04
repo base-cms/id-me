@@ -5,6 +5,7 @@ query MyOrganizations {
       id
       name
       description
+      photoURL
     }
   	role
   }

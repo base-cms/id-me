@@ -32,6 +32,7 @@ type User {
   email: String!
   givenName: String
   familyName: String
+  photoURL: String
 }
 
 type UserAuthToken {

@@ -3,5 +3,6 @@ query Organization($input: OrganizationQueryInput!) {
     id
     name
     description
+    photoURL
   }
 }

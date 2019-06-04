@@ -1,4 +1,9 @@
-const { membershipService, orgService, userService } = require('@base-cms/id-me-service-clients');
+const {
+  applicationService,
+  membershipService,
+  orgService,
+  userService,
+} = require('@base-cms/id-me-service-clients');
 
 const membershipResolvers = {
   id: membership => membership._id,
@@ -32,6 +37,11 @@ module.exports = {
     organizationInvitations: (_, args, { org }) => {
       const id = org.getId();
       return membershipService.request('listInvitesForOrg', { id });
+    },
+
+    organizationApplications: (_, args, { org }) => {
+      const id = org.getId();
+      return applicationService.request('listForOrg', { id });
     },
   },
 

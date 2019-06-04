@@ -1,0 +1,13 @@
+query OrganizationApplications {
+  organizationApplications {
+    id
+    name
+    description
+  }
+  activeOrganization {
+    id
+    name
+    description
+    photoURL
+  }
+}

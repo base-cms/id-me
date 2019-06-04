@@ -1,0 +1,3 @@
+mutation RemoveInvitation($input: RemoveUserInviteMutationInput!) {
+  removeUserInvite(input: $input)
+}

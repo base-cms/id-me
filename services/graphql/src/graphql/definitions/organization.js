@@ -7,6 +7,7 @@ extend type Query {
   activeOrganization: Organization! @requiresOrgRole
   organizationUsers: [OrganizationMembership] @requiresOrgRole
   organizationInvitations: [OrganizationInvitation] @requiresOrgRole
+  organizationApplications: [Application] @requiresOrgRole
 }
 
 extend type Mutation {
@@ -19,6 +20,7 @@ type Organization {
   id: String!
   name: String!
   description: String
+  photoURL: String
 }
 
 type OrganizationMembership {

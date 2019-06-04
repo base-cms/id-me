@@ -1,0 +1,33 @@
+query OrganizationUsersAndInvitations {
+  organizationUsers {
+    id
+    user {
+      id
+      email
+      givenName
+      familyName
+      photoURL
+    }
+    role
+  }
+  organizationInvitations {
+    id
+    user {
+      id
+      email
+      givenName
+      familyName
+      photoURL
+    }
+    organization {
+      id
+    }
+    role
+  }
+  activeOrganization {
+    id
+    name
+    description
+    photoURL
+  }
+}
