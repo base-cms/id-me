@@ -14,7 +14,7 @@ export default ApolloService.extend({
       const headers = {};
       const auth = get(session, 'isAuthenticated');
       const token = get(session, 'data.authenticated.token.value');
-      if (auth && token) headers.Authorization = `Bearer ${token}`;
+      if (auth && token) headers.Authorization = `OrgUser ${token}`;
       if (orgId) headers['x-org-id'] = orgId;
       return { headers };
     });
