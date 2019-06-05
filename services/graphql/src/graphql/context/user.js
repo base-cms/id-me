@@ -2,6 +2,7 @@ const { UserInputError, AuthenticationError } = require('apollo-server-express')
 const { get } = require('object-path');
 const { membershipService, userService, applicationService } = require('@base-cms/id-me-service-clients');
 
+const { isArray } = Array;
 const allowedTypes = ['OrgUser', 'AppUser'];
 
 class UserContext {
@@ -60,6 +61,12 @@ class UserContext {
     return get(this.user, path, def);
   }
 
+  getAsArray(path) {
+    const value = get(this.user, path, []);
+    if (isArray(value)) return value;
+    return [];
+  }
+
   exists() {
     if (this.errored()) return false;
     if (this.getId()) return true;
@@ -88,6 +95,14 @@ class UserContext {
     if (type !== this.type) throw new AuthenticationError('The wrong user authorization type was provided.');
     if (this.type === 'AppUser' && !this.hasAppId()) throw new Error('No user associated application ID was found');
     return true;
+  }
+
+  hasValidUser(type) {
+    try {
+      return this.check(type);
+    } catch (e) {
+      return false;
+    }
   }
 }
 
