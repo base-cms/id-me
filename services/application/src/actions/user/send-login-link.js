@@ -20,6 +20,7 @@ const createLoginToken = ({
 
 module.exports = async ({
   authUrl,
+  redirectTo,
   applicationId,
   email,
   fields,
@@ -37,13 +38,14 @@ module.exports = async ({
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
   const { token } = await createLoginToken({ applicationId, email: user.email, fields });
-
+  let url = `${authUrl}?token=${token}`;
+  if (redirectTo) url = `${url}&redirect=${encodeURIComponent(redirectTo)}`;
   const html = `
     <html>
       <body>
         <h1>Your personal login link.</h1>
         <p>The login link is good for one hour. If you did not request this link, simply ignore this email or contact support.</p>
-        <p><a href="${authUrl}?token=${token}">Login to Website</a></p>
+        <p><a href="${url}">Login to Website</a></p>
       </body>
     </html>
   `;

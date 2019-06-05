@@ -62,6 +62,7 @@ input LogoutAppUserMutationInput {
 input SendAppUserLoginLinkMutationInput {
   email: String!
   authUrl: String!
+  redirectTo: String
   fields: JSON
 }
 

@@ -104,10 +104,16 @@ module.exports = {
      */
     sendAppUserLoginLink: (_, { input }, { app }) => {
       const applicationId = app.getId();
-      const { email, fields, authUrl } = input;
+      const {
+        email,
+        fields,
+        authUrl,
+        redirectTo,
+      } = input;
       return applicationService.request('user.sendLoginLink', {
         applicationId,
         authUrl,
+        redirectTo,
         email,
         fields,
       });
