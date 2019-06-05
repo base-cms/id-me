@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   appUser(input: AppUserQueryInput!): AppUser @requiresApp
   activeAppUser: AppUser @requiresAuth(type: AppUser)
+  activeAppContext: AppContext! @requiresApp
 }
 
 extend type Mutation {
@@ -12,6 +13,12 @@ extend type Mutation {
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp
+}
+
+type AppContext {
+  user: AppUser
+  mergedAccessLevels: [AccessLevel]
+  mergedTeams: [Team]
 }
 
 type AppUser {

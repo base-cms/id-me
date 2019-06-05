@@ -1,4 +1,5 @@
 const { applicationService } = require('@base-cms/id-me-service-clients');
+const { UserInputError } = require('apollo-server-express');
 
 const { isArray } = Array;
 
@@ -18,6 +19,19 @@ module.exports = {
   },
 
   Query: {
+    /**
+     *
+     */
+    activeAppContext: async (_, args, { user, app, req }) => {
+      const applicationId = app.getId();
+      const email = user.get('email');
+      const { ip: ipAddress } = req;
+      if (user.hasValidUser('AppUser') && applicationId !== user.getAppId()) {
+        throw new UserInputError('The provided application context does not match the app for the user.');
+      }
+      return applicationService.request('loadContext', { applicationId, email, ipAddress });
+    },
+
     /**
      *
      */
