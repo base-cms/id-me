@@ -39,7 +39,7 @@ module.exports = async ({
 
   const { token } = await createLoginToken({ applicationId, email: user.email, fields });
   let url = `${authUrl}?token=${token}`;
-  if (redirectTo) url = `${url}&redirect=${encodeURIComponent(redirectTo)}`;
+  if (redirectTo) url = `${url}&redirectTo=${encodeURIComponent(redirectTo)}`;
   const html = `
     <html>
       <body>
