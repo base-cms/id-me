@@ -30,7 +30,7 @@ module.exports = async ({
   if (!email) throw createRequiredParamError('email');
 
   const [app, user] = await Promise.all([
-    Application.findById(applicationId, ['id']),
+    Application.findById(applicationId, ['id', 'name']),
     findByEmail({ applicationId, email, fields: ['id', 'email'] }),
   ]);
 
@@ -45,13 +45,13 @@ module.exports = async ({
       <body>
         <h1>Your personal login link.</h1>
         <p>The login link is good for one hour. If you did not request this link, simply ignore this email or contact support.</p>
-        <p><a href="${url}">Login to Website</a></p>
+        <p><a href="${url}">Login to ${app.name}</a></p>
       </body>
     </html>
   `;
   await mailerService.request('send', {
     to: user.email,
-    from: 'Website Name <noreply@base-cms.io>',
+    from: `${app.name} <noreply@base-cms.io>`,
     subject: 'Your personal login link',
     html,
   });
