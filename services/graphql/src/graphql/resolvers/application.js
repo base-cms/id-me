@@ -6,6 +6,12 @@ module.exports = {
   },
 
   Query: {
+
+    activeApplication: (_, args, { app }) => {
+      const id = app.getId();
+      return applicationService.request('findById', { id });
+    },
+
     application: (_, { input }) => {
       const { id } = input;
       return applicationService.request('findById', { id });

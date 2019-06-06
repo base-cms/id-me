@@ -3,7 +3,8 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  application(input: ApplicationQueryInput!): Application! @requiresAppRole
+  activeApplication: Application! @requiresApp
+  application(input: ApplicationQueryInput!): Application! @requiresApp
 }
 
 extend type Mutation {
