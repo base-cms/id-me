@@ -4,5 +4,9 @@ query Organization($input: OrganizationQueryInput!) {
     name
     description
     photoURL
+    applications {
+      id
+      name
+    }
   }
 }

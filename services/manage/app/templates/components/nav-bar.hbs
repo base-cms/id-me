@@ -1,8 +1,17 @@
-{{#link-to "manage" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
 
-<NavItems @organization={{organization}} @application={{application}} />
+<NavItems @orgId={{orgId}} @appId={{appId}} />
 
 <ul class="navbar-nav ml-auto">
+
+  <NavContext
+    @organizations={{organizations}}
+    @orgId={{orgId}}
+    @appId={{appId}}
+    @organization={{organization}}
+    @application={{application}}
+  />
+
   <li class="nav-item">
     <a
       href="https://as3.gitbook.io/identity-x"
@@ -14,14 +23,6 @@
       {{entypo-icon "text-document"}} <span class="d-none d-md-inline">Documentation</span>
     </a>
   </li>
-
-  <NavContext
-    @organizations={{organizations}}
-
-    @organization={{organization}}
-    @application={{application}}
-    @applications={{applications}}
-  />
 
   <NavUser />
 
