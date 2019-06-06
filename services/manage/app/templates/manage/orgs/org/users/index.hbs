@@ -1,6 +1,4 @@
+<OrganizationHeader @organization={{model.activeOrganization}} />
 
-<div class="container mt-5">
-  <OrganizationHeader @organization={{model.activeOrganization}} />
-  <OrganizationMembers @members={{model.organizationUsers}} />
-  <OrganizationInvitations @invitations={{model.organizationInvitations}}  @organization={{model.activeOrganization}} />
-</div>
+<OrganizationMembers @members={{model.organizationUsers}} />
+<OrganizationInvitations @invitations={{model.organizationInvitations}}  @organization={{model.activeOrganization}} />

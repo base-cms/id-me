@@ -20,7 +20,9 @@ Router.map(function() {
         });
         this.route('apps', function() {
           this.route('app', { path: ':app_id' }, function() {
-            this.route('access-levels');
+            this.route('access-levels', function() {
+              this.route('level', { path: ':access_level_id' });
+            });
             this.route('teams');
             this.route('users');
           });
