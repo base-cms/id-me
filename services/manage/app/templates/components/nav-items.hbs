@@ -1,0 +1,20 @@
+{{#if application.id}}
+  {{#link-to "manage.orgs.org.apps.app.access-levels" tagName="li" class="nav-item" title="Access Levels"}}
+    {{#link-to "manage.orgs.org.apps.app.access-levels" class="nav-link"}}Access Levels{{/link-to}}
+  {{/link-to}}
+  {{#link-to "manage.orgs.org.apps.app.teams" tagName="li" class="nav-item" title="Teams"}}
+    {{#link-to "manage.orgs.org.apps.app.teams" class="nav-link"}}Teams{{/link-to}}
+  {{/link-to}}
+  {{#link-to "manage.orgs.org.apps.app.users" tagName="li" class="nav-item" title="Users"}}
+    {{#link-to "manage.orgs.org.apps.app.users" class="nav-link"}}Users{{/link-to}}
+  {{/link-to}}
+{{else}}
+  {{#if organization.id}}
+    {{#link-to "manage.orgs.org.users" tagName="li" class="nav-item" title="Users"}}
+      {{#link-to "manage.orgs.org.users" class="nav-link"}}Users{{/link-to}}
+    {{/link-to}}
+    {{#link-to "manage.orgs.org.apps" tagName="li" class="nav-item" title="Applications"}}
+      {{#link-to "manage.orgs.org.apps" class="nav-link"}}Applications{{/link-to}}
+    {{/link-to}}
+  {{/if}}
+{{/if}}

@@ -1,37 +1,6 @@
 {{#link-to "manage" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
 
-<ul class="navbar-nav mr-auto">
-  {{#if organization.id}}
-    {{#link-to "manage.orgs.org" organization.id tagName="li" class="nav-item" title=organiation.name}}
-      {{#link-to "manage.orgs.org" organization.id class="nav-link"}}
-        Organization {{entypo-icon "chevron-right"}}
-      {{/link-to}}
-    {{/link-to}}
-    {{#if application.id}}
-      {{#link-to "manage.orgs.org.apps.app" application.id tagName="li" class="nav-item" title=application.name}}
-        {{#link-to "manage.orgs.org.apps.app" application.id class="nav-link"}}
-          Application {{entypo-icon "chevron-right"}}
-        {{/link-to}}
-      {{/link-to}}
-      {{#link-to "manage.orgs.org.apps.app.access-levels" tagName="li" class="nav-item" title="Access Levels"}}
-        {{#link-to "manage.orgs.org.apps.app.access-levels" class="nav-link"}}Access Levels{{/link-to}}
-      {{/link-to}}
-      {{#link-to "manage.orgs.org.apps.app.teams" tagName="li" class="nav-item" title="Teams"}}
-        {{#link-to "manage.orgs.org.apps.app.teams" class="nav-link"}}Teams{{/link-to}}
-      {{/link-to}}
-      {{#link-to "manage.orgs.org.apps.app.users" tagName="li" class="nav-item" title="Users"}}
-        {{#link-to "manage.orgs.org.apps.app.users" class="nav-link"}}Users{{/link-to}}
-      {{/link-to}}
-    {{else}}
-      {{#link-to "manage.orgs.org.users" tagName="li" class="nav-item" title="Users"}}
-        {{#link-to "manage.orgs.org.users" class="nav-link"}}Users{{/link-to}}
-      {{/link-to}}
-      {{#link-to "manage.orgs.org.apps" tagName="li" class="nav-item" title="Applications"}}
-        {{#link-to "manage.orgs.org.apps" class="nav-link"}}Applications{{/link-to}}
-      {{/link-to}}
-    {{/if}}
-  {{/if}}
-</ul>
+<NavItems @organization={{organization}} @application={{application}} />
 
 <ul class="navbar-nav ml-auto">
   <li class="nav-item">
@@ -46,61 +15,14 @@
     </a>
   </li>
 
-  {{#if user.isAuthenticated}}
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-        {{#if organization}}
-          <img alt="Organization avatar" src={{organization.photoURL}} class="icon icon-sm mr-1">
-          <span class="d-none d-md-inline">{{organization.name}}</span>
-        {{else}}
-          Select organization
-        {{/if}}
-      </a>
+  <NavContext
+    @organizations={{organizations}}
 
-      <div class="dropdown-menu dropdown-menu-right">
-        <span class="dropdown-header">Select an organization</span>
-        {{#each organizations as |org|}}
-          {{#link-to "manage.orgs.org" org.id class="dropdown-item dropdown-item d-flex justify-content-between"}}
-            <img alt="Organization avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
-          {{/link-to}}
-        {{/each}}
-      </div>
-    </li>
+    @organization={{organization}}
+    @application={{application}}
+    @applications={{applications}}
+  />
 
-    <li class="nav-item dropdown">
-      <a
-        class="nav-link dropdown-toggle"
-        title="User Settings"
-        data-toggle="dropdown"
-        href="#"
-        role="button"
-      >
-        {{entypo-icon "user"}} <span class="d-none d-md-inline">{{user.model.givenName}} {{user.model.familyName}}</span>
-      </a>
-
-      <div class="dropdown-menu dropdown-menu-right">
-        {{!-- <a class="dropdown-item dropdown-item d-flex justify-content-between" href="#" title="Update User Profile" {{action "displayUpdateProfile"}}>
-          Update Profile
-          {{entypo-icon "v-card" class="ml-1"}}
-        </a> --}}
-        {{!-- {{update-profile-modal isOpen=isUpdateProfileOpen model=user.model}} --}}
-
-        <div class="dropdown-divider"></div>
-
-        {{#link-to "logout" class="dropdown-item d-flex justify-content-between" title="Sign out of the Application"}}
-          Sign out
-          {{entypo-icon "log-out"}}
-        {{/link-to}}
-      </div>
-    </li>
-  {{else}}
-    {{#link-to "login" tagName="li" class="nav-item" title="Sign in Into the Application"}}
-      {{#link-to "login" class="nav-link"}}{{entypo-icon "login"}} Sign in{{/link-to}}
-    {{/link-to}}
-    {{#link-to "signup" tagName="li" class="nav-item" title="Sign up"}}
-      {{#link-to "signup" class="nav-link"}}{{entypo-icon "add-user"}} Sign up{{/link-to}}
-    {{/link-to}}
-  {{/if}}
-
+  <NavUser />
 
 </ul>
