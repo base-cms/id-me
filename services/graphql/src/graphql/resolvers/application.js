@@ -5,6 +5,13 @@ module.exports = {
     id: app => app._id,
   },
 
+  Query: {
+    application: (_, { input }) => {
+      const { id } = input;
+      return applicationService.request('findById', { id });
+    },
+  },
+
   Mutation: {
     /**
      *
