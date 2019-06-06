@@ -19,6 +19,8 @@ type AppContext {
   user: AppUser
   mergedAccessLevels: [AccessLevel]
   mergedTeams: [Team]
+  hasTeams: Boolean!
+  hasUser: Boolean!
 }
 
 type AppUser {

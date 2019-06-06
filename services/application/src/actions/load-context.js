@@ -45,5 +45,7 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
     user,
     mergedTeams,
     mergedAccessLevels,
+    hasTeams: Boolean(mergedTeams.length),
+    hasUser: Boolean(user),
   };
 };
