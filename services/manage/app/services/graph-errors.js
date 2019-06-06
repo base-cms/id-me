@@ -5,7 +5,7 @@ export default Service.extend({
   user: inject(),
 
   isReady() {
-    return true;
+    return false;
   },
 
   handle(e) {

@@ -1,0 +1,7 @@
+query Application($input:ApplicationQueryInput!) {
+	application(input:$input) {
+   id
+    name
+    description
+  }
+}

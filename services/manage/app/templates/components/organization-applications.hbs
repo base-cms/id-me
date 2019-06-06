@@ -1,19 +1,19 @@
 <div class="card-body">
-  <h5 class="card-title">Applications</h5>
+  <h2 class="card-title">Applications</h2>
   <p class="card-text">Manage your organization's applications.</p>
-  <ul class="list-group">
-    {{#each applications as |application|}}
-      <li class="list-group-item">
-        {{#link-to "manage.organizations.applications" organization.id application.id}}
-          {{ application.id }}
-          <button title="Modify application" class="float-right btn btn-sm">
-            {{entypo-icon "cog"}}
-          </button>
+  <ul class="list-group mb-3">
+    {{#each applications as |app|}}
+      {{#link-to "manage.orgs.org.apps.app" app.id tagName="li" class="list-group-item"}}
+        {{#link-to "manage.orgs.org.apps.app" app.id}}
+          {{ app.name }}
+          <small class="text-muted">{{app.description}}</small>
         {{/link-to}}
-      </li>
+      {{/link-to}}
     {{/each}}
   </ul>
-  <a href="#" {{action "createApplication"}}>
+  <a href="#" {{action "showCreateModal"}}>
     {{entypo-icon "plus"}} New application
   </a>
 </div>
+
+{{!-- <ApplicationModal @isOpen={{isModalOpen}} @organization={{organization}} /> --}}

@@ -4,15 +4,13 @@ import OrganizationContext from '@base-cms/id-me-manage/mixins/organization-cont
 
 export default Route.extend(OrganizationContext, {
 
-  model({ id }) {
-    this.userOrganizations = this.modelFor('manage');
+  model({ org_id: id }) {
     const variables = { input: { id } };
     return this.query(id, { query, variables }, 'organization');
   },
 
-  setupController(controller) {
-    this._super(...arguments);
-    controller.set('userOrganizations', this.userOrganizations);
+  afterModel(model) {
+    this.controllerFor('application').set('organization', model);
   },
 
 });

@@ -13,12 +13,19 @@ Router.map(function() {
   this.route('authenticate', { path: '/authenticate/:token' });
   this.route('manage', { path: '' }, function() {
     this.route('invitations');
-    this.route('organizations', { path: ':id' }, function() {
-      this.route('users', function() {
-        this.route('view', { path: ':id' });
-      });
-      this.route('applications', function() {
-      });
+    this.route('orgs', function() {
+      this.route('org', { path: ':org_id' }, function() {
+        this.route('users', function() {
+          this.route('user', { path: ':user_id' });
+        });
+        this.route('apps', function() {
+          this.route('app', { path: ':app_id' }, function() {
+            this.route('access-levels');
+            this.route('teams');
+            this.route('users');
+          });
+        });
+      })
     })
   });
 });
