@@ -22,6 +22,7 @@ type Organization {
   name: String!
   description: String
   photoURL: String
+  applications: [Application!]!
 }
 
 type OrganizationMembership {

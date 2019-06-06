@@ -14,6 +14,7 @@ const membershipResolvers = {
 module.exports = {
   Organization: {
     id: org => org._id,
+    applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
   },
   OrganizationInvitation: membershipResolvers,
   OrganizationMembership: membershipResolvers,
