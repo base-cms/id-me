@@ -48,8 +48,8 @@ module.exports = {
 
   Mutation: {
     createOrganization: async (_, { input }, { user }) => {
-      const { name } = input;
-      const payload = { name };
+      const { name, description } = input;
+      const payload = { name, description };
       const org = await orgService.request('create', { payload });
       await membershipService.request('create', {
         organizationId: org._id,

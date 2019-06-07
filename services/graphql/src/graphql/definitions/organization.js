@@ -45,6 +45,7 @@ input OrganizationQueryInput {
 
 input CreateOrganizationMutationInput {
   name: String!
+  description: String
 }
 
 input SetOrganizationDescriptionMutationInput {

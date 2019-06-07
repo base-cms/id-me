@@ -11,9 +11,9 @@
       {{/link-to}}
     {{/each}}
   </ul>
-  {{!-- <a href="#" {{action "showCreateModal"}}>
+  <a href="#" {{action "showCreateModal"}}>
     {{entypo-icon "plus"}} New organization
-  </a> --}}
+  </a>
 </div>
 
-{{!-- <ApplicationModal @isOpen={{isModalOpen}} @organization={{organization}} /> --}}
+<OrganizationCreateModal @isOpen={{isModalOpen}} />

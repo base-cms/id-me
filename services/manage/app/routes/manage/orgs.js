@@ -5,9 +5,8 @@ import Route from '@ember/routing/route';
 
 export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
 
-  async model() {
-    const orgs = await this.apollo.watchQuery({ query }, 'userOrganizations');
-    return orgs.map(({ organization }) => organization);
+  model() {
+    return this.apollo.watchQuery({ query }, 'userOrganizations');
   },
 
 });

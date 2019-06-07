@@ -29,7 +29,7 @@
       {{#if showOrgs}}
         <h6 class="dropdown-header">Organizations</h6>
         {{#each orgs as |org|}}
-          {{#link-to "manage.orgs.org" org.id class="dropdown-item dropdown-item d-flex justify-content-between"}}
+          {{#link-to "manage.orgs.org" org.id class="dropdown-item dropdown-item d-flex"}}
             <img alt="Organization avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
           {{/link-to}}
         {{/each}}
