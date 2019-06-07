@@ -1,0 +1,7 @@
+mutation CreateAccessLevel($input: CreateAccessLevelMutationInput!) {
+  createAccessLevel(input: $input) {
+    id
+    name
+    description
+  }
+}
