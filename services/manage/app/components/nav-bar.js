@@ -2,35 +2,21 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-const findOrgId = (leaf) => {
-  const { org_id: id } = leaf.params;
-  if (id) return id;
-  if (leaf.parent) return findOrgId(leaf.parent);
-  return null;
-};
-
-const findAppId = (leaf) => {
-  const { app_id: id } = leaf.params;
-  if (id) return id;
-  if (leaf.parent) return findAppId(leaf.parent);
-  return null;
-};
-
 export default Component.extend({
   tagName: 'nav',
   classNames: ['navbar', 'navbar-expand', 'navbar-dark', 'bg-primary'],
 
   router: service(),
 
-  appId: computed('router.currentRoute', function() {
-    return findAppId(this.router.currentRoute);
+  appId: computed('router.{currentRouteName,currentURL}', function() {
+    const { currentURL, currentRouteName } = this.router;
+    if (currentRouteName.includes('apps.app')) return currentURL.match(/apps\/([a-f0-9]{24})/i)[1];
   }),
 
-  orgId: computed('router.currentRoute', function() {
-    return findOrgId(this.router.currentRoute);
+  orgId: computed('router.{currentRouteName,currentURL}', function() {
+    const { currentURL, currentRouteName } = this.router;
+    if (currentRouteName.includes('orgs.org')) return currentURL.match(/orgs\/([a-f0-9]{24})/i)[1];
   }),
 
-  organizations: computed('userOrganizations', function() {
-    return this.userOrganizations.map(({ organization }) => organization);
-  }),
+  organizations: computed.mapBy('userOrganizations', 'organization'),
 });
