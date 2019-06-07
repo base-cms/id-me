@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 // import { inject } from '@ember/service';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import ApplicationContext from '@base-cms/id-me-manage/mixins/application-context';
-import mutation from '@base-cms/id-me-manage/gql/mutations/access-levels/create';
+import mutation from '@base-cms/id-me-manage/gql/mutations/applications/create-access-level';
 
 export default Component.extend(ActionMixin, ApplicationContext, {
   // notify: inject(),

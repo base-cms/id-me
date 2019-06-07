@@ -4,7 +4,7 @@
   <ul class="list-group mb-3">
     {{#each accessLevels as |level|}}
       {{#link-to "manage.orgs.org.apps.app.access-levels.level" level.id tagName="li" class="list-group-item"}}
-        {{#link-to "manage.orgs.org.apps.app.access-levels.level" leelv.id}}
+        {{#link-to "manage.orgs.org.apps.app.access-levels.level" level.id}}
           {{ level.name }}
           <small class="text-muted">{{level.description}}</small>
         {{/link-to}}
