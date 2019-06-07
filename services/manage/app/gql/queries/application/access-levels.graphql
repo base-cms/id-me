@@ -2,10 +2,6 @@ query ApplicationAccessLevels {
 	accessLevels {
     id
     name
-  }
-  activeApplication {
-    id
-    name
     description
   }
 }
