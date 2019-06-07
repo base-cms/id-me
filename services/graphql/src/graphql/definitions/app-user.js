@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  appUsers: [AppUser] @requiresApp
   appUser(input: AppUserQueryInput!): AppUser @requiresApp
   activeAppUser: AppUser @requiresAuth(type: AppUser)
   activeAppContext: AppContext! @requiresApp
