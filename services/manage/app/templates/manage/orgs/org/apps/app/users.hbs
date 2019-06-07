@@ -1,0 +1,19 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h2 class="card-title">Users</h2>
+    <p class="card-text">Manage your applications's users.</p>
+    <div class="list-group mb-3">
+      {{#link-to "manage.orgs.org.apps.app.users.create" class="list-group-item list-group-item-action list-group-item-secondary"}}
+        {{entypo-icon "circle-with-plus"}} New user
+      {{/link-to}}
+      {{#each model as |user|}}
+        {{#link-to "manage.orgs.org.apps.app.users.edit" user.id class="list-group-item list-group-item-action"}}
+          {{ user.givenName }} {{ user.familyName }}
+          <small class="text-muted">{{user.email}}</small>
+        {{/link-to}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{outlet}}

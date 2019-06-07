@@ -1,0 +1,8 @@
+mutation CreateApplicationUser($input: CreateAppUserMutationInput!) {
+  createAppUser(input: $input) {
+    id
+    givenName
+    familyName
+    email
+  }
+}

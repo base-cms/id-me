@@ -28,7 +28,10 @@ Router.map(function() {
               this.route('create');
               this.route('edit', { path: ':team_id' });
             });
-            this.route('users');
+            this.route('users', function() {
+              this.route('create');
+              this.route('edit', { path: ':user_id' });
+            });
           });
         });
       })
