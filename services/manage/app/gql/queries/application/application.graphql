@@ -1,6 +1,6 @@
-query Application($input:ApplicationQueryInput!) {
-	application(input:$input) {
-   id
+query Application {
+	activeApplication {
+    id
     name
     description
   }

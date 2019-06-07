@@ -24,7 +24,9 @@ Router.map(function() {
               this.route('create');
               this.route('edit', { path: ':access_level_id' });
             });
-            this.route('teams');
+            this.route('teams', function() {
+              this.route('team', { path: ':team_id' });
+            });
             this.route('users');
           });
         });

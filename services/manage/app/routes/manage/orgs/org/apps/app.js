@@ -1,16 +1,12 @@
 import Route from '@ember/routing/route';
 import query from '@base-cms/id-me-manage/gql/queries/application/application';
-import ApplicationContext from '@base-cms/id-me-manage/mixins/application-context';
+import { RouteQueryManager } from 'ember-apollo-client';
 
-export default Route.extend(ApplicationContext, {
+export default Route.extend(RouteQueryManager, {
 
   model({ app_id: id }) {
-    const variables = { input: { id } };
-    return this.query(id, { query, variables }, 'application');
-  },
-
-  afterModel(model) {
-    this.controllerFor('application').set('application', model);
+    const context = { appId: id };
+    return this.apollo.watchQuery({ query, context }, 'activeApplication');
   },
 
 });
