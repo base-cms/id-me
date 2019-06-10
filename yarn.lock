@@ -7304,6 +7304,11 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
+i18n-iso-countries@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/i18n-iso-countries/-/i18n-iso-countries-4.1.0.tgz#73a4fa7fc80725d42de07c097dc61bc32c3365c5"
+  integrity sha512-ttqCFBUvVSwUCgyjjIG95lilFg/61INah89ih/znBYHrZAcD5HsFUr8CJBmEgIOPbw0jZFgAPAsYRPGQexMTeA==
+
 iconv-lite@0.4.19:
   version "0.4.19"
   resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.19.tgz#f7468f60135f5e5dad3399c0a81be9a1603a082b"
