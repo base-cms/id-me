@@ -2,6 +2,7 @@ version: '3.7'
 
 x-env-defaults: &env
   APPLICATION_SERVICE_URL: ${APPLICATION_SERVICE_URL-http://application}
+  LOCALE_SERVICE_URL: ${LOCALE_SERVICE_URL-http://locale}
   MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
   MEMBERSHIP_SERVICE_URL: ${MEMBERSHIP_SERVICE_URL-http://membership}
   MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017/identity-x}
@@ -138,6 +139,14 @@ services:
       - organization
     ports:
       - "12008:80"
+
+  locale:
+    <<: *node
+    working_dir: /identity-x/services/locale
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80"]
+    ports:
+      - "12009:80"
 
 volumes:
   mongodb: {}
