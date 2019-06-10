@@ -1,0 +1,20 @@
+{{#if show}}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+      {{#if organization}}
+        <img alt="Organization avatar" src={{organization.photoURL}} class="icon icon-sm mr-1">
+        <span class="d-none d-md-inline">{{organization.name}}</span>
+      {{else}}
+        Select organization
+      {{/if}}
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right">
+      {{#each organizations as |org|}}
+        {{#link-to "manage.orgs.org" org.id class="dropdown-item dropdown-item d-flex"}}
+          <img alt="Organization avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
+        {{/link-to}}
+      {{/each}}
+    </div>
+  </li>
+{{/if}}

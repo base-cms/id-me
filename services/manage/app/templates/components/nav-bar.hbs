@@ -1,29 +1,10 @@
-{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
-
-<NavItems @orgId={{orgId}} @appId={{appId}} />
-
-<ul class="navbar-nav ml-auto">
-
-  <NavOrgContext
-    @organizations={{organizations}}
-    @orgId={{orgId}}
-    @appId={{appId}}
-    @organization={{organization}}
+<NavBarPrimary
+  @organization={{organization}}
+  @organizations={{organizations}}
+/>
+{{#if orgId}}
+  <NavBarSecondary
     @application={{application}}
+    @applications={{applications}}
   />
-
-  <li class="nav-item">
-    <a
-      href="https://as3.gitbook.io/identity-x"
-      title="Application Documentation"
-      class="nav-link"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      {{entypo-icon "text-document"}} <span class="d-none d-md-inline">Documentation</span>
-    </a>
-  </li>
-
-  <NavUserContext />
-
-</ul>
+{{/if}}

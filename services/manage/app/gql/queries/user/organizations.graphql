@@ -5,6 +5,10 @@ query MyOrganizations {
       id
       name
       photoURL
+      applications {
+        id
+        name
+      }
     }
   	role
   }
