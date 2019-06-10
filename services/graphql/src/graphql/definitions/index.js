@@ -2,6 +2,7 @@ const gql = require('graphql-tag');
 const accessLevel = require('./access-level');
 const appUser = require('./app-user');
 const application = require('./application');
+const locale = require('./locale');
 const organization = require('./organization');
 const team = require('./team');
 const user = require('./user');
@@ -40,6 +41,7 @@ type Mutation {
 ${accessLevel}
 ${appUser}
 ${application}
+${locale}
 ${organization}
 ${team}
 ${user}
