@@ -4,7 +4,7 @@ x-env-defaults: &env
   APPLICATION_SERVICE_URL: ${APPLICATION_SERVICE_URL-http://application}
   MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
   MEMBERSHIP_SERVICE_URL: ${MEMBERSHIP_SERVICE_URL-http://membership}
-  MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017/id-me}
+  MONGO_DSN: ${MONGO_DSN-mongodb://mongodb:27017/identity-x}
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
   NODE_ENV: development
