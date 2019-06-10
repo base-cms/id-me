@@ -24,10 +24,4 @@ query OrganizationUsersAndInvitations {
     }
     role
   }
-  activeOrganization {
-    id
-    name
-    description
-    photoURL
-  }
 }

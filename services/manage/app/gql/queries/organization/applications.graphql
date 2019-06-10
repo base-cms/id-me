@@ -4,10 +4,4 @@ query OrganizationApplications {
     name
     description
   }
-  activeOrganization {
-    id
-    name
-    description
-    photoURL
-  }
 }

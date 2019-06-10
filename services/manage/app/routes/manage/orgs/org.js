@@ -1,16 +1,10 @@
 import Route from '@ember/routing/route';
-import query from '@base-cms/id-me-manage/gql/queries/organization/organization';
-import OrganizationContext from '@base-cms/id-me-manage/mixins/organization-context';
+import query from '@base-cms/id-me-manage/gql/queries/active-organization';
+import { RouteQueryManager } from 'ember-apollo-client';
 
-export default Route.extend(OrganizationContext, {
-
+export default Route.extend(RouteQueryManager, {
   model({ org_id: id }) {
-    const variables = { input: { id } };
-    return this.query(id, { query, variables }, 'organization');
+    const context = { orgId: id };
+    return this.apollo.watchQuery({ query, context }, 'activeOrganization');
   },
-
-  afterModel(model) {
-    this.controllerFor('application').set('organization', model);
-  },
-
 });
