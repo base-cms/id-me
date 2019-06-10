@@ -50,6 +50,7 @@ services:
       EXTERNAL_PORT: 12001
     depends_on:
       - application
+      - locale
       - membership
       - organization
       - user
