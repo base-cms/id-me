@@ -1,8 +1,15 @@
 const { Schema } = require('mongoose');
 const { normalizeEmail } = require('@base-cms/id-me-utils');
 const { emailValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { localeService } = require('@base-cms/id-me-service-clients');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');
+
+const stripLines = (value) => {
+  if (!value) return undefined;
+  const v = String(value);
+  return v.replace(/[\r\n]/g, ' ').replace(/\s\s+/g, ' ');
+};
 
 const schema = new Schema({
   email: {
@@ -21,8 +28,37 @@ const schema = new Schema({
   givenName: {
     type: String,
     trim: true,
+    set: stripLines,
   },
   familyName: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  organization: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  organizationTitle: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  // Country code.
+  country: {
+    type: String,
+    trim: true,
+    uppercase: true,
+    validate: {
+      async validator(code) {
+        if (!code) return true;
+        return localeService.request('country.isValid', { code });
+      },
+      message: 'Invalid country code {VALUE}',
+    },
+  },
+  countryName: {
     type: String,
     trim: true,
   },
@@ -36,6 +72,25 @@ schema.pre('validate', async function setDomain() {
   const { email } = this;
   const [, domain] = email.split('@');
   this.domain = domain;
+});
+
+schema.pre('validate', async function convertCountryCode() {
+  const { country: code } = this;
+  if (!code) {
+    this.country = undefined;
+    return;
+  }
+  const obj = await localeService.request('country.asObject', { code });
+  if (!obj) {
+    this.country = code;
+    return;
+  }
+  this.country = obj.code;
+});
+
+schema.pre('save', async function setCountryName() {
+  const { country: code } = this;
+  this.countryName = code ? await localeService.request('country.getName', { code }) : undefined;
 });
 
 schema.index({ applicationId: 1, email: 1 }, { unique: true });
