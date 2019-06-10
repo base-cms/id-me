@@ -17,10 +17,10 @@ x-node-defaults: &node
   tty: true
   init: true
   image: node:10.15
-  working_dir: /id-me
+  working_dir: /identity-x
   volumes:
-    - .:/id-me:cached
-    - ./node_modules:/id-me/node_modules:delegated
+    - .:/identity-x:cached
+    - ./node_modules:/identity-x/node_modules:delegated
     - yarn-cache:/.yarn-cache
   environment:
     <<: *env
@@ -41,7 +41,7 @@ services:
 
   graphql:
     <<: *node
-    working_dir: /id-me/services/graphql
+    working_dir: /identity-x/services/graphql
     entrypoint: ["node_modules/.bin/gulp"]
     environment:
       <<: *env
@@ -58,11 +58,11 @@ services:
   manage:
     <<: *node
     image: danlynn/ember-cli:3.9.0
-    working_dir: /id-me/services/manage
+    working_dir: /identity-x/services/manage
     entrypoint: ["node_modules/.bin/ember"]
     command: ["serve", "--port", "12002", "--proxy", "http://graphql"]
     tmpfs:
-      - /id-me/services/manage/tmp
+      - /identity-x/services/manage/tmp
     depends_on:
       - graphql
     ports:
@@ -70,7 +70,7 @@ services:
 
   organization:
     <<: *node
-    working_dir: /id-me/services/organization
+    working_dir: /identity-x/services/organization
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
     depends_on:
@@ -80,7 +80,7 @@ services:
 
   token:
     <<: *node
-    working_dir: /id-me/services/token
+    working_dir: /identity-x/services/token
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
     environment:
@@ -93,7 +93,7 @@ services:
 
   mailer:
     <<: *node
-    working_dir: /id-me/services/mailer
+    working_dir: /identity-x/services/mailer
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
     environment:
@@ -104,7 +104,7 @@ services:
 
   user:
     <<: *node
-    working_dir: /id-me/services/user
+    working_dir: /identity-x/services/user
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
     depends_on:
@@ -116,7 +116,7 @@ services:
 
   membership:
     <<: *node
-    working_dir: /id-me/services/membership
+    working_dir: /identity-x/services/membership
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
     depends_on:
@@ -130,7 +130,7 @@ services:
 
   application:
     <<: *node
-    working_dir: /id-me/services/application
+    working_dir: /identity-x/services/application
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80"]
     depends_on:
