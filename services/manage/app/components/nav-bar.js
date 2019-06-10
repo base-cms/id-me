@@ -11,11 +11,6 @@ export default Component.extend({
     const { currentURL, currentRouteName } = this.router;
     if (currentRouteName.includes('apps.app')) return currentURL.match(/apps\/([a-f0-9]{24})/i)[1];
   }),
-  application: computed('appId,applications.[]', function() {
-    const appId = this.get('appId');
-    const apps = this.get('applications') || [];
-    return apps.filter(({ id }) => id === appId).reduce((o, v) => v, null);
-  }),
 
   orgId: computed('router.{currentRouteName,currentURL}', function() {
     const { currentURL, currentRouteName } = this.router;

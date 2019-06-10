@@ -1,26 +1,13 @@
 <ul class="navbar-nav mr-auto">
-  {{#if application.id}}
+  {{#each links as |link|}}
     <li class="nav-item">
-      {{#link-to "manage.orgs.org.apps.app.access-levels" application.id class="nav-link"}}
-        Access Levels
+      {{#link-to link.route appId class="nav-link"}}
+        {{link.text}}
       {{/link-to}}
     </li>
-    <li class="nav-item">
-      {{#link-to "manage.orgs.org.apps.app.teams" application.id class="nav-link"}}
-        Teams
-      {{/link-to}}
-    </li>
-    <li class="nav-item">
-      {{#link-to "manage.orgs.org.apps.app.users" application.id class="nav-link"}}
-        Users
-      {{/link-to}}
-    </li>
-  {{/if}}
+  {{/each}}
 </ul>
 
 <ul class="navbar-nav ml-auto">
-  <NavContextApp
-    @application={{application}}
-    @applications={{applications}}
-  />
+  <NavContextApp @appId={{appId}} @applications={{applications}} />
 </ul>

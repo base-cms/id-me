@@ -1,9 +1,9 @@
 {{#if show}}
   <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-      {{#if organization}}
-        <img alt="Organization avatar" src={{organization.photoURL}} class="icon icon-sm mr-1">
-        <span class="d-none d-md-inline">{{organization.name}}</span>
+      {{#if orgName}}
+        <img alt="Organization avatar" src={{orgPhoto}} class="icon icon-sm mr-1">
+        <span class="d-none d-md-inline">{{orgName}}</span>
       {{else}}
         Select organization
       {{/if}}

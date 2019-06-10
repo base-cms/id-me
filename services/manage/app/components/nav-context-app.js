@@ -1,11 +1,15 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
 
 export default Component.extend({
   tagName: null,
 
-  user: service(),
-  show: computed.reads('user.isAuthenticated'),
+  app: computed('appId', 'applications.[]', function() {
+    const appId = this.get('appId');
+    const apps = this.get('applications') || [];
+    return apps.filter(({ id }) => id === appId).reduce((_, app) => app);
+  }),
+
+  appName: computed.reads('app.name'),
 
 });
