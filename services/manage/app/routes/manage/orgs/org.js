@@ -8,8 +8,8 @@ export default Route.extend(RouteQueryManager, {
 
   async model({ org_id: id }) {
     const context = { orgId: id };
-    const { activeOrganization, organizationApplications } = await this.apollo.watchQuery({ query, context });
-    this.get('contextService').set('apps', organizationApplications);
-    return activeOrganization;
+    const data = await this.apollo.watchQuery({ query, context });
+    this.get('contextService').set('orgAppQuery', data);
+    return data.activeOrganization;
   },
 });

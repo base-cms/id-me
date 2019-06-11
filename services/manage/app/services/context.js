@@ -6,6 +6,9 @@ export default Service.extend({
   router: inject(),
 
   orgs: computed.mapBy('userOrganizations', 'organization'),
+  apps: computed.map('orgAppQuery.organizationApplications', function(app) {
+    return app;
+  }),
 
   pathname: computed('router.currentURL', function() {
     return this.router.currentURL || window.location.pathname;
