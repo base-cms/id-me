@@ -1,8 +1,8 @@
 import Service from '@ember/service';
 import { ObjectQueryManager } from 'ember-apollo-client';
 
-import logoutUser from '@base-cms/id-me-manage/gql/mutations/user/logout.graphql';
-import userLogin from '@base-cms/id-me-manage/gql/mutations/user/login.graphql';
+import logout from './logout.graphql';
+import authenticate from './authenticate.graphql';
 
 export default Service.extend(ObjectQueryManager, {
   /**
@@ -16,7 +16,7 @@ export default Service.extend(ObjectQueryManager, {
     const variables = {
       input: { token },
     };
-    return this.get('apollo').mutate({ mutation: userLogin, variables }, 'userLogin');
+    return this.get('apollo').mutate({ mutation: authenticate, variables }, 'userLogin');
   },
 
   /**
@@ -25,6 +25,6 @@ export default Service.extend(ObjectQueryManager, {
    * @return {Promise}
    */
   delete() {
-    return this.get('apollo').mutate({ mutation: logoutUser }, 'logoutUser');
+    return this.get('apollo').mutate({ mutation: logout }, 'logoutUser');
   },
 });

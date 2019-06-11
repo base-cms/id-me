@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { ObjectQueryManager } from 'ember-apollo-client';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
-import mutation from '@base-cms/id-me-manage/gql/mutations/user/register-new-user.graphql';
+import mutation from './signup.graphql';
 
 export default Controller.extend(ActionMixin, ObjectQueryManager, {
   email: null,

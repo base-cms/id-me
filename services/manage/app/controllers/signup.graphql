@@ -1,0 +1,13 @@
+mutation Signup($input: RegisterNewUserMutationInput!) {
+	registerNewUser(input: $input){
+    user {
+      id
+      email
+    }
+    organization {
+      id
+      name
+      description
+    }
+  }
+}

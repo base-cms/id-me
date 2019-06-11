@@ -1,0 +1,14 @@
+mutation Authenticate($input: UserLoginMutationInput!) {
+	userLogin(input: $input){
+    token {
+      id
+      value
+    }
+    user {
+      id
+      email
+      givenName
+      familyName
+    }
+  }
+}
