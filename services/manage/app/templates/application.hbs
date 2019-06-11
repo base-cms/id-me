@@ -1,3 +1,9 @@
-<NavBar @userOrganizations={{userOrganizations}} />
+<header>
+  <NavBar::Primary />
+
+  {{#if context.orgId}}
+    <NavBar::Secondary />
+  {{/if}}
+</header>
 
 {{outlet}}

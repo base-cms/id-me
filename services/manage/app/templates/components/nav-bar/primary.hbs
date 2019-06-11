@@ -1,0 +1,49 @@
+{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+
+<ul class="navbar-nav mr-auto">
+  {{#each links as |link|}}
+    <li class="nav-item">
+      {{#link-to link.route context.orgId class="nav-link"}}
+        {{link.text}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>
+
+<ul class="navbar-nav ml-auto">
+  {{#if user.isAuthenticated}}
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
+        {{#if context.org.name}}
+          <img alt="Organization Avatar" src={{context.org.photoURL}} class="icon icon-sm mr-1">
+          <span class="d-none d-md-inline">{{context.org.name}}</span>
+        {{else}}
+          Select organization
+        {{/if}}
+      </a>
+
+      <div class="dropdown-menu dropdown-menu-right">
+        {{#each context.orgs as |org|}}
+          {{#link-to "manage.orgs.org" org.id class="dropdown-item dropdown-item d-flex"}}
+            <img alt="Organization Avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
+          {{/link-to}}
+        {{/each}}
+      </div>
+    </li>
+  {{/if}}
+
+  <li class="nav-item">
+    <a
+      href="https://as3.gitbook.io/identity-x"
+      title="Application Documentation"
+      class="nav-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{entypo-icon "text-document"}} <span class="d-none d-md-inline">Documentation</span>
+    </a>
+  </li>
+
+  <NavContextUser />
+
+</ul>
