@@ -7,14 +7,18 @@ export default Service.extend({
 
   orgs: computed.mapBy('userOrganizations', 'organization'),
 
-  orgId: computed('router.{currentRouteName,currentURL}', function() {
-    const { currentURL, currentRouteName } = this.router;
-    if (currentRouteName.includes('orgs.org')) return currentURL.match(/orgs\/([a-f0-9]{24})/i)[1];
+  pathname: computed('router.currentURL', function() {
+    return this.router.currentURL || window.location.pathname;
   }),
 
-  appId: computed('router.{currentRouteName,currentURL}', function() {
-    const { currentURL, currentRouteName } = this.router;
-    if (currentRouteName.includes('apps.app')) return currentURL.match(/apps\/([a-f0-9]{24})/i)[1];
+  orgId: computed('pathname', function() {
+    const matches = this.pathname.match(/^\/orgs\/([a-f0-9]{24})/);
+    return matches ? matches[1] : undefined;
+  }),
+
+  appId: computed('pathname', function() {
+    const matches = this.pathname.match(/^\/orgs\/[a-f0-9]{24}\/apps\/([a-f0-9]{24})/);
+    return matches ? matches[1] : undefined;
   }),
 
   org: computed('orgId', 'orgs.[]', function() {
