@@ -1,16 +1,6 @@
 {{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
 
 <ul class="navbar-nav mr-auto">
-  {{#each links as |link|}}
-    <li class="nav-item">
-      {{#link-to link.route context.orgId class="nav-link"}}
-        {{link.text}}
-      {{/link-to}}
-    </li>
-  {{/each}}
-</ul>
-
-<ul class="navbar-nav ml-auto">
   {{#if user.isAuthenticated}}
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
@@ -22,7 +12,7 @@
         {{/if}}
       </a>
 
-      <div class="dropdown-menu dropdown-menu-right">
+      <div class="dropdown-menu">
         {{#each context.orgs as |org|}}
           {{#link-to "manage.orgs.view" org.id class="dropdown-item dropdown-item d-flex"}}
             <img alt="Organization Avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
@@ -32,6 +22,16 @@
     </li>
   {{/if}}
 
+  {{#each links as |link|}}
+    <li class="nav-item">
+      {{#link-to link.route context.orgId class="nav-link"}}
+        {{link.text}}
+      {{/link-to}}
+    </li>
+  {{/each}}
+</ul>
+
+<ul class="navbar-nav ml-auto">
   <li class="nav-item">
     <a
       href="https://as3.gitbook.io/identity-x"
