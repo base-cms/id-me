@@ -1,7 +1,0 @@
-mutation OrgAppCreate($input: CreateApplicationMutationInput!) {
-  createApplication(input: $input) {
-    id
-    name
-    description
-  }
-}

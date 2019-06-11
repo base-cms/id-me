@@ -1,7 +1,17 @@
 import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
-import mutation from '@base-cms/id-me-manage/gql/mutations/applications/create-team.graphql';
+import gql from 'graphql-tag';
+
+const mutation = gql`
+  mutation AppTeamCreate($input: CreateTeamMutationInput!) {
+    createTeam(input: $input) {
+      id
+      name
+      description
+    }
+  }
+`;
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   actions: {
@@ -11,7 +21,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         const { name, description } = this.get('model');
         const input = { name, description };
         const variables = { input };
-        const refetchQueries = ['ApplicationTeams'];
+        const refetchQueries = ['AppTeams'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createTeam');
         this.transitionToRoute('manage.orgs.org.apps.app.teams');
       } catch (e) {

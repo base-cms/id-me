@@ -1,7 +1,22 @@
 import Route from '@ember/routing/route';
-import query from './org.graphql';
 import { RouteQueryManager } from 'ember-apollo-client';
 import { inject } from '@ember/service';
+import gql from 'graphql-tag';
+
+const query = gql`
+  query Org {
+    activeOrganization {
+      id
+      name
+      description
+      photoURL
+    }
+    organizationApplications {
+      id
+      name
+    }
+  }
+`;
 
 export default Route.extend(RouteQueryManager, {
   contextService: inject('context'),

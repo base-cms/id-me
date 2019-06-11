@@ -1,7 +1,17 @@
 import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
-import mutation from './create.graphql';
+import gql from 'graphql-tag';
+
+const mutation = gql`
+  mutation OrgAppCreate($input: CreateApplicationMutationInput!) {
+    createApplication(input: $input) {
+      id
+      name
+      description
+    }
+  }
+`;
 
 export default Controller.extend(ActionMixin, OrgQueryMixin, {
   actions: {
@@ -11,7 +21,7 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
         const { name, description } = this.get('model');
         const input = { name, description };
         const variables = { input };
-        const refetchQueries = ['Org'];
+        const refetchQueries = ['Org', 'OrgApps'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createApplication');
         await this.transitionToRoute('manage.orgs.org.apps');
       } catch (e) {

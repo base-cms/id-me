@@ -1,8 +1,29 @@
 import Service from '@ember/service';
 import { ObjectQueryManager } from 'ember-apollo-client';
+import gql from 'graphql-tag';
 
-import logout from './logout.graphql';
-import authenticate from './authenticate.graphql';
+const logout = gql`
+  mutation Logout {
+    userLogout
+  }
+`;
+
+const authenticate = gql`
+  mutation Authenticate($input: UserLoginMutationInput!) {
+    userLogin(input: $input){
+      token {
+        id
+        value
+      }
+      user {
+        id
+        email
+        givenName
+        familyName
+      }
+    }
+  }
+`;
 
 export default Service.extend(ObjectQueryManager, {
   /**

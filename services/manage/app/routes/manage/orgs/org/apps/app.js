@@ -1,6 +1,16 @@
 import Route from '@ember/routing/route';
-import query from '@base-cms/id-me-manage/gql/queries/active-application.graphql';
 import { RouteQueryManager } from 'ember-apollo-client';
+import gql from 'graphql-tag';
+
+const query = gql`
+  query OrgApp {
+    activeApplication {
+      id
+      name
+      description
+    }
+  }
+`;
 
 export default Route.extend(RouteQueryManager, {
   model({ app_id: id }) {

@@ -1,7 +1,17 @@
 import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
-import mutation from '@base-cms/id-me-manage/gql/mutations/applications/create-access-level.graphql';
+import gql from 'graphql-tag';
+
+const mutation = gql`
+  mutation AppAccessLevelCreate($input: CreateAccessLevelMutationInput!) {
+    createAccessLevel(input: $input) {
+      id
+      name
+      description
+    }
+  }
+`;
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   actions: {
@@ -11,7 +21,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         const { name, description } = this.get('model');
         const input = { name, description };
         const variables = { input };
-        const refetchQueries = ['ApplicationAccessLevels'];
+        const refetchQueries = ['AppAccessLevels'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createAccessLevel');
         this.transitionToRoute('manage.orgs.org.apps.app.access-levels');
       } catch (e) {

@@ -34,7 +34,7 @@ export default Component.extend(ActionMixin, {
         const { name, description } = this.getProperties('name', 'description');
         const input = { name, description };
         const variables = { input };
-        const refetchQueries = ['MyOrganizations'];
+        const refetchQueries = ['Orgs'];
         await this.apollo.mutate({ mutation, variables, refetchQueries, awaitRefetchQueries: true }, 'createOrganization');
         this.set('isOpen', false);
         // this.get('notify').info('Application created.');

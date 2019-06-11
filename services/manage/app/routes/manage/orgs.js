@@ -2,7 +2,21 @@ import Route from '@ember/routing/route';
 import { RouteQueryManager } from 'ember-apollo-client';
 import { inject } from '@ember/service';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-import query from '@base-cms/id-me-manage/gql/queries/user/organizations.graphql';
+import gql from 'graphql-tag';
+
+const query = gql`
+  query Orgs {
+    userOrganizations {
+      id
+      organization {
+        id
+        name
+        photoURL
+      }
+      role
+    }
+  }
+`;
 
 export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
   contextService: inject('context'),

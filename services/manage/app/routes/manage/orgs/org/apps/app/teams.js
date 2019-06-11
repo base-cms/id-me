@@ -1,6 +1,16 @@
 import Route from '@ember/routing/route';
-import query from '@base-cms/id-me-manage/gql/queries/application/teams.graphql';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
+import gql from 'graphql-tag';
+
+const query = gql`
+  query AppTeams {
+    teams {
+      id
+      name
+      description
+    }
+  }
+`;
 
 export default Route.extend(AppQueryMixin, {
   model() {
