@@ -7,6 +7,17 @@ import { get } from '@ember/object';
 export default ApolloService.extend({
   session: service(),
 
+  clientOptions: computed(function() {
+    const fetchPolicy = 'network-only';
+    return {
+      ...this._super(...arguments),
+      defaultOptions: {
+        watchQuery: { fetchPolicy },
+        query: { fetchPolicy },
+      },
+    };
+  }),
+
   link: computed(function() {
     const session = this.get('session');
     const link = this._super(...arguments);
