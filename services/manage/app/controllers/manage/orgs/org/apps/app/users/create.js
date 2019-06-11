@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
-import mutation from '@base-cms/id-me-manage/gql/mutations/applications/create-user';
+import mutation from '@base-cms/id-me-manage/gql/mutations/applications/create-user.graphql';
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   actions: {

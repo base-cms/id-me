@@ -8,6 +8,9 @@ module.exports = function(defaults) {
     sassOptions: {
       implementation: nodeSass,
     },
+    emberApolloClient: {
+      keepGraphqlFileExtension: true,
+    },
   });
 
   // Use `app.import` to add additional libraries to the generated

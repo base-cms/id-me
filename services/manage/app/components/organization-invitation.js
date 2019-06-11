@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import OrganizationContext from '@base-cms/id-me-manage/mixins/organization-context';
-import mutation from '@base-cms/id-me-manage/gql/mutations/user/remove-invitation';
+import mutation from '@base-cms/id-me-manage/gql/mutations/user/remove-invitation.graphql';
 
 export default Component.extend(ActionMixin, OrganizationContext, {
   tagName: 'tr',

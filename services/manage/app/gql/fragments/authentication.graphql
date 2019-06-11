@@ -1,5 +1,5 @@
-#import '@base-cms/id-me-manage/gql/fragments/token'
-#import '@base-cms/id-me-manage/gql/fragments/user'
+#import '@base-cms/id-me-manage/gql/fragments/token.graphql'
+#import '@base-cms/id-me-manage/gql/fragments/user.graphql'
 
 fragment AuthenticationFragment on UserAuthentication {
   token {

@@ -1,8 +1,8 @@
 import Service from '@ember/service';
 import { ObjectQueryManager } from 'ember-apollo-client';
 
-import logoutUser from '@base-cms/id-me-manage/gql/mutations/user/logout';
-import userLogin from '@base-cms/id-me-manage/gql/mutations/user/login';
+import logoutUser from '@base-cms/id-me-manage/gql/mutations/user/logout.graphql';
+import userLogin from '@base-cms/id-me-manage/gql/mutations/user/login.graphql';
 
 export default Service.extend(ObjectQueryManager, {
   /**

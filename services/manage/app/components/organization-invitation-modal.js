@@ -3,7 +3,7 @@ import { computed } from '@ember/object';
 // import { inject } from '@ember/service';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import OrganizationContext from '@base-cms/id-me-manage/mixins/organization-context';
-import mutation from '@base-cms/id-me-manage/gql/mutations/user/invite-to-org';
+import mutation from '@base-cms/id-me-manage/gql/mutations/user/invite-to-org.graphql';
 
 export default Component.extend(ActionMixin, OrganizationContext, {
   // notify: inject(),

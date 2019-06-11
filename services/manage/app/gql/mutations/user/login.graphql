@@ -1,4 +1,4 @@
-#import '@base-cms/id-me-manage/gql/fragments/authentication'
+#import '@base-cms/id-me-manage/gql/fragments/authentication.graphql'
 
 mutation Login($input: UserLoginMutationInput!) {
 	userLogin(input: $input){
