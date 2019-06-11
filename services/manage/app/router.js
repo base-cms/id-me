@@ -22,7 +22,9 @@ Router.map(function() {
           this.route('user', { path: ':user_id' });
         });
         this.route('apps', function() {
-          this.route('create');
+          this.route('index', { path: '/' }, function() {
+            this.route('create');
+          });
           this.route('app', { path: ':app_id' }, function() {
             this.route('access-levels', function() {
               this.route('create');
