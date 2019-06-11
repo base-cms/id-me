@@ -7,7 +7,7 @@ export default Component.extend({
   app: computed('appId', 'applications.[]', function() {
     const appId = this.get('appId');
     const apps = this.get('applications') || [];
-    return apps.filter(({ id }) => id === appId).reduce((_, app) => app);
+    return apps.filter(({ id }) => id === appId).reduce((_, app) => app, {});
   }),
 
   appName: computed.reads('app.name'),
