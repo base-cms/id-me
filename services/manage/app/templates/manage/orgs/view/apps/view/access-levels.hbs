@@ -3,8 +3,8 @@
     <h2 class="card-title">Access Levels</h2>
     <p class="card-text">Manage your applications's access levels.</p>
     <div class="list-group mb-3">
-      {{#link-to "manage.orgs.view.apps.view.access-levels.create" class="list-group-item list-group-item-action list-group-item-secondary"}}
-        {{entypo-icon "circle-with-plus"}} New access level
+      {{#link-to "manage.orgs.view.apps.view.access-levels.create" class="list-group-item list-group-item-action"}}
+        {{entypo-icon "circle-with-plus" class="text-success"}} New access level
       {{/link-to}}
       {{#each model as |level|}}
         {{#link-to "manage.orgs.view.apps.view.access-levels.edit" level.id class="list-group-item list-group-item-action"}}
