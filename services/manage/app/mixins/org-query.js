@@ -1,12 +1,15 @@
 import Mixin from '@ember/object/mixin';
-import { ObjectQueryManager } from 'ember-apollo-client';
+import { inject } from '@ember/service';
+import { RouteQueryManager } from 'ember-apollo-client';
 
-export default Mixin.create(ObjectQueryManager, {
+export default Mixin.create(RouteQueryManager, {
+  contextService: inject('context'),
+
   query(options, queryName) {
     const params = {
       ...options,
       context: {
-        orgId: this.get('org.id'),
+        orgId: this.get('contextService.orgId'),
         ...options.context,
       },
     };
@@ -16,7 +19,7 @@ export default Mixin.create(ObjectQueryManager, {
     const params = {
       ...options,
       context: {
-        orgId: this.get('org.id'),
+        orgId: this.get('contextService.orgId'),
         ...options.context,
       },
     };

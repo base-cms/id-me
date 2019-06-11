@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
 import query from '@base-cms/id-me-manage/gql/queries/organization/users-and-invitations';
-import OrgRouteMixin from '@base-cms/id-me-manage/mixins/org-route';
+import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
 
-export default Route.extend(OrgRouteMixin, {
+export default Route.extend(OrgQueryMixin, {
   model() {
     return this.query({ query });
   },
