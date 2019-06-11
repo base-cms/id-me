@@ -14,6 +14,9 @@ Router.map(function() {
   this.route('manage', { path: '' }, function() {
     this.route('invitations');
     this.route('orgs', function() {
+      this.route('index', { path: '/' }, function() {
+        this.route('create');
+      });
       this.route('org', { path: ':org_id' }, function() {
         this.route('users', function() {
           this.route('user', { path: ':user_id' });
