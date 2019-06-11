@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import query from '@base-cms/id-me-manage/gql/queries/active-organization.graphql';
+import query from './org.graphql';
 import { RouteQueryManager } from 'ember-apollo-client';
 import { inject } from '@ember/service';
 
