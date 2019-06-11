@@ -4,9 +4,9 @@ query ActiveOrganization {
     name
     description
     photoURL
-    applications {
-      id
-      name
-    }
+  }
+  organizationApplications {
+    id
+    name
   }
 }
