@@ -1,7 +1,0 @@
-query OrganizationApplications {
-  organizationApplications {
-    id
-    name
-    description
-  }
-}

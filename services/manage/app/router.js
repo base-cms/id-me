@@ -19,7 +19,7 @@ Router.map(function() {
       });
       this.route('view', { path: ':org_id' }, function() {
         this.route('users', function() {
-          this.route('user', { path: ':user_id' });
+          this.route('invite');
         });
         this.route('apps', function() {
           this.route('list', { path: '/' }, function() {

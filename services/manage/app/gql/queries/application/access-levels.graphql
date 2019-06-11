@@ -1,7 +1,0 @@
-query ApplicationAccessLevels {
-	accessLevels {
-    id
-    name
-    description
-  }
-}

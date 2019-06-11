@@ -1,7 +1,0 @@
-query ApplicationTeams {
-	teams {
-    id
-    name
-    description
-  }
-}

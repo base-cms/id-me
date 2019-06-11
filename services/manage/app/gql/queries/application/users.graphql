@@ -1,9 +1,0 @@
-query ApplicationUsers {
-	appUsers {
-    id
-    email
-    domain
-    givenName
-    familyName
-  }
-}

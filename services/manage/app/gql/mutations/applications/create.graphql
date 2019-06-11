@@ -1,7 +1,0 @@
-mutation CreateApplication($input: CreateApplicationMutationInput!) {
-  createApplication(input: $input) {
-    id
-    name
-    description
-  }
-}

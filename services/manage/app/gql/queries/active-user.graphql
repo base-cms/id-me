@@ -1,7 +1,0 @@
-#import '@base-cms/id-me-manage/gql/fragments/user.graphql'
-
-query ActiveUser {
-  activeUser {
-    ...UserFragment
-  }
-}

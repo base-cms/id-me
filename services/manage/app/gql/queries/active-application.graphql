@@ -1,7 +1,0 @@
-query ActiveApplication {
-	activeApplication {
-    id
-    name
-    description
-  }
-}

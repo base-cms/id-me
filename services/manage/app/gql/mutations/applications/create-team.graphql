@@ -1,7 +1,0 @@
-mutation CreateTeam($input: CreateTeamMutationInput!) {
-  createTeam(input: $input) {
-    id
-    name
-    description
-  }
-}

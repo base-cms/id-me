@@ -1,8 +1,0 @@
-mutation CreateOrganization($input: CreateOrganizationMutationInput!) {
-  createOrganization(input: $input) {
-    id
-    name
-    description
-    photoURL
-  }
-}

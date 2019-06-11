@@ -1,3 +1,0 @@
-mutation StartLogin($input: SendUserLoginLinkMutationInput!) {
-	sendUserLoginLink(input: $input)
-}

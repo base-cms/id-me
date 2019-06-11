@@ -1,6 +1,6 @@
-<BsModal @show={{isOpen}} @onHidden={{action "clear"}} as |modal|>
+<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
 
-  <form {{action "sendInvitation" on="submit"}}>
+  <form {{action "create" on="submit"}}>
     {{#modal.header}}
       <h5 class="modal-title">Send an invitation</h5>
       <button
@@ -23,7 +23,7 @@
               autocomplete="username email"
               autofocus=true
               class="form-control"
-              value=email
+              value=model.email
             }}
           </div>
         </div>
@@ -38,19 +38,12 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          {{#if (eq canSubmit false)}}
-            <small class="d-block text-info mt-3">In order to save, {{reasonForPreventSubmit}}</small>
-          {{/if}}
-        </div>
-      </div>
     {{/modal.body}}
 
     {{#modal.footer}}
       {{form-elements/submit-button
         class="btn btn-success"
-        disabled=isSubmitDisabled
+        disabled=isActionRunning
         isSaving=isActionRunning
       }}
     {{/modal.footer}}
