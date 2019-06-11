@@ -4,12 +4,11 @@ import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
 import gql from 'graphql-tag';
 
 const mutation = gql`
-  mutation AppUserCreate($input: CreateAppUserMutationInput!) {
-    createAppUser(input: $input) {
+  mutation AppAccessLevelCreate($input: CreateAccessLevelMutationInput!) {
+    createAccessLevel(input: $input) {
       id
-      givenName
-      familyName
-      email
+      name
+      description
     }
   }
 `;
@@ -19,12 +18,12 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
     async create() {
       try {
         this.startAction();
-        const { givenName, familyName, email } = this.get('model');
-        const input = { givenName, familyName, email };
+        const { name, description } = this.get('model');
+        const input = { name, description };
         const variables = { input };
-        const refetchQueries = ['AppUsers'];
-        await this.mutate({ mutation, variables, refetchQueries }, 'createAppUser');
-        this.transitionToRoute('manage.orgs.org.apps.app.users');
+        const refetchQueries = ['AppAccessLevels'];
+        await this.mutate({ mutation, variables, refetchQueries }, 'createAccessLevel');
+        this.transitionToRoute('manage.orgs.view.apps.view.access-levels');
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {
@@ -34,7 +33,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
 
     clear() {
       this.set('model', {});
-      this.transitionToRoute('manage.orgs.org.apps.app.users');
+      this.transitionToRoute('manage.orgs.view.apps.view.access-levels');
     },
   }
 })

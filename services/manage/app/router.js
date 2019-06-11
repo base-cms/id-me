@@ -14,18 +14,18 @@ Router.map(function() {
   this.route('manage', { path: '' }, function() {
     this.route('invitations');
     this.route('orgs', function() {
-      this.route('index', { path: '/' }, function() {
+      this.route('list', { path: '/' }, function() {
         this.route('create');
       });
-      this.route('org', { path: ':org_id' }, function() {
+      this.route('view', { path: ':org_id' }, function() {
         this.route('users', function() {
           this.route('user', { path: ':user_id' });
         });
         this.route('apps', function() {
-          this.route('index', { path: '/' }, function() {
+          this.route('list', { path: '/' }, function() {
             this.route('create');
           });
-          this.route('app', { path: ':app_id' }, function() {
+          this.route('view', { path: ':app_id' }, function() {
             this.route('access-levels', function() {
               this.route('create');
               this.route('edit', { path: ':access_level_id' });

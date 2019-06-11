@@ -12,9 +12,9 @@ export default Component.extend({
     const appId = this.get('context.appId');
     if (!appId) return [];
     return [
-      { route: 'manage.orgs.org.apps.app.access-levels', text: 'Access Levels' },
-      { route: 'manage.orgs.org.apps.app.teams', text: 'Teams' },
-      { route: 'manage.orgs.org.apps.app.users', text: 'Users' },
+      { route: 'manage.orgs.view.apps.view.access-levels', text: 'Access Levels' },
+      { route: 'manage.orgs.view.apps.view.teams', text: 'Teams' },
+      { route: 'manage.orgs.view.apps.view.users', text: 'Users' },
     ];
   }),
 });

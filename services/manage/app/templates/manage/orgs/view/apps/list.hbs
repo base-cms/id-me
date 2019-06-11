@@ -3,11 +3,11 @@
     <h2 class="card-title">Applications</h2>
     <p class="card-text">Manage your organizations's applications.</p>
     <div class="list-group mb-3">
-      {{#link-to "manage.orgs.org.apps.index.create" class="list-group-item list-group-item-action"}}
+      {{#link-to "manage.orgs.view.apps.list.create" class="list-group-item list-group-item-action"}}
         {{entypo-icon "circle-with-plus" class="text-success"}} New application
       {{/link-to}}
       {{#each model as |app|}}
-        {{#link-to "manage.orgs.org.apps.app" app.id class="list-group-item list-group-item-action"}}
+        {{#link-to "manage.orgs.view.apps.view" app.id class="list-group-item list-group-item-action"}}
           {{ app.name }}
           <small class="text-muted">{{app.description}}</small>
         {{/link-to}}

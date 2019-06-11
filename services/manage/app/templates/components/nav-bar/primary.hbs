@@ -24,7 +24,7 @@
 
       <div class="dropdown-menu dropdown-menu-right">
         {{#each context.orgs as |org|}}
-          {{#link-to "manage.orgs.org" org.id class="dropdown-item dropdown-item d-flex"}}
+          {{#link-to "manage.orgs.view" org.id class="dropdown-item dropdown-item d-flex"}}
             <img alt="Organization Avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
           {{/link-to}}
         {{/each}}

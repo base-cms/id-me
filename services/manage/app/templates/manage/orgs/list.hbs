@@ -3,12 +3,12 @@
     <h2 class="card-title">Organizations</h2>
     <p class="card-text">Access your organizations.</p>
     <div class="list-group">
-      {{#link-to "manage.orgs.index.create" class="list-group-item list-group-item-action"}}
+      {{#link-to "manage.orgs.list.create" class="list-group-item list-group-item-action"}}
         {{entypo-icon "circle-with-plus" class="text-success"}} New organization
       {{/link-to}}
       {{#each model as |userOrg|}}
         {{#with userOrg.organization as |org|}}
-          {{#link-to "manage.orgs.org" org.id class="list-group-item list-group-item-action"}}
+          {{#link-to "manage.orgs.view" org.id class="list-group-item list-group-item-action"}}
             <img alt="Organization avatar" src={{org.photoURL}} class="icon icon-md mr-1"> {{ org.name }}
             <small class="text-muted">{{org.description}}</small>
           {{/link-to}}

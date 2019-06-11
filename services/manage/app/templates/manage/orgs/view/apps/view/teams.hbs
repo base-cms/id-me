@@ -3,11 +3,11 @@
     <h2 class="card-title">Teams</h2>
     <p class="card-text">Manage your applications's teams.</p>
     <div class="list-group mb-3">
-      {{#link-to "manage.orgs.org.apps.app.teams.create" class="list-group-item list-group-item-action list-group-item-secondary"}}
+      {{#link-to "manage.orgs.view.apps.view.teams.create" class="list-group-item list-group-item-action list-group-item-secondary"}}
         {{entypo-icon "circle-with-plus"}} New team
       {{/link-to}}
       {{#each model as |team|}}
-        {{#link-to "manage.orgs.org.apps.app.teams.edit" team.id class="list-group-item list-group-item-action"}}
+        {{#link-to "manage.orgs.view.apps.view.teams.edit" team.id class="list-group-item list-group-item-action"}}
           {{ team.name }}
           <small class="text-muted">{{team.description}}</small>
         {{/link-to}}

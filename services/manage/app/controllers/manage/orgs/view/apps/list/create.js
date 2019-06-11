@@ -1,11 +1,11 @@
 import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
-import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
+import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
 import gql from 'graphql-tag';
 
 const mutation = gql`
-  mutation AppTeamCreate($input: CreateTeamMutationInput!) {
-    createTeam(input: $input) {
+  mutation OrgAppCreate($input: CreateApplicationMutationInput!) {
+    createApplication(input: $input) {
       id
       name
       description
@@ -13,7 +13,7 @@ const mutation = gql`
   }
 `;
 
-export default Controller.extend(ActionMixin, AppQueryMixin, {
+export default Controller.extend(ActionMixin, OrgQueryMixin, {
   actions: {
     async create() {
       try {
@@ -21,9 +21,9 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         const { name, description } = this.get('model');
         const input = { name, description };
         const variables = { input };
-        const refetchQueries = ['AppTeams'];
-        await this.mutate({ mutation, variables, refetchQueries }, 'createTeam');
-        this.transitionToRoute('manage.orgs.org.apps.app.teams');
+        const refetchQueries = ['Org', 'OrgApps'];
+        await this.mutate({ mutation, variables, refetchQueries }, 'createApplication');
+        await this.transitionToRoute('manage.orgs.view.apps');
       } catch (e) {
         this.get('graphErrors').show(e)
       } finally {
@@ -31,9 +31,9 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
       }
     },
 
-    clear() {
+    async clear() {
       this.set('model', {});
-      this.transitionToRoute('manage.orgs.org.apps.app.teams');
+      await this.transitionToRoute('manage.orgs.view.apps');
     },
   }
 })
