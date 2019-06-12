@@ -32,6 +32,10 @@ module.exports = {
       return applicationService.request('loadContext', { applicationId, email, ipAddress });
     },
 
+    appUsers: (_, args, { app }) => {
+      const id = app.getId();
+      return applicationService.request('user.listForApp', { id });
+    },
     /**
      *
      */

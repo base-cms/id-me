@@ -1,0 +1,55 @@
+<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
+
+  <form {{action "create" on="submit"}}>
+    {{#modal.header}}
+      <h5 class="modal-title">Create a team</h5>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">Name</label>
+            {{input
+              type="text"
+              autofocus=true
+              required=true
+              class="form-control"
+              value=model.name
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="description">Description</label>
+            {{input
+              type="text"
+              autofocus=true
+              class="form-control"
+              value=model.description
+            }}
+          </div>
+        </div>
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      {{form-elements/submit-button
+        class="btn btn-success"
+        disabled=isActionRunning
+        isSaving=isActionRunning
+      }}
+    {{/modal.footer}}
+    {{progress-bar show=isActionRunning}}
+  </form>
+</BsModal>

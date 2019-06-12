@@ -113,6 +113,15 @@ module.exports = {
     /**
      *
      */
+    setActiveUserPhotoURL: (_, { input }, { user }) => {
+      const { value } = input;
+      const email = user.get('email');
+      return userService.request('updateField', { email, path: 'photoURL', value });
+    },
+
+    /**
+     *
+     */
     updateUserOrgRole: (_, { input }, { org, user }) => {
       const { email, role } = input;
       const organizationId = org.getId();

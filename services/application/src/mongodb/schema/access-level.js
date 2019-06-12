@@ -7,6 +7,10 @@ const schema = new Schema({
     required: true,
     trim: true,
   },
+  description: {
+    type: String,
+    trim: true,
+  },
 }, { timestamps: true });
 
 schema.plugin(applicationPlugin);

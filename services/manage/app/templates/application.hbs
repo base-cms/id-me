@@ -1,5 +1,9 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
+<header>
+  <NavBar::Primary />
+
+  {{#if context.orgId}}
+    <NavBar::Secondary />
+  {{/if}}
+</header>
 
 {{outlet}}

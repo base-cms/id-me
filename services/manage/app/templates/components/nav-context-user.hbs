@@ -1,0 +1,35 @@
+{{#if user.isAuthenticated}}
+  <li class="nav-item dropdown">
+    <a
+      class="nav-link dropdown-toggle"
+      title="User Settings"
+      data-toggle="dropdown"
+      href="#"
+      role="button"
+    >
+      {{entypo-icon "user"}} <span class="d-none d-md-inline">{{user.model.givenName}} {{user.model.familyName}}</span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-right">
+      <a class="dropdown-item dropdown-item d-flex justify-content-between" href="#" title="Update User Profile" {{action "displayUpdateProfile"}}>
+        Update Profile
+        {{entypo-icon "v-card" class="ml-1"}}
+      </a>
+      {{!-- {{update-profile-modal isOpen=isUpdateProfileOpen model=user.model}} --}}
+
+      <div class="dropdown-divider"></div>
+
+      {{#link-to "logout" class="dropdown-item d-flex justify-content-between" title="Sign out of the Application"}}
+        Sign out
+        {{entypo-icon "log-out"}}
+      {{/link-to}}
+    </div>
+  </li>
+{{else}}
+  {{#link-to "login" tagName="li" class="nav-item" title="Sign in Into the Application"}}
+    {{#link-to "login" class="nav-link"}}{{entypo-icon "login"}} Sign in{{/link-to}}
+  {{/link-to}}
+  {{#link-to "signup" tagName="li" class="nav-item" title="Sign up"}}
+    {{#link-to "signup" class="nav-link"}}{{entypo-icon "add-user"}} Sign up{{/link-to}}
+  {{/link-to}}
+{{/if}}

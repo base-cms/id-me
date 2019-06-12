@@ -13,10 +13,12 @@ extend type Mutation {
 type AccessLevel {
   id: String!
   name: String!
+  description: String
 }
 
 input CreateAccessLevelMutationInput {
   name: String!
+  description: String
 }
 
 `;

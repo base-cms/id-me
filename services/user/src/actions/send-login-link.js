@@ -4,6 +4,7 @@ const { createRequiredParamError } = require('@base-cms/micro').service;
 const { tokenService, mailerService } = require('@base-cms/id-me-service-clients');
 
 const findByEmail = require('./find-by-email');
+const { APPLICATION_URL } = require('../env');
 
 module.exports = async ({ email } = {}) => {
   if (!email) throw createRequiredParamError('email');
@@ -14,12 +15,13 @@ module.exports = async ({ email } = {}) => {
 
   const { token } = await createLoginToken(tokenService, { email: user.email });
 
+  const url = `${APPLICATION_URL}/authenticate/${token}?route=manage.index`;
   const html = `
     <html>
       <body>
         <h1>Your personal login link.</h1>
         <p>The login link is good for one hour. If you did not request this link, simply ignore this email or contact support.</p>
-        <p><a href="http://www.google.com/login/${token}">Login to IdentityX</a></p>
+        <p><a href="${url}">Login to IdentityX</a></p>
       </body>
     </html>
   `;

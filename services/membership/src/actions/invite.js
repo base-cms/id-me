@@ -9,6 +9,7 @@ const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 
 const { OrgMembership, OrgInvitation } = require('../mongodb/models');
+const { APPLICATION_URL } = require('../env');
 
 const createInvite = async ({ email, organizationId, role }) => {
   const invite = new OrgInvitation({ email, organizationId, role });
@@ -29,7 +30,7 @@ module.exports = async ({
   const [org, membership, user] = await Promise.all([
     orgService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
     OrgMembership.findFor(organizationId, email, ['id']),
-    userService.request('createUser', { email, fields: ['id', 'email'] }),
+    userService.request('create', { email, fields: ['id', 'email'] }),
   ]);
 
   if (!org) throw createError(404, `No organization was found for '${organizationId}'`);
@@ -41,12 +42,13 @@ module.exports = async ({
   const { token } = await createLoginToken(tokenService, { email: user.email, ttl });
   await OrgInvitation.update(query, { $set: invite }, { upsert: true });
 
+  const url = `${APPLICATION_URL}/authenticate/${token}?route=manage.invitations`;
   const html = `
     <html>
       <body>
         <h1>You've been invited to join an organization on IdentityX.</h1>
         <h2>${org.name}</h2>
-        <p><a href="http://www.google.com/join/${token}">Login to join the ${org.name} organization.</a></p>
+        <p><a href="${url}">View Invitation.</a></p>
       </body>
     </html>
   `;

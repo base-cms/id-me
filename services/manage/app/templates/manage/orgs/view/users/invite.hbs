@@ -1,0 +1,52 @@
+<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
+
+  <form {{action "create" on="submit"}}>
+    {{#modal.header}}
+      <h5 class="modal-title">Send an invitation</h5>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="name">Email Address</label>
+            {{input
+              type="email"
+              autocomplete="username email"
+              autofocus=true
+              class="form-control"
+              value=model.email
+            }}
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="user-role">Role</label>
+            {{#power-select renderInPlace=true options=roles selected=role onchange=(action (mut role)) as |role|}}
+              {{ role }}
+            {{/power-select}}
+          </div>
+        </div>
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      {{form-elements/submit-button
+        class="btn btn-success"
+        disabled=isActionRunning
+        isSaving=isActionRunning
+      }}
+    {{/modal.footer}}
+    {{progress-bar show=isActionRunning}}
+  </form>
+</BsModal>

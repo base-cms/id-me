@@ -1,0 +1,16 @@
+<td><img  alt="user avatar" src={{membership.user.photoURL}} class="icon icon-md md-3"></td>
+<td class="align-middle">{{membership.user.givenName}} {{membership.user.familyName}}</td>
+<td class="align-middle">{{membership.role}}</td>
+<td class="align-middle">{{membership.user.email}}</td>
+<td title={{membership.createdAt}}>{{membership.createdAt}}</td>
+<th class="align-middle text-center">
+  {{#if canModify}}
+    <a class="dropdown-toggle btn btn-sm btn-secondary" title="Modify User" data-toggle="dropdown" href="#" role="button">
+      {{entypo-icon "cog"}}
+    </a>
+    <div class="dropdown-menu dropdown-menu-right">
+      <a href="#" class="dropdown-item" {{action "showChangeRoleModal" membership}}>Change role</a>
+      <a href="#" class="dropdown-item" {{action "showRemoveModal" membership}}>Remove member</a>
+    </div>
+  {{/if}}
+</th>

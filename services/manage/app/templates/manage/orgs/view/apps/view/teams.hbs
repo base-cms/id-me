@@ -1,0 +1,19 @@
+<div class="card mb-3">
+  <div class="card-body">
+    <h2 class="card-title">Teams</h2>
+    <p class="card-text">Manage your applications's teams.</p>
+    <div class="list-group mb-3">
+      {{#link-to "manage.orgs.view.apps.view.teams.create" class="list-group-item list-group-item-action"}}
+        {{entypo-icon "circle-with-plus" class="text-success"}} New team
+      {{/link-to}}
+      {{#each model as |team|}}
+        {{#link-to "manage.orgs.view.apps.view.teams.edit" team.id class="list-group-item list-group-item-action"}}
+          {{ team.name }}
+          <small class="text-muted">{{team.description}}</small>
+        {{/link-to}}
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+{{outlet}}
