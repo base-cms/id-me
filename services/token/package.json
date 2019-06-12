@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-token-service",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The ID|Me token service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
-    "@base-cms/id-me-utils": "^0.1.0",
+    "@base-cms/id-me-utils": "^0.2.0",
     "@base-cms/micro": "^0.9.28",
     "@newrelic/native-metrics": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
