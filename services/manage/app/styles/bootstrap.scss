@@ -3,6 +3,10 @@
 @import "bootstrap/mixins";
 @import "bootstrap/components";
 
+label {
+  font-size: 1rem;
+}
+
 .card {
   box-shadow: $box-shadow;
   border: 0;
@@ -10,4 +14,16 @@
 
 .navbar {
   font-size: 1rem;
+}
+
+.input-group {
+	.form-control {
+    transition: none;
+		&:not(:first-child) {
+      border-left: 0;
+		}
+		&:not(:last-child) {
+			border-right: 0;
+		}
+	}
 }
