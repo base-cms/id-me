@@ -6,14 +6,15 @@
           <div class="card-header">
             <h1 class="card-title mb-0">Welcome</h1>
             {{#if sent}}
-              <small><a href="#retry" {{action "loginAgain"}}>Login with another email address?</a></small>
+              <small><a href="#start-over" {{action "startOver"}}>Login with another email address?</a></small>
             {{else}}
               <small>{{#link-to "signup"}}Need an account?{{/link-to}}</small>
             {{/if}}
           </div>
           <div class="card-body">
             {{#if sent}}
-              <p class="mb-0">A login link has been sent to <em>{{email}}</em>. To continue, open the email and click the link provided.</p>
+              <h3 class="card-title">Almost done!</h3>
+              <p class="card-text">A login link has been sent to <em>{{email}}</em>. To continue, open the email and click the link provided.</p>
             {{else}}
               <div class="form-group mb-0">
                 <label for="login-email">Email address</label>

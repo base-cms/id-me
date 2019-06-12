@@ -34,7 +34,7 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
     /**
      *
      */
-    loginAgain() {
+    startOver() {
       this.set('sent', false);
       this.set('email', null);
     },
