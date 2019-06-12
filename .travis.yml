@@ -32,6 +32,10 @@ jobs:
       script: scripts/deploy.js graphql
 
     - stage: deploy
+      name: Locale Service
+      script: scripts/deploy.js locale
+
+    - stage: deploy
       name: Mailer Service
       script: scripts/deploy.js mailer
 
