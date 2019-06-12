@@ -20,13 +20,14 @@
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="signup-given-name">First name</label>
+                    <label for="signup-given-name">First Name</label>
                     <div class="input-group">
                       {{input
                         id="signup-given-name"
                         required=true
                         autofocus=true
                         class="form-control form-control-lg"
+                        placeholder="Jane"
                         value=givenName
                         autocomplete="username given-name"
                       }}
@@ -35,13 +36,14 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="signup-family-name">Last name</label>
+                    <label for="signup-family-name">Last Name</label>
                     <div class="input-group">
                       {{input
                         id="signup-family-name"
                         required=true
                         class="form-control form-control-lg"
                         value=familyName
+                        placeholder="Doe"
                         autocomplete="username family-name"
                       }}
                     </div>
@@ -49,7 +51,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="signup-email">Email address</label>
+                <label for="signup-email">Email Address</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{entypo-icon "email"}}</span>
@@ -59,13 +61,14 @@
                     required=true
                     class="form-control form-control-lg"
                     type="email"
+                    placeholder="user@domain.com"
                     value=email
                     autocomplete="username email"
                   }}
                 </div>
               </div>
               <div class="form-group mb-0">
-                <label for="signup-orgname">Organization name</label>
+                <label for="signup-orgname">Organization Name</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{entypo-icon "v-card"}}</span>
@@ -75,10 +78,13 @@
                     required=true
                     class="form-control form-control-lg"
                     type="text"
+                    placeholder="Your Company Name"
                     value=orgName
                     autocomplete="organization"
+                    aria-describedby="signup-orgname-help"
                   }}
                 </div>
+                <small id="signup-orgname-help" class="form-text text-muted">This will be assigned as your first org where apps and users can be created.</small>
               </div>
             {{/if}}
           </div>
