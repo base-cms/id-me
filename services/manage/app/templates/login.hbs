@@ -5,7 +5,11 @@
         <form {{action "submit" on="submit"}}>
           <div class="card-header">
             <h1 class="card-title mb-0">Welcome back!</h1>
-            <small>{{#link-to "signup"}}Need an account?{{/link-to}}</small>
+            {{#if sent}}
+              <small><a href="#retry" {{action "loginAgain"}}>Login with another email address?</a></small>
+            {{else}}
+              <small>{{#link-to "signup"}}Need an account?{{/link-to}}</small>
+            {{/if}}
           </div>
           <div class="card-body">
             {{#if sent}}

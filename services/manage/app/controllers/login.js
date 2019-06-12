@@ -14,6 +14,9 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
   sent: false,
 
   actions: {
+    /**
+     *
+     */
     async submit() {
       this.startAction();
       const email = this.get('email');
@@ -26,6 +29,14 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
       } finally {
         this.endAction();
       }
+    },
+
+    /**
+     *
+     */
+    loginAgain() {
+      this.set('sent', false);
+      this.set('email', null);
     },
   },
 });
