@@ -1,12 +1,14 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Lora:400,400i");
 
 // Bootstrap theme
 @import "bootstrap";
 @import "ember-power-select";
 
-// Showing progress cursor when transitioning/loading.
-body.transitioning {
-  cursor: progress;
+body {
+  .transitioning {
+    // Showing progress cursor when transitioning/loading.
+    cursor: progress;
+  }
 }
 
 // Add shadow to primary nav header.

@@ -16,8 +16,12 @@ label {
   font-size: 1rem;
 }
 
+.card-text {
+	font-family: $font-family-serif;
+}
+
 .form-text {
-	font-size: .75rem;
+	font-size: .875rem;
 }
 
 .input-group {
