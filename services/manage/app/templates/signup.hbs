@@ -84,14 +84,18 @@
                     aria-describedby="signup-orgname-help"
                   }}
                 </div>
-                <small id="signup-orgname-help" class="form-text text-muted">This will be assigned as your first org where apps and users can be created.</small>
+                <small id="signup-orgname-help" class="form-text text-muted">
+                  {{entypo-icon "info-with-circle" class="text-info"}}
+                  This will be used as your first org where apps and users will be created.
+                </small>
               </div>
             {{/if}}
           </div>
           <div class="card-footer">
             {{#if sent}}
               <small>
-                {{entypo-icon "info-with-circle" class="text-info mr-1"}} Not seeing the email?
+                {{entypo-icon "info-with-circle" class="text-info"}}
+                Not seeing the email?
                 <br>
                 Make sure to check your clutter and/or spam folders.
               </small>
