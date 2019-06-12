@@ -10,6 +10,9 @@ $gray-700: #525f7f;
 $gray-800: #32325d;
 $black:    #000 !default;
 
+$gray-700o: #495057 !default;
+$gray-800o: #343a40 !default;
+
 $blue:    #5e72e4;
 $indigo:  #5603ad;
 $purple:  #8965e0;
@@ -103,7 +106,7 @@ $btn-active-box-shadow:             none;
 //
 $input-bg:                              $white !default;
 
-$input-color:                           $gray-600;
+$input-color:                           $gray-700o;
 $input-border-color:                    $gray-400 !default;
 $input-box-shadow:                      none;
 
@@ -111,11 +114,13 @@ $input-focus-bg:                        rgba(246, 249, 252, .5);
 $input-focus-border-color:              $input-border-color; //rgba(50,151,211,.25);
 $input-focus-width:                     0;
 
-$input-placeholder-color:               $gray-500;
+$input-placeholder-color:               $gray-600;
 
-$input-group-addon-color:               $input-color;
+$input-group-addon-color:               $gray-600;
 $input-group-addon-bg:                  $input-bg;
 $input-group-addon-border-color:        $input-border-color;
+
+$form-text-margin-top:                  .375rem;
 
 // Dropdowns
 //
