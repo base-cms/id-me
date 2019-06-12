@@ -1,9 +1,12 @@
 FROM node:10.15
+WORKDIR /identity-x
 ENV NODE_ENV production
-ADD ./ /id-me
-WORKDIR /id-me
+ARG SERVICE
 
-RUN yarn --production
+ADD package.json yarn.lock /identity-x/
+ADD packages /identity-x/packages
+ADD services/$SERVICE /identity-x/services/$SERVICE
+RUN yarn --production --pure-lockfile
 
-WORKDIR /id-me/services/graphql
+WORKDIR /identity-x/services/$SERVICE
 ENTRYPOINT [ "node", "src/index.js" ]
