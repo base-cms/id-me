@@ -27,6 +27,9 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
   sent: false,
 
   actions: {
+    /**
+     *
+     */
     async submit() {
       this.startAction();
       const { email, orgName } = this.getProperties('email', 'orgName');
@@ -46,6 +49,19 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
       } finally {
         this.endAction();
       }
+    },
+
+    /**
+     *
+     */
+    startOver() {
+      this.set('sent', false);
+      this.setProperties({
+        email: null,
+        givenName: null,
+        familyName: null,
+        orgName: null,
+      });
     },
   }
 });
