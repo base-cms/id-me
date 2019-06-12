@@ -2,20 +2,16 @@
   <div class="row">
     <div class="col-md-8 col-lg-6 mx-auto">
       <div class="card">
-        {{#if sent}}
-          <div class="card-header"></div>
-          <div class="card-body">
-            <h1 class="card-title">Welcome back!</h1>
-            <p>Your login link has been sent to your email address. Click the link to continue!</p>
+        <form {{action "submit" on="submit"}}>
+          <div class="card-header">
+            <h1 class="card-title mb-0">Welcome back!</h1>
+            <small>{{#link-to "signup"}}Need an account?{{/link-to}}</small>
           </div>
-        {{else}}
-          <form {{action "submit" on="submit"}}>
-            <div class="card-header"></div>
-            <div class="card-body">
-              <h1 class="card-title">Welcome back!</h1>
-              <small>{{#link-to "signup"}} Need an account? {{/link-to}}</small>
-              <hr>
-              <div class="form-group">
+          <div class="card-body">
+            {{#if sent}}
+              <p class="mb-0">A login link has been sent to <em>{{email}}</em>. To continue, open the email and click the link provided.</p>
+            {{else}}
+              <div class="form-group mb-0">
                 <label for="login-email">Email address</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -32,21 +28,29 @@
                   }}
                 </div>
               </div>
-            </div>
-            <div class="card-footer">
+            {{/if}}
+          </div>
+          <div class="card-footer">
+            {{#if sent}}
+              <small>
+                {{entypo-icon "info-with-circle" class="text-info mr-1"}} Not seeing the email?
+                <br>
+                Make sure to check your clutter and/or spam folders.
+              </small>
+            {{else}}
               <button
                 type="submit"
                 class="btn btn-block btn-lg btn-primary"
                 disabled={{isActionRunning}}
               >
-                {{entypo-icon "login" class="mr-1"}} Sign in
+                {{entypo-icon "login" class="mr-1"}} Sign In
               </button>
               {{#if errorMessage}}
                 <div class="alert-danger mt-3 mb-0 alert" role="alert"><strong>Oh Snap!</strong> {{errorMessage}}</div>
               {{/if}}
-            </div>
-          </form>
-        {{/if}}
+            {{/if}}
+          </div>
+        </form>
       </div>
     </div>
   </div>
