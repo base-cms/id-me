@@ -1,4 +1,4 @@
-{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-primary">X</span>{{/link-to}}
 
 <ul class="navbar-nav mr-auto">
   {{#if user.isAuthenticated}}
@@ -8,7 +8,7 @@
           <img alt="Organization Avatar" src={{context.org.photoURL}} class="icon icon-sm mr-1">
           <span class="d-none d-md-inline">{{context.org.name}}</span>
         {{else}}
-          Select organization
+          Select Organization
         {{/if}}
       </a>
 
@@ -22,7 +22,7 @@
           <div class="dropdown-divider"></div>
         {{/if}}
         {{#link-to "manage.orgs.list.create" class="dropdown-item dropdown-item"}}
-          {{entypo-icon "circle-with-plus"}} New organization
+          {{entypo-icon "circle-with-plus"}} New Organization
         {{/link-to}}
       </div>
     </li>
