@@ -13,8 +13,8 @@ export default Component.extend({
     const orgId = this.get('context.orgId');
     if (!orgId) return [];
     return [
-      { route: 'manage.orgs.view.apps.list', text: 'Applications' },
-      { route: 'manage.orgs.view.users', text: 'Users' },
+      { route: 'manage.orgs.view.apps.list', text: 'Applications', icon: 'browser' },
+      { route: 'manage.orgs.view.users', text: 'Users', icon: 'users' },
     ];
   }),
 });
