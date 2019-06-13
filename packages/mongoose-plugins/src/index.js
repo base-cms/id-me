@@ -3,7 +3,6 @@ const domainValidator = require('./domain-validator');
 const emailPlugin = require('./email-plugin');
 const emailValidator = require('./email-validator');
 const ipValidator = require('./ip-validator');
-const cidrValidator = require('./cidr-validator');
 const orgRolePlugin = require('./org-role-plugin');
 const orgRoles = require('./org-roles');
 const organizationPlugin = require('./organization-plugin');
@@ -17,7 +16,6 @@ module.exports = {
   referencePlugin,
 
   domainValidator,
-  cidrValidator,
   emailValidator,
   ipValidator,
   orgRoles,

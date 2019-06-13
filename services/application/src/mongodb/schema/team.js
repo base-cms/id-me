@@ -1,20 +1,23 @@
 const { Schema, Decimal128 } = require('mongoose');
 const { createCIDR, toInt } = require('@base-cms/id-me-utils').ip6;
-const { domainValidator, cidrValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { domainValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { ipService } = require('@base-cms/id-me-service-clients');
 const accessLevelPlugin = require('./plugins/access-level');
 
-const cidr = new Schema({
+const cidrSchema = new Schema({
   value: {
     type: String,
     required: true,
-    validate: cidrValidator,
+    validate: {
+      validator: address => ipService.request('validate', { address }),
+      message: 'Invalid CIDR notation {VALUE}',
+    },
   },
   min: Decimal128,
   max: Decimal128,
   v6: String,
 });
 
-cidr.post('validate', function setCIDRValues() {
   const CIDR = createCIDR(this.value);
   try {
     this.v6 = CIDR.toString({ format: 'v4-mapped' });
@@ -23,6 +26,7 @@ cidr.post('validate', function setCIDRValues() {
   }
   this.min = toInt(CIDR.first());
   this.max = toInt(CIDR.last());
+cidrSchema.post('validate', async function setCIDRValues() {
 });
 
 const schema = new Schema({
@@ -36,7 +40,7 @@ const schema = new Schema({
     trim: true,
   },
   cidrs: {
-    type: [cidr],
+    type: [cidrSchema],
     default: () => [],
   },
   domains: {
