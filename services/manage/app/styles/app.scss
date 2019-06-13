@@ -61,12 +61,13 @@ body {
 
 // Add shadow to primary nav header.
 .application-header {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .18);
 }
 
 .navbar {
   &--primary {
     background-color: $blue-800;
+    padding: 0.75rem 1rem;
   }
 
   &--secondary {
