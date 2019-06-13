@@ -1,5 +1,4 @@
 const { Schema, Decimal128 } = require('mongoose');
-const { createCIDR, toInt } = require('@base-cms/id-me-utils').ip6;
 const { domainValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
 const { ipService } = require('@base-cms/id-me-service-clients');
 const accessLevelPlugin = require('./plugins/access-level');
@@ -18,15 +17,12 @@ const cidrSchema = new Schema({
   v6: String,
 });
 
-  const CIDR = createCIDR(this.value);
-  try {
-    this.v6 = CIDR.toString({ format: 'v4-mapped' });
-  } catch (e) {
-    this.v6 = CIDR.toString({ format: 'v6' });
-  }
-  this.min = toInt(CIDR.first());
-  this.max = toInt(CIDR.last());
 cidrSchema.post('validate', async function setCIDRValues() {
+  const cidr = await ipService.request('cidr', { address: this.value });
+  const { min, max } = await ipService.request('range', { cidr });
+  this.v6 = cidr;
+  this.min = min;
+  this.max = max;
 });
 
 const schema = new Schema({
