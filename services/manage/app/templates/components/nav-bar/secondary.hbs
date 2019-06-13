@@ -4,7 +4,9 @@
   {{#each links as |link|}}
     <li class="nav-item">
       {{#link-to link.route context.appId class="nav-link"}}
-        {{link.text}}
+        <NavBar::Item @icon={{link.icon}}>
+          {{link.text}}
+        </NavBar::Item>
       {{/link-to}}
     </li>
   {{/each}}
