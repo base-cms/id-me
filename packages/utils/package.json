@@ -7,9 +7,6 @@
   "repository": "https://github.com/base-cms/id-me/tree/master/packages/utils",
   "license": "MIT",
   "private": true,
-  "dependencies": {
-    "ip6addr": "^0.2.2"
-  },
   "peerDependencies": {
     "@base-cms/micro": "^0.9.0"
   },
