@@ -1,10 +1,6 @@
 const { Schema, Decimal128 } = require('mongoose');
-const { parse, createCIDR } = require('ip6addr');
-const {
-  domainValidator,
-  cidrValidator,
-  applicationPlugin,
-} = require('@base-cms/id-me-mongoose-plugins');
+const { ip6: { createCIDR, toInt } } = require('@base-cms/id-me-utils');
+const { domainValidator, cidrValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
 const accessLevelPlugin = require('./plugins/access-level');
 
 const cidr = new Schema({
@@ -18,19 +14,15 @@ const cidr = new Schema({
   v6: String,
 });
 
-const ipToInt = addr => (addr.toBuffer().readBigUInt64LE(addr.kind() === 'ipv4' ? 8 : 0, true));
-
 cidr.post('validate', function setCIDRValues() {
   const CIDR = createCIDR(this.value);
   try {
     this.v6 = CIDR.toString({ format: 'v4-mapped' });
-    this.min = ipToInt(parse(CIDR.first().toString({ format: 'v4-mapped' }))).toString();
-    this.max = ipToInt(parse(CIDR.last().toString({ format: 'v4-mapped' }))).toString();
   } catch (e) {
     this.v6 = CIDR.toString({ format: 'v6' });
-    this.min = ipToInt(CIDR.first()).toString();
-    this.max = ipToInt(CIDR.last()).toString();
   }
+  this.min = toInt(CIDR.first());
+  this.max = toInt(CIDR.last());
 });
 
 const schema = new Schema({
