@@ -1,7 +1,7 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
+const { ipService } = require('@base-cms/id-me-service-clients');
 const findByEmail = require('./user/find-by-email');
-
 const { Application, Team, AccessLevel } = require('../mongodb/models');
 
 const { isArray } = Array;
@@ -12,10 +12,15 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!ipAddress) throw createRequiredParamError('ipAddress');
 
+  const intIp = await ipService.request('convert', { address: ipAddress });
+
   const accessLevelIds = [];
   const teamQuery = {
     applicationId,
-    $or: [{ ipAddresses: ipAddress }],
+    $or: [{
+      'cidrs.min': { $gte: intIp },
+      'cidrs.max': { $lte: intIp },
+    }],
   };
 
   const [app, user] = await Promise.all([
