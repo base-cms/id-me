@@ -5,7 +5,7 @@ export default Service.extend({
   notifications: inject(),
 
   isReady() {
-    const element = document.querySelector('div[data-test-notification-container]');
+    const element = document.querySelector('.notifications');
     if (element) return true;
     return false;
   },
