@@ -2,29 +2,32 @@
   <div class="row">
     <div class="col-md-8 col-lg-6 mx-auto">
       <div class="card">
-        {{#if sent}}
-          <div class="card-header"></div>
-          <div class="card-body">
-            <h1 class="card-title">Welcome to IdentityX</h1>
-            <p>Thanks for signing up! Click the link to continue.</p>
+        <form {{action "submit" on="submit"}}>
+          <div class="card-header">
+            <h1 class="card-title mb-0">Create Account</h1>
+            {{#if sent}}
+              <small><a href="#start-over" {{action "startOver"}}>Create another account?</a></small>
+            {{else}}
+              <small>{{#link-to "login"}}Already registered?{{/link-to}}</small>
+            {{/if}}
           </div>
-        {{else}}
-          <form {{action "submit" on="submit"}}>
-            <div class="card-header"></div>
-            <div class="card-body">
-              <h1 class="card-title">Welcome to IdentityX</h1>
-              <small>{{#link-to "login"}} Been here before? {{/link-to}}</small>
-              <hr>
+          <div class="card-body">
+            {{#if sent}}
+              <h3 class="card-title">Almost done!</h3>
+              <p class="card-text">A login link has been sent to <em>{{email}}</em>.</p>
+              <p class="card-text">To complete your account registration, open the email and click the link provided.</p>
+            {{else}}
               <div class="row">
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="signup-given-name">First name</label>
+                    <label for="signup-given-name">First Name</label>
                     <div class="input-group">
                       {{input
                         id="signup-given-name"
                         required=true
                         autofocus=true
                         class="form-control form-control-lg"
+                        placeholder="Jane"
                         value=givenName
                         autocomplete="username given-name"
                       }}
@@ -33,13 +36,14 @@
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
-                    <label for="signup-family-name">Last name</label>
+                    <label for="signup-family-name">Last Name</label>
                     <div class="input-group">
                       {{input
                         id="signup-family-name"
                         required=true
                         class="form-control form-control-lg"
                         value=familyName
+                        placeholder="Doe"
                         autocomplete="username family-name"
                       }}
                     </div>
@@ -47,7 +51,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="signup-email">Email address</label>
+                <label for="signup-email">Email Address</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{entypo-icon "email"}}</span>
@@ -57,13 +61,14 @@
                     required=true
                     class="form-control form-control-lg"
                     type="email"
+                    placeholder="user@domain.com"
                     value=email
                     autocomplete="username email"
                   }}
                 </div>
               </div>
-              <div class="form-group">
-                <label for="signup-orgname">Organization name</label>
+              <div class="form-group mb-0">
+                <label for="signup-orgname">Organization Name</label>
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="input-group-text">{{entypo-icon "v-card"}}</span>
@@ -73,26 +78,41 @@
                     required=true
                     class="form-control form-control-lg"
                     type="text"
+                    placeholder="Your Company Name"
                     value=orgName
-                    autocomplete="organization name"
+                    autocomplete="organization"
+                    aria-describedby="signup-orgname-help"
                   }}
                 </div>
+                <small id="signup-orgname-help" class="form-text text-muted">
+                  {{entypo-icon "info-with-circle" class="text-info"}}
+                  This will be used as your first org where apps and users will be created.
+                </small>
               </div>
-            </div>
-            <div class="card-footer">
+            {{/if}}
+          </div>
+          <div class="card-footer">
+            {{#if sent}}
+              <small>
+                {{entypo-icon "info-with-circle" class="text-info"}}
+                Not seeing the email?
+                <br>
+                Make sure to check your clutter and/or spam folders.
+              </small>
+            {{else}}
               <button
                 type="submit"
                 class="btn btn-block btn-lg btn-primary"
                 disabled={{isActionRunning}}
               >
-                {{entypo-icon "login" class="mr-1"}} Sign up
+                {{entypo-icon "add-user" class="mr-1"}} Sign Up
               </button>
               {{#if errorMessage}}
                 <div class="alert-danger mt-3 mb-0 alert" role="alert"><strong>Oh Snap!</strong> {{errorMessage}}</div>
               {{/if}}
-            </div>
-          </form>
-        {{/if}}
+            {{/if}}
+          </div>
+        </form>
       </div>
     </div>
   </div>

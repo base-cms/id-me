@@ -24,6 +24,13 @@ module.exports = function(environment) {
     apollo: {
       apiURL: '/graphql',
     },
+    flashMessageDefaults: {
+      timeout: 3000,
+      sticky: false,
+      showProgress: true,
+      destroyOnClick: false,
+      extendedTimeout: 250,
+    },
   };
 
   if (environment === 'development') {

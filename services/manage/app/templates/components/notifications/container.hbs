@@ -1,0 +1,13 @@
+{{#each flashMessages.queue as |flash|}}
+  <FlashMessage class="alert-dismissible" @role="alert" @flash={{flash}} as |component flash close|>
+    {{flash.message}}
+    <button type="button" class="close" aria-label="Close" {{action close}}>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    {{#if component.showProgress}}
+      <div class="progress">
+        <Notifications::ProgressBar @type={{component.flashType}} @duration={{component.progressDuration}} />
+      </div>
+    {{/if}}
+  </FlashMessage>
+{{/each}}

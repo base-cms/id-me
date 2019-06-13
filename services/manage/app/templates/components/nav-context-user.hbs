@@ -7,7 +7,7 @@
       href="#"
       role="button"
     >
-      {{entypo-icon "user"}} <span class="d-none d-md-inline">{{user.model.givenName}} {{user.model.familyName}}</span>
+      {{entypo-icon "user"}} <span class="d-none d-lg-inline">{{user.model.givenName}} {{user.model.familyName}}</span>
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
@@ -26,10 +26,14 @@
     </div>
   </li>
 {{else}}
-  {{#link-to "login" tagName="li" class="nav-item" title="Sign in Into the Application"}}
-    {{#link-to "login" class="nav-link"}}{{entypo-icon "login"}} Sign in{{/link-to}}
-  {{/link-to}}
-  {{#link-to "signup" tagName="li" class="nav-item" title="Sign up"}}
-    {{#link-to "signup" class="nav-link"}}{{entypo-icon "add-user"}} Sign up{{/link-to}}
-  {{/link-to}}
+  <li class="nav-item">
+    {{#link-to "login" class="nav-link" title="Sign into IdentityX"}}
+      <NavBar::Item @icon="login">Sign In</NavBar::Item>
+    {{/link-to}}
+  </li>
+  <li class="nav-item">
+    {{#link-to "signup" class="nav-link" title="Create new user account"}}
+      <NavBar::Item @icon="add-user">Sign Up</NavBar::Item>
+    {{/link-to}}
+  </li>
 {{/if}}

@@ -2,40 +2,26 @@ import Service, { inject } from '@ember/service';
 import { isPresent } from '@ember/utils';
 
 export default Service.extend({
-  user: inject(),
+  notifications: inject(),
 
   isReady() {
+    const element = document.querySelector('.notifications');
+    if (element) return true;
     return false;
   },
 
   handle(e) {
-    if (e.message === 'GraphQL error: You must be logged-in to access this resource.') {
-      if (this.get('user.isAuthenticated')) {
-        this.get('user').logout();
-        e.loggingOut = true;
-      }
-    }
+    // @todo Handle authentication errors.
+
     // eslint-disable-next-line no-console
     console.error(e);
     if (isPresent(e.errors) && isPresent(e.errors[0])) {
       const error = e.errors[0];
-      if (error.result) {
-        return this.handleNetworkError(error);
-      }
-      if (error.message) {
-        return new Error(error.message);
-      }
+      if (error.result) return this.handleNetworkError(error);
+      if (error.message) return new Error(error.message);
     }
-
-    if (e.networkError) {
-      return this.handleNetworkError(e.networkError);
-    }
-    if (e.graphQLErrors) {
-      return e;
-    }
-    if (e.message) {
-      return e;
-    }
+    if (e.networkError) return this.handleNetworkError(e.networkError);
+    if (e.graphQLErrors || e.message) return e;
     return new Error('An unknown, fatal error occurred.');
   },
 
@@ -46,6 +32,7 @@ export default Service.extend({
   },
 
   show(e) {
-    this.handle(e);
-  }
+    const error = this.handle(e);
+    if (!e.loggingOut) this.get('notifications').error(error.message);
+  },
 });

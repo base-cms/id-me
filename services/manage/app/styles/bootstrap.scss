@@ -2,3 +2,55 @@
 @import "bootstrap/variables";
 @import "bootstrap/mixins";
 @import "bootstrap/components";
+
+.alert {
+	font-size: $font-size-sm;
+	box-shadow: $btn-box-shadow;
+	&:not(.alert-secondary) {
+		color: $white;
+	}
+}
+
+.alert-dismissible {
+	.close {
+		top: $alert-padding-y;
+		right: $alert-padding-x;
+		padding: 0;
+		color: rgba($white, .6);
+		opacity: 1;
+		outline: none;
+
+		font-size: 1.5rem;
+
+		&:hover,
+		&:focus {
+			color: rgba($white, .9);
+			opacity: 1 !important;
+		}
+	}
+}
+
+.card {
+  box-shadow: $box-shadow;
+  border: 0;
+}
+
+.card-text {
+	font-family: $font-family-serif;
+}
+
+.form-text {
+	font-size: .875rem;
+}
+
+.input-group {
+	.form-control {
+    transition: none;
+		&:not(:first-child) {
+      border-left: 0;
+		}
+		&:not(:last-child) {
+			border-right: 0;
+		}
+	}
+}

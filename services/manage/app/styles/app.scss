@@ -1,12 +1,78 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Lora:400,400i");
+
 // Bootstrap theme
-@import "litera/variables";
 @import "bootstrap";
-@import "litera/bootswatch";
 @import "ember-power-select";
 
-// Showing progress cursor when transitioning/loading.
-body.transitioning {
-  cursor: progress;
+body {
+  .transitioning {
+    // Showing progress cursor when transitioning/loading.
+    cursor: progress;
+  }
+}
+
+// The notifications container.
+.notifications {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 1080;
+  max-width: 400px;
+
+  .alert {
+    opacity: 0;
+    position: relative;
+    left: 100px;
+
+    transition: all 500ms cubic-bezier(.68, -.55, .265, 1.55);
+
+    .progress {
+      position: absolute;
+      bottom: -$alert-border-width;
+      left: -$alert-border-width;
+      right: -$alert-border-width;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background-color: rgba(233, 236, 239, .5);
+      box-shadow: none;
+      height: $alert-border-radius;
+    }
+
+    .progress-bar {
+      width: 0%;
+      transition-timing-function: linear;
+    }
+
+    &.active {
+      opacity: 1;
+      left: 0;
+
+      &.exiting {
+        opacity: 0;
+        left: 100px;
+      }
+
+      .progress-bar {
+        width: 100%;
+      }
+    }
+  }
+}
+
+// Add shadow to primary nav header.
+.application-header {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .18);
+}
+
+.navbar {
+  &--primary {
+    background-color: $blue-800;
+    padding: 0.75rem 1rem;
+  }
+
+  &--secondary {
+    background-color: $white;
+  }
 }
 
 .icon {

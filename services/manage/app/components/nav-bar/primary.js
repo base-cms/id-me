@@ -4,7 +4,7 @@ import { inject } from '@ember/service';
 
 export default Component.extend({
   tagName: 'nav',
-  classNames: ['navbar', 'navbar-expand', 'navbar-dark', 'bg-primary'],
+  classNames: ['navbar', 'navbar--primary', 'navbar-expand', 'navbar-dark'],
 
   context: inject(),
   user: inject(),
@@ -13,8 +13,8 @@ export default Component.extend({
     const orgId = this.get('context.orgId');
     if (!orgId) return [];
     return [
-      { route: 'manage.orgs.view.apps.list', text: 'Applications' },
-      { route: 'manage.orgs.view.users', text: 'Users' },
+      { route: 'manage.orgs.view.apps.list', text: 'Applications', icon: 'browser' },
+      { route: 'manage.orgs.view.users', text: 'Users', icon: 'users' },
     ];
   }),
 });

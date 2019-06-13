@@ -1,37 +1,16 @@
-{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-dark">X</span>{{/link-to}}
+{{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-primary">X</span>{{/link-to}}
 
 <ul class="navbar-nav mr-auto">
   {{#if user.isAuthenticated}}
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-        {{#if context.org.name}}
-          <img alt="Organization Avatar" src={{context.org.photoURL}} class="icon icon-sm mr-1">
-          <span class="d-none d-md-inline">{{context.org.name}}</span>
-        {{else}}
-          Select organization
-        {{/if}}
-      </a>
-
-      <div class="dropdown-menu">
-        {{#each context.orgs as |org|}}
-          {{#link-to "manage.orgs.view" org.id class="dropdown-item dropdown-item d-flex"}}
-            <img alt="Organization Avatar" src={{org.photoURL}} class="icon icon-sm mr-1"> {{org.name}}
-          {{/link-to}}
-        {{/each}}
-        {{#if context.orgs.length}}
-          <div class="dropdown-divider"></div>
-        {{/if}}
-        {{#link-to "manage.orgs.list.create" class="dropdown-item dropdown-item"}}
-          {{entypo-icon "circle-with-plus"}} New organization
-        {{/link-to}}
-      </div>
-    </li>
+    <NavBar::OrgDropdown />
   {{/if}}
 
   {{#each links as |link|}}
     <li class="nav-item">
       {{#link-to link.route context.orgId class="nav-link"}}
-        {{link.text}}
+        <NavBar::Item @icon={{link.icon}}>
+          {{link.text}}
+        </NavBar::Item>
       {{/link-to}}
     </li>
   {{/each}}
@@ -41,12 +20,12 @@
   <li class="nav-item">
     <a
       href="https://as3.gitbook.io/identity-x"
-      title="Application Documentation"
+      title="IdentityX Documentation"
       class="nav-link"
       target="_blank"
       rel="noopener noreferrer"
     >
-      {{entypo-icon "text-document"}} <span class="d-none d-md-inline">Documentation</span>
+      <NavBar::Item @icon="text-document">Documentation</NavBar::Item>
     </a>
   </li>
 

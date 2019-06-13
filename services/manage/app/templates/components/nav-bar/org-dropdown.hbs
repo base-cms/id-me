@@ -1,0 +1,24 @@
+<a class="nav-link dropdown-toggle {{active}}" data-toggle="dropdown" href="#" role="button">
+  <NavBar::Item @icon="network">
+    {{#if context.org.name}}
+      {{context.org.name}}
+    {{else}}
+      Select Organization
+    {{/if}}
+  </NavBar::Item>
+</a>
+
+<div class="dropdown-menu">
+  {{#each orgs as |org|}}
+    {{#link-to "manage.orgs.view" org.id class="dropdown-item dropdown-item"}}
+      {{org.name}}
+    {{/link-to}}
+  {{/each}}
+  {{#if orgs.length}}
+    <div class="dropdown-divider"></div>
+  {{/if}}
+  {{#link-to "manage.orgs.list.create" class="dropdown-item dropdown-item"}}
+    {{entypo-icon "circle-with-plus" class="mr-1"}}
+    New Organization
+  {{/link-to}}
+</div>
