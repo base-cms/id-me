@@ -9,7 +9,6 @@
   "private": true,
   "dependencies": {
     "@base-cms/id-me-utils": "^0.2.0",
-    "ip6addr": "^0.2.2",
     "mongoose": "^5.5.11",
     "validator": "^11.0.0"
   },
