@@ -1,5 +1,5 @@
 const { Schema, Decimal128 } = require('mongoose');
-const { ip6: { createCIDR, toInt } } = require('@base-cms/id-me-utils');
+const { createCIDR, toInt } = require('@base-cms/id-me-utils').ip6;
 const { domainValidator, cidrValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
 const accessLevelPlugin = require('./plugins/access-level');
 

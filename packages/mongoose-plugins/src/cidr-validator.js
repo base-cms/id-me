@@ -1,4 +1,4 @@
-const { ip6: { validateCIDR } } = require('@base-cms/id-me-utils');
+const { validateCIDR } = require('@base-cms/id-me-utils').ip6;
 
 const { isArray } = Array;
 
