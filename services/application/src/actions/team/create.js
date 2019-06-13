@@ -5,6 +5,8 @@ const { isObject } = require('@base-cms/utils');
 
 const { Application, Team } = require('../../mongodb/models');
 
+const { error } = console;
+
 module.exports = async ({ applicationId, payload } = {}) => {
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!isObject(payload)) throw createRequiredParamError('payload');
@@ -19,6 +21,7 @@ module.exports = async ({ applicationId, payload } = {}) => {
     });
     return level;
   } catch (e) {
+    error(e);
     throw handleError(createError, e);
   }
 };
