@@ -31,6 +31,7 @@ const image = `basecms/identity-x-${service}-service`;
 const nrIds = {
   application: 238098240,
   graphql: 238106643,
+  ip: 242237130,
   locale: 242186677,
   mailer: 238106582,
   membership: 238106610,

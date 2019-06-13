@@ -32,6 +32,10 @@ jobs:
       script: scripts/deploy.js graphql
 
     - stage: deploy
+      name: IP Service
+      script: scripts/deploy.js ip
+
+    - stage: deploy
       name: Locale Service
       script: scripts/deploy.js locale
 
