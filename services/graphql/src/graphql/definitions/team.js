@@ -17,6 +17,7 @@ type Team {
   ipAddresses: [String]
   domains: [String]
   accessLevels: [AccessLevel]
+  photoURL: String
 }
 
 input CreateTeamMutationInput {

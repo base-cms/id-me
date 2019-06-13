@@ -44,6 +44,7 @@ const schema = new Schema({
     validate: domainValidator,
     default: () => [],
   },
+  photoURL: String,
 }, { timestamps: true });
 
 schema.plugin(applicationPlugin);
