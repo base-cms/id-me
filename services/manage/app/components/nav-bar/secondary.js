@@ -4,7 +4,7 @@ import { inject } from '@ember/service';
 
 export default Component.extend({
   tagName: 'nav',
-  classNames: ['navbar', 'navbar-expand', 'navbar-light', 'bg-light'],
+  classNames: ['navbar', 'navbar--secondary', 'navbar-expand', 'navbar-light'],
 
   context: inject(),
 
