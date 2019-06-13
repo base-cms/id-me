@@ -1,0 +1,21 @@
+<a class="nav-link dropdown-toggle {{active}}" data-toggle="dropdown" href="#" role="button">
+  {{#if context.org.name}}
+    {{context.org.name}}
+  {{else}}
+    Select Organization
+  {{/if}}
+</a>
+
+<div class="dropdown-menu">
+  {{#each orgs as |org|}}
+    {{#link-to "manage.orgs.view" org.id class="dropdown-item dropdown-item d-flex align-items-center"}}
+      <img alt="Organization Avatar" src={{org.photoURL}} class="icon icon-sm mr-2"> {{org.name}}
+    {{/link-to}}
+  {{/each}}
+  {{#if orgs.length}}
+    <div class="dropdown-divider"></div>
+  {{/if}}
+  {{#link-to "manage.orgs.list.create" class="dropdown-item dropdown-item"}}
+    {{entypo-icon "circle-with-plus"}} New Organization
+  {{/link-to}}
+</div>
