@@ -1,4 +1,5 @@
 const applicationService = require('./application');
+const ipService = require('./ip');
 const localeService = require('./locale');
 const mailerService = require('./mailer');
 const membershipService = require('./membership');
@@ -8,6 +9,7 @@ const userService = require('./user');
 
 module.exports = {
   applicationService,
+  ipService,
   localeService,
   mailerService,
   membershipService,

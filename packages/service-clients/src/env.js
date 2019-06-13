@@ -7,6 +7,7 @@ const { nonemptystr } = validators;
 
 const services = [
   'application',
+  'ip',
   'locale',
   'mailer',
   'membership',
