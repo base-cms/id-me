@@ -1,27 +1,5 @@
 <ul class="navbar-nav mr-auto">
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button">
-      {{#if context.app.name}}
-        {{context.app.name}}
-      {{else}}
-        Select Application
-      {{/if}}
-    </a>
-
-    <div class="dropdown-menu">
-      {{#each context.apps as |app|}}
-        {{#link-to "manage.orgs.view.apps.view" app.id class="dropdown-item dropdown-item"}}
-          {{app.name}}
-        {{/link-to}}
-      {{/each}}
-      {{#if context.apps.length}}
-        <div class="dropdown-divider"></div>
-      {{/if}}
-      {{#link-to "manage.orgs.view.apps.list.create" context.orgId class="dropdown-item dropdown-item"}}
-        {{entypo-icon "circle-with-plus"}} New Application
-      {{/link-to}}
-    </div>
-  </li>
+  <NavBar::AppDropdown />
 
   {{#each links as |link|}}
     <li class="nav-item">
