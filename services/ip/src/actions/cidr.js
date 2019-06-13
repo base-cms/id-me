@@ -1,4 +1,5 @@
 const { createCIDR, parse } = require('ip6addr');
+const { createRequiredParamError } = require('@base-cms/micro').service;
 
 const makev6 = (cidr) => {
   try {
@@ -9,6 +10,7 @@ const makev6 = (cidr) => {
 };
 
 module.exports = ({ address }) => {
+  if (!address) throw createRequiredParamError('address');
   try {
     const cidr = createCIDR(address);
     return makev6(cidr);

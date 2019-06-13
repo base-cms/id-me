@@ -1,5 +1,5 @@
 const assert = require('assert');
-const cidr = require('../src/actions/cidr');
+const cidr = require('../../src/actions/cidr');
 
 const cases = [
   {

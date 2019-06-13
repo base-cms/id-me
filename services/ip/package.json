@@ -9,12 +9,13 @@
   "private": true,
   "scripts": {
     "dev": "micro-dev",
-    "test": "./node_modules/.bin/eslint .; node test/*"
+    "test": "./node_modules/.bin/eslint .; node test"
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
     "@base-cms/micro": "^0.9.28",
     "@newrelic/native-metrics": "^4.1.0",
+    "glob": "^7.0.0",
     "ip6addr": "^0.2.2",
     "micro": "^9.3.4",
     "newrelic": "^5.9.1"
