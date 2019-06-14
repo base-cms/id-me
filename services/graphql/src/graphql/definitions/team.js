@@ -14,6 +14,8 @@ type Team {
   id: String!
   name: String!
   description: String
+  # deprecated
+  ipAddresses: [String]
   cidrs: [String]
   domains: [String]
   accessLevels: [AccessLevel]

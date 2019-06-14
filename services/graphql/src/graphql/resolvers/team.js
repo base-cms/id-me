@@ -14,6 +14,13 @@ module.exports = {
       if (!isArray(cidrs) || !cidrs.length) return [];
       return cidrs.map(c => c.value).filter(c => c);
     },
+    /**
+     * @deprecated
+     */
+    ipAddresses: ({ cidrs }) => {
+      if (!isArray(cidrs) || !cidrs.length) return [];
+      return cidrs.map(c => c.value).filter(c => c);
+    },
   },
 
   Query: {
