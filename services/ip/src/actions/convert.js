@@ -2,7 +2,7 @@ const { parse } = require('ip6addr');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 
 const toIpv6 = (address) => {
-  const addr = address.kind ? address : parse(address);
+  const addr = parse(address);
   try {
     return addr.toString({ format: 'v4-mapped' });
   } catch (e) {
