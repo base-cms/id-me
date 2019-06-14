@@ -17,7 +17,7 @@ const cidrSchema = new Schema({
   v6: String,
 });
 
-cidrSchema.post('validate', async function setCIDRValues() {
+cidrSchema.pre('save', async function setCIDRValues() {
   const cidr = await ipService.request('cidr', { address: this.value });
   const { min, max } = await ipService.request('range', { cidr });
   this.v6 = cidr;
