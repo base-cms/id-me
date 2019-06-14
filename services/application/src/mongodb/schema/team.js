@@ -9,7 +9,7 @@ const cidrSchema = new Schema({
     required: true,
     validate: {
       validator: address => ipService.request('validate', { address }),
-      message: 'Invalid CIDR notation {VALUE}',
+      message: 'Invalid IP Address or CIDR notation {VALUE}',
     },
   },
   min: Decimal128,
