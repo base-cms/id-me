@@ -8,7 +8,7 @@
       {{/link-to}}
       {{#each model as |team|}}
         {{#link-to "manage.orgs.view.apps.view.teams.edit" team.id class="list-group-item list-group-item-action"}}
-          {{ team.name }}
+          <img alt="team avatar" src={{team.photoURL}} class="icon icon-md mr-1"> {{ team.name }}
           <small class="text-muted">{{team.description}}</small>
         {{/link-to}}
       {{/each}}

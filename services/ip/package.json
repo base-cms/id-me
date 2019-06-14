@@ -1,0 +1,29 @@
+{
+  "name": "@base-cms/id-me-ip-service",
+  "version": "0.2.0",
+  "description": "The IdentityX ip service.",
+  "main": "src/index.js",
+  "author": "Josh Worden <josh@limit0.io>",
+  "repository": "https://github.com/base-cms/id-me/tree/master/services/ip",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "micro-dev",
+    "test": "./node_modules/.bin/eslint ."
+  },
+  "dependencies": {
+    "@base-cms/env": "^0.9.25",
+    "@base-cms/micro": "^0.9.28",
+    "@newrelic/native-metrics": "^4.1.0",
+    "ip6addr": "^0.2.2",
+    "micro": "^9.3.4",
+    "newrelic": "^5.9.1"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "glob": "^7.0.0",
+    "micro-dev": "^3.0.0"
+  }
+}
