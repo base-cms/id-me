@@ -14,7 +14,7 @@ type Team {
   id: String!
   name: String!
   description: String
-  ipAddresses: [String]
+  cidrs: [String]
   domains: [String]
   accessLevels: [AccessLevel]
   photoURL: String
@@ -23,7 +23,7 @@ type Team {
 input CreateTeamMutationInput {
   name: String!
   description: String
-  ipAddresses: [String!] = []
+  cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
 }

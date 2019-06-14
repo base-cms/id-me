@@ -10,6 +10,10 @@ module.exports = {
       const query = { _id: { $in: accessLevelIds } };
       return applicationService.request('access-level.find', { query });
     },
+    cidrs: ({ cidrs }) => {
+      if (!isArray(cidrs) || !cidrs.length) return [];
+      return cidrs.map(c => c.value).filter(c => c);
+    },
   },
 
   Query: {
@@ -28,9 +32,13 @@ module.exports = {
      */
     createTeam: (_, { input }, { app }) => {
       const applicationId = app.getId();
+      const { cidrs } = input;
       return applicationService.request('team.create', {
         applicationId,
-        payload: input,
+        payload: {
+          ...input,
+          cidrs: isArray(cidrs) ? cidrs.map(value => ({ value })) : [],
+        },
       });
     },
   },
