@@ -1,6 +1,6 @@
-<BsModal @show={{true}} @size="large" @onHidden={{action "clear"}} as |modal|>
+<BsModal @show={{true}} @size="large" @onClose={{action "returnToOrgList"}} as |modal|>
 
-  <form {{action "create" on="submit"}}>
+  <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}
       <h2 class="modal-title">Create Organization</h2>
       <button
