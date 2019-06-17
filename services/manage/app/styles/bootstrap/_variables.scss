@@ -186,5 +186,10 @@ $alert-bg-level:                    -2;
 $alert-border-level:                -2;
 $alert-color-level:                 0;
 
+// Modals
+//
+$modal-content-border-width:        0;
+$modal-backdrop-opacity:            .45;
+
 // Import default vars...
 @import "node_modules/bootstrap/scss/variables";
