@@ -21,7 +21,7 @@ module.exports = async ({
   try {
     const user = new AppUser({ ...payload, applicationId, email });
     await user.validate();
-    await AppUser.update({ email }, { $setOnInsert: user }, { upsert: true });
+    await AppUser.updateOne({ email, applicationId }, { $setOnInsert: user }, { upsert: true });
     return findByEmail({ applicationId, email, fields });
   } catch (e) {
     throw handleError(createError, e);
