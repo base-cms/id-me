@@ -1,19 +1,27 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <h2 class="card-title">Users</h2>
-    <p class="card-text">Manage your applications's users.</p>
-    <div class="list-group mb-3">
-      {{#link-to "manage.orgs.view.apps.view.users.create" class="list-group-item list-group-item-action"}}
-        {{entypo-icon "circle-with-plus" class="text-success"}} New user
-      {{/link-to}}
-      {{#each model as |user|}}
-        {{#link-to "manage.orgs.view.apps.view.users.edit" user.id class="list-group-item list-group-item-action"}}
-          {{ user.givenName }} {{ user.familyName }}
-          <small class="text-muted">{{user.email}}</small>
+<h1 class="mb-4">Users</h1>
+
+<div class="row">
+  {{#each model as |user|}}
+    <ListCard>
+      <div class="card-body">
+        <h2 class="card-title">{{user.givenName}} {{user.familyName}}</h2>
+        <p class="card-text">{{user.email}}</p>
+      </div>
+      <div class="card-footer">
+        {{#link-to "manage.orgs.view.apps.view.users.edit" user.id class="btn btn-secondary" role="button"}}
+          {{entypo-icon "cog" class="mr-1"}} Edit
         {{/link-to}}
-      {{/each}}
+      </div>
+    </ListCard>
+  {{else}}
+    <div class="col">
+      <p>No users have been created.</p>
     </div>
-  </div>
+  {{/each}}
 </div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.view.apps.view.users.create" @title="Create New User" />
+</aside>
 
 {{outlet}}
