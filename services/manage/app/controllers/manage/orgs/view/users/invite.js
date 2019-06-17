@@ -35,6 +35,10 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
       }
     },
 
+    setRole(role) {
+      this.set('model.role', role);
+    },
+
     returnToList() {
       return this.transitionToRoute('manage.orgs.view.users');
     },
