@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="team.description">Description</label>
+            <FormElements::Label @for="team.description">Description</FormElements::Label>
             <Textarea @id="team.description" @class="form-control" @value={{model.description}} @rows={{3}} />
           </div>
         </div>
