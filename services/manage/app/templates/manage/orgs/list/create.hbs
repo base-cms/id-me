@@ -1,4 +1,4 @@
-<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
+<BsModal @show={{true}} @size="large" @onHidden={{action "clear"}} as |modal|>
 
   <form {{action "create" on="submit"}}>
     {{#modal.header}}
@@ -17,38 +17,23 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="name">Name</label>
-            {{input
-              type="text"
-              autofocus=true
-              required=true
-              class="form-control"
-              value=model.name
-            }}
+            <label for="org.name">Name</label>
+            <Input @id="org.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{model.name}} />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="description">Description</label>
-            {{input
-              type="text"
-              autofocus=true
-              class="form-control"
-              value=model.description
-            }}
+            <label for="org.description">Description</label>
+            <Textarea @id="org.description" @class="form-control" @value={{model.description}} @rows={{3}} />
           </div>
         </div>
       </div>
     {{/modal.body}}
 
     {{#modal.footer}}
-      {{form-elements/submit-button
-        class="btn btn-success"
-        disabled=isActionRunning
-        isSaving=isActionRunning
-      }}
+      <FormElements::SubmitButton @class="btn btn-success" @disabled={{isActionRunning}} @isSaving={{isActionRunning}} />
     {{/modal.footer}}
   </form>
 </BsModal>
