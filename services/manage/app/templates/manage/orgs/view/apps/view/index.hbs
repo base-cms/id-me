@@ -1,12 +1,36 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <div class="row">
-      <div class="col">
-        <h1>{{model.name}}</h1>
-        <small class="text-muted">
-          {{model.description}}
-        </small>
+<h1 class="mb-4">{{model.name}}</h1>
+
+<div class="row">
+  <ListCard>
+    {{#link-to "manage.orgs.view.apps.view.access-levels"}}
+      <div class="card-body">
+        <h2 class="card-title"><AccessLevel::Icon /> Access Levels</h2>
+        <p class="card-text">
+          Manage access levels for content gating. These can be applied to your app's users and teams.
+        </p>
       </div>
-    </div>
-  </div>
+    {{/link-to}}
+  </ListCard>
+
+  <ListCard>
+    {{#link-to "manage.orgs.view.apps.view.teams"}}
+      <div class="card-body">
+        <h2 class="card-title"><Team::Icon /> Teams</h2>
+        <p class="card-text">
+          Manage your app's teams. Teams allow access for users based on direct membership, email address domain, or an accessing IP address.
+        </p>
+      </div>
+    {{/link-to}}
+  </ListCard>
+
+  <ListCard>
+    {{#link-to "manage.orgs.view.apps.view.users"}}
+      <div class="card-body">
+        <h2 class="card-title"><AppUser::Icon /> Users</h2>
+        <p class="card-text">
+          Manage your app's users. Create new users or modify an existing user's teams and/or access levels.
+        </p>
+      </div>
+    {{/link-to}}
+  </ListCard>
 </div>
