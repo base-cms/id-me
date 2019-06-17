@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('orgs', function() {
       this.route('list', { path: '/' }, function() {
         this.route('create');
+        this.route('edit', { path: '/edit/:org_id' });
       });
       this.route('view', { path: ':org_id' }, function() {
         this.route('users', function() {
