@@ -1,9 +1,11 @@
 <a class="nav-link dropdown-toggle {{active}}" data-toggle="dropdown" href="#" role="button">
-  {{#if context.app.name}}
-    {{context.app.name}}
-  {{else}}
-    Select Application
-  {{/if}}
+  <NavBar::Item @icon="browser">
+    {{#if context.app.name}}
+      {{context.app.name}}
+    {{else}}
+      Select Application
+    {{/if}}
+  </NavBar::Item>
 </a>
 
 <div class="dropdown-menu">
