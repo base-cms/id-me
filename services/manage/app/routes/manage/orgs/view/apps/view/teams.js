@@ -9,6 +9,8 @@ const query = gql`
       name
       description
       photoURL
+      cidrs
+      domains
     }
   }
 `;
