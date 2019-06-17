@@ -1,4 +1,4 @@
-<BsModal @show={{true}} @size="large" @onClose={{action "returnToList"}} as |modal|>
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
 
   <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}
@@ -27,6 +27,28 @@
           <div class="form-group">
             <FormElements::Label @for="team.description">Description</FormElements::Label>
             <Textarea @id="team.description" @class="form-control" @value={{model.description}} @rows={{3}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group mb-3 mb-lg-0">
+            <FormElements::Label @for="team.domains">Email Domains</FormElements::Label>
+            <Textarea @id="team.domains" @value={{model.domains}} @class="form-control" />
+            <small id="signup-orgname-help" class="form-text text-muted">
+              {{entypo-icon "info-with-circle" class="text-info"}}
+              Enter each domain name on a new line.
+            </small>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mb-0">
+            <FormElements::Label @for="team.cidrs">IP Addresses / CIDRs</FormElements::Label>
+            <Textarea @id="team.cidrs" @value={{model.cidrs}} @class="form-control" />
+            <small id="signup-orgname-help" class="form-text text-muted">
+              {{entypo-icon "info-with-circle" class="text-info"}}
+              Enter each IP Address or CIDR on a new line.
+            </small>
           </div>
         </div>
       </div>
