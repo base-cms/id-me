@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
 import gql from 'graphql-tag';
+import { inject } from '@ember/service';
 
 const mutation = gql`
   mutation AppUserCreate($input: CreateAppUserMutationInput!) {
@@ -15,8 +16,10 @@ const mutation = gql`
 `;
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
+  errorNotifier: inject(),
+
   actions: {
-    async create() {
+    async create(closeModal) {
       try {
         this.startAction();
         const { givenName, familyName, email } = this.get('model');
@@ -24,17 +27,16 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         const variables = { input };
         const refetchQueries = ['AppUsers'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createAppUser');
-        this.transitionToRoute('manage.orgs.view.apps.view.users');
+        await closeModal();
       } catch (e) {
-        this.get('graphErrors').show(e)
+        this.errorNotifier.show(e)
       } finally {
         this.endAction();
       }
     },
 
-    clear() {
-      this.set('model', {});
-      this.transitionToRoute('manage.orgs.view.apps.view.users');
+    returnToList() {
+      return this.transitionToRoute('manage.orgs.view.apps.view.users');
     },
   }
 })

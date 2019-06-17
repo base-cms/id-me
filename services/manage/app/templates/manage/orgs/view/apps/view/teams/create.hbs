@@ -1,8 +1,8 @@
-<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
+<BsModal @show={{true}} @size="large" @onClose={{action "returnToList"}} as |modal|>
 
-  <form {{action "create" on="submit"}}>
+  <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}
-      <h5 class="modal-title">Create a team</h5>
+      <h2 class="modal-title">Create Team</h2>
       <button
         type="button"
         class="close"
@@ -17,39 +17,23 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="name">Name</label>
-            {{input
-              type="text"
-              autofocus=true
-              required=true
-              class="form-control"
-              value=model.name
-            }}
+            <label for="team.name">Name</label>
+            <Input @id="team.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{model.name}} />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="description">Description</label>
-            {{input
-              type="text"
-              autofocus=true
-              class="form-control"
-              value=model.description
-            }}
+            <label for="team.description">Description</label>
+            <Textarea @id="team.description" @class="form-control" @value={{model.description}} @rows={{3}} />
           </div>
         </div>
       </div>
     {{/modal.body}}
 
     {{#modal.footer}}
-      {{form-elements/submit-button
-        class="btn btn-success"
-        disabled=isActionRunning
-        isSaving=isActionRunning
-      }}
+      <FormElements::SubmitButton @class="btn btn-success" @disabled={{isActionRunning}} @isSaving={{isActionRunning}} />
     {{/modal.footer}}
-    {{progress-bar show=isActionRunning}}
   </form>
 </BsModal>
