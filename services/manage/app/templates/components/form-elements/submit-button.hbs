@@ -5,8 +5,8 @@
   disabled=_disabled
 }}
   {{#if isSaving}}
-    {{entypo-icon "hour-glass" class="d-inline-block spin mr-1"}} Saving...
+    {{entypo-icon "hour-glass" class="d-inline-block spin mr-1"}} {{onSavingLabel}}
   {{else}}
-    {{entypo-icon "save" class="mr-1"}} Save
+    {{#if icon}}{{entypo-icon icon class="mr-1"}} {{/if}}{{label}}
   {{/if}}
 {{/form-elements/button}}
