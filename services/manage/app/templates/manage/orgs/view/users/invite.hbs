@@ -1,8 +1,8 @@
-<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
+<BsModal @show={{true}} @onClose={{action "returnToList"}} as |modal|>
 
-  <form {{action "create" on="submit"}}>
+  <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}
-      <h5 class="modal-title">Send an invitation</h5>
+      <h2 class="modal-title">Invite User to Organization</h2>
       <button
         type="button"
         class="close"
@@ -17,18 +17,12 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="name">Email Address</label>
-            {{input
-              type="email"
-              autocomplete="username email"
-              autofocus=true
-              class="form-control"
-              value=model.email
-            }}
+            <label for="invite.email">Email Address</label>
+            <Input @id="invite.email" @type="email" @required={{true}} @value={{model.email}} @class="form-control" />
           </div>
         </div>
       </div>
-      <div class="row">
+      {{!-- <div class="row">
         <div class="col">
           <div class="form-group">
             <label for="user-role">Role</label>
@@ -37,16 +31,11 @@
             {{/power-select}}
           </div>
         </div>
-      </div>
+      </div> --}}
     {{/modal.body}}
 
     {{#modal.footer}}
-      {{form-elements/submit-button
-        class="btn btn-success"
-        disabled=isActionRunning
-        isSaving=isActionRunning
-      }}
+      <FormElements::SubmitButton @class="btn btn-success" @disabled={{isActionRunning}} @isSaving={{isActionRunning}} />
     {{/modal.footer}}
-    {{progress-bar show=isActionRunning}}
   </form>
 </BsModal>
