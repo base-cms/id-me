@@ -2,9 +2,11 @@ import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import { get } from '@ember/object';
+import { inject } from '@ember/service';
 
 export default Route.extend(ApplicationRouteMixin, ActionMixin, {
   routeAfterAuthentication: 'manage',
+  errorNotifier: inject(),
 
   actions: {
     showLoading() {
@@ -41,8 +43,8 @@ export default Route.extend(ApplicationRouteMixin, ActionMixin, {
      * @param {Error} e
      */
     error(e) {
-      if (this.get('graphErrors').isReady()) {
-        this.get('graphErrors').show(e);
+      if (this.errorNotifier.isReady()) {
+        this.errorNotifier.show(e);
       } else {
         this.intermediateTransitionTo('application_error', e);
       }
