@@ -11,6 +11,7 @@ const query = gql`
       organization {
         id
         name
+        description
         photoURL
       }
       role
