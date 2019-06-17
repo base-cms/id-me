@@ -51,7 +51,7 @@ module.exports = async ({
   `;
   await mailerService.request('send', {
     to: user.email,
-    from: `${app.name} <noreply@base-cms.io>`,
+    from: `${app.name} <noreply@identity-x.base-cms.io>`,
     subject: 'Your personal login link',
     html,
   });
