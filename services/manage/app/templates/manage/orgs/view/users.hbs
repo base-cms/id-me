@@ -1,17 +1,16 @@
+{{!-- template-lint-disable table-groups --}}
 <h1 class="mb-4">Users &amp; Invitations</h1>
 
 <div class="card">
   <div class="card-body">
     <h2 class="card-title">Users</h2>
-
-    <div class="table-responsive mb-4">
+    <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
             <th scope="col">Email</th>
+            <th scope="col">Role</th>
             <th scope="col">Joined</th>
             <th scope="col"></th>
           </tr>
@@ -24,9 +23,8 @@
                   <img alt="User Avatar" src={{membership.user.photoURL}} class="icon icon-md">
                 {{/if}}
               </td>
-              <td class="align-middle">{{membership.user.givenName}} {{membership.user.familyName}}</td>
-              <td class="align-middle">{{membership.role}}</td>
               <td class="align-middle">{{membership.user.email}}</td>
+              <td class="align-middle">{{membership.role}}</td>
               <td class="align-middle">
                 {{#if membership.createdAt}}
                   {{moment-format membership.createdAt "MMM Do, YYYY"}}
@@ -44,19 +42,14 @@
             </tr>
           {{/each}}
         </tbody>
-      </table>
-    </div>
 
-    <h2 class="card-title">Invitations</h2>
+        <h2 class="card-title my-4">Invitations</h2>
 
-    <div class="table-responsive">
-      <table class="table">
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
+            <th scope="col">Email</th>
             <th scole="col">Role</th>
-            <th scole="col">Email</th>
             <th scole="col">Invited</th>
             <th scole="col"></th>
           </tr>
@@ -69,9 +62,8 @@
                   <img alt="User Avatar" src={{invitation.user.photoURL}} class="icon icon-md">
                 {{/if}}
               </td>
-              <td class="align-middle">{{invitation.user.givenName}} {{invitation.user.familyName}}</td>
-              <td class="align-middle">{{invitation.role}}</td>
               <td class="align-middle">{{invitation.user.email}}</td>
+              <td class="align-middle">{{invitation.role}}</td>
               <td class="align-middle">
                 {{#if invitation.createdAt}}
                   {{moment-format invitation.createdAt "MMM Do, YYYY"}}
