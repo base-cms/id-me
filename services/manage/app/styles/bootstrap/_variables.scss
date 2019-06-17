@@ -47,6 +47,16 @@ $yiq-contrasted-threshold:          200;
 $enable-shadows:                    true;
 $enable-gradients:                  true;
 
+// Spacing
+//
+$spacer: 1rem !default;
+$spacers: (
+  6: ($spacer * 4.5),
+  7: ($spacer * 6),
+  8: ($spacer * 8),
+  9: ($spacer * 10)
+);
+
 // Body
 //
 $body-bg:                           #f8f9fe;
