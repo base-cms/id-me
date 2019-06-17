@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import { RouteQueryManager } from 'ember-apollo-client';
 import { inject } from '@ember/service';
 import gql from 'graphql-tag';
+import { on } from '@ember/object/evented';
 
 const query = gql`
   query Org {
@@ -20,6 +21,10 @@ const query = gql`
 
 export default Route.extend(RouteQueryManager, {
   contextService: inject('context'),
+
+  resetContext: on('deactivate', function() {
+    this.get('contextService').set('orgAppQuery', {});
+  }),
 
   async model({ org_id: id }) {
     const context = { orgId: id };

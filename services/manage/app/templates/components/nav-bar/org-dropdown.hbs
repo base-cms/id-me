@@ -10,7 +10,7 @@
 
 <div class="dropdown-menu">
   {{#each orgs as |org|}}
-    {{#link-to "manage.orgs.view" org.id class="dropdown-item dropdown-item"}}
+    {{#link-to "manage.orgs.view.apps" org.id class="dropdown-item dropdown-item"}}
       {{org.name}}
     {{/link-to}}
   {{/each}}

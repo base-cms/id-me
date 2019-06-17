@@ -11,12 +11,12 @@
           {{/if}}
         </div>
         <div class="card-footer d-flex justify-content-between">
-          {{#link-to "manage.orgs.view" org.id class="btn btn-primary" role="button"}}
+          {{#link-to "manage.orgs.view.apps" org.id class="btn btn-primary" role="button"}}
             {{entypo-icon "popup" class="mr-1"}} Manage
           {{/link-to}}
-          {{#link-to "manage.orgs.list.edit" org.id class="btn btn-secondary" role="button"}}
+          {{!-- {{#link-to "manage.orgs.list.edit" org.id class="btn btn-secondary" role="button"}}
             {{entypo-icon "cog" class="mr-1"}} Edit
-          {{/link-to}}
+          {{/link-to}} --}}
         </div>
       </ListCard>
     {{/with}}

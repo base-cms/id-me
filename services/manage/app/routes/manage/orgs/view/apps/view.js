@@ -1,6 +1,8 @@
 import Route from '@ember/routing/route';
-import { RouteQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
+import { RouteQueryManager } from 'ember-apollo-client';
+import { inject } from '@ember/service';
+import { on } from '@ember/object/evented';
 
 const query = gql`
   query OrgApp {
@@ -13,8 +15,16 @@ const query = gql`
 `;
 
 export default Route.extend(RouteQueryManager, {
-  model({ app_id: id }) {
+  contextService: inject('context'),
+
+  resetContext: on('deactivate', function() {
+    this.get('contextService').set('app', {});
+  }),
+
+  async model({ app_id: id }) {
     const context = { appId: id };
-    return this.apollo.watchQuery({ query, context }, 'activeApplication');
+    const app = await this.apollo.watchQuery({ query, context }, 'activeApplication');
+    this.get('contextService').set('app', app);
+    return app;
   },
 });

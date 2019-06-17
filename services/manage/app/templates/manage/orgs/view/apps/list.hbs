@@ -1,19 +1,28 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <h2 class="card-title">Applications</h2>
-    <p class="card-text">Manage your organizations's applications.</p>
-    <div class="list-group mb-3">
-      {{#link-to "manage.orgs.view.apps.list.create" class="list-group-item list-group-item-action"}}
-        {{entypo-icon "circle-with-plus" class="text-success"}} New application
-      {{/link-to}}
-      {{#each model as |app|}}
-        {{#link-to "manage.orgs.view.apps.view" app.id class="list-group-item list-group-item-action"}}
-          {{ app.name }}
-          <small class="text-muted">{{app.description}}</small>
+<h1 class="mb-4">Applications</h1>
+
+<div class="row">
+  {{#each model as |app|}}
+    <ListCard>
+      <div class="card-body">
+        <h2 class="card-title">{{app.name}}</h2>
+        {{#if app.description}}
+          <p class="card-text">{{app.description}}</p>
+        {{/if}}
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        {{#link-to "manage.orgs.view.apps.view" app.id class="btn btn-primary" role="button"}}
+          {{entypo-icon "popup" class="mr-1"}} Manage
         {{/link-to}}
-      {{/each}}
-    </div>
-  </div>
+        {{!-- {{#link-to "manage.orgs.list.edit" org.id class="btn btn-secondary" role="button"}}
+          {{entypo-icon "cog" class="mr-1"}} Edit
+        {{/link-to}} --}}
+      </div>
+    </ListCard>
+  {{/each}}
 </div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.view.apps.list.create" @title="Create New Application" />
+</aside>
 
 {{outlet}}
