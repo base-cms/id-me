@@ -49,6 +49,12 @@
 	font-size: .875rem;
 }
 
+.custom-select {
+	&:focus {
+		background-color: $input-focus-bg;
+	}
+}
+
 .input-group {
 	.form-control {
     transition: none;

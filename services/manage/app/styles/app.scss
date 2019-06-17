@@ -13,6 +13,13 @@ body {
   }
 }
 
+// Fix issue with double select dropdown icons.
+// @todo Remove once autoprefixer is enabled.
+.custom-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
 // The notifications container.
 .notifications {
   position: fixed;
