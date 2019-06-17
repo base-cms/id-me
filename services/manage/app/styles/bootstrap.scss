@@ -39,6 +39,12 @@
 	font-family: $font-family-serif;
 }
 
+.close {
+	&:focus {
+		outline: none;
+	}
+}
+
 .form-text {
 	font-size: .875rem;
 }
