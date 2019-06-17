@@ -3,6 +3,7 @@
 // Bootstrap theme
 @import "bootstrap";
 @import "ember-power-select";
+@import "buttons";
 
 body {
   .transitioning {
@@ -72,6 +73,20 @@ body {
 
   &--secondary {
     background-color: $white;
+  }
+}
+
+.footer-controls {
+  position: fixed;
+  bottom: 1.5rem;
+  z-index: 110;
+
+  &.left {
+    left: 1.5rem;
+  }
+
+  &.right {
+    right: 1.5rem;
   }
 }
 
