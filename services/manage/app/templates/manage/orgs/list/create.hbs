@@ -2,7 +2,7 @@
 
   <form {{action "create" on="submit"}}>
     {{#modal.header}}
-      <h5 class="modal-title">Create an organization</h5>
+      <h2 class="modal-title">Create Organization</h2>
       <button
         type="button"
         class="close"
@@ -50,6 +50,5 @@
         isSaving=isActionRunning
       }}
     {{/modal.footer}}
-    {{progress-bar show=isActionRunning}}
   </form>
 </BsModal>
