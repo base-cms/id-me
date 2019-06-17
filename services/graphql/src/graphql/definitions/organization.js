@@ -30,6 +30,7 @@ type OrganizationMembership {
   user: User!
   organization: Organization!
   role: OrganizationRole!
+  createdAt: Date
 }
 
 type OrganizationInvitation {
@@ -37,6 +38,7 @@ type OrganizationInvitation {
   user: User!
   organization: Organization!
   role: OrganizationRole!
+  createdAt: Date
 }
 
 input OrganizationQueryInput {
