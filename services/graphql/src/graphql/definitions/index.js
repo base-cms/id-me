@@ -30,6 +30,13 @@ enum AuthorizationType {
   AppUser
 }
 
+enum MatchPosition {
+  contains
+  starts
+  ends
+  exact
+}
+
 type Query {
   ping: String!
 }

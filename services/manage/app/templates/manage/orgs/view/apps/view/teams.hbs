@@ -1,19 +1,17 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <h2 class="card-title">Teams</h2>
-    <p class="card-text">Manage your applications's teams.</p>
-    <div class="list-group mb-3">
-      {{#link-to "manage.orgs.view.apps.view.teams.create" class="list-group-item list-group-item-action"}}
-        {{entypo-icon "circle-with-plus" class="text-success"}} New team
-      {{/link-to}}
-      {{#each model as |team|}}
-        {{#link-to "manage.orgs.view.apps.view.teams.edit" team.id class="list-group-item list-group-item-action"}}
-          <img alt="team avatar" src={{team.photoURL}} class="icon icon-md mr-1"> {{ team.name }}
-          <small class="text-muted">{{team.description}}</small>
-        {{/link-to}}
-      {{/each}}
+<h1 class="mb-4"><Team::Icon /> Teams</h1>
+
+<div class="row">
+  {{#each model as |team|}}
+    <Team::Card @team={{team}} />
+  {{else}}
+    <div class="col">
+      <p>No teams have been created.</p>
     </div>
-  </div>
+  {{/each}}
 </div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.view.apps.view.teams.create" @title="Create New Team" />
+</aside>
 
 {{outlet}}

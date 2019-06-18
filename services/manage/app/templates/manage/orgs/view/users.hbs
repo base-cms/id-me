@@ -1,84 +1,100 @@
-<div class="card mb-3">
+{{!-- template-lint-disable table-groups --}}
+<h1 class="mb-4">Users &amp; Invitations</h1>
+
+<div class="card">
   <div class="card-body">
     <h2 class="card-title">Users</h2>
-    <p class="card-text">Manage your organization's users.</p>
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
-            <th scope="col">Role</th>
             <th scope="col">Email</th>
+            <th scope="col">Role</th>
             <th scope="col">Joined</th>
             <th scope="col"></th>
-            {{!-- <th scope="col" class="text-center text-info">{{entypo-icon "cog"}}</th> --}}
           </tr>
         </thead>
         <tbody>
           {{#each model.organizationUsers as |membership|}}
             <tr>
-              <td><img  alt="user avatar" src={{membership.user.photoURL}} class="icon icon-md md-3"></td>
-              <td class="align-middle">{{membership.user.givenName}} {{membership.user.familyName}}</td>
-              <td class="align-middle">{{membership.role}}</td>
+              <td>
+                {{#if membership.user.photoURL}}
+                  <img alt="User Avatar" src={{membership.user.photoURL}} class="icon icon-md">
+                {{/if}}
+              </td>
               <td class="align-middle">{{membership.user.email}}</td>
-              <td title={{membership.createdAt}}>{{membership.createdAt}}</td>
-              <th class="align-middle text-center">
+              <td class="align-middle">{{membership.role}}</td>
+              <td class="align-middle">
+                {{#if membership.createdAt}}
+                  {{moment-format membership.createdAt "MMM Do, YYYY"}}
+                {{/if}}
+              </td>
+              <td class="align-middle text-center">
                 <a class="dropdown-toggle btn btn-primary" title="Modify User" data-toggle="dropdown" href="#" role="button">
                   {{entypo-icon "cog"}}
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
-                  {{!-- <a href="#" class="dropdown-item" {{action "showChangeRoleModal" membership}}>Change role</a>
-                  <a href="#" class="dropdown-item" {{action "showRemoveModal" membership}}>Remove member</a> --}}
+                  <a href="#" class="dropdown-item">Change Role</a>
+                  <a href="#" class="dropdown-item">Remove From Org</a>
                 </div>
-              </th>
+              </td>
             </tr>
           {{/each}}
         </tbody>
-      </table>
-    </div>
-  </div>
-</div>
 
-<div class="card">
-  <div class="card-body">
-    <h2 class="card-title">Invitations</h2>
-    <p class="card-text">Manage your organization's pending invitations.</p>
-    <div class="table-responsive">
-      <table class="table">
+        <h2 class="card-title my-4">Invitations</h2>
+
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">Name</th>
+            <th scope="col">Email</th>
             <th scole="col">Role</th>
-            <th scole="col">Email</th>
             <th scole="col">Invited</th>
             <th scole="col"></th>
-            {{!-- <th scope="col" class="text-center text-info">{{entypo-icon "cog"}}</th> --}}
           </tr>
         </thead>
         <tbody>
           {{#each model.organizationInvitations as |invitation|}}
             <tr>
-              <th scope="row"><img alt="user avatar" src={{invitation.user.photoURL}} class="icon icon-md md-3"></th>
-              <td class="align-middle">{{invitation.user.givenName}} {{invitation.user.familyName}}</td>
-              <td class="align-middle">{{invitation.role}}</td>
+              <td>
+                {{#if invitation.user.photoURL}}
+                  <img alt="User Avatar" src={{invitation.user.photoURL}} class="icon icon-md">
+                {{/if}}
+              </td>
               <td class="align-middle">{{invitation.user.email}}</td>
-              <td title={{invitation.createdAt}}>{{invitation.createdAt}}</td>
-              <th class="align-middle text-center">
-                <button class="btn btn-danger" type="button" {{action "removeInvitation" invitation.user.email}}>
-                  {{entypo-icon "trash"}}
-                </button>
-              </th>
+              <td class="align-middle">{{invitation.role}}</td>
+              <td class="align-middle">
+                {{#if invitation.createdAt}}
+                  {{moment-format invitation.createdAt "MMM Do, YYYY"}}
+                {{/if}}
+              </td>
+              <td class="align-middle text-center">
+                <a class="dropdown-toggle btn btn-primary" title="Modify User" data-toggle="dropdown" href="#" role="button">
+                  {{entypo-icon "cog"}}
+                </a>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a href="#" class="dropdown-item">Edit</a>
+                  <a href="#" class="dropdown-item">Remove</a>
+                </div>
+              </td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan="7" class="text-center text-muted">
+                No pending invitations were found.
+              </td>
             </tr>
           {{/each}}
         </tbody>
       </table>
     </div>
-    {{#link-to "manage.orgs.view.users.invite"}}
-      {{entypo-icon "circle-with-plus" class="text-success"}} Invite a user
-    {{/link-to}}
+
   </div>
 </div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.view.users.invite" @title="Invite a User" />
+</aside>
 
 {{outlet}}

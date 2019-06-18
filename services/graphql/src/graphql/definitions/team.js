@@ -3,11 +3,13 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  team(input: TeamQueryInput!): Team
   teams: [Team] @requiresApp
 }
 
 extend type Mutation {
   createTeam(input: CreateTeamMutationInput!): Team! @requiresAppRole(roles: [Owner, Administrator, Member])
+  updateTeam(input: UpdateTeamMutationInput!): Team! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 type Team {
@@ -28,6 +30,23 @@ input CreateTeamMutationInput {
   cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
+}
+
+input UpdateTeamPayloadInput {
+  name: String!
+  description: String
+  cidrs: [String!] = []
+  domains: [String!] = []
+  accessLevelIds: [String!] = []
+}
+
+input UpdateTeamMutationInput {
+  id: String!
+  payload: UpdateTeamPayloadInput!
+}
+
+input TeamQueryInput {
+  id: String!
 }
 
 `;

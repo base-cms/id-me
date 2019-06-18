@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
 import gql from 'graphql-tag';
+import { inject } from '@ember/service';
 
 const mutation = gql`
   mutation OrgUserInvite($input: InviteUserToOrgMutationInput!) {
@@ -10,7 +11,7 @@ const mutation = gql`
 `;
 
 export default Controller.extend(ActionMixin, OrgQueryMixin, {
-  role: 'Member',
+  errorNotifier: inject(),
 
   init() {
     this._super(...arguments);
@@ -18,7 +19,7 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
   },
 
   actions: {
-    async create() {
+    async create(closeModal) {
       try {
         this.startAction();
         const { email, role } = this.get('model');
@@ -26,17 +27,20 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
         const variables = { input };
         const refetchQueries = ['OrgUsers'];
         await this.mutate({ mutation, variables, refetchQueries }, 'inviteUserToOrg');
-        await this.transitionToRoute('manage.orgs.view.users');
+        await closeModal();
       } catch (e) {
-        this.get('graphErrors').show(e)
+        this.errorNotifier.show(e)
       } finally {
         this.endAction();
       }
     },
 
-    async clear() {
-      this.set('model', {});
-      await this.transitionToRoute('manage.orgs.view.users');
+    setRole(role) {
+      this.set('model.role', role);
+    },
+
+    returnToList() {
+      return this.transitionToRoute('manage.orgs.view.users');
     },
   }
 })

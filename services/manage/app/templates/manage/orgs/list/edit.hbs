@@ -1,0 +1,39 @@
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+
+  <form {{action "update" on="submit"}}>
+    {{#modal.header}}
+      <h2 class="modal-title">Edit Organization</h2>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="org.name">Name</label>
+            <Input @id="org.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{model.name}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="org.description">Description</label>
+            <Textarea @id="org.description" @class="form-control" @value={{model.description}} @rows={{3}} />
+          </div>
+        </div>
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      <FormElements::SubmitButton @class="btn btn-success" @disabled={{isActionRunning}} @isSaving={{isActionRunning}} />
+    {{/modal.footer}}
+  </form>
+</BsModal>

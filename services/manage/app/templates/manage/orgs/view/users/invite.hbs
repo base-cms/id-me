@@ -1,8 +1,8 @@
-<BsModal @show={{true}} @onHidden={{action "clear"}} as |modal|>
+<BsModal @show={{true}} @onClose={{action "returnToList"}} as |modal|>
 
-  <form {{action "create" on="submit"}}>
+  <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}
-      <h5 class="modal-title">Send an invitation</h5>
+      <h2 class="modal-title">Invite User to Organization</h2>
       <button
         type="button"
         class="close"
@@ -17,36 +17,27 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
-            <label for="name">Email Address</label>
-            {{input
-              type="email"
-              autocomplete="username email"
-              autofocus=true
-              class="form-control"
-              value=model.email
-            }}
+            <FormElements::Label @for="invite.email" @required={{true}}>Email Address</FormElements::Label>
+            <Input @id="invite.email" @type="email" @required={{true}} @value={{model.email}} @class="form-control" />
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col">
-          <div class="form-group">
-            <label for="user-role">Role</label>
-            {{#power-select renderInPlace=true options=roles selected=role onchange=(action (mut role)) as |role|}}
-              {{ role }}
-            {{/power-select}}
+          <div class="form-group mb-0">
+            <FormElements::Label @for="invite.role" @required={{true}}>Role</FormElements::Label>
+            <FormElements::Select @id="invite.role" @required={{true}} @value={{model.role}} @on-change={{action "setRole"}} @class="custom-select" as |select|>
+              {{#each this.roles as |role|}}
+                <select.option @value={{role}}>{{role}}</select.option>
+              {{/each}}
+            </FormElements::Select>
           </div>
         </div>
       </div>
     {{/modal.body}}
 
     {{#modal.footer}}
-      {{form-elements/submit-button
-        class="btn btn-success"
-        disabled=isActionRunning
-        isSaving=isActionRunning
-      }}
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{isActionRunning}} @icon="paper-plane" @label="Send" @onSavingLabel="Sending..." />
     {{/modal.footer}}
-    {{progress-bar show=isActionRunning}}
   </form>
 </BsModal>

@@ -1,0 +1,13 @@
+<ListCard>
+  <div class="card-body">
+    <h2 class="card-title">{{this.accessLevel.name}}</h2>
+    {{#if this.accessLevel.description}}
+      <p class="card-text">{{this.accessLevel.description}}</p>
+    {{/if}}
+  </div>
+  <div class="card-footer">
+    {{#link-to "manage.orgs.view.apps.view.access-levels.edit" this.accessLevel.id class="btn btn-primary" role="button"}}
+      {{entypo-icon "edit" class="mr-1"}} Modify
+    {{/link-to}}
+  </div>
+</ListCard>

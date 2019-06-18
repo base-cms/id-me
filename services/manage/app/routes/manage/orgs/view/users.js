@@ -14,6 +14,7 @@ const query = gql`
         photoURL
       }
       role
+      createdAt
     }
     organizationInvitations {
       id
@@ -28,6 +29,7 @@ const query = gql`
         id
       }
       role
+      createdAt
     }
   }
 `;

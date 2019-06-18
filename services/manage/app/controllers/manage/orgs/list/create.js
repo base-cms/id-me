@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
 import gql from 'graphql-tag';
+import { inject } from '@ember/service';
 
 const mutation = gql`
   mutation OrgCreate($input: CreateOrganizationMutationInput!) {
@@ -15,8 +16,10 @@ const mutation = gql`
 `;
 
 export default Controller.extend(ActionMixin, OrgQueryMixin, {
+  errorNotifier: inject(),
+
   actions: {
-    async create() {
+    async create(closeModal) {
       try {
         this.startAction();
         const { name, description } = this.get('model');
@@ -24,17 +27,16 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
         const variables = { input };
         const refetchQueries = ['Orgs'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createOrganization');
-        await this.transitionToRoute('manage.orgs');
+        await closeModal();
       } catch (e) {
-        this.get('graphErrors').show(e)
+        this.errorNotifier.show(e)
       } finally {
         this.endAction();
       }
     },
 
-    async clear() {
-      this.set('model', {});
-      await this.transitionToRoute('manage.orgs');
+    returnToOrgList() {
+      return this.transitionToRoute('manage.orgs.list');
     },
   }
 })

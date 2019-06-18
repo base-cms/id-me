@@ -10,29 +10,32 @@ export default Service.extend({
     return app;
   }),
 
-  pathname: computed('router.currentURL', function() {
-    return this.router.currentURL || window.location.pathname;
-  }),
+  orgId: computed.reads('orgAppQuery.activeOrganization.id'),
 
-  orgId: computed('pathname', function() {
-    const matches = this.pathname.match(/^\/orgs\/([a-f0-9]{24})/);
-    return matches ? matches[1] : undefined;
-  }),
+  appId: computed.reads('app.id'),
 
-  appId: computed('pathname', function() {
-    const matches = this.pathname.match(/^\/orgs\/[a-f0-9]{24}\/apps\/([a-f0-9]{24})/);
-    return matches ? matches[1] : undefined;
-  }),
-
-  org: computed('orgId', 'orgs.[]', function() {
+  org: computed('orgId', function() {
     const orgId = this.get('orgId');
-    const orgs = this.get('orgs') || [];
-    return orgs.filter(({ id }) => id === orgId).reduce((_, org) => org, {});
+    return orgId ? this.get('orgAppQuery.activeOrganization') : {};
   }),
 
-  app: computed('appId', 'apps.[]', function() {
+  queryContextFor(scope, context) {
+    if (scope === 'org') return this.orgQueryContext(context);
+    if (scope === 'app') return this.appQueryContext(context);
+    return context;
+  },
+
+  appQueryContext(context) {
     const appId = this.get('appId');
-    const apps = this.get('apps') || [];
-    return apps.filter(({ id }) => id === appId).reduce((_, app) => app, {});
-  }),
+    return { ...context, appId };
+  },
+
+  orgQueryContext(context) {
+    const orgId = this.get('orgId');
+    return { ...context, orgId };
+  },
+
+  contextFromOptions(options) {
+    return options && options.context ? options.context : {};
+  },
 });

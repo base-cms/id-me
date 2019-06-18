@@ -47,6 +47,16 @@ $yiq-contrasted-threshold:          200;
 $enable-shadows:                    true;
 $enable-gradients:                  true;
 
+// Spacing
+//
+$spacer: 1rem !default;
+$spacers: (
+  6: ($spacer * 4.5),
+  7: ($spacer * 6),
+  8: ($spacer * 8),
+  9: ($spacer * 10)
+);
+
 // Body
 //
 $body-bg:                           #f8f9fe;
@@ -134,6 +144,8 @@ $input-group-addon-border-color:        $input-border-color;
 
 $form-text-margin-top:                  .375rem;
 
+$custom-select-box-shadow:              $input-box-shadow;
+
 // Dropdowns
 //
 $dropdown-min-width:                12rem;
@@ -185,6 +197,11 @@ $alert-padding-x:                   1.5rem;
 $alert-bg-level:                    -2;
 $alert-border-level:                -2;
 $alert-color-level:                 0;
+
+// Modals
+//
+$modal-content-border-width:        0;
+$modal-backdrop-opacity:            .45;
 
 // Import default vars...
 @import "node_modules/bootstrap/scss/variables";

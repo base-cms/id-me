@@ -31,6 +31,11 @@ module.exports = {
       const id = app.getId();
       return applicationService.request('team.listForApp', { id });
     },
+
+    team: (_, { input }) => {
+      const { id } = input;
+      return applicationService.request('team.findById', { id });
+    },
   },
 
   Mutation: {
@@ -44,6 +49,23 @@ module.exports = {
         applicationId,
         payload: {
           ...input,
+          cidrs: isArray(cidrs) ? cidrs.map(value => ({ value })) : [],
+        },
+      });
+    },
+
+    /**
+     *
+     */
+    updateTeam: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, payload } = input;
+      const { cidrs } = payload;
+      return applicationService.request('team.updateOne', {
+        id,
+        applicationId,
+        payload: {
+          ...payload,
           cidrs: isArray(cidrs) ? cidrs.map(value => ({ value })) : [],
         },
       });

@@ -2,13 +2,32 @@
 
 // Bootstrap theme
 @import "bootstrap";
-@import "ember-power-select";
+
+// Override to exclude dropdown box-shadow and match select border.
+$ember-power-select-dropdown-box-shadow: none;
+$ember-power-select-dropdown-border: $custom-select-border-width solid $custom-select-border-color;
+
+@import "power-select";
+@import "buttons";
+@import "spin";
+
+// For ember power select inside modals.
+.in-modal-dropdown {
+  z-index: 1100;
+}
 
 body {
   .transitioning {
     // Showing progress cursor when transitioning/loading.
     cursor: progress;
   }
+}
+
+// Fix issue with double select dropdown icons.
+// @todo Remove once autoprefixer is enabled.
+.custom-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 // The notifications container.
@@ -64,6 +83,7 @@ body {
   box-shadow: 0 1px 5px rgba(0, 0, 0, .18);
 }
 
+// Primary (org) and secondary (app) navs.
 .navbar {
   &--primary {
     background-color: $blue-800;
@@ -72,6 +92,41 @@ body {
 
   &--secondary {
     background-color: $white;
+  }
+}
+
+// Floating create button
+.btn-create {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 1px 3px rgba(0, 0, 0, .18);
+
+  &:focus {
+    box-shadow: 0 7px 14px rgba(50, 50, 93, .2), 0 3px 6px rgba(0, 0, 0, .18);
+  }
+}
+
+// Floating footer controls (left + right)
+.footer-controls {
+  position: fixed;
+  bottom: 1.5rem;
+  z-index: 110;
+
+  &.left {
+    left: 1.5rem;
+  }
+
+  &.right {
+    right: 1.5rem;
+  }
+}
+
+// Expandable array lists.
+.array-list {
+  height: 0;
+  overflow: hidden;
+
+  &.expanded {
+    height: auto;
+    overflow: auto;
   }
 }
 

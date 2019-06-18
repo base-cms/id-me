@@ -1,21 +1,30 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <h2 class="card-title">Organizations</h2>
-    <p class="card-text">Access your organizations.</p>
-    <div class="list-group">
-      {{#link-to "manage.orgs.list.create" class="list-group-item list-group-item-action"}}
-        {{entypo-icon "circle-with-plus" class="text-success"}} New organization
-      {{/link-to}}
-      {{#each model as |userOrg|}}
-        {{#with userOrg.organization as |org|}}
-          {{#link-to "manage.orgs.view" org.id class="list-group-item list-group-item-action"}}
-            <img alt="Organization avatar" src={{org.photoURL}} class="icon icon-md mr-1"> {{ org.name }}
-            <small class="text-muted">{{org.description}}</small>
+<h1 class="mb-4">Organizations</h1>
+
+<div class="row">
+  {{#each model as |userOrg|}}
+    {{#with userOrg.organization as |org|}}
+      <ListCard>
+        <div class="card-body">
+          <h2 class="card-title">{{org.name}}</h2>
+          {{#if org.description}}
+            <p class="card-text">{{org.description}}</p>
+          {{/if}}
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          {{#link-to "manage.orgs.view.apps" org.id class="btn btn-primary" role="button"}}
+            {{entypo-icon "popup" class="mr-1"}} Manage
           {{/link-to}}
-        {{/with}}
-      {{/each}}
-    </div>
-  </div>
+          {{!-- {{#link-to "manage.orgs.list.edit" org.id class="btn btn-secondary" role="button"}}
+            {{entypo-icon "cog" class="mr-1"}} Edit
+          {{/link-to}} --}}
+        </div>
+      </ListCard>
+    {{/with}}
+  {{/each}}
 </div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.list.create" @title="Create New Organization" />
+</aside>
 
 {{outlet}}

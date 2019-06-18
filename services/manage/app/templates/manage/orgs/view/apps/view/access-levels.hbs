@@ -1,19 +1,17 @@
-<div class="card mb-3">
-  <div class="card-body">
-    <h2 class="card-title">Access Levels</h2>
-    <p class="card-text">Manage your applications's access levels.</p>
-    <div class="list-group mb-3">
-      {{#link-to "manage.orgs.view.apps.view.access-levels.create" class="list-group-item list-group-item-action"}}
-        {{entypo-icon "circle-with-plus" class="text-success"}} New access level
-      {{/link-to}}
-      {{#each model as |level|}}
-        {{#link-to "manage.orgs.view.apps.view.access-levels.edit" level.id class="list-group-item list-group-item-action"}}
-          {{ level.name }}
-          <small class="text-muted">{{level.description}}</small>
-        {{/link-to}}
-      {{/each}}
+<h1 class="mb-4"><AccessLevel::Icon /> Access Levels</h1>
+
+<div class="row">
+  {{#each model as |accessLevel|}}
+    <AccessLevel::Card @accessLevel={{accessLevel}} />
+  {{else}}
+    <div class="col">
+      <p>No access levels have been created.</p>
     </div>
-  </div>
+  {{/each}}
 </div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.view.apps.view.access-levels.create" @title="Create New Access Level" />
+</aside>
 
 {{outlet}}
