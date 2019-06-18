@@ -5,7 +5,9 @@ const {
   matchForApp,
 } = require('@base-cms/id-me-utils').actions;
 const create = require('./create');
+const updateOne = require('./update-one');
 const AccessLevel = require('../../mongodb/models/access-level');
+
 
 module.exports = {
   create,
@@ -13,4 +15,5 @@ module.exports = {
   findById: ({ id, fields }) => findById(AccessLevel, { id, fields }),
   listForApp: ({ id, fields }) => listForApp(AccessLevel, { id, fields }),
   matchForApp: params => matchForApp(AccessLevel, params),
+  updateOne,
 };
