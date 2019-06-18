@@ -19,6 +19,12 @@ export default Service.extend({
     return orgId ? this.get('orgAppQuery.activeOrganization') : {};
   }),
 
+  queryContextFor(scope, context) {
+    if (scope === 'org') return this.orgQueryContext(context);
+    if (scope === 'app') return this.appQueryContext(context);
+    return context;
+  },
+
   appQueryContext(context) {
     const appId = this.get('appId');
     return { ...context, appId };
