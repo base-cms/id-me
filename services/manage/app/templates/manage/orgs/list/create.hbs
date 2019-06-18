@@ -1,4 +1,4 @@
-<BsModal @show={{true}} @size="large" @onClose={{action "returnToOrgList"}} as |modal|>
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToOrgList"}} as |modal|>
 
   <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}
