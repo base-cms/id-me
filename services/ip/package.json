@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-ip-service",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "The IdentityX ip service.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
