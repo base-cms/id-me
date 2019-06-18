@@ -2,9 +2,19 @@
 
 // Bootstrap theme
 @import "bootstrap";
-@import "ember-power-select";
+
+// Override to exclude dropdown box-shadow and match select border.
+$ember-power-select-dropdown-box-shadow: none;
+$ember-power-select-dropdown-border: $custom-select-border-width solid $custom-select-border-color;
+
+@import "power-select";
 @import "buttons";
 @import "spin";
+
+// For ember power select inside modals.
+.in-modal-dropdown {
+  z-index: 1100;
+}
 
 body {
   .transitioning {
