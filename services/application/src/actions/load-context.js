@@ -18,8 +18,12 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
   const teamQuery = {
     applicationId,
     $or: [{
-      'cidrs.min': { $gte: intIp },
-      'cidrs.max': { $lte: intIp },
+      cidrs: {
+        $elemMatch: {
+          min: { $gte: intIp },
+          max: { $lte: intIp },
+        },
+      },
     }],
   };
 
