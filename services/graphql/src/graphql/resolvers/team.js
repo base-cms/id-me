@@ -31,6 +31,11 @@ module.exports = {
       const id = app.getId();
       return applicationService.request('team.listForApp', { id });
     },
+
+    team: (_, { input }) => {
+      const { id } = input;
+      return applicationService.request('team.findById', { id });
+    },
   },
 
   Mutation: {

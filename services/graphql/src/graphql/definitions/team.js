@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  team(input: TeamQueryInput!): Team
   teams: [Team] @requiresApp
 }
 
@@ -28,6 +29,10 @@ input CreateTeamMutationInput {
   cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
+}
+
+input TeamQueryInput {
+  id: String!
 }
 
 `;
