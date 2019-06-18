@@ -23,12 +23,19 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
     async create(closeModal) {
       try {
         this.startAction();
-        const { name, description, domains, cidrs } = this.get('model');
+        const {
+          name,
+          description,
+          domains,
+          cidrs,
+          accessLevels,
+        } = this.get('model');
         const input = {
           name,
           description,
           domains,
           cidrs,
+          accessLevelIds: accessLevels.map(level => level.id),
         };
         const variables = { input };
         const refetchQueries = ['AppTeams'];
@@ -61,6 +68,10 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
 
     changeCIDRs(cidrs) {
       this.set('model.cidrs', cidrs);
+    },
+
+    setAccessLevels(accessLevels) {
+      this.set('model.accessLevels', accessLevels);
     },
   }
 })

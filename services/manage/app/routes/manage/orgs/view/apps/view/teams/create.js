@@ -5,6 +5,7 @@ export default Route.extend({
     return {
       domains: [],
       cidrs: [],
+      accessLevels: [],
     };
   },
 });
