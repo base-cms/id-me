@@ -9,6 +9,14 @@ module.exports = {
     /**
      *
      */
+    accessLevel: (_, { input }) => {
+      const { id } = input;
+      return applicationService.request('access-level.findById', { id });
+    },
+
+    /**
+     *
+     */
     accessLevels: (_, args, { app }) => {
       const id = app.getId();
       return applicationService.request('access-level.listForApp', { id });
@@ -44,6 +52,19 @@ module.exports = {
       const payload = { name, description };
       const applicationId = app.getId();
       return applicationService.request('access-level.create', {
+        applicationId,
+        payload,
+      });
+    },
+
+    /**
+     *
+     */
+    updateAccessLevel: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, payload } = input;
+      return applicationService.request('access-level.updateOne', {
+        id,
         applicationId,
         payload,
       });
