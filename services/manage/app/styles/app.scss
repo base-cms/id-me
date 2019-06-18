@@ -109,6 +109,17 @@ body {
   }
 }
 
+// Expandable array lists.
+.array-list {
+  height: 0;
+  overflow: hidden;
+
+  &.expanded {
+    height: auto;
+    overflow: auto;
+  }
+}
+
 .icon {
   display: inline-block;
   overflow: hidden;

@@ -1,0 +1,6 @@
+<a class="text-muted small" {{action "toggle"}} href="#toggle">{{label}} ({{values.length}})</a>
+<div class="array-list {{expandedClass}}">
+  {{#each values as |value|}}
+    <small class="d-block">{{value}}</small>
+  {{/each}}
+</div>
