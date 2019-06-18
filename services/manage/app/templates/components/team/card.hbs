@@ -1,0 +1,16 @@
+<ListCard>
+  <div class="card-body">
+    <h2 class="card-title">{{team.name}}</h2>
+    {{#if team.description}}
+      <p class="card-text">{{team.description}}</p>
+    {{/if}}
+    <ArrayList @label="Access Levels" @values={{accessLevels}} />
+    <ArrayList @label="Email Domains" @values={{team.domains}} />
+    <ArrayList @label="IP Addresses" @values={{team.cidrs}} />
+  </div>
+  <div class="card-footer">
+    {{#link-to "manage.orgs.view.apps.view.teams.edit" team.id class="btn btn-primary" role="button"}}
+      {{entypo-icon "edit" class="mr-1"}} Modify
+    {{/link-to}}
+  </div>
+</ListCard>
