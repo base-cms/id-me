@@ -8,20 +8,16 @@ const mutation = gql`
   mutation AppTeamCreate($input: CreateTeamMutationInput!) {
     createTeam(input: $input) {
       id
-      name
-      description
     }
   }
 `;
 
-const formatMultline = (v) => {
-  if (!v) return [];
-  const lines = v.split(/\r?\n/);
-  return lines.map(l => l.trim()).filter(l => l);
-};
-
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   errorNotifier: inject(),
+
+  formatTerm(term) {
+    return term.trim().toLowerCase();
+  },
 
   actions: {
     async create(closeModal) {
@@ -31,8 +27,8 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         const input = {
           name,
           description,
-          domains: formatMultline(domains),
-          cidrs: formatMultline(cidrs),
+          domains,
+          cidrs,
         };
         const variables = { input };
         const refetchQueries = ['AppTeams'];
@@ -47,6 +43,24 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
 
     returnToList() {
       return this.transitionToRoute('manage.orgs.view.apps.view.teams');
+    },
+
+    addDomain(domain) {
+      const formatted = this.formatTerm(domain);
+      if (formatted) this.get('model.domains').pushObject(formatted);
+    },
+
+    changeDomains(domains) {
+      this.set('model.domains', domains);
+    },
+
+    addCIDR(cidr) {
+      const formatted = this.formatTerm(cidr);
+      if (formatted) this.get('model.cidrs').pushObject(formatted);
+    },
+
+    changeCIDRs(cidrs) {
+      this.set('model.cidrs', cidrs);
     },
   }
 })

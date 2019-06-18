@@ -34,20 +34,40 @@
         <div class="col-lg-6">
           <div class="form-group mb-3 mb-lg-0">
             <FormElements::Label @for="team.domains">Email Domains</FormElements::Label>
-            <Textarea @id="team.domains" @value={{model.domains}} @class="form-control" @rows={{3}} />
-            <small id="signup-orgname-help" class="form-text text-muted">
+            {{#power-select-multiple-with-create
+              selected=model.domains
+              dropdownClass="in-modal-dropdown"
+              placeholder="Enter domains..."
+              searchMessage="Begin typing to create..."
+              oncreate=(action "addDomain")
+              onchange=(action "changeDomains")
+              as |domain|
+            }}
+              {{domain}}
+            {{/power-select-multiple-with-create}}
+            <small id="teams.domains-help" class="form-text text-muted">
               {{entypo-icon "info-with-circle" class="text-info"}}
-              Enter each domain name on a new line.
+              All users with email addresses matching these domains will automatically be included in this team.
             </small>
           </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group mb-0">
             <FormElements::Label @for="team.cidrs">IP Addresses / CIDRs</FormElements::Label>
-            <Textarea @id="team.cidrs" @value={{model.cidrs}} @class="form-control" @rows={{3}} />
-            <small id="signup-orgname-help" class="form-text text-muted">
+            {{#power-select-multiple-with-create
+              selected=model.cidrs
+              dropdownClass="in-modal-dropdown"
+              placeholder="Enter addresses..."
+              searchMessage="Begin typing to create..."
+              oncreate=(action "addCIDR")
+              onchange=(action "changeCIDRs")
+              as |cidr|
+            }}
+              {{cidr}}
+            {{/power-select-multiple-with-create}}
+            <small id="teams.cidrs-help" class="form-text text-muted">
               {{entypo-icon "info-with-circle" class="text-info"}}
-              Enter each IP Address or CIDR on a new line.
+              Any network requests matching these addresses will automatically be included in this team.
             </small>
           </div>
         </div>
