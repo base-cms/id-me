@@ -1,4 +1,9 @@
-const { findById, find, listForApp } = require('@base-cms/id-me-utils').actions;
+const {
+  findById,
+  find,
+  listForApp,
+  matchForApp,
+} = require('@base-cms/id-me-utils').actions;
 const create = require('./create');
 const AccessLevel = require('../../mongodb/models/access-level');
 
@@ -7,4 +12,5 @@ module.exports = {
   find: ({ query, fields }) => find(AccessLevel, { query, fields }),
   findById: ({ id, fields }) => findById(AccessLevel, { id, fields }),
   listForApp: ({ id, fields }) => listForApp(AccessLevel, { id, fields }),
+  matchForApp: params => matchForApp(AccessLevel, params),
 };
