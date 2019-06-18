@@ -53,5 +53,22 @@ module.exports = {
         },
       });
     },
+
+    /**
+     *
+     */
+    updateTeam: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, payload } = input;
+      const { cidrs } = payload;
+      return applicationService.request('team.updateOne', {
+        id,
+        applicationId,
+        payload: {
+          ...payload,
+          cidrs: isArray(cidrs) ? cidrs.map(value => ({ value })) : [],
+        },
+      });
+    },
   },
 };
