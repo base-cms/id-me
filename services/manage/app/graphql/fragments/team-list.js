@@ -8,5 +8,9 @@ export default gql`
     photoURL
     cidrs
     domains
+    accessLevels {
+      id
+      name
+    }
   }
 `;
