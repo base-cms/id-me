@@ -8,19 +8,8 @@
         {{#if team.description}}
           <p class="card-text">{{team.description}}</p>
         {{/if}}
-        {{#if team.domains.length}}
-          <small class="text-muted">Email Domains</small>
-          {{#each team.domains as |domain|}}
-            <small class="d-block">{{domain}}</small>
-          {{/each}}
-        {{/if}}
-
-        {{#if team.cidrs.length}}
-          <small class="text-muted">IP Addresses</small>
-          {{#each team.cidrs as |cidr|}}
-            <small class="d-block">{{cidr}}</small>
-          {{/each}}
-        {{/if}}
+        <ArrayList @label="Email Domains" @values={{team.domains}} />
+        <ArrayList @label="IP Addresses" @values={{team.cidrs}} />
       </div>
       <div class="card-footer">
         {{#link-to "manage.orgs.view.apps.view.teams.edit" team.id class="btn btn-primary" role="button"}}
