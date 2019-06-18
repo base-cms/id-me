@@ -2,19 +2,7 @@
 
 <div class="row">
   {{#each model as |accessLevel|}}
-    <ListCard>
-      <div class="card-body">
-        <h2 class="card-title">{{accessLevel.name}}</h2>
-        {{#if accessLevel.description}}
-          <p class="card-text">{{accessLevel.description}}</p>
-        {{/if}}
-      </div>
-      <div class="card-footer">
-        {{#link-to "manage.orgs.view.apps.view.access-levels.edit" accessLevel.id class="btn btn-primary" role="button"}}
-          {{entypo-icon "edit" class="mr-1"}} Modify
-        {{/link-to}}
-      </div>
-    </ListCard>
+    <AccessLevel::Card @accessLevel={{accessLevel}} />
   {{else}}
     <div class="col">
       <p>No access levels have been created.</p>
