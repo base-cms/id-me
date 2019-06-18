@@ -14,4 +14,10 @@ module.exports = function applicationPlugin(schema, { options = {} } = {}) {
     if (!applicationId) throw new Error('Unable to find: no application ID was provided.');
     return this.find({ applicationId }, fields);
   });
+
+  schema.static('findByIdForApp', async function findByIdForApp(id, applicationId, fields) {
+    if (!applicationId) throw new Error('Unable to find: no application ID was provided.');
+    if (!id) throw new Error('Unable to find: no ID was provided.');
+    return this.findOne({ _id: id, applicationId }, fields);
+  });
 };
