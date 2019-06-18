@@ -9,6 +9,7 @@ module.exports = async ({
   from,
   subject,
   html,
+  text,
 }) => {
   if (!to) throw createRequiredParamError('to');
   if (!from) throw createRequiredParamError('from');
@@ -21,5 +22,6 @@ module.exports = async ({
     from,
     subject,
     html,
+    text,
   });
 };
