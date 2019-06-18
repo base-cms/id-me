@@ -34,7 +34,7 @@
         <div class="col-lg-6">
           <div class="form-group mb-3 mb-lg-0">
             <FormElements::Label @for="team.domains">Email Domains</FormElements::Label>
-            <Textarea @id="team.domains" @value={{model.domains}} @class="form-control" />
+            <Textarea @id="team.domains" @value={{model.domains}} @class="form-control" @rows={{3}} />
             <small id="signup-orgname-help" class="form-text text-muted">
               {{entypo-icon "info-with-circle" class="text-info"}}
               Enter each domain name on a new line.
@@ -44,7 +44,7 @@
         <div class="col-lg-6">
           <div class="form-group mb-0">
             <FormElements::Label @for="team.cidrs">IP Addresses / CIDRs</FormElements::Label>
-            <Textarea @id="team.cidrs" @value={{model.cidrs}} @class="form-control" />
+            <Textarea @id="team.cidrs" @value={{model.cidrs}} @class="form-control" @rows={{3}} />
             <small id="signup-orgname-help" class="form-text text-muted">
               {{entypo-icon "info-with-circle" class="text-info"}}
               Enter each IP Address or CIDR on a new line.
