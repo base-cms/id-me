@@ -1,0 +1,36 @@
+{{#if multiple}}
+  {{#power-select-multiple
+    dropdownClass=dropdownClass
+    triggerClass=_triggerClass
+    search=(perform search)
+    selected=value
+    placeholder=placeholder
+    onchange=(action "handleChange")
+    closeOnSelect=closeOnSelect
+    disabled=disabled
+  as |item|
+  }}
+    {{ yield item }}
+  {{/power-select-multiple}}
+{{else}}
+  {{#power-select
+    dropdownClass=dropdownClass
+    triggerClass=_triggerClass
+    search=(perform search)
+    selected=value
+    placeholder=placeholder
+    allowClear=allowClear
+    closeOnSelect=closeOnSelect
+    disabled=disabled
+    onchange=(action "handleChange")
+  as |item|
+  }}
+    {{ yield item }}
+  {{/power-select}}
+{{/if}}
+{{!-- {{form-elements/input
+  name=name
+  on-insert=(action "setInputElement")
+  autocomplete=autocomplete
+  show=false
+}} --}}
