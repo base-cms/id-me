@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-locale-service",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "The ID|Me locale service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
