@@ -63,11 +63,31 @@ module.exports = async ({
       </body>
     </html>
   `;
+
+  const text = `
+Your personal login link.
+-------------------------
+
+You recently requested to login to ${app.name}. This link is good for one hour and will expire immediately after use.
+
+Login to ${app.name} by visiting this link:
+${url}
+
+If you didn't request this link, simply ignore this email or contact our support staff at base@endeavorb2b.com.
+
+-------------------------
+
+Please add identity-x.base-cms.io to your address book or safe sender list to ensure you receive future emails from us.
+You are receiving this email because a login request was made on ${app.name}.
+For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, base@endeavorb2b.com, 800-547-7377.
+  `;
+
   await mailerService.request('send', {
     to: user.email,
     from: `${app.name} <noreply@identity-x.base-cms.io>`,
     subject: 'Your personal login link',
     html,
+    text,
   });
   return 'ok';
 };
