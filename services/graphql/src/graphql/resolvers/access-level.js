@@ -13,6 +13,26 @@ module.exports = {
       const id = app.getId();
       return applicationService.request('access-level.listForApp', { id });
     },
+
+    /**
+     *
+     */
+    matchAccessLevels: (_, { input }, { app }) => {
+      const {
+        field,
+        phrase,
+        position,
+        excludeIds,
+      } = input;
+      const applicationId = app.getId();
+      return applicationService.request('access-level.matchForApp', {
+        applicationId,
+        field,
+        phrase,
+        position,
+        excludeIds,
+      });
+    },
   },
 
   Mutation: {

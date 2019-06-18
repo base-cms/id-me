@@ -4,6 +4,7 @@ module.exports = gql`
 
 extend type Query {
   accessLevels: [AccessLevel] @requiresApp
+  matchAccessLevels(input: MatchAccessLevelsQueryInput!): [AccessLevel] @requiresApp
 }
 
 extend type Mutation {
@@ -19,6 +20,13 @@ type AccessLevel {
 input CreateAccessLevelMutationInput {
   name: String!
   description: String
+}
+
+input MatchAccessLevelsQueryInput {
+  field: String!
+  phrase: String!
+  position: MatchPosition = contains
+  excludeIds: [String!] = []
 }
 
 `;
