@@ -1,39 +1,6 @@
-<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
-
-  <form {{action "create" modal.actions.hide on="submit"}}>
-    {{#modal.header}}
-      <h2 class="modal-title">Create Access Level</h2>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        {{action modal.actions.hide}}
-      >
-        {{entypo-icon "cross"}}
-      </button>
-    {{/modal.header}}
-
-    {{#modal.body}}
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <FormElements::Label @for="access-level.name" @required={{true}}>Name</FormElements::Label>
-            <Input @id="access-level.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{model.name}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <FormElements::Label @for="access-level.description">Description</FormElements::Label>
-            <Textarea @id="access-level.description" @class="form-control" @value={{model.description}} @rows={{3}} />
-          </div>
-        </div>
-      </div>
-    {{/modal.body}}
-
-    {{#modal.footer}}
-      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{isActionRunning}} />
-    {{/modal.footer}}
-  </form>
-</BsModal>
+<AccessLevel::ModalForm
+  @model={{this.model}}
+  @onSubmit={{action "create"}}
+  @title="Create Access Level"
+  @isActionRunning={{this.isActionRunning}}
+/>

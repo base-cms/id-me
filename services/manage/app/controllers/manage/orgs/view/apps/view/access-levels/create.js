@@ -31,9 +31,5 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         this.endAction();
       }
     },
-
-    returnToList() {
-      return this.transitionToRoute('manage.orgs.view.apps.view.access-levels');
-    },
-  }
-})
+  },
+});
