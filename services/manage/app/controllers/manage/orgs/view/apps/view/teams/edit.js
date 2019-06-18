@@ -32,6 +32,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           description,
           domains,
           cidrs,
+          accessLevels,
         } = this.get('model');
 
         const payload = {
@@ -39,6 +40,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           description,
           domains,
           cidrs,
+          accessLevelIds: accessLevels.map(level => level.id),
         };
         const input = { id, payload };
         const variables = { input };
@@ -71,6 +73,10 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
 
     changeCIDRs(cidrs) {
       this.set('model.cidrs', cidrs);
+    },
+
+    setAccessLevels(accessLevels) {
+      this.set('model.accessLevels', accessLevels);
     },
   }
 })
