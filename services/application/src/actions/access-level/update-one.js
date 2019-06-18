@@ -13,13 +13,13 @@ module.exports = async ({ id, applicationId, payload } = {}) => {
   const application = await Application.findById(applicationId, ['id']);
   if (!application) throw createError(404, `No application was found for '${applicationId}'`);
 
-  const lavel = await AccessLevel.findByIdForApp(id, applicationId);
-  if (!lavel) throw createError(404, `No access level was found for '${id}'`);
-  lavel.set(payload);
+  const level = await AccessLevel.findByIdForApp(id, applicationId);
+  if (!level) throw createError(404, `No access level was found for '${id}'`);
+  level.set(payload);
 
   try {
-    await lavel.save();
-    return lavel;
+    await level.save();
+    return level;
   } catch (e) {
     throw handleError(createError, e);
   }
