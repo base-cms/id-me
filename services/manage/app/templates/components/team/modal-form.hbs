@@ -1,0 +1,86 @@
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+
+  <form {{action this.onSubmit modal.actions.hide on="submit"}}>
+    {{#modal.header}}
+      <h2 class="modal-title">{{this.title}}</h2>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <FormElements::Label @for="team.name" @required={{true}}>Name</FormElements::Label>
+            <Input @id="team.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.name}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <FormElements::Label @for="team.description">Description</FormElements::Label>
+            <Textarea @id="team.description" @class="form-control" @value={{this.model.description}} @rows={{3}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <Team::Fields::AccessLevels @dropdownClass="in-modal-dropdown" @value={{this.model.accessLevels}} @on-change={{action "setAccessLevels"}} />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="form-group mb-3 mb-lg-0">
+            <FormElements::Label @for="team.domains">Email Domains</FormElements::Label>
+            {{#power-select-multiple-with-create
+              selected=this.model.domains
+              dropdownClass="in-modal-dropdown"
+              placeholder="Enter domains..."
+              searchMessage="Begin typing to create..."
+              oncreate=(action "addDomain")
+              onchange=(action "changeDomains")
+              as |domain|
+            }}
+              {{domain}}
+            {{/power-select-multiple-with-create}}
+            <small id="teams.domains-help" class="form-text text-muted">
+              {{entypo-icon "info-with-circle" class="text-info"}}
+              All users with email addresses matching these domains will automatically be included in this team.
+            </small>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group mb-0">
+            <FormElements::Label @for="team.cidrs">IP Addresses / CIDRs</FormElements::Label>
+            {{#power-select-multiple-with-create
+              selected=this.model.cidrs
+              dropdownClass="in-modal-dropdown"
+              placeholder="Enter addresses..."
+              searchMessage="Begin typing to create..."
+              oncreate=(action "addCIDR")
+              onchange=(action "changeCIDRs")
+              as |cidr|
+            }}
+              {{cidr}}
+            {{/power-select-multiple-with-create}}
+            <small id="teams.cidrs-help" class="form-text text-muted">
+              {{entypo-icon "info-with-circle" class="text-info"}}
+              Any network requests matching these addresses will automatically be included in this team.
+            </small>
+          </div>
+        </div>
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+    {{/modal.footer}}
+  </form>
+</BsModal>

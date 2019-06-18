@@ -17,11 +17,6 @@ const mutation = gql`
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   errorNotifier: inject(),
 
-  formatTerm(term) {
-    return term.trim().toLowerCase();
-  },
-
-
   actions: {
     async update(closeModal) {
       try {
@@ -52,31 +47,5 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         this.endAction();
       }
     },
-
-    returnToList() {
-      return this.transitionToRoute('manage.orgs.view.apps.view.teams');
-    },
-
-    addDomain(domain) {
-      const formatted = this.formatTerm(domain);
-      if (formatted) this.get('model.domains').pushObject(formatted);
-    },
-
-    changeDomains(domains) {
-      this.set('model.domains', domains);
-    },
-
-    addCIDR(cidr) {
-      const formatted = this.formatTerm(cidr);
-      if (formatted) this.get('model.cidrs').pushObject(formatted);
-    },
-
-    changeCIDRs(cidrs) {
-      this.set('model.cidrs', cidrs);
-    },
-
-    setAccessLevels(accessLevels) {
-      this.set('model.accessLevels', accessLevels);
-    },
-  }
-})
+  },
+});
