@@ -47,7 +47,7 @@ module.exports = async ({
         <meta charset="UTF-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" id="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=10.0,initial-scale=1.0">
-        <title>IdentityX Personal Login Link</title>
+        <title>Your personal login link</title>
       </head>
       <body>
         <h1>Your personal login link.</h1>
