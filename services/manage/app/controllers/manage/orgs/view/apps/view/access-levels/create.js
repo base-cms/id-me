@@ -8,8 +8,6 @@ const mutation = gql`
   mutation AppAccessLevelCreate($input: CreateAccessLevelMutationInput!) {
     createAccessLevel(input: $input) {
       id
-      name
-      description
     }
   }
 `;
