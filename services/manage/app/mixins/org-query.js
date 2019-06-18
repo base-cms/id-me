@@ -6,22 +6,18 @@ export default Mixin.create(RouteQueryManager, {
   contextService: inject('context'),
 
   query(options, queryName) {
+    const context = this.contextService.contextFromOptions(options);
     const params = {
       ...options,
-      context: {
-        orgId: this.get('contextService.orgId'),
-        ...options.context,
-      },
+      context: this.contextService.orgQueryContext(context),
     };
     return this.apollo.watchQuery(params, queryName);
   },
   mutate(options, queryName) {
+    const context = this.contextService.contextFromOptions(options);
     const params = {
       ...options,
-      context: {
-        orgId: this.get('contextService.orgId'),
-        ...options.context,
-      },
+      context: this.contextService.orgQueryContext(context),
     };
     return this.apollo.mutate(params, queryName);
   },

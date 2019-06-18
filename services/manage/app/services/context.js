@@ -18,4 +18,18 @@ export default Service.extend({
     const orgId = this.get('orgId');
     return orgId ? this.get('orgAppQuery.activeOrganization') : {};
   }),
+
+  appQueryContext(context) {
+    const appId = this.get('appId');
+    return { ...context, appId };
+  },
+
+  orgQueryContext(context) {
+    const orgId = this.get('orgId');
+    return { ...context, orgId };
+  },
+
+  contextFromOptions(options) {
+    return options && options.context ? options.context : {};
+  },
 });
