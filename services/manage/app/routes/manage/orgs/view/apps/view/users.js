@@ -24,7 +24,8 @@ const query = gql`
 export default Route.extend(AppQueryMixin, {
   model() {
     const sort = { field: 'email', order: 'asc' };
-    const input = { sort };
+    const pagination = { limit: 24 };
+    const input = { sort, pagination };
     const variables = { input };
     return this.query({ query, variables }, 'appUsers');
   },
