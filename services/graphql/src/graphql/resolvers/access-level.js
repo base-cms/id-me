@@ -17,9 +17,10 @@ module.exports = {
     /**
      *
      */
-    accessLevels: (_, args, { app }) => {
+    accessLevels: (_, { input }, { app }) => {
       const id = app.getId();
-      return applicationService.request('access-level.listForApp', { id });
+      const { sort, pagination } = input;
+      return applicationService.request('access-level.listForApp', { id, sort, pagination });
     },
 
     /**

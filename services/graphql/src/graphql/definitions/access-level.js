@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   accessLevel(input: AccessLevelQueryInput!): AccessLevel
-  accessLevels: [AccessLevel] @requiresApp
+  accessLevels(input: AccessLevelsQueryInput!): AccessLevelConnection! @requiresApp
   matchAccessLevels(input: MatchAccessLevelsQueryInput!): [AccessLevel] @requiresApp
 }
 
@@ -13,14 +13,42 @@ extend type Mutation {
   updateAccessLevel(input: UpdateAccessLevelMutationInput!): AccessLevel! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
+enum AccessLevelSortField {
+  id
+  name
+  createdAt
+  updatedAt
+}
+
 type AccessLevel {
   id: String!
   name: String!
   description: String
 }
 
+type AccessLevelConnection {
+  totalCount: Int!
+  edges: [AccessLevelEdge]!
+  pageInfo: PageInfo!
+}
+
+type AccessLevelEdge {
+  node: AccessLevel!
+  cursor: String!
+}
+
 input AccessLevelQueryInput {
   id: String!
+}
+
+input AccessLevelsQueryInput {
+  sort: AccessLevelSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input AccessLevelSortInput {
+  field: AccessLevelSortField = id
+  order: SortOrder = desc
 }
 
 input CreateAccessLevelMutationInput {
