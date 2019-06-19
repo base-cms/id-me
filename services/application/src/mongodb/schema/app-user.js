@@ -30,6 +30,9 @@ const schema = new Schema({
     type: Boolean,
     default: false,
   },
+  lastLoggedIn: {
+    type: Date,
+  },
   givenName: {
     type: String,
     trim: true,
