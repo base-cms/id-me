@@ -1,16 +1,31 @@
 <h1 class="mb-4">
   <AppUser::Icon /> Users
-  <span class="text-muted">({{model.totalCount}})</span>
+  <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
 </h1>
 
 <div class="row">
-  {{#each model.edges as |edge|}}
-    <AppUser::Card @user={{edge.node}} />
-  {{else}}
-    <div class="col">
-      <p>No users have been created.</p>
-    </div>
-  {{/each}}
+  <FetchMore
+    @query={{this.observable}}
+    @edges={{this.model.edges}}
+    @hasNextPage={{this.model.pageInfo.hasNextPage}}
+    @endCursor={{this.model.pageInfo.endCursor}}
+    @resultKey="appUsers"
+    as |fetch|
+  >
+    {{#each fetch.nodes as |node|}}
+      <AppUser::Card @user={{node}} />
+    {{else}}
+      <p>No users were found.</p>
+    {{/each}}
+
+    {{#if fetch.hasNextPage}}
+      <InView @on-viewport-enter={{action fetch.actions.loadMore}} />
+    {{/if}}
+
+    {{#if fetch.isFetching}}
+      <FetchMoreLoading @class="my-0" />
+    {{/if}}
+  </FetchMore>
 </div>
 
 <aside class="footer-controls left">

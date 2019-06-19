@@ -20,20 +20,20 @@ enum TeamSortField {
 }
 
 type Team {
-  id: String!
-  name: String!
-  description: String
+  id: String! @projection(localField: "_id")
+  name: String! @projection
+  description: String @projection
   # deprecated
-  ipAddresses: [String]
-  cidrs: [String]
-  domains: [String]
-  accessLevels: [AccessLevel]
-  photoURL: String
-  createdAt: Date
-  updatedAt: Date
+  ipAddresses: [String] @projection(localField: "cidrs.value")
+  cidrs: [String] @projection(localField: "cidrs.value")
+  domains: [String] @projection
+  accessLevels: [AccessLevel] @projection(localField: "accessLevelIds")
+  photoURL: String @projection
+  createdAt: Date @projection
+  updatedAt: Date @projection
 }
 
-type TeamConnection {
+type TeamConnection @projectUsing(type: "Team") {
   totalCount: Int!
   edges: [TeamEdge]!
   pageInfo: PageInfo!

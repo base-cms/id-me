@@ -13,6 +13,8 @@ scalar Date
 scalar ObjectID
 scalar JSON
 
+directive @projectUsing(type: String!) on OBJECT
+directive @projection(localField: String, needs: [String] = []) on FIELD_DEFINITION
 directive @requiresApp on FIELD_DEFINITION
 directive @requiresAppRole(roles: [OrganizationRole!] = []) on FIELD_DEFINITION
 directive @requiresAuth(type: AuthorizationType = OrgUser) on FIELD_DEFINITION

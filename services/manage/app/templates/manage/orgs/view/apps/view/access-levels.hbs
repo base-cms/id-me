@@ -1,16 +1,31 @@
 <h1 class="mb-4">
   <AccessLevel::Icon /> Access Levels
-  <span class="text-muted">({{model.totalCount}})</span>
+  <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
 </h1>
 
 <div class="row">
-  {{#each model.edges as |edge|}}
-    <AccessLevel::Card @accessLevel={{edge.node}} />
-  {{else}}
-    <div class="col">
-      <p>No access levels have been created.</p>
-    </div>
-  {{/each}}
+  <FetchMore
+    @query={{this.observable}}
+    @edges={{this.model.edges}}
+    @hasNextPage={{this.model.pageInfo.hasNextPage}}
+    @endCursor={{this.model.pageInfo.endCursor}}
+    @resultKey="accessLevels"
+    as |fetch|
+  >
+    {{#each fetch.nodes as |node|}}
+      <AccessLevel::Card @accessLevel={{node}} />
+    {{else}}
+      <p>No access levels were found.</p>
+    {{/each}}
+
+    {{#if fetch.hasNextPage}}
+      <InView @on-viewport-enter={{action fetch.actions.loadMore}} />
+    {{/if}}
+
+    {{#if fetch.isFetching}}
+      <FetchMoreLoading @class="my-0" />
+    {{/if}}
+  </FetchMore>
 </div>
 
 <aside class="footer-controls left">

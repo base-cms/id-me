@@ -1,0 +1,10 @@
+{{yield
+  (hash
+    nodes=this.nodes
+    hasNextPage=this.hasNextPage
+    isFetching=this.isFetching
+    actions=(hash
+      loadMore=(action "fetchMore")
+    )
+  )
+}}

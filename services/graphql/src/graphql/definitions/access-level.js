@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   accessLevel(input: AccessLevelQueryInput!): AccessLevel
-  accessLevels(input: AccessLevelsQueryInput!): AccessLevelConnection! @requiresAppRole
+  accessLevels(input: AccessLevelsQueryInput = {}): AccessLevelConnection! @requiresApp
   matchAccessLevels(input: MatchAccessLevelsQueryInput!): [AccessLevel] @requiresAppRole
 }
 
@@ -21,14 +21,14 @@ enum AccessLevelSortField {
 }
 
 type AccessLevel {
-  id: String!
-  name: String!
-  description: String
-  createdAt: Date
-  updatedAt: Date
+  id: String! @projection(localField: "_id")
+  name: String! @projection
+  description: String @projection
+  createdAt: Date @projection
+  updatedAt: Date @projection
 }
 
-type AccessLevelConnection {
+type AccessLevelConnection @projectUsing(type: "AccessLevel") {
   totalCount: Int!
   edges: [AccessLevelEdge]!
   pageInfo: PageInfo!

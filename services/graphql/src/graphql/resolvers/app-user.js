@@ -1,5 +1,7 @@
 const { applicationService } = require('@base-cms/id-me-service-clients');
 const { UserInputError } = require('apollo-server-express');
+const connectionProjection = require('../utils/connection-projection');
+const typeProjection = require('../utils/type-projection');
 
 const { isArray } = Array;
 
@@ -32,10 +34,16 @@ module.exports = {
       return applicationService.request('loadContext', { applicationId, email, ipAddress });
     },
 
-    appUsers: (_, { input }, { app }) => {
+    appUsers: (_, { input }, { app }, info) => {
       const id = app.getId();
       const { sort, pagination } = input;
-      return applicationService.request('user.listForApp', { id, sort, pagination });
+      const fields = connectionProjection(info);
+      return applicationService.request('user.listForApp', {
+        id,
+        sort,
+        pagination,
+        fields,
+      });
     },
     /**
      *
@@ -52,12 +60,14 @@ module.exports = {
     /**
      * @todo This should be secured, otherwise anyone could guess by email
      */
-    appUser: (_, { input }, { app }) => {
+    appUser: (_, { input }, { app }, info) => {
       const applicationId = app.getId();
       const { email } = input;
+      const fields = typeProjection(info);
       return applicationService.request('user.findByEmail', {
         applicationId,
         email,
+        fields,
       });
     },
   },
