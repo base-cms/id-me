@@ -1,10 +1,10 @@
 <h1 class="mb-4">
   <AccessLevel::Icon /> Access Levels
-  <span class="text-muted">({{model.totalCount}})</span>
+  <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
 </h1>
 
 <div class="row">
-  {{#each model.edges as |edge|}}
+  {{#each this.model.edges as |edge|}}
     <AccessLevel::Card @accessLevel={{edge.node}} />
   {{else}}
     <div class="col">
