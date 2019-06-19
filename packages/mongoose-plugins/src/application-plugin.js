@@ -1,6 +1,7 @@
 const { Schema } = require('mongoose');
+const paginablePlugin = require('./paginable');
 
-module.exports = function applicationPlugin(schema, { options = {} } = {}) {
+module.exports = function applicationPlugin(schema, { options = {}, collateWhen = [] } = {}) {
   schema.add({
     applicationId: {
       ...options,
@@ -10,9 +11,12 @@ module.exports = function applicationPlugin(schema, { options = {} } = {}) {
     },
   });
 
-  schema.static('findForApplication', async function findForApplication(applicationId, fields) {
+  schema.plugin(paginablePlugin, { collateWhen });
+
+  schema.static('findForApplication', async function findForApplication(applicationId, fields, { pagination, sort }) {
     if (!applicationId) throw new Error('Unable to find: no application ID was provided.');
-    return this.find({ applicationId }, fields);
+    const query = { applicationId };
+    return this.paginate({ query, sort, ...pagination });
   });
 
   schema.static('findByIdForApp', async function findByIdForApp(id, applicationId, fields) {
