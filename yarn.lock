@@ -706,6 +706,14 @@
   dependencies:
     node-fetch "^2.6.0"
 
+"@base-cms/object-path@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@base-cms/object-path/-/object-path-0.9.0.tgz#58a89074df85966d07870085a23ef6d53651b9d4"
+  integrity sha512-8Av+1wHQboBDr71IwJelECrSpExI+VX7X2ao4+z2faE1L1hhxMTFmQufRXL7JgxR+M/Tjf5OiJww83qhRdYKnA==
+  dependencies:
+    "@base-cms/utils" "^0.9.0"
+    object-path "^0.11.4"
+
 "@base-cms/utils@^0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@base-cms/utils/-/utils-0.9.0.tgz#a54bfbd119aaf310ff4cbd0e3ae253f4ecfa8b27"
