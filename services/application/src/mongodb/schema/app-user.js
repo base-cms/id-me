@@ -24,6 +24,14 @@ const schema = new Schema({
   domain: {
     type: String,
     required: true,
+    trim: true,
+  },
+  verified: {
+    type: Boolean,
+    default: false,
+  },
+  lastLoggedIn: {
+    type: Date,
   },
   givenName: {
     type: String,

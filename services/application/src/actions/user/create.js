@@ -19,7 +19,12 @@ module.exports = async ({
   if (!app) throw createError(404, `No application was found for '${applicationId}'`);
 
   try {
-    const user = new AppUser({ ...payload, applicationId, email });
+    const user = new AppUser({
+      ...payload,
+      applicationId,
+      email,
+      verified: false,
+    });
     await user.validate();
     await AppUser.updateOne({ email, applicationId }, { $setOnInsert: user }, { upsert: true });
     return findByEmail({ applicationId, email, fields });
