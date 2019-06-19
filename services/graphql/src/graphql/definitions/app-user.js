@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   appUsers(input: AppUsersQueryInput!): AppUserConnection! @requiresAppRole
-  appUser(input: AppUserQueryInput!): AppUser @requiresApp
+  appUser(input: AppUserQueryInput = {}): AppUser @requiresApp
   activeAppUser: AppUser @requiresAuth(type: AppUser)
   activeAppContext: AppContext! @requiresApp
 }
