@@ -1,9 +1,8 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { updateField } = require('@base-cms/id-me-utils').actions;
 const { tokenService } = require('@base-cms/id-me-service-clients');
 
-const { Application, AppUser, AppUserLogin } = require('../../mongodb/models');
+const { Application, AppUserLogin } = require('../../mongodb/models');
 const findByEmail = require('./find-by-email');
 
 module.exports = async ({
