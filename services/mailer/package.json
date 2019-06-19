@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-mailer-service",
-  "version": "0.3.0",
+  "version": "0.3.5",
   "description": "The ID|Me mailer service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
