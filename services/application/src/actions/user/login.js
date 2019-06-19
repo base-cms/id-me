@@ -1,15 +1,13 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { updateField } = require('@base-cms/id-me-utils').actions;
 const { tokenService } = require('@base-cms/id-me-service-clients');
 
-const { Application, AppUser, AppUserLogin } = require('../../mongodb/models');
+const { Application, AppUserLogin } = require('../../mongodb/models');
 const findByEmail = require('./find-by-email');
 
 module.exports = async ({
   applicationId,
   token,
-  fields,
   ip,
   ua,
 } = {}) => {
@@ -30,7 +28,7 @@ module.exports = async ({
   if (!iss) throw createError(400, 'No application ID was provided in the token payload');
   if (iss !== applicationId) throw createError(400, 'The requested application ID does not match the token payload');
 
-  const user = await findByEmail({ applicationId, email, fields });
+  const user = await findByEmail({ applicationId, email });
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
   // Create the authenticated token.
@@ -52,11 +50,14 @@ module.exports = async ({
     ua,
   });
 
-  // Update any fields provided with the token.
-  Object.keys(input).filter(field => field !== 'email').map(field => updateField(AppUser, { id: user._id, path: field, value: input[field] }));
-  // Set the user as verified and set last logged in date.
-  updateField(AppUser, { id: user._id, path: 'verified', value: true });
-  updateField(AppUser, { id: user._id, path: 'lastLoggedIn', value: new Date() });
+  // Update the user with last logged in, verified, and any fields provided on the token.
+  const toUpdate = Object.keys(input).filter(field => field !== 'email').reduce((o, field) => ({ ...o, [field]: input[field] }), {
+    verified: true,
+    lastLoggedIn: new Date(),
+  });
+
+  user.set(toUpdate);
+  await user.save();
 
   return { user: user.toObject(), token: { id: payload.jti, value: authToken } };
 };
