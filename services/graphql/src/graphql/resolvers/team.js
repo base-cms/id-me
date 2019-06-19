@@ -1,14 +1,18 @@
 const { applicationService } = require('@base-cms/id-me-service-clients');
+const connectionProjection = require('../utils/connection-projection');
+const typeProjection = require('../utils/type-projection');
 
 const { isArray } = Array;
 
 module.exports = {
   Team: {
     id: team => team._id,
-    accessLevels: ({ accessLevelIds }) => {
+    accessLevels: ({ accessLevelIds }, args, ctx, info) => {
       if (!isArray(accessLevelIds) || !accessLevelIds.length) return [];
+
+      const fields = typeProjection(info);
       const query = { _id: { $in: accessLevelIds } };
-      return applicationService.request('access-level.find', { query });
+      return applicationService.request('access-level.find', { query, fields });
     },
     cidrs: ({ cidrs }) => {
       if (!isArray(cidrs) || !cidrs.length) return [];
@@ -27,15 +31,22 @@ module.exports = {
     /**
      *
      */
-    teams: (_, { input }, { app }) => {
+    teams: (_, { input }, { app }, info) => {
       const id = app.getId();
       const { sort, pagination } = input;
-      return applicationService.request('team.listForApp', { id, sort, pagination });
+      const fields = connectionProjection(info);
+      return applicationService.request('team.listForApp', {
+        id,
+        sort,
+        pagination,
+        fields,
+      });
     },
 
-    team: (_, { input }) => {
+    team: (_, { input }, ctx, info) => {
       const { id } = input;
-      return applicationService.request('team.findById', { id });
+      const fields = typeProjection(info);
+      return applicationService.request('team.findById', { id, fields });
     },
   },
 

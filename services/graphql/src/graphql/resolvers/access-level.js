@@ -1,4 +1,6 @@
 const { applicationService } = require('@base-cms/id-me-service-clients');
+const connectionProjection = require('../utils/connection-projection');
+const typeProjection = require('../utils/type-projection');
 
 module.exports = {
   AccessLevel: {
@@ -9,18 +11,25 @@ module.exports = {
     /**
      *
      */
-    accessLevel: (_, { input }) => {
+    accessLevel: (_, { input }, ctx, info) => {
       const { id } = input;
-      return applicationService.request('access-level.findById', { id });
+      const fields = typeProjection(info);
+      return applicationService.request('access-level.findById', { id, fields });
     },
 
     /**
      *
      */
-    accessLevels: (_, { input }, { app }) => {
+    accessLevels: (_, { input }, { app }, info) => {
       const id = app.getId();
       const { sort, pagination } = input;
-      return applicationService.request('access-level.listForApp', { id, sort, pagination });
+      const fields = connectionProjection(info);
+      return applicationService.request('access-level.listForApp', {
+        id,
+        sort,
+        pagination,
+        fields,
+      });
     },
 
     /**

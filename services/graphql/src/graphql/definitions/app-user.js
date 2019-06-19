@@ -33,19 +33,19 @@ type AppContext {
 }
 
 type AppUser {
-  id: String!
-  email: String!
-  domain: String!
-  givenName: String
-  familyName: String
-  accessLevels: [AccessLevel]
-  teams: [Team]
-  lastLoggedIn: Date
-  createdAt: Date
-  updatedAt: Date
+  id: String! @projection(localField: "_id")
+  email: String! @projection
+  domain: String! @projection
+  givenName: String @projection
+  familyName: String @projection
+  accessLevels: [AccessLevel] @projection(localField: "accessLevelIds")
+  teams: [Team]  @projection(localField: "teamIds")
+  lastLoggedIn: Date @projection
+  createdAt: Date @projection
+  updatedAt: Date @projection
 }
 
-type AppUserConnection {
+type AppUserConnection @projectUsing(type: "AppUser") {
   totalCount: Int!
   edges: [AppUserEdge]!
   pageInfo: PageInfo!

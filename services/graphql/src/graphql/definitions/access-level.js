@@ -21,14 +21,14 @@ enum AccessLevelSortField {
 }
 
 type AccessLevel {
-  id: String!
-  name: String!
-  description: String
-  createdAt: Date
-  updatedAt: Date
+  id: String! @projection(localField: "_id")
+  name: String! @projection
+  description: String @projection
+  createdAt: Date @projection
+  updatedAt: Date @projection
 }
 
-type AccessLevelConnection {
+type AccessLevelConnection @projectUsing(type: "AccessLevel") {
   totalCount: Int!
   edges: [AccessLevelEdge]!
   pageInfo: PageInfo!
