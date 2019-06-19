@@ -54,6 +54,8 @@ module.exports = async ({
 
   // Update any fields provided with the token.
   Object.keys(input).filter(field => field !== 'email').map(field => updateField(AppUser, { id: user._id, path: field, value: input[field] }));
+  // Set the user as verified.
+  updateField(AppUser, { id: user._id, path: 'verified', value: true });
 
   return { user: user.toObject(), token: { id: payload.jti, value: authToken } };
 };
