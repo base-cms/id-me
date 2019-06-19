@@ -75,7 +75,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/organization
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     depends_on:
       - mongodb
     ports:
@@ -85,7 +85,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/token
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     environment:
       <<: *env
       TOKEN_SECRET: ${TOKEN_SECRET-thisisntverysecret}
@@ -98,7 +98,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/mailer
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     environment:
       <<: *env
       SENDGRID_API_KEY: ${SENDGRID_API_KEY}
@@ -109,7 +109,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/user
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     depends_on:
       - mongodb
       - token
@@ -121,7 +121,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/membership
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     depends_on:
       - mailer
       - mongodb
@@ -135,7 +135,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/application
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     depends_on:
       - ip
       - locale
@@ -148,7 +148,7 @@ services:
     <<: *node
     working_dir: /identity-x/services/locale
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     ports:
       - "12009:80"
 
@@ -157,7 +157,7 @@ services:
     image: node:12.4
     working_dir: /identity-x/services/ip
     entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80"]
+    command: ["--port", "80", "--silent"]
     ports:
       - "12010:80"
 
