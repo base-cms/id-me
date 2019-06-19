@@ -23,10 +23,7 @@
     {{/if}}
 
     {{#if fetch.isFetching}}
-      <div class="sk-double-bounce mx-auto my-0">
-        <div class="sk-child sk-double-bounce1 bg-primary"></div>
-        <div class="sk-child sk-double-bounce2 bg-primary"></div>
-      </div>
+      <FetchMoreLoading @class="my-0" />
     {{/if}}
   </FetchMore>
 </div>
