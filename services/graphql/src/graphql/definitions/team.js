@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   team(input: TeamQueryInput!): Team
-  teams(input: TeamsQueryInput = {}): TeamConnection @requiresApp
+  teams(input: TeamsQueryInput = {}): TeamConnection! @requiresAppRole
 }
 
 extend type Mutation {
