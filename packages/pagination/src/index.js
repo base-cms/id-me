@@ -1,3 +1,4 @@
 const find = require('./find');
+const utils = require('./utils');
 
-module.exports = { find };
+module.exports = { find, utils };
