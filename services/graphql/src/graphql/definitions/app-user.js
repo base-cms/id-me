@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  appUsers: [AppUser] @requiresAppRole
+  appUsers(input: AppUsersQueryInput!): AppUserConnection! @requiresAppRole
   appUser(input: AppUserQueryInput!): AppUser @requiresApp
   activeAppUser: AppUser @requiresAuth(type: AppUser)
   activeAppContext: AppContext! @requiresApp
@@ -14,6 +14,14 @@ extend type Mutation {
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp
+}
+
+enum AppUserSortField {
+  id
+  email
+  createdAt
+  updatedAt
+  lastLoggedIn
 }
 
 type AppContext {
@@ -32,6 +40,20 @@ type AppUser {
   familyName: String
   accessLevels: [AccessLevel]
   teams: [Team]
+  lastLoggedIn: Date
+  createdAt: Date
+  updatedAt: Date
+}
+
+type AppUserConnection {
+  totalCount: Int!
+  edges: [AppUserEdge]!
+  pageInfo: PageInfo!
+}
+
+type AppUserEdge {
+  node: AppUser!
+  cursor: String!
 }
 
 type AppUserAuthentication {
@@ -46,6 +68,16 @@ type AppUserAuthToken {
 
 input AppUserQueryInput {
   email: String!
+}
+
+input AppUsersQueryInput {
+  sort: AppUserSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input AppUserSortInput {
+  field: AppUserSortField = id
+  order: SortOrder = desc
 }
 
 input CreateAppUserMutationInput {
