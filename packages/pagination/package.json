@@ -7,6 +7,11 @@
   "repository": "https://github.com/base-cms/id-me/tree/master/packages/pagination",
   "license": "MIT",
   "private": true,
+  "dependencies": {
+    "base64-url": "^2.2.2",
+    "deepmerge": "^3.2.1",
+    "mongodb-extended-json": "^1.10.1"
+  },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
