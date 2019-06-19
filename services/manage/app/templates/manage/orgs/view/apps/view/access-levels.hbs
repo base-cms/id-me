@@ -1,8 +1,11 @@
-<h1 class="mb-4"><AccessLevel::Icon /> Access Levels</h1>
+<h1 class="mb-4">
+  <AccessLevel::Icon /> Access Levels
+  <span class="text-muted">({{model.totalCount}})</span>
+</h1>
 
 <div class="row">
-  {{#each model as |accessLevel|}}
-    <AccessLevel::Card @accessLevel={{accessLevel}} />
+  {{#each model.edges as |edge|}}
+    <AccessLevel::Card @accessLevel={{edge.node}} />
   {{else}}
     <div class="col">
       <p>No access levels have been created.</p>
