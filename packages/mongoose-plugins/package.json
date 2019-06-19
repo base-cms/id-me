@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-mongoose-plugins",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A collection of Mongoose plugins for ID|Me schemas.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
