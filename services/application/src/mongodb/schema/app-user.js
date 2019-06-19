@@ -72,7 +72,7 @@ const schema = new Schema({
   },
 }, { timestamps: true });
 
-schema.plugin(applicationPlugin);
+schema.plugin(applicationPlugin, { collateWhen: ['email'] });
 schema.plugin(accessLevelPlugin);
 schema.plugin(teamPlugin);
 
@@ -102,6 +102,10 @@ schema.pre('save', async function setCountryName() {
 });
 
 schema.index({ applicationId: 1, email: 1 }, { unique: true });
+schema.index({ email: 1, _id: 1 }, { collation: { locale: 'en_US' } });
+schema.index({ updatedAt: 1, _id: 1 });
+schema.index({ createdAt: 1, _id: 1 });
+schema.index({ lastLoggedIn: 1, _id: 1 });
 
 schema.static('normalizeEmail', normalizeEmail);
 
