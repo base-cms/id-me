@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-graphql-service",
-  "version": "0.3.0",
+  "version": "0.3.6",
   "description": "The ID|Me GraphQL API server.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
