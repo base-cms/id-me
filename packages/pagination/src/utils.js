@@ -8,24 +8,23 @@ module.exports = {
    * @param {object} params
    * @param {object} [params.query]
    */
-  createResponse(Model, results, {
+  async createResponse(Model, results, {
     query,
     limit,
   } = {}) {
     const hasNextPage = results.length > limit.value;
     // Remove the extra model that was queried to peek for the page.
     if (hasNextPage) results.pop();
+    const totalCount = await Model.countDocuments(query);
 
-    // Cursor generation is actually pretty slow... 5 - 20ms on large datasets.
-    // As such, only return the values if requested (by making the property a function).
     const pageInfo = {
       hasNextPage,
-      endCursor: () => (hasNextPage ? cursor.encode(results[results.length - 1]._id) : null),
+      endCursor: hasNextPage ? cursor.encode(results[results.length - 1]._id) : null,
     };
     return {
-      edges: () => results.map(node => ({ node, cursor: () => cursor.encode(node._id) })),
+      edges: results.map(node => ({ node, cursor: () => cursor.encode(node._id) })),
       pageInfo,
-      totalCount: () => Model.countDocuments(query),
+      totalCount,
     };
   },
 
@@ -40,7 +39,7 @@ module.exports = {
     return {
       edges: [],
       pageInfo,
-      totalCount: () => 0,
+      totalCount: 0,
     };
   },
 
