@@ -4,12 +4,19 @@ module.exports = gql`
 
 extend type Query {
   team(input: TeamQueryInput!): Team
-  teams: [Team] @requiresApp
+  teams(input: TeamsQueryInput = {}): TeamConnection! @requiresAppRole
 }
 
 extend type Mutation {
   createTeam(input: CreateTeamMutationInput!): Team! @requiresAppRole(roles: [Owner, Administrator, Member])
   updateTeam(input: UpdateTeamMutationInput!): Team! @requiresAppRole(roles: [Owner, Administrator, Member])
+}
+
+enum TeamSortField {
+  id
+  name
+  createdAt
+  updatedAt
 }
 
 type Team {
@@ -22,6 +29,19 @@ type Team {
   domains: [String]
   accessLevels: [AccessLevel]
   photoURL: String
+  createdAt: Date
+  updatedAt: Date
+}
+
+type TeamConnection {
+  totalCount: Int!
+  edges: [TeamEdge]!
+  pageInfo: PageInfo!
+}
+
+type TeamEdge {
+  node: Team!
+  cursor: String!
 }
 
 input CreateTeamMutationInput {
@@ -30,6 +50,20 @@ input CreateTeamMutationInput {
   cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
+}
+
+input TeamQueryInput {
+  id: String!
+}
+
+input TeamsQueryInput {
+  sort: TeamSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input TeamSortInput {
+  field: TeamSortField = id
+  order: SortOrder = desc
 }
 
 input UpdateTeamPayloadInput {
@@ -43,10 +77,6 @@ input UpdateTeamPayloadInput {
 input UpdateTeamMutationInput {
   id: String!
   payload: UpdateTeamPayloadInput!
-}
-
-input TeamQueryInput {
-  id: String!
 }
 
 `;

@@ -4,9 +4,18 @@ import gql from 'graphql-tag';
 import fragment from '@base-cms/id-me-manage/graphql/fragments/access-level-list';
 
 const query = gql`
-  query AppAccessLevels {
-    accessLevels {
-      ...AccessLevelListFragment
+  query AppAccessLevels($input: AccessLevelsQueryInput = {}) {
+    accessLevels(input: $input) {
+      edges {
+        node {
+          ...AccessLevelListFragment
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      totalCount
     }
   }
   ${fragment}
@@ -14,6 +23,9 @@ const query = gql`
 
 export default Route.extend(AppQueryMixin, {
   model() {
-    return this.query({ query }, 'accessLevels');
+    const sort = { field: 'name', order: 'asc' };
+    const input = { sort };
+    const variables = { input };
+    return this.query({ query, variables }, 'accessLevels');
   },
 });

@@ -13,7 +13,7 @@ module.exports = {
   create,
   find: ({ query, fields }) => find(AccessLevel, { query, fields }),
   findById: ({ id, fields }) => findById(AccessLevel, { id, fields }),
-  listForApp: ({ id, fields }) => listForApp(AccessLevel, { id, fields }),
+  listForApp: params => listForApp(AccessLevel, params),
   matchForApp: params => matchForApp(AccessLevel, params),
   updateOne,
 };

@@ -1,8 +1,11 @@
-<h1 class="mb-4"><Team::Icon /> Teams</h1>
+<h1 class="mb-4">
+  <Team::Icon /> Teams
+  <span class="text-muted">({{model.totalCount}})</span>
+</h1>
 
 <div class="row">
-  {{#each model as |team|}}
-    <Team::Card @team={{team}} />
+  {{#each model.edges as |edge|}}
+    <Team::Card @team={{edge.node}} />
   {{else}}
     <div class="col">
       <p>No teams have been created.</p>

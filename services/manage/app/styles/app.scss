@@ -17,7 +17,7 @@ $ember-power-select-dropdown-border: $custom-select-border-width solid $custom-s
 }
 
 body {
-  .transitioning {
+  &.transitioning {
     // Showing progress cursor when transitioning/loading.
     cursor: progress;
   }

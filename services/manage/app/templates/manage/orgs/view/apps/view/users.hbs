@@ -1,18 +1,11 @@
-<h1 class="mb-4"><AppUser::Icon /> Users</h1>
+<h1 class="mb-4">
+  <AppUser::Icon /> Users
+  <span class="text-muted">({{model.totalCount}})</span>
+</h1>
 
 <div class="row">
-  {{#each model as |user|}}
-    <ListCard>
-      <div class="card-body">
-        <h2 class="card-title">{{user.givenName}} {{user.familyName}}</h2>
-        <p class="card-text">{{user.email}}</p>
-      </div>
-      <div class="card-footer">
-        {{#link-to "manage.orgs.view.apps.view.users.edit" user.id class="btn btn-primary" role="button"}}
-          {{entypo-icon "edit" class="mr-1"}} Modify
-        {{/link-to}}
-      </div>
-    </ListCard>
+  {{#each model.edges as |edge|}}
+    <AppUser::Card @user={{edge.node}} />
   {{else}}
     <div class="col">
       <p>No users have been created.</p>

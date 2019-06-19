@@ -11,7 +11,7 @@ const AppUser = require('../../mongodb/models/app-user');
 module.exports = {
   create,
   findByEmail,
-  listForApp: ({ id, fields }) => listForApp(AppUser, { id, fields }),
+  listForApp: params => listForApp(AppUser, params),
   login,
   logout,
   sendLoginLink,

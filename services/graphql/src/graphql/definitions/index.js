@@ -37,12 +37,27 @@ enum MatchPosition {
   exact
 }
 
+enum SortOrder {
+  asc
+  desc
+}
+
 type Query {
   ping: String!
 }
 
 type Mutation {
   ping: String!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  endCursor: String
+}
+
+input PaginationInput {
+  limit: Int = 20
+  after: String
 }
 
 ${accessLevel}

@@ -27,9 +27,10 @@ module.exports = {
     /**
      *
      */
-    teams: (_, args, { app }) => {
+    teams: (_, { input }, { app }) => {
       const id = app.getId();
-      return applicationService.request('team.listForApp', { id });
+      const { sort, pagination } = input;
+      return applicationService.request('team.listForApp', { id, sort, pagination });
     },
 
     team: (_, { input }) => {

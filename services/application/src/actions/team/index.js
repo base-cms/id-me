@@ -7,6 +7,6 @@ module.exports = {
   create,
   find: ({ query, fields }) => find(Team, { query, fields }),
   findById: ({ id, fields }) => findById(Team, { id, fields }),
-  listForApp: ({ id, fields }) => listForApp(Team, { id, fields }),
+  listForApp: params => listForApp(Team, params),
   updateOne,
 };

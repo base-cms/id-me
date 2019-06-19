@@ -32,9 +32,10 @@ module.exports = {
       return applicationService.request('loadContext', { applicationId, email, ipAddress });
     },
 
-    appUsers: (_, args, { app }) => {
+    appUsers: (_, { input }, { app }) => {
       const id = app.getId();
-      return applicationService.request('user.listForApp', { id });
+      const { sort, pagination } = input;
+      return applicationService.request('user.listForApp', { id, sort, pagination });
     },
     /**
      *

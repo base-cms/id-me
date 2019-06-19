@@ -4,9 +4,18 @@ import gql from 'graphql-tag';
 import fragment from '@base-cms/id-me-manage/graphql/fragments/team-list';
 
 const query = gql`
-  query AppTeams {
-    teams {
-      ...TeamListFragment
+  query AppTeams($input: TeamsQueryInput = {}) {
+    teams(input: $input) {
+      edges {
+        node {
+          ...TeamListFragment
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      totalCount
     }
   }
   ${fragment}
@@ -14,6 +23,9 @@ const query = gql`
 
 export default Route.extend(AppQueryMixin, {
   model() {
-    return this.query({ query }, 'teams');
+    const sort = { field: 'name', order: 'asc' };
+    const input = { sort };
+    const variables = { input };
+    return this.query({ query, variables }, 'teams');
   },
 });
