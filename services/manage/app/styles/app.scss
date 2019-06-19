@@ -10,6 +10,8 @@ $ember-power-select-dropdown-border: $custom-select-border-width solid $custom-s
 @import "power-select";
 @import "buttons";
 @import "spin";
+// Spinkit
+@import "../../node_modules/spinkit/scss/spinners/2-double-bounce";
 
 // For ember power select inside modals.
 .in-modal-dropdown {
