@@ -1,5 +1,6 @@
 import Route from '@ember/routing/route';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
+import RouteObservableMixin from '@base-cms/id-me-manage/mixins/route-observable';
 import gql from 'graphql-tag';
 import fragment from '@base-cms/id-me-manage/graphql/fragments/team-list';
 
@@ -21,12 +22,15 @@ const query = gql`
   ${fragment}
 `;
 
-export default Route.extend(AppQueryMixin, {
-  model() {
-    const sort = { field: 'name', order: 'asc' };
-    const pagination = { limit: 24 };
-    const input = { sort, pagination };
+export default Route.extend(AppQueryMixin, RouteObservableMixin, {
+  async model() {
+    const input = {
+      sort: { field: 'updatedAt', order: 'desc' },
+      pagination: { limit: 24 },
+    };
     const variables = { input };
-    return this.query({ query, variables }, 'teams');
+    const response = await this.query({ query, variables }, 'teams');
+    this.getController().set('observable', this.getObservable(response));
+    return response;
   },
 });

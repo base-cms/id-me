@@ -4,13 +4,31 @@
 </h1>
 
 <div class="row">
-  {{#each this.model.edges as |edge|}}
-    <AppUser::Card @user={{edge.node}} />
-  {{else}}
-    <div class="col">
+  <FetchMore
+    @query={{this.observable}}
+    @edges={{this.model.edges}}
+    @hasNextPage={{this.model.pageInfo.hasNextPage}}
+    @endCursor={{this.model.pageInfo.endCursor}}
+    @resultKey="appUsers"
+    as |fetch|
+  >
+    {{#each fetch.nodes as |node|}}
+      <AppUser::Card @user={{node}} />
+    {{else}}
       <p>No users were found.</p>
-    </div>
-  {{/each}}
+    {{/each}}
+
+    {{#if fetch.hasNextPage}}
+      <InView @on-viewport-enter={{action fetch.actions.loadMore}} />
+    {{/if}}
+
+    {{#if fetch.isFetching}}
+      <div class="sk-double-bounce mx-auto my-0">
+        <div class="sk-child sk-double-bounce1 bg-primary"></div>
+        <div class="sk-child sk-double-bounce2 bg-primary"></div>
+      </div>
+    {{/if}}
+  </FetchMore>
 </div>
 
 <aside class="footer-controls left">
