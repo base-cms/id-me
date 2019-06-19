@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   accessLevel(input: AccessLevelQueryInput!): AccessLevel
-  accessLevels(input: AccessLevelsQueryInput!): AccessLevelConnection! @requiresAppRole
+  accessLevels(input: AccessLevelsQueryInput = {}): AccessLevelConnection! @requiresApp
   matchAccessLevels(input: MatchAccessLevelsQueryInput!): [AccessLevel] @requiresAppRole
 }
 
