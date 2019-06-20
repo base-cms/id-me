@@ -12,8 +12,6 @@ const toIpv6 = (address) => {
 
 module.exports = ({ address }) => {
   if (!address) throw createRequiredParamError('address');
-
   const addr = parse(toIpv6(address));
-  const offset = addr.kind() === 'ipv4' ? 8 : 0;
-  return addr.toBuffer().readBigUInt64LE(offset, true).toString();
+  return addr.toBuffer().toString('hex');
 };
