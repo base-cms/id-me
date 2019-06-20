@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "dev": "micro-dev",
-    "test": "./node_modules/.bin/eslint ."
+    "test": "./node_modules/.bin/eslint .; node test"
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",

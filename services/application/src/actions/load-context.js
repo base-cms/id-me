@@ -12,7 +12,8 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!ipAddress) throw createRequiredParamError('ipAddress');
 
-  const intIp = await ipService.request('convert', { address: ipAddress });
+  const hex = await ipService.request('convert', { address: ipAddress });
+  const ip = Buffer.from(hex, 'hex');
 
   const accessLevelIds = [];
   const teamQuery = {
@@ -20,8 +21,8 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
     $or: [{
       cidrs: {
         $elemMatch: {
-          min: { $gte: intIp },
-          max: { $lte: intIp },
+          min: { $lte: ip },
+          max: { $gte: ip },
         },
       },
     }],
