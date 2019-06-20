@@ -14,13 +14,11 @@ const cidrSchema = new Schema({
   },
   min: Buffer,
   max: Buffer,
-  v6: String,
 });
 
 cidrSchema.pre('save', async function setCIDRValues() {
   const cidr = await ipService.request('cidr', { address: this.value });
   const { min, max } = await ipService.request('range', { cidr });
-  this.v6 = cidr;
   this.min = Buffer.from(min, 'hex');
   this.max = Buffer.from(max, 'hex');
 });
