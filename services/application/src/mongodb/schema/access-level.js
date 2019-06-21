@@ -1,6 +1,19 @@
 const { Schema } = require('mongoose');
 const { applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
 
+const messagesSchema = new Schema({
+  loggedInNoAccess: {
+    type: String,
+    trim: true,
+    default: '<p>In order to access this content, you must have an active subscription.</p>',
+  },
+  loggedOutNoAccess: {
+    type: String,
+    trim: true,
+    default: '<p>In order to access this content, you must be logged-in and have an active subscription.</p>',
+  },
+}, { _id: false });
+
 const schema = new Schema({
   name: {
     type: String,
@@ -10,6 +23,10 @@ const schema = new Schema({
   description: {
     type: String,
     trim: true,
+  },
+  messages: {
+    type: messagesSchema,
+    default: () => ({}),
   },
 }, { timestamps: true });
 
