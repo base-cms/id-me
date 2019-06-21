@@ -1,4 +1,4 @@
-<h1 class="mb-4">Organizations</h1>
+<h1 class="mb-4">Organization Invitations</h1>
 
 <div class="row">
   {{#each model as |userOrg|}}
@@ -16,15 +16,14 @@
           {{/if}}
         </div>
         <div class="card-footer d-flex justify-content-between">
-          {{#link-to "manage.orgs.view.apps" org.id class="btn btn-primary" role="button"}}
-            {{entypo-icon "popup" class="mr-1"}} Manage
-          {{/link-to}}
-          {{!-- {{#link-to "manage.orgs.list.edit" org.id class="btn btn-secondary" role="button"}}
-            {{entypo-icon "cog" class="mr-1"}} Edit
-          {{/link-to}} --}}
+          <button class="btn btn-primary" {{action "accept" org.id}}>
+            {{entypo-icon "check" class="mr-1"}} Accept
+          </button>
         </div>
       </ListCard>
     {{/with}}
+  {{else}}
+
   {{/each}}
 </div>
 
