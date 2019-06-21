@@ -4,16 +4,17 @@ module.exports = gql`
 
 extend type Query {
   appUsers(input: AppUsersQueryInput!): AppUserConnection! @requiresAppRole
-  appUser(input: AppUserQueryInput = {}): AppUser @requiresApp
+  appUser(input: AppUserQueryInput = {}): AppUser @requiresApp # must be public
   activeAppUser: AppUser @requiresAuth(type: AppUser)
-  activeAppContext: AppContext! @requiresApp
+  activeAppContext: AppContext! @requiresApp # must be public
+  checkContentAccess(input: CheckContentAccessQueryInput!): AppContentAccess! @requiresApp # must be public
 }
 
 extend type Mutation {
-  createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp
-  sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp
-  loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp
-  logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp
+  createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp # must be public
+  sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp # must be public
+  loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp # must be public
+  logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp # must be public
 }
 
 enum AppUserSortField {
@@ -22,6 +23,15 @@ enum AppUserSortField {
   createdAt
   updatedAt
   lastLoggedIn
+}
+
+type AppContentAccess {
+  canAccess: Boolean!
+  isLoggedIn: Boolean!
+  hasRequiredAccessLevel: Boolean!
+  requiresAccessLevel: Boolean!
+  requiredAccessLevels: [AccessLevel]!
+  messages: JSON
 }
 
 type AppContext {
@@ -78,6 +88,11 @@ input AppUsersQueryInput {
 input AppUserSortInput {
   field: AppUserSortField = id
   order: SortOrder = desc
+}
+
+input CheckContentAccessQueryInput {
+  isEnabled: Boolean!
+  requiredAccessLevelIds: [String]
 }
 
 input CreateAppUserMutationInput {
