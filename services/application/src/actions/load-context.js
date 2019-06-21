@@ -43,7 +43,7 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
     if (domain) teamQuery.$or.push({ domains: domain });
   }
 
-  const mergedTeams = await Team.find(teamQuery);
+  const mergedTeams = await Team.find(teamQuery, { 'cidrs.min': 0, 'cidrs.max': 0 });
   mergedTeams.forEach((team) => {
     getAsArray(team.accessLevelIds).forEach(id => accessLevelIds.push(id));
   });
