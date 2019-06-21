@@ -11,11 +11,10 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
-      <a class="dropdown-item dropdown-item d-flex justify-content-between" href="#" title="Update User Profile" {{action "displayUpdateProfile"}}>
+      {{#link-to "manage.profile" class="dropdown-item d-flex justify-content-between"}}
         Update Profile
         {{entypo-icon "v-card" class="ml-1"}}
-      </a>
-      {{!-- {{update-profile-modal isOpen=isUpdateProfileOpen model=user.model}} --}}
+      {{/link-to}}
 
       <div class="dropdown-divider"></div>
 
