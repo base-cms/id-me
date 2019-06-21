@@ -3,8 +3,8 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  accessLevel(input: AccessLevelQueryInput!): AccessLevel
-  accessLevels(input: AccessLevelsQueryInput = {}): AccessLevelConnection! @requiresApp
+  accessLevel(input: AccessLevelQueryInput!): AccessLevel # must be public
+  accessLevels(input: AccessLevelsQueryInput = {}): AccessLevelConnection! @requiresApp # must be public
   matchAccessLevels(input: MatchAccessLevelsQueryInput!): [AccessLevel] @requiresAppRole
 }
 
@@ -26,6 +26,7 @@ type AccessLevel {
   description: String @projection
   createdAt: Date @projection
   updatedAt: Date @projection
+  messages: AccessLevelMessages @projection
 }
 
 type AccessLevelConnection @projectUsing(type: "AccessLevel") {
@@ -37,6 +38,11 @@ type AccessLevelConnection @projectUsing(type: "AccessLevel") {
 type AccessLevelEdge {
   node: AccessLevel!
   cursor: String!
+}
+
+type AccessLevelMessages {
+  loggedInNoAccess: String
+  loggedOutNoAccess: String
 }
 
 input AccessLevelQueryInput {
@@ -56,6 +62,7 @@ input AccessLevelSortInput {
 input CreateAccessLevelMutationInput {
   name: String!
   description: String
+  messages: AccessLevelMessagesInput
 }
 
 input MatchAccessLevelsQueryInput {
@@ -73,6 +80,12 @@ input UpdateAccessLevelMutationInput {
 input UpdateAccessLevelPayloadInput {
   name: String!
   description: String
+  messages: AccessLevelMessagesInput
+}
+
+input AccessLevelMessagesInput {
+  loggedInNoAccess: String
+  loggedOutNoAccess: String
 }
 
 `;
