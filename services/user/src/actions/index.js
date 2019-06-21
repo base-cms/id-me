@@ -3,7 +3,7 @@ const findByEmail = require('./find-by-email');
 const login = require('./login');
 const logout = require('./logout');
 const sendLoginLink = require('./send-login-link');
-const updateField = require('./update-field');
+const update = require('./update');
 const verifyAuth = require('./verify-auth');
 
 module.exports = {
@@ -12,6 +12,6 @@ module.exports = {
   login,
   logout,
   sendLoginLink,
-  updateField,
+  update,
   verifyAuth,
 };
