@@ -7,6 +7,10 @@ const query = gql`
   query AppAccessLevelsEdit($input: AccessLevelQueryInput!) {
     accessLevel(input: $input) {
       ...AccessLevelListFragment
+      messages {
+        loggedInNoAccess
+        loggedOutNoAccess
+      }
     }
   }
   ${fragment}

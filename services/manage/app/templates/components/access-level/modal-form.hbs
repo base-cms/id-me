@@ -24,9 +24,25 @@
       </div>
       <div class="row">
         <div class="col">
-          <div class="form-group mb-0">
+          <div class="form-group">
             <FormElements::Label @for="access-level.description">Description</FormElements::Label>
             <Textarea @id="access-level.description" @class="form-control" @value={{this.model.description}} @rows={{3}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <FormElements::Label @for="access-level.messages.loggedInNoAccess">No Access Message (Logged In)</FormElements::Label>
+            <Textarea @id="access-level.messages.loggedInNoAccess" @class="form-control" @value={{this.model.messages.loggedInNoAccess}} @rows={{3}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-0">
+            <FormElements::Label @for="access-level.messages.loggedOutNoAccess">No Access Message (Logged Out)</FormElements::Label>
+            <Textarea @id="access-level.messages.loggedOutNoAccess" @class="form-control" @value={{this.model.messages.loggedOutNoAccess}} @rows={{3}} />
           </div>
         </div>
       </div>

@@ -21,11 +21,13 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
     async update(closeModal) {
       try {
         this.startAction();
-        const { id, name, description } = this.get('model');
+        const { id, name, description, messages = {} } = this.get('model');
+        const { loggedInNoAccess, loggedOutNoAccess } = messages;
 
         const payload = {
           name,
           description,
+          messages: { loggedInNoAccess, loggedOutNoAccess },
         };
         const input = { id, payload };
         const variables = { input };

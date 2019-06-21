@@ -19,8 +19,8 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
     async create(closeModal) {
       try {
         this.startAction();
-        const { name, description } = this.get('model');
-        const input = { name, description };
+        const { name, description, messages } = this.get('model');
+        const input = { name, description, messages };
         const variables = { input };
         const refetchQueries = ['AppAccessLevels'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createAccessLevel');
