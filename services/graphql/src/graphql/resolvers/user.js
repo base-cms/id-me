@@ -95,28 +95,11 @@ module.exports = {
     /**
      *
      */
-    setActiveUserFamilyName: (_, { input }, { user }) => {
-      const { value } = input;
+    updateUserProfile: (_, { input }, { user }) => {
+      const { givenName, familyName, photoURL } = input;
+      const payload = { givenName, familyName, photoURL };
       const email = user.get('email');
-      return userService.request('updateField', { email, path: 'familyName', value });
-    },
-
-    /**
-     *
-     */
-    setActiveUserGivenName: (_, { input }, { user }) => {
-      const { value } = input;
-      const email = user.get('email');
-      return userService.request('updateField', { email, path: 'givenName', value });
-    },
-
-    /**
-     *
-     */
-    setActiveUserPhotoURL: (_, { input }, { user }) => {
-      const { value } = input;
-      const email = user.get('email');
-      return userService.request('updateField', { email, path: 'photoURL', value });
+      return userService.request('update', { email, payload });
     },
 
     /**

@@ -12,8 +12,9 @@ Router.map(function() {
   this.route('logout');
   this.route('authenticate', { path: '/authenticate/:token' });
   this.route('manage', { path: '' }, function() {
-    this.route('invitations');
+    this.route('profile');
     this.route('orgs', function() {
+      this.route('invites');
       this.route('list', { path: '/' }, function() {
         this.route('create');
         this.route('edit', { path: '/edit/:org_id' });

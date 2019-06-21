@@ -42,7 +42,7 @@ module.exports = async ({
   const { token } = await createLoginToken(tokenService, { email: user.email, ttl });
   await OrgInvitation.update(query, { $set: invite }, { upsert: true });
 
-  const url = `${APPLICATION_URL}/authenticate/${token}?route=manage.invitations`;
+  const url = `${APPLICATION_URL}/authenticate/${token}?route=manage.orgs.invites`;
   const html = `
     <html>
       <body>

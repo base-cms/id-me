@@ -12,6 +12,7 @@ const mutation = gql`
 export default Controller.extend(ActionMixin, OrgQueryMixin, {
   actions: {
     async removeInvitation(email) {
+      if (!confirm(`Are you sure you want to cancel ${email}'s invitation?`)) return false;
       try {
         this.startAction();
         const variables = { input: { email } };

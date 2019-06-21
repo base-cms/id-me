@@ -4,17 +4,14 @@ const findByEmail = require('./find-by-email');
 
 module.exports = async ({
   email,
-  path,
-  value,
+  payload,
   fields,
 } = {}) => {
   if (!email) throw createRequiredParamError('email');
-  if (!path) throw createRequiredParamError('path');
-  const v = value === undefined || value === null ? undefined : value;
 
   const user = await findByEmail({ email, fields });
   if (!user) throw createError(404, `No user found for ${email}.`);
-  user.set(path, v);
+  user.set(payload);
 
   return user.save();
 };
