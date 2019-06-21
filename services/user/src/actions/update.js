@@ -11,7 +11,7 @@ module.exports = async ({
 
   const user = await findByEmail({ email, fields });
   if (!user) throw createError(404, `No user found for ${email}.`);
-  user.set({ ...payload });
+  user.set(payload);
 
   return user.save();
 };
