@@ -1,11 +1,20 @@
 import Route from '@ember/routing/route';
-import { inject } from '@ember/service';
-import { get } from '@ember/object';
+import { RouteQueryManager } from 'ember-apollo-client';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
+import gql from 'graphql-tag';
 
-export default Route.extend({
-  user: inject(),
+const query = gql`
+  query UserProfile {
+    activeUser {
+      id
+      givenName
+      familyName
+    }
+  }
+`;
 
+export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
   model() {
-    return { ...get(this.user, 'model') };
+    return this.apollo.watchQuery({ query }, 'activeUser');
   },
 });

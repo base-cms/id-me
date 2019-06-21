@@ -24,9 +24,6 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
         const input = { givenName, familyName, photoURL };
         const variables = { input };
         await this.apollo.mutate({ mutation, variables }, 'updateUserProfile');
-        this.user.set('model.givenName', givenName);
-        this.user.set('model.familyName', familyName);
-        this.user.set('model.photoURL', photoURL);
         await closeModal();
       } catch (e) {
         this.errorNotifier.show(e)

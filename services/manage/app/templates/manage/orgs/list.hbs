@@ -5,12 +5,7 @@
     {{#with userOrg.organization as |org|}}
       <ListCard>
         <div class="card-body">
-          <h2 class="card-title">
-            {{#if org.photoURL}}
-              <img alt="Organization Logo" src={{org.photoURL}} class="icon icon-md">
-            {{/if}}
-            {{org.name}}
-          </h2>
+          <h2 class="card-title">{{org.name}}</h2>
           {{#if org.description}}
             <p class="card-text">{{org.description}}</p>
           {{/if}}
