@@ -34,6 +34,23 @@ module.exports = {
       return applicationService.request('loadContext', { applicationId, email, ipAddress });
     },
 
+    checkContentAccess: async (_, { input }, { user, app, req }) => {
+      const applicationId = app.getId();
+      const email = user.get('email');
+      const { ip: ipAddress } = req;
+      const { isEnabled, requiredAccessLevelIds } = input;
+      if (user.hasValidUser('AppUser') && applicationId !== user.getAppId()) {
+        throw new UserInputError('The provided application context does not match the app for the user.');
+      }
+      return applicationService.request('checkAccess', {
+        applicationId,
+        email,
+        ipAddress,
+        isEnabled,
+        requiredAccessLevelIds,
+      });
+    },
+
     appUsers: (_, { input }, { app }, info) => {
       const id = app.getId();
       const { sort, pagination } = input;

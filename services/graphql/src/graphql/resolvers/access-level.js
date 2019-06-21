@@ -58,8 +58,8 @@ module.exports = {
      *
      */
     createAccessLevel: (_, { input }, { app }) => {
-      const { name, description } = input;
-      const payload = { name, description };
+      const { name, description, messages } = input;
+      const payload = { name, description, messages };
       const applicationId = app.getId();
       return applicationService.request('access-level.create', {
         applicationId,

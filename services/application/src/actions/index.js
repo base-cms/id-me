@@ -9,6 +9,7 @@ const {
 const Application = require('../mongodb/models/application');
 
 const accessLevel = require('./access-level');
+const checkAccess = require('./check-access');
 const create = require('./create');
 const loadContext = require('./load-context');
 const team = require('./team');
@@ -25,6 +26,7 @@ module.exports = {
   ...load('access-level', accessLevel),
   ...load('team', team),
   ...load('user', user),
+  checkAccess,
   create,
   loadContext,
   find: params => find(Application, params),
