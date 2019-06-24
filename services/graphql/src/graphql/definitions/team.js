@@ -23,7 +23,7 @@ type Team {
   id: String! @projection(localField: "_id")
   name: String! @projection
   description: String @projection
-  active: Boolean!
+  active: Boolean
   # deprecated
   ipAddresses: [String] @projection(localField: "cidrs.value")
   cidrs: [String] @projection(localField: "cidrs.value")
