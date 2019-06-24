@@ -18,6 +18,7 @@ module.exports = async ({ applicationId, email, ipAddress } = {}) => {
   const accessLevelIds = [];
   const teamQuery = {
     applicationId,
+    active: true,
     $or: [{
       cidrs: {
         $elemMatch: {
