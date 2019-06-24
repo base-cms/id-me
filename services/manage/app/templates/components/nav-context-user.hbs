@@ -15,10 +15,10 @@
         View Invites
         {{entypo-icon "mail" class="ml-1"}}
       {{/link-to}}
-      {{#link-to "manage.profile" class="dropdown-item d-flex justify-content-between"}}
+      <button class="dropdown-item d-flex justify-content-between" {{action "showModal"}}>
         Update Profile
         {{entypo-icon "v-card" class="ml-1"}}
-      {{/link-to}}
+      </button>
 
       <div class="dropdown-divider"></div>
 
@@ -40,3 +40,5 @@
     {{/link-to}}
   </li>
 {{/if}}
+
+<User::ModalForm @title="Modify Profile" @show={{isModalOpen}} />

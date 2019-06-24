@@ -7,4 +7,6 @@ export default Service.extend(ObjectQueryManager, {
 
   model: computed.alias('session.data.authenticated.user'),
   isAuthenticated: computed.reads('session.isAuthenticated'),
+  profileShown: false,
+  profileCloseable: computed.not('profileShown'),
 });
