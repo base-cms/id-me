@@ -11,6 +11,10 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right">
+      {{#link-to "manage.orgs.invites" class="dropdown-item d-flex justify-content-between"}}
+        View Invites
+        {{entypo-icon "mail" class="ml-1"}}
+      {{/link-to}}
       {{#link-to "manage.profile" class="dropdown-item d-flex justify-content-between"}}
         Update Profile
         {{entypo-icon "v-card" class="ml-1"}}
