@@ -4,6 +4,7 @@
     {{#if team.description}}
       <p class="card-text">{{team.description}}</p>
     {{/if}}
+    <Team::Status @value={{team.active}} />
     <ArrayList @label="Access Levels" @values={{accessLevels}} />
     <ArrayList @label="Email Domains" @values={{team.domains}} />
     <ArrayList @label="IP Addresses" @values={{team.cidrs}} />
