@@ -73,6 +73,7 @@ input UpdateTeamPayloadInput {
   cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
+  active: Boolean! = true
 }
 
 input UpdateTeamMutationInput {
