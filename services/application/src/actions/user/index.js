@@ -1,4 +1,4 @@
-const { updateField, listForApp } = require('@base-cms/id-me-utils').actions;
+const { updateField, listForApp, matchManyForApp } = require('@base-cms/id-me-utils').actions;
 const create = require('./create');
 const findByEmail = require('./find-by-email');
 const login = require('./login');
@@ -14,6 +14,7 @@ module.exports = {
   listForApp: params => listForApp(AppUser, params),
   login,
   logout,
+  matchMany: params => matchManyForApp(AppUser, params),
   sendLoginLink,
   updateField: params => updateField(AppUser, params),
   verifyAuth,
