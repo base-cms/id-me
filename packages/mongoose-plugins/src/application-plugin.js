@@ -13,11 +13,10 @@ module.exports = function applicationPlugin(schema, { options = {}, collateWhen 
 
   schema.plugin(paginablePlugin, { collateWhen });
 
-  schema.static('findForApplication', async function findForApplication(applicationId, fields, { pagination, sort }) {
+  schema.static('findForApplication', async function findForApplication(applicationId, fields, { pagination, query, sort }) {
     if (!applicationId) throw new Error('Unable to find: no application ID was provided.');
-    const query = { applicationId };
     return this.paginate({
-      query,
+      query: { applicationId, ...query },
       sort,
       projection: fields,
       ...pagination,
