@@ -6,8 +6,8 @@ import gql from 'graphql-tag';
 import fragment from '@base-cms/id-me-manage/graphql/fragments/app-user-list';
 
 const list = gql`
-  query AppUsers($pagination: PaginationInput, $sort: AppUserSortInput) {
-    appUsers(pagination:$pagination, sort:$sort) {
+  query AppUsers($input: AppUsersQueryInput!) {
+    appUsers(input:$input) {
       edges {
         node {
           ...AppUserListFragment
@@ -24,8 +24,8 @@ const list = gql`
 `;
 
 const match = gql`
-  query MatchAppUsers($input: MatchAppUsersQueryInput!, $pagination: PaginationInput, $sort: AppUserSortInput){
-    matchAppUsers(input:$input, pagination:$pagination, sort:$sort) {
+  query MatchAppUsers($input: MatchAppUsersQueryInput!){
+    matchAppUsers(input:$input) {
       edges {
         node {
           ...AppUserListFragment
@@ -51,10 +51,12 @@ const getInput = (params) => {
     sortOrder,
   } = params;
 
-  const input = phrase ? { field, phrase, position } : {};
-  const sort = { field: sortField, order: sortOrder};
-  const pagination = { limit };
-  const variables = { input, sort, pagination };
+  const common = {
+    sort: { field: sortField, order: sortOrder },
+    pagination: { limit },
+  };
+  const input = phrase ? { field, phrase, position, ...common } : common;
+  const variables = { input };
   const query = phrase ? match : list;
   const key = phrase ? 'matchAppUsers' : 'appUsers';
 
