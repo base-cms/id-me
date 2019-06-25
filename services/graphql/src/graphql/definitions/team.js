@@ -23,6 +23,7 @@ type Team {
   id: String! @projection(localField: "_id")
   name: String! @projection
   description: String @projection
+  active: Boolean @projection
   # deprecated
   ipAddresses: [String] @projection(localField: "cidrs.value")
   cidrs: [String] @projection(localField: "cidrs.value")
@@ -72,6 +73,7 @@ input UpdateTeamPayloadInput {
   cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
+  active: Boolean! = true
 }
 
 input UpdateTeamMutationInput {

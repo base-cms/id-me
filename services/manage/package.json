@@ -55,6 +55,7 @@
     "ember-resolver": "^5.0.1",
     "ember-simple-auth": "^1.8.2",
     "ember-source": "~3.10.0",
+    "ember-toggle": "^5.3.2",
     "ember-wormhole": "^0.5.5",
     "eslint-plugin-ember": "^6.2.0",
     "eslint-plugin-node": "^9.0.1",

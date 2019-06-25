@@ -29,6 +29,10 @@ const schema = new Schema({
     required: true,
     trim: true,
   },
+  active: {
+    type: Boolean,
+    default: true,
+  },
   description: {
     type: String,
     trim: true,
@@ -48,7 +52,12 @@ const schema = new Schema({
 schema.plugin(applicationPlugin, { collateWhen: ['name'] });
 schema.plugin(accessLevelPlugin);
 
-schema.index({ applicationId: 1, 'cidrs.min': 1, 'cidrs.max': 1 });
+schema.index({
+  applicationId: 1,
+  active: 1,
+  'cidrs.min': 1,
+  'cidrs.max': 1,
+});
 schema.index({ name: 1, _id: 1 }, { collation: { locale: 'en_US' } });
 schema.index({ updatedAt: 1, _id: 1 });
 schema.index({ createdAt: 1, _id: 1 });

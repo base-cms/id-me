@@ -25,7 +25,7 @@ const query = gql`
 export default Route.extend(AppQueryMixin, RouteObservableMixin, {
   async model() {
     const input = {
-      sort: { field: 'updatedAt', order: 'desc' },
+      sort: { field: 'name', order: 'asc' },
       pagination: { limit: 24 },
     };
     const variables = { input };

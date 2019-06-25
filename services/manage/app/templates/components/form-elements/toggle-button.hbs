@@ -1,0 +1,13 @@
+{{#x-toggle
+  size="medium"
+  theme="light"
+  value=value
+  onLabel=onLabel
+  offLabel=offLabel
+  showLabels=true
+  onToggle=(action (mut value)) as |toggle|
+}}
+  {{toggle.offLabel}}
+  {{toggle.switch class="w-auto px-0"}}
+  {{toggle.onLabel}}
+{{/x-toggle}}
