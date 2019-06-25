@@ -51,9 +51,8 @@ module.exports = {
       });
     },
 
-    appUsers: (_, { input }, { app }, info) => {
+    appUsers: (_, { sort, pagination }, { app }, info) => {
       const id = app.getId();
-      const { sort, pagination } = input;
       const fields = connectionProjection(info);
       return applicationService.request('user.listForApp', {
         id,
