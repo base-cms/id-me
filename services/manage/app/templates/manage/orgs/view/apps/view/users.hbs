@@ -3,6 +3,20 @@
   <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
 </h1>
 
+<ListControls
+  @limit={{limit}}
+  @limitOptions={{limitOptions}}
+  @sortOptions={{sortOptions}}
+  @sortField={{sortField}}
+  @sortOrder={{sortOrder}}
+  @isSortDisabled={{isSortDisabled}}
+  @phrase={{phrase}}
+  @position={{position}}
+  @searchFields={{searchFields}}
+  @field={{field}}
+  @search={{action "search"}}
+/>
+
 <div class="row">
   <FetchMore
     @query={{this.observable}}
