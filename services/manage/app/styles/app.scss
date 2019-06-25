@@ -159,7 +159,6 @@ body {
   height: 20px;
 }
 
-
 .x-toggle + label > .x-toggle-light.x-toggle-btn {
   background: $gray-400;
 }
@@ -171,4 +170,12 @@ body {
 .x-toggle-component.x-toggle-focused .x-toggle-btn:not(.x-toggle-disabled)::after,
 .x-toggle-component.x-toggle-focused .x-toggle-btn:not(.x-toggle-disabled)::before {
   box-shadow: none;
+}
+
+.x-toggle-container > label, .x-toggle-component > label {
+  margin-bottom: 0;
+}
+
+.x-toggle-btn {
+  box-shadow: $btn-box-shadow;
 }
