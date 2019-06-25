@@ -80,7 +80,7 @@
     {{/modal.body}}
 
     {{#modal.footer class="justify-content-between"}}
-      <FormElements::ToggleButton @value={{model.active}} @onLabel="Active" />
+      <FormElements::ToggleButton @value={{this.model.active}} @onLabel="Active" />
       <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
     {{/modal.footer}}
   </form>
