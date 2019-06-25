@@ -193,3 +193,7 @@ body {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+
+.shadowed {
+  box-shadow: 0 0 6px rgba(50, 50, 93, 0.11), 0 0 3px rgba(0, 0, 0, 0.08);
+}
