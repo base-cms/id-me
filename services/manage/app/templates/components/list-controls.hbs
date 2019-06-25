@@ -1,0 +1,32 @@
+<div class="col">
+  <div class="row">
+    <div class="col-12 col-lg-8">
+      <ListControls::Search
+        @phrase={{phrase}}
+        @position={{position}}
+        @fields={{searchFields}}
+        @field={{field}}
+        @onSubmit={{action search}}
+      />
+    </div>
+
+    <div class="col-12 col-lg-4 mt-3 mt-lg-0">
+      {{!-- Fix menu alignment, once https://github.com/twbs/bootstrap/pull/26255 is merged --}}
+      <div
+        class="btn-toolbar float-md-right"
+        role="toolbar"
+        aria-label="Filter Toolbar"
+      >
+        <ListControls::Sort
+          @class="mr-2"
+          @options={{sortOptions}}
+          @field={{sortField}}
+          @order={{sortOrder}}
+          @disabled={{isSortDisabled}}
+          @alignment="right"
+        />
+        <ListControls::Limit @options={{limitOptions}} @limit={{limit}} @alignment="right" />
+      </div>
+    </div>
+  </div>
+</div>
