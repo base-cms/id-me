@@ -11,9 +11,6 @@ export default Mixin.create({
     field: {
       refreshModel: true,
     },
-    limit: {
-      refreshModel: true
-    },
     sortField: {
       refreshModel: true
     },
