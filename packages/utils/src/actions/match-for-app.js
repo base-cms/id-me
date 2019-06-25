@@ -36,7 +36,7 @@ module.exports = async (Model, {
   }
   const defaultSort = { field, order: 'desc' };
   const payload = {
-    sort: { ...defaultSort, sort },
+    sort: { ...defaultSort, ...sort },
     query,
     pagination,
   };
