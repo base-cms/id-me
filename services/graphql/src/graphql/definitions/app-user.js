@@ -3,7 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  appUsers(pagination: PaginationInput = {}, sort: AppUserSortInput = {}): AppUserConnection! @requiresAppRole
+  appUsers(input: AppUsersQueryInput!): AppUserConnection! @requiresAppRole
   appUser(input: AppUserQueryInput = {}): AppUser @requiresApp # must be public
   activeAppUser: AppUser @requiresAuth(type: AppUser)
   activeAppContext: AppContext! @requiresApp # must be public
@@ -81,7 +81,14 @@ input AppUserQueryInput {
   email: String!
 }
 
+input AppUsersQueryInput {
+  sort: AppUserSortInput = {}
+  pagination: PaginationInput = {}
+}
+
 input MatchAppUsersQueryInput {
+  sort: AppUserSortInput = {}
+  pagination: PaginationInput = {}
   field: String!
   phrase: String!
   position: MatchPosition = contains
