@@ -158,3 +158,17 @@ body {
   width: 20px;
   height: 20px;
 }
+
+
+.x-toggle + label > .x-toggle-light.x-toggle-btn {
+  background: $gray-400;
+}
+
+.x-toggle:checked + label > .x-toggle-light.x-toggle-btn {
+  background: $primary;
+}
+
+.x-toggle-component.x-toggle-focused .x-toggle-btn:not(.x-toggle-disabled)::after,
+.x-toggle-component.x-toggle-focused .x-toggle-btn:not(.x-toggle-disabled)::before {
+  box-shadow: none;
+}
