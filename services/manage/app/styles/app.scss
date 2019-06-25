@@ -187,3 +187,9 @@ body {
 .x-toggle-btn {
   box-shadow: $btn-box-shadow;
 }
+
+.input-group-prepend .btn-group:last-child,
+.input-group-prepend .btn-group:last-child .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
