@@ -8,16 +8,22 @@ module.exports = async (Model, {
   position = 'contains',
   fields,
   excludeIds,
+  pagination,
+  sort,
 }) => {
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!field) throw createRequiredParamError('field');
   if (!phrase) throw createRequiredParamError('phrase');
 
-  const query = { applicationId, [field]: buildRegex(phrase, position) };
+  const query = { [field]: buildRegex(phrase, position) };
   if (Array.isArray(excludeIds) && excludeIds.length) {
     query._id = { $nin: excludeIds };
   }
-  const sort = { [field]: 1 };
-
-  return Model.find(query, fields, { sort });
+  const defaultSort = { field, order: 'desc' };
+  const payload = {
+    sort: { ...defaultSort, sort },
+    query,
+    pagination,
+  };
+  return Model.findForApplication(applicationId, fields, payload);
 };

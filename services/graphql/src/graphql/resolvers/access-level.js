@@ -35,7 +35,7 @@ module.exports = {
     /**
      *
      */
-    matchAccessLevels: (_, { input }, { app }) => {
+    matchAccessLevels: async (_, { input }, { app }) => {
       const {
         field,
         phrase,
@@ -43,13 +43,14 @@ module.exports = {
         excludeIds,
       } = input;
       const applicationId = app.getId();
-      return applicationService.request('access-level.matchForApp', {
+      const levels = await applicationService.request('access-level.matchForApp', {
         applicationId,
         field,
         phrase,
         position,
         excludeIds,
       });
+      return levels.edges.map(({ node }) => node);
     },
   },
 

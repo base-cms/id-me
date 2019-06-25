@@ -92,7 +92,7 @@ module.exports = {
       const fields = connectionProjection(info);
       const { field, phrase, position } = input;
 
-      return applicationService.request('user.matchMany', {
+      return applicationService.request('user.matchForApp', {
         applicationId,
         field,
         phrase,
