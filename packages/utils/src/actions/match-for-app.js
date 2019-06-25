@@ -1,20 +1,5 @@
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const escapeRegex = require('escape-string-regexp');
-
-const buildRegex = (term, position) => {
-  let start = '';
-  let end = '';
-  if (position === 'starts') {
-    start = '^';
-  } else if (position === 'ends') {
-    end = '$';
-  } else if (position === 'exact') {
-    start = '^';
-    end = '$';
-  }
-  const value = escapeRegex(term);
-  return new RegExp(`${start}${value.replace(/\s\s+/, ' ').replace(' ', '|')}${end}`, 'i');
-};
+const buildRegex = require('../build-regex');
 
 module.exports = async (Model, {
   applicationId,
