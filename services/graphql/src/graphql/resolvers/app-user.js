@@ -87,16 +87,11 @@ module.exports = {
         fields,
       });
     },
-    matchAppUsers: (_, { input }, { app }, info) => {
+    matchAppUsers: (_, { input, pagination, sort }, { app }, info) => {
       const applicationId = app.getId();
 
       const fields = connectionProjection(info);
-      const {
-        pagination,
-        field,
-        phrase,
-        position,
-      } = input;
+      const { field, phrase, position } = input;
 
       return applicationService.request('user.matchMany', {
         applicationId,
@@ -105,6 +100,7 @@ module.exports = {
         position,
         fields,
         pagination,
+        sort,
       });
     },
   },

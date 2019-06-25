@@ -8,7 +8,7 @@ extend type Query {
   activeAppUser: AppUser @requiresAuth(type: AppUser)
   activeAppContext: AppContext! @requiresApp # must be public
   checkContentAccess(input: CheckContentAccessQueryInput!): AppContentAccess! @requiresApp # must be public
-  matchAppUsers(input: MatchAppUsersQueryInput!): AppUserConnection! @requiresAppRole
+  matchAppUsers(input: MatchAppUsersQueryInput!, pagination: PaginationInput = {}, sort: AppUserSortInput = {}): AppUserConnection! @requiresAppRole
 }
 
 extend type Mutation {
@@ -87,6 +87,7 @@ input AppUsersQueryInput {
 }
 
 input MatchAppUsersQueryInput {
+  sort: AppUserSortInput = {}
   pagination: PaginationInput = {}
   field: String!
   phrase: String!
