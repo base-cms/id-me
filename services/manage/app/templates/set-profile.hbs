@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <div class="card">
+        <form {{action "submit" on="submit"}}>
+          <div class="card-header">
+            <h1 class="card-title mb-0">Complete Your Profile</h1>
+          </div>
+          <div class="card-body">
+            <p class="card-text">Before using the application, please complete your user profile by submitting the required fields below.</p>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group mb-3 mb-lg-0">
+                  <FormElements::Label @for="set-profile.given-name" @required={{true}}>First Name</FormElements::Label>
+                  <Input @id="set-profile.given-name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.givenName}} />
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group mb-0">
+                  <FormElements::Label @for="set-profile.family-name" @required={{true}}>Last Name</FormElements::Label>
+                  <Input @id="set-profile.family-name" @type="text" @required={{true}} @class="form-control" @value={{this.model.familyName}} />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <button
+              type="submit"
+              class="btn btn-block btn-lg btn-primary"
+              disabled={{isActionRunning}}
+            >
+              {{entypo-icon "login" class="mr-1"}} Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
