@@ -32,6 +32,18 @@
     </a>
   </li>
 
-  <NavContextUser />
-
+  {{#if session.isAuthenticated}}
+    <NavBar::UserDropdown />
+  {{else}}
+    <li class="nav-item">
+      {{#link-to "login" class="nav-link" title="Sign into IdentityX"}}
+        <NavBar::Item @icon="login">Sign In</NavBar::Item>
+      {{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "signup" class="nav-link" title="Create new user account"}}
+        <NavBar::Item @icon="add-user">Sign Up</NavBar::Item>
+      {{/link-to}}
+    </li>
+  {{/if}}
 </ul>
