@@ -46,7 +46,8 @@ export default Route.extend(ApplicationRouteMixin, ActionMixin, {
       if (this.errorNotifier.isReady()) {
         this.errorNotifier.show(e);
       } else {
-        this.intermediateTransitionTo('application_error', e);
+        const err = this.errorNotifier.handle(e);
+        this.intermediateTransitionTo('application_error', err);
       }
     },
   },

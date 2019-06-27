@@ -1,16 +1,18 @@
-<div class="container my-3">
+<div class="container mt-5">
   <div class="row">
     <div class="col col-sm-10 col-lg-8 mx-auto">
-      <div class="card border-0 z-depth-1" role="alert">
+      <div class="card" role="alert">
         <div class="card-header">
-          <h3 class="mb-0 text-danger">
-            {{entypo-icon "thumbs-down"}} Houston, we have a problem!
-          </h3>
+          <h1 class="mb-0 text-danger">
+            Houston, we have a problem!
+          </h1>
         </div>
         <div class="card-body">
-          <h4 class="card-title">An error was encountered with this request:</h4>
-          <code class="d-block text-gray-dark">{{model.message}}</code>
-          <code class="d-block">{{model.stack}}</code>
+          <h3 class="card-title">An error was encountered with this request.</h3>
+          <p class="card-text">{{model.message}}</p>
+        </div>
+        <div class="card-footer">
+          <pre class="text-muted mb-0">{{model.stack}}</pre>
         </div>
       </div>
     </div>
