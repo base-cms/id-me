@@ -8,6 +8,17 @@ export default Route.extend(ApplicationRouteMixin, ActionMixin, {
   routeAfterAuthentication: 'manage',
   errorNotifier: inject(),
 
+  /**
+   * Ref https://github.com/simplabs/ember-simple-auth/issues/802#issuecomment-166377794
+   */
+  sessionInvalidated() {
+    if (this.session.skipRedirectOnInvalidation) {
+      this.set('session.skipRedirectOnInvalidation', false);
+    } else {
+      this._super(...arguments);
+    }
+  },
+
   actions: {
     showLoading() {
       this.showLoading();
