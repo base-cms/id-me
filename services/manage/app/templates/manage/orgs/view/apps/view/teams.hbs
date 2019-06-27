@@ -15,7 +15,7 @@
     {{#each fetch.nodes as |node|}}
       <Team::Card @team={{node}} />
     {{else}}
-      <p>No teams were found.</p>
+      <p class="col">No teams were found.</p>
     {{/each}}
 
     {{#if fetch.hasNextPage}}

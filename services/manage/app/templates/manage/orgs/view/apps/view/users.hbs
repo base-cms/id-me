@@ -15,7 +15,7 @@
     {{#each fetch.nodes as |node|}}
       <AppUser::Card @user={{node}} />
     {{else}}
-      <p>No users were found.</p>
+      <p class="col">No users were found.</p>
     {{/each}}
 
     {{#if fetch.hasNextPage}}
