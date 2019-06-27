@@ -26,7 +26,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         await this.mutate({ mutation, variables, refetchQueries }, 'createAccessLevel');
         await closeModal();
       } catch (e) {
-        this.errorNotifier.show(e)
+        this.errorNotifier.show(e);
       } finally {
         this.endAction();
       }

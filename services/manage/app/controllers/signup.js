@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { ObjectQueryManager } from 'ember-apollo-client';
 import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import { inject } from '@ember/service';
 import gql from 'graphql-tag';
 
 const mutation = gql`
@@ -20,6 +21,8 @@ const mutation = gql`
 `;
 
 export default Controller.extend(ActionMixin, ObjectQueryManager, {
+  errorNotifier: inject(),
+
   email: null,
   givenName: null,
   familyName: null,
@@ -45,7 +48,7 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
         await this.get('apollo').mutate({ mutation, variables }, 'registerNewUser');
         this.set('sent', true);
       } catch (e) {
-        this.get('graphErrors').show(e);
+        this.errorNotifier.show(e);
       } finally {
         this.endAction();
       }

@@ -32,7 +32,7 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
         await this.apollo.mutate({ mutation, variables }, 'updateUserProfile');
         this.router.transitionTo(this.route);
       } catch (e) {
-        this.errorNotifier.show(e)
+        this.errorNotifier.show(e);
       } finally {
         this.endAction();
       }

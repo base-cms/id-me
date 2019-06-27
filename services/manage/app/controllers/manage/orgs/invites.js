@@ -23,7 +23,7 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
         await this.apollo.mutate({ mutation, variables, refetchQueries });
         await this.transitionToRoute('manage.orgs.view', organizationId);
       } catch (e) {
-        this.errorNotifier.show(e)
+        this.errorNotifier.show(e);
       } finally {
         this.endAction();
       }

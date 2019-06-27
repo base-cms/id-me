@@ -3,6 +3,7 @@ import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
 import { ObjectQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
 import { computed } from '@ember/object';
+import { inject } from '@ember/service';
 
 const mutation = gql`
   mutation UserProfileEdit($input: UpdateUserProfileMutationInput!) {
@@ -16,6 +17,8 @@ const mutation = gql`
 
 export default Component.extend(ActionMixin, ObjectQueryManager, {
   tagName: '',
+
+  errorNotifier: inject(),
 
   givenName: computed.oneWay('user.givenName'),
   familyName: computed.oneWay('user.familyName'),
