@@ -7,11 +7,13 @@ import { inject } from '@ember/service';
 export default Route.extend(ApplicationRouteMixin, ActionMixin, {
   routeAfterAuthentication: 'manage',
   errorNotifier: inject(),
+  contextService: inject('context'),
 
   /**
    * Ref https://github.com/simplabs/ember-simple-auth/issues/802#issuecomment-166377794
    */
   sessionInvalidated() {
+    this.contextService.set('user', null);
     if (this.session.skipRedirectOnInvalidation) {
       this.set('session.skipRedirectOnInvalidation', false);
     } else {

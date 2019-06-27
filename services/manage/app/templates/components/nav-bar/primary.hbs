@@ -33,7 +33,7 @@
   </li>
 
   {{#if session.isAuthenticated}}
-    <NavBar::UserDropdown />
+    <NavBar::UserDropdown @user={{this.context.user}} />
   {{else}}
     <li class="nav-item">
       {{#link-to "login" class="nav-link" title="Sign into IdentityX"}}
