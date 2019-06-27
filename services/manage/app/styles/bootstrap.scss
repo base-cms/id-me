@@ -35,6 +35,14 @@
   border: 0;
 }
 
+.card-body {
+	.card-title {
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
 .card-text {
 	font-family: $font-family-serif;
 }
