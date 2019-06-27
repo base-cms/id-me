@@ -1,12 +1,9 @@
 import Route from '@ember/routing/route';
 import { get } from '@ember/object';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
-import { inject as service } from '@ember/service';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
   routeIfAlreadyAuthenticated: 'manage',
-
-  session: service(),
 
   async beforeModel() {
     if (this.session.isAuthenticated) {
