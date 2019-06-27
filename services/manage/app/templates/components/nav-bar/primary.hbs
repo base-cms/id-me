@@ -1,19 +1,22 @@
 {{#link-to "manage.orgs" class="navbar-brand"}}Identity<span class="text-primary">X</span>{{/link-to}}
 
 <ul class="navbar-nav mr-auto">
-  {{#if user.isAuthenticated}}
+  {{#if session.isAuthenticated}}
     <NavBar::OrgDropdown />
-  {{/if}}
 
-  {{#each links as |link|}}
-    <li class="nav-item">
-      {{#link-to link.route context.orgId class="nav-link"}}
-        <NavBar::Item @icon={{link.icon}}>
-          {{link.text}}
-        </NavBar::Item>
-      {{/link-to}}
-    </li>
-  {{/each}}
+    {{#if context.orgId}}
+      <li class="nav-item">
+        {{#link-to "manage.orgs.view.apps.list" context.orgId class="nav-link"}}
+          <NavBar::Item @icon="browser">Applications</NavBar::Item>
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "manage.orgs.view.users" context.orgId class="nav-link"}}
+          <NavBar::Item @icon="users">Users</NavBar::Item>
+        {{/link-to}}
+      </li>
+    {{/if}}
+  {{/if}}
 </ul>
 
 <ul class="navbar-nav ml-auto">
