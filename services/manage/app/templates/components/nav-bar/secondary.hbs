@@ -1,13 +1,21 @@
 <ul class="navbar-nav mr-auto">
   <NavBar::AppDropdown />
 
-  {{#each links as |link|}}
+  {{#if context.appId}}
     <li class="nav-item">
-      {{#link-to link.route context.appId class="nav-link"}}
-        <NavBar::Item @icon={{link.icon}}>
-          {{link.text}}
-        </NavBar::Item>
+      {{#link-to "manage.orgs.view.apps.view.access-levels" context.appId class="nav-link"}}
+        <NavBar::Item @icon="shield">Access Levels</NavBar::Item>
       {{/link-to}}
     </li>
-  {{/each}}
+    <li class="nav-item">
+      {{#link-to "manage.orgs.view.apps.view.teams" context.appId class="nav-link"}}
+        <NavBar::Item @icon="slideshare">Teams</NavBar::Item>
+      {{/link-to}}
+    </li>
+    <li class="nav-item">
+      {{#link-to "manage.orgs.view.apps.view.users" context.appId class="nav-link"}}
+        <NavBar::Item @icon="man">Users</NavBar::Item>
+      {{/link-to}}
+    </li>
+  {{/if}}
 </ul>
