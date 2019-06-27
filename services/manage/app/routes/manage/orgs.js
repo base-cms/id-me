@@ -27,6 +27,6 @@ export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
   },
 
   afterModel(model) {
-    this.get('contextService').set('userOrganizations', model);
+    this.contextService.set('userOrganizations', model);
   },
 });
