@@ -8,14 +8,12 @@ export default Route.extend(UnauthenticatedRouteMixin, {
 
   session: service(),
 
-  async beforeModel(transition) {
-    const route = get(transition, 'to.queryParams.route');
-    const isAuthenticated = await this.session.isAuthenticated;
-    if (isAuthenticated && route) {
-      transition.abort();
-      await this.transitionTo(route);
+  async beforeModel() {
+    if (this.session.isAuthenticated) {
+      // If a user is already present, log them out (but do not redirect).
+      this.set('session.skipRedirectOnInvalidation', true);
+      await this.session.invalidate();
     }
-    return this._super(...arguments);
   },
 
   async model({ token }, transition) {
