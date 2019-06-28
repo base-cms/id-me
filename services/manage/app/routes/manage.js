@@ -21,11 +21,10 @@ export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
     return this.apollo.watchQuery({ query }, 'activeUser');
   },
 
-  afterModel(user, transition) {
+  afterModel(user) {
     this.contextService.set('user', user);
     if (this.contextService.userProfileIncomplete) {
-      const queryParams = { route: transition.to.name };
-      return this.transitionTo('set-profile', { queryParams });
+      return this.transitionTo('set-profile');
     }
   },
 });

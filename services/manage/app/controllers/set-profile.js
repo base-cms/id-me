@@ -17,7 +17,7 @@ const mutation = gql`
 export default Controller.extend(ActionMixin, ObjectQueryManager, {
   errorNotifier: inject(),
   router: inject(),
-  route: 'manage',
+  session: inject(),
 
   actions: {
     /**
@@ -30,7 +30,14 @@ export default Controller.extend(ActionMixin, ObjectQueryManager, {
         const input = { givenName, familyName };
         const variables = { input };
         await this.apollo.mutate({ mutation, variables }, 'updateUserProfile');
-        this.router.transitionTo(this.route);
+
+        if (this.session.redirectTo) {
+          const { name, segments } = this.session.redirectTo;
+          this.router.transitionTo(name, ...(segments || []));
+          this.set('session.redirectTo', null);
+        } else {
+          this.router.transitionTo('manage');
+        }
       } catch (e) {
         this.errorNotifier.show(e);
       } finally {

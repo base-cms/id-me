@@ -1,9 +1,13 @@
 import Route from '@ember/routing/route';
-import { get } from '@ember/object';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
   routeIfAlreadyAuthenticated: 'manage',
+
+  queryParams: {
+    routeName: { refreshModel: false, replace: false, as: 'route-name' },
+    routeSegments: { refreshModel: false, replace: false, as: 'route-segments' },
+  },
 
   async beforeModel() {
     if (this.session.isAuthenticated) {
@@ -13,9 +17,12 @@ export default Route.extend(UnauthenticatedRouteMixin, {
     }
   },
 
-  async model({ token }, transition) {
-    const route = get(transition, 'to.queryParams.route');
-    if (route) this.session.set('attemptedTransition', this.transitionTo(route));
+  model({ token, routeName, routeSegments }) {
+    if (routeName) {
+      // A route redirect was specified. Apply it to the session.
+      const segments = routeSegments ? JSON.parse(routeSegments) : [];
+      this.session.set('redirectTo', { name: routeName, segments });
+    }
     return this.session.authenticate('authenticator:application', token);
   },
 });

@@ -9,6 +9,16 @@ export default Route.extend(ApplicationRouteMixin, ActionMixin, {
   errorNotifier: inject(),
   contextService: inject('context'),
 
+  sessionAuthenticated() {
+    if (this.session.redirectTo) {
+      // A specific redirect was applied. Handle.
+      const { name, segments } = this.session.redirectTo;
+      this.transitionTo(name, ...(segments || []));
+    } else {
+      this._super(...arguments);
+    }
+  },
+
   /**
    * Ref https://github.com/simplabs/ember-simple-auth/issues/802#issuecomment-166377794
    */
