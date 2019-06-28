@@ -9,14 +9,14 @@
 </a>
 
 <div class="dropdown-menu dropdown-menu-right">
-  {{!-- {{#link-to "manage.orgs.invites" class="dropdown-item d-flex justify-content-between"}}
-    View Invites
-    {{entypo-icon "mail" class="ml-1"}}
-  {{/link-to}} --}}
   <a href="#update-profile" class="dropdown-item d-flex justify-content-between" {{action "openUserProfile"}}>
     Update Profile
     {{entypo-icon "v-card" class="ml-1"}}
   </a>
+  {{#link-to "manage.invites.index" class="dropdown-item d-flex justify-content-between"}}
+    View Invites
+    {{entypo-icon "mail" class="ml-1"}}
+  {{/link-to}}
 
   <div class="dropdown-divider"></div>
 
