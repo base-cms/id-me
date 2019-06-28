@@ -4,15 +4,15 @@ import { ObjectQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
+import fragment from '@base-cms/id-me-manage/graphql/fragments/user-profile';
 
 const mutation = gql`
   mutation UserProfileEdit($input: UpdateUserProfileMutationInput!) {
     updateUserProfile(input: $input) {
-      id
-      givenName
-      familyName
+      ...UserProfileFragment
     }
   }
+  ${fragment}
 `;
 
 export default Component.extend(ActionMixin, ObjectQueryManager, {
