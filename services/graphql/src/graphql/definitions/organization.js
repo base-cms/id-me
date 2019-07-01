@@ -38,6 +38,7 @@ type OrganizationInvitation {
   user: User!
   organization: Organization!
   role: OrganizationRole!
+  invitedBy: User!
   createdAt: Date
 }
 
