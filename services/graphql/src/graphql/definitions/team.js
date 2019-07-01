@@ -60,6 +60,7 @@ input MatchTeamsQueryInput {
   field: String!
   phrase: String!
   position: MatchPosition = contains
+  excludeIds: [String!] = []
 }
 
 input TeamQueryInput {

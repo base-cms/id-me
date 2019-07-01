@@ -40,6 +40,8 @@ module.exports = {
         field,
         phrase,
         position,
+        pagination,
+        sort,
         excludeIds,
       } = input;
       const applicationId = app.getId();
@@ -48,6 +50,8 @@ module.exports = {
         field,
         phrase,
         position,
+        pagination,
+        sort,
         excludeIds,
       });
     },

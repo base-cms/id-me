@@ -53,6 +53,7 @@ module.exports = {
         position,
         pagination,
         sort,
+        excludeIds,
       } = input;
 
       return applicationService.request('team.matchForApp', {
@@ -63,6 +64,7 @@ module.exports = {
         fields,
         pagination,
         sort,
+        excludeIds,
       });
     },
 
