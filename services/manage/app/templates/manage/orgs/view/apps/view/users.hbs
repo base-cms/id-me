@@ -23,7 +23,7 @@
     @edges={{this.model.edges}}
     @hasNextPage={{this.model.pageInfo.hasNextPage}}
     @endCursor={{this.model.pageInfo.endCursor}}
-    @resultKey="appUsers"
+    @resultKey={{this.resultKey}}
     as |fetch|
   >
     {{#each fetch.nodes as |node|}}
