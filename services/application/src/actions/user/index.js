@@ -3,6 +3,7 @@ const create = require('./create');
 const findByEmail = require('./find-by-email');
 const login = require('./login');
 const logout = require('./logout');
+const manageCreate = require('./manage-create');
 const sendLoginLink = require('./send-login-link');
 const verifyAuth = require('./verify-auth');
 
@@ -14,6 +15,7 @@ module.exports = {
   listForApp: params => listForApp(AppUser, params),
   login,
   logout,
+  manageCreate,
   matchForApp: params => matchForApp(AppUser, params),
   sendLoginLink,
   updateField: params => updateField(AppUser, params),
