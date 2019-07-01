@@ -1,11 +1,11 @@
 import Route from '@ember/routing/route';
 import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
-import RouteObservableMixin from '@base-cms/id-me-manage/mixins/route-observable';
+import ListRouteMixin from '@base-cms/id-me-manage/mixins/list-route';
 import gql from 'graphql-tag';
 import fragment from '@base-cms/id-me-manage/graphql/fragments/access-level-list';
 
-const query = gql`
-  query AppAccessLevels($input: AccessLevelsQueryInput = {}) {
+const accessLevels = gql`
+  query AppAccessLevels($input: AccessLevelsQueryInput) {
     accessLevels(input: $input) {
       edges {
         node {
@@ -22,15 +22,29 @@ const query = gql`
   ${fragment}
 `;
 
-export default Route.extend(AppQueryMixin, RouteObservableMixin, {
-  async model() {
-    const input = {
-      sort: { field: 'updatedAt', order: 'desc' },
-      pagination: { limit: 24 },
-    };
-    const variables = { input };
-    const response = await this.query({ query, variables }, 'accessLevels');
-    this.getController().set('observable', this.getObservable(response));
-    return response;
+const matchAccessLevels = gql`
+  query AppAccessLevelsMatch($input: MatchAccessLevelsQueryInput!) {
+    matchAccessLevels(input: $input) {
+      edges {
+        node {
+          ...AccessLevelListFragment
+        }
+      }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      totalCount
+    }
+  }
+  ${fragment}
+`;
+
+export default Route.extend(AppQueryMixin, ListRouteMixin, {
+  async model(params) {
+    const apollo = this.query.bind(this);
+    const query = { key: 'accessLevels', op: accessLevels };
+    const search = { key: 'matchAccessLevels', op: matchAccessLevels };
+    return this.getResults(apollo, { query, search, params });
   },
 });
