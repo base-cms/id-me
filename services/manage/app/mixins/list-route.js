@@ -12,10 +12,10 @@ export default Mixin.create({
       refreshModel: true,
     },
     sortField: {
-      refreshModel: true
+      refreshModel: true,
     },
     sortOrder: {
-      refreshModel: true
+      refreshModel: true,
     },
   },
 });
