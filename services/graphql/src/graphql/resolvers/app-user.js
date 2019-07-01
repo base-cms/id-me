@@ -196,5 +196,18 @@ module.exports = {
         fields,
       });
     },
+
+    /**
+     *
+     */
+    updateAppUser: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, payload } = input;
+      return applicationService.request('user.updateOne', {
+        id,
+        applicationId,
+        payload,
+      });
+    },
   },
 };
