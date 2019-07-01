@@ -12,8 +12,6 @@ module.exports = async ({ applicationId, payload } = {}) => {
   const application = await Application.findById(applicationId, ['id']);
   if (!application) throw createError(404, `No application was found for '${applicationId}'`);
 
-  console.log(payload);
-
   try {
     const user = await AppUser.create({
       ...payload,
