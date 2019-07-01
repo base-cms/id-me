@@ -1,19 +1,19 @@
-{{#list-controls/button
-  id="dropdown-search-type"
-  disabled=disabled
-  class=(concat "dropdown-toggle search-type-button" " " buttonClass)
-  data-toggle="dropdown"
-  aria-haspopup="true"
-  aria-expanded="false"
-}}
-  <span class="d-none d-sm-inline">{{selected.label}}</span>
-{{/list-controls/button}}
+<ListControls::Button
+  @id="dropdown-search-type"
+  @disabled={{this.disabled}}
+  @class={{concat "dropdown-toggle search-type-button" " " this.buttonClass}}
+  @data-toggle="dropdown"
+  @aria-haspopup="true"
+  @aria-expanded="false"
+>
+  <span class="d-none d-sm-inline">{{this.selected.label}}</span>
+</ListControls::Button>
 
 <div
-  class="dropdown-menu {{alignmentClass}}"
+  class="dropdown-menu {{this.alignmentClass}}"
   aria-labelledby="dropdown-search-type"
 >
   {{#each filteredOptions as |option|}}
-    <a class="dropdown-item" href="#" {{action "setType" option.key}}>{{option.label}}</a>
+    <a class="dropdown-item" href="#set-type" {{action "setType" option.key}}>{{option.label}}</a>
   {{/each}}
 </div>

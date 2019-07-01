@@ -1,31 +1,28 @@
 <div class="input-group">
   <div class="input-group-prepend">
     <div class="btn-group">
-      {{list-controls/search-fields fields=fields field=field}}
-      {{list-controls/search-type type=position}}
+      <ListControls::SearchFields @fields={{this.fields}} @field={{this.field}} />
+      <ListControls::SearchType @type={{this.position}} />
     </div>
   </div>
 
-  {{input
-    type="search"
-    class="form-control form-control-list-control"
-    placeholder=placeholder
-    value=value
-    disabled=disabled
-    focusIn=(action "selectAll")
-  }}
+  <Input
+    @type="search"
+    @class="form-control form-control-list-control"
+    @placeholder={{this.placeholder}}
+    @value={{this.value}}
+    @disabled={{this.disabled}}
+    @focusIn={{action "selectAll"}}
+  />
   <div class="input-group-append">
     <div class="btn-group">
-      {{#list-controls/button class=buttonClass type="submit" disabled=disabled}}
-        {{entypo-icon icon}}{{#if label}} {{label}}{{/if}}
-      {{/list-controls/button}}
-      {{#list-controls/button
-        class=buttonClass
-        disabled=disabled
-        click=(action "clear")
-      }}
-        {{entypo-icon "cross"}}
-      {{/list-controls/button}}
+      <ListControls::Button @class={{this.buttonClass}} @type="submit" @disabled={{this.disabled}}>
+        <EntypoIcon @name={{this.icon}}>{{#if this.label}} {{this.label}}{{/if}}</EntypoIcon>
+      </ListControls::Button>
+
+      <ListControls::Button @class={{this.buttonClass}} @disabled={{this.disabled}} @click={{action "clear"}}>
+        <EntypoIcon @name="cross" />
+      </ListControls::Button>
     </div>
   </div>
 </div>
