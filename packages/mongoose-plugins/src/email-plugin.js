@@ -1,9 +1,9 @@
 const { normalizeEmail } = require('@base-cms/id-me-utils');
 const emailValidator = require('./email-validator');
 
-module.exports = function emailPlugin(schema, { options = {} } = {}) {
+module.exports = function emailPlugin(schema, { name = 'email', options = {} } = {}) {
   schema.add({
-    email: {
+    [name]: {
       ...options,
       type: String,
       required: true,
