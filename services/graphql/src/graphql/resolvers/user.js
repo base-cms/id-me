@@ -21,6 +21,12 @@ module.exports = {
       const email = user.get('email');
       return membershipService.request('listInvitesForUser', { email });
     },
+
+    viewInvitation: (_, { input }, { user }) => {
+      const { organizationId } = input;
+      const email = user.get('email');
+      return membershipService.request('viewInvite', { organizationId, email });
+    },
   },
 
   Mutation: {

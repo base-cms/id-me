@@ -6,6 +6,7 @@ extend type Query {
   activeUser: User! @requiresAuth
   userOrganizations(input: UserOrganizationsQueryInput = {}): [OrganizationMembership]! @requiresAuth
   userInvitations(input: UserInvitationQueryInput = {}): [OrganizationInvitation]! @requiresAuth
+  viewInvitation(input: ViewInvitationQueryInput!): OrganizationInvitation @requiresAuth
 }
 
 extend type Mutation {
@@ -93,6 +94,10 @@ input UserLoginMutationInput {
 
 input UserOrganizationsQueryInput {
   sort: Boolean # @todo Implement this input.
+}
+
+input ViewInvitationQueryInput {
+  organizationId: String!
 }
 
 `;
