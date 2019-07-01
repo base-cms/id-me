@@ -3,6 +3,8 @@ import { isPresent } from '@ember/utils';
 
 export default Service.extend({
   notifications: inject(),
+  session: inject(),
+  router: inject(),
 
   isReady() {
     const element = document.querySelector('.notifications');
@@ -12,6 +14,12 @@ export default Service.extend({
 
   handle(e) {
     // @todo Handle authentication errors.
+    if (/no token was found for the provided token identifier/i.test(e.message)) {
+      if (this.session.isAuthenticated) {
+        this.session.store.clear().then(() => this.router.transitionTo('login'));
+        return e;
+      }
+    }
 
     // eslint-disable-next-line no-console
     console.error(e);
