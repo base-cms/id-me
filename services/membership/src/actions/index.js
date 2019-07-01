@@ -9,6 +9,7 @@ const listForOrg = require('./list-for-org');
 const listForUser = require('./list-for-user');
 const listInvitesForOrg = require('./list-invites-for-org');
 const listInvitesForUser = require('./list-invites-for-user');
+const viewInvite = require('./view-invite');
 
 module.exports = {
   acceptInvite,
@@ -22,4 +23,5 @@ module.exports = {
   listForUser,
   listInvitesForOrg,
   listInvitesForUser,
+  viewInvite,
 };

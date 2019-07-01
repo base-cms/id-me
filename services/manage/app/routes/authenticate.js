@@ -1,16 +1,28 @@
 import Route from '@ember/routing/route';
-import { get } from '@ember/object';
 import UnauthenticatedRouteMixin from 'ember-simple-auth/mixins/unauthenticated-route-mixin';
-import { inject as service } from '@ember/service';
 
 export default Route.extend(UnauthenticatedRouteMixin, {
   routeIfAlreadyAuthenticated: 'manage',
 
-  session: service(),
+  queryParams: {
+    routeName: { refreshModel: false, replace: false, as: 'route-name' },
+    routeSegments: { refreshModel: false, replace: false, as: 'route-segments' },
+  },
 
-  async model({ token }, transition) {
-    const route = get(transition, 'to.queryParams.route');
-    if (route) this.session.set('attemptedTransition', this.transitionTo(route));
+  async beforeModel() {
+    if (this.session.isAuthenticated) {
+      // If a user is already present, log them out (but do not redirect).
+      this.set('session.skipRedirectOnInvalidation', true);
+      await this.session.invalidate();
+    }
+  },
+
+  model({ token, routeName, routeSegments }) {
+    if (routeName) {
+      // A route redirect was specified. Apply it to the session.
+      const segments = routeSegments ? JSON.parse(routeSegments) : [];
+      this.session.set('redirectTo', { name: routeName, segments });
+    }
     return this.session.authenticate('authenticator:application', token);
   },
 });

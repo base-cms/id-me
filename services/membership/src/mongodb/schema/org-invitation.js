@@ -7,6 +7,9 @@ const schema = new Schema({}, { timestamps: true });
 schema.plugin(emailPlugin, {
   options: { index: true },
 });
+schema.plugin(emailPlugin, {
+  name: 'invitedByEmail',
+});
 schema.plugin(orgRolePlugin);
 schema.plugin(organizationPlugin);
 

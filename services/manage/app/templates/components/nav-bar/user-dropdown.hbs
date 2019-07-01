@@ -1,0 +1,29 @@
+<a
+  class="nav-link dropdown-toggle"
+  title="User Settings"
+  data-toggle="dropdown"
+  href="#user-settings"
+  role="button"
+>
+  <NavBar::Item @icon="user">{{this.user.givenName}} {{this.user.familyName}}</NavBar::Item>
+</a>
+
+<div class="dropdown-menu dropdown-menu-right">
+  <a href="#update-profile" class="dropdown-item d-flex justify-content-between" {{action "openUserProfile"}}>
+    Update Profile
+    {{entypo-icon "v-card" class="ml-1"}}
+  </a>
+  {{#link-to "manage.invites.index" class="dropdown-item d-flex justify-content-between"}}
+    View Invites
+    {{entypo-icon "mail" class="ml-1"}}
+  {{/link-to}}
+
+  <div class="dropdown-divider"></div>
+
+  {{#link-to "logout" class="dropdown-item d-flex justify-content-between" title="Sign out of IdentityX"}}
+    Sign out
+    {{entypo-icon "log-out"}}
+  {{/link-to}}
+</div>
+
+<User::UpdateProfile @show={{this.isUserProfileOpen}} @user={{this.user}} />

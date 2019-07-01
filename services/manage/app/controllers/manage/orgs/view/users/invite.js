@@ -29,7 +29,7 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
         await this.mutate({ mutation, variables, refetchQueries }, 'inviteUserToOrg');
         await closeModal();
       } catch (e) {
-        this.errorNotifier.show(e)
+        this.errorNotifier.show(e);
       } finally {
         this.endAction();
       }

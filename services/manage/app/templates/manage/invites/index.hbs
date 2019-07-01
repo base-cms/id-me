@@ -1,0 +1,21 @@
+<h1 class="mb-4">Organization Invitations</h1>
+
+<div class="row">
+  {{#each this.model as |invite|}}
+    <ListCard>
+      <div class="card-body">
+        <h2 class="card-title">{{invite.organization.name}}</h2>
+        <p class="card-text">Invited by {{invite.invitedBy.givenName}} {{invite.invitedBy.familyName}} ({{invite.invitedBy.email}})</p>
+      </div>
+      <div class="card-footer d-flex justify-content-between">
+        {{#link-to "manage.invites.view" invite.organization.id class="btn btn-primary" role="button"}}
+          {{entypo-icon "popup" class="mr-1"}} Manage
+        {{/link-to}}
+      </div>
+    </ListCard>
+  {{else}}
+    <p class="col">You do not have any pending invitations.</p>
+  {{/each}}
+</div>
+
+{{outlet}}

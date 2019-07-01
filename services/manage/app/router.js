@@ -7,14 +7,17 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
+  this.route('not-found', { path: '/*path' });
   this.route('login');
   this.route('signup');
   this.route('logout');
+  this.route('set-profile'),
   this.route('authenticate', { path: '/authenticate/:token' });
   this.route('manage', { path: '' }, function() {
-    this.route('profile');
+    this.route('invites', function() {
+      this.route('view', { path: ':org_id' });
+    });
     this.route('orgs', function() {
-      this.route('invites');
       this.route('list', { path: '/' }, function() {
         this.route('create');
         this.route('edit', { path: '/edit/:org_id' });

@@ -1,4 +1,4 @@
-<BsModal @show={{true}} @onClose={{action "returnToList"}} as |modal|>
+<BsModal @show={{true}} @backdrop="static" @onClose={{action "returnToList"}} as |modal|>
 
   <form {{action "create" modal.actions.hide on="submit"}}>
     {{#modal.header}}

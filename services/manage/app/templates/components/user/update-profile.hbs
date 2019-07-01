@@ -1,6 +1,6 @@
-<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+<BsModal @show={{show}} @backdrop="static" @size="large" as |modal|>
 
-  <form {{action this.onSubmit modal.actions.hide on="submit"}}>
+  <form {{action "update" modal.actions.hide on="submit"}}>
     {{#modal.header}}
       <h2 class="modal-title">{{this.title}}</h2>
       <button
@@ -17,14 +17,14 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="form-group">
-            <FormElements::Label @for="user.givenName" @required={{true}}>First Name</FormElements::Label>
-            <Input @id="user.givenName" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.givenName}} />
+            <FormElements::Label @for="update-profile.given-name" @required={{true}}>First Name</FormElements::Label>
+            <Input @id="update-profile.given-name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.givenName}} />
           </div>
         </div>
         <div class="col-lg-6">
           <div class="form-group">
-            <FormElements::Label @for="user.familyName" @required={{true}}>Last Name</FormElements::Label>
-            <Input @id="user.familyName" @type="text" @required={{true}} @class="form-control" @value={{this.model.familyName}} />
+            <FormElements::Label @for="update-profile.family-name" @required={{true}}>Last Name</FormElements::Label>
+            <Input @id="update-profile.family-name" @type="text" @required={{true}} @class="form-control" @value={{this.familyName}} />
           </div>
         </div>
       </div>

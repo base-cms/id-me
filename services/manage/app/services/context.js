@@ -19,6 +19,12 @@ export default Service.extend({
     return orgId ? this.get('orgAppQuery.activeOrganization') : {};
   }),
 
+  userProfileIncomplete: computed('user.{givenName,familyName}', function() {
+    if (!this.get('user.givenName')) return true;
+    if (!this.get('user.familyName')) return true;
+    return false;
+  }),
+
   queryContextFor(scope, context) {
     if (scope === 'org') return this.orgQueryContext(context);
     if (scope === 'app') return this.appQueryContext(context);

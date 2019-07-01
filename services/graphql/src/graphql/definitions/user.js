@@ -6,12 +6,14 @@ extend type Query {
   activeUser: User! @requiresAuth
   userOrganizations(input: UserOrganizationsQueryInput = {}): [OrganizationMembership]! @requiresAuth
   userInvitations(input: UserInvitationQueryInput = {}): [OrganizationInvitation]! @requiresAuth
+  viewInvitation(input: ViewInvitationQueryInput!): OrganizationInvitation @requiresAuth
 }
 
 extend type Mutation {
   registerNewUser(input: RegisterNewUserMutationInput!): UserRegistration!
   inviteUserToOrg(input: InviteUserToOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   acceptOrgInvite(input: AcceptOrgInviteMutationInput!): String @requiresAuth
+  rejectOrgInvite(input: RejectOrgInviteMutationInput!): String @requiresAuth
   removeUserInvite(input: RemoveUserInviteMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
   updateUserOrgRole(input: UpdateUserOrgRoleMutationInput!): OrganizationMembership! @requiresOrgRole(roles: [Owner])
   removeUserFromOrg(input: RemoveUserFromOrgMutationInput!): String @requiresOrgRole(roles: [Owner, Administrator])
@@ -68,6 +70,10 @@ input RegisterNewUserMutationInput {
   orgName: String!
 }
 
+input RejectOrgInviteMutationInput {
+  organizationId: String!
+}
+
 input SendUserLoginLinkMutationInput {
   email: String!
 }
@@ -93,6 +99,10 @@ input UserLoginMutationInput {
 
 input UserOrganizationsQueryInput {
   sort: Boolean # @todo Implement this input.
+}
+
+input ViewInvitationQueryInput {
+  organizationId: String!
 }
 
 `;

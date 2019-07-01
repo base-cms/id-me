@@ -21,6 +21,12 @@ module.exports = {
       const email = user.get('email');
       return membershipService.request('listInvitesForUser', { email });
     },
+
+    viewInvitation: (_, { input }, { user }) => {
+      const { organizationId } = input;
+      const email = user.get('email');
+      return membershipService.request('viewInvite', { organizationId, email });
+    },
   },
 
   Mutation: {
@@ -37,10 +43,26 @@ module.exports = {
     /**
      *
      */
-    inviteUserToOrg: (_, { input }, { org }) => {
+    rejectOrgInvite: async (_, { input }, { user }) => {
+      const { organizationId } = input;
+      const email = user.get('email');
+      await membershipService.request('deleteInvite', { email, organizationId });
+      return 'ok';
+    },
+
+    /**
+     *
+     */
+    inviteUserToOrg: (_, { input }, { org, user }) => {
       const { email, role } = input;
       const organizationId = org.getId();
-      return membershipService.request('invite', { email, organizationId, role });
+      const invitedByEmail = user.get('email');
+      return membershipService.request('invite', {
+        email,
+        organizationId,
+        role,
+        invitedByEmail,
+      });
     },
 
     /**

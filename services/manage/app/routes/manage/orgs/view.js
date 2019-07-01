@@ -23,13 +23,13 @@ export default Route.extend(RouteQueryManager, {
   contextService: inject('context'),
 
   resetContext: on('deactivate', function() {
-    this.get('contextService').set('orgAppQuery', {});
+    this.contextService.set('orgAppQuery', {});
   }),
 
   async model({ org_id: id }) {
     const context = { orgId: id };
     const data = await this.apollo.watchQuery({ query, context });
-    this.get('contextService').set('orgAppQuery', data);
+    this.contextService.set('orgAppQuery', data);
     return data.activeOrganization;
   },
 });

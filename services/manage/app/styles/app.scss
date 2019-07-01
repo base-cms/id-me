@@ -13,6 +13,14 @@ $ember-power-select-dropdown-border: $custom-select-border-width solid $custom-s
 // Spinkit
 @import "../../node_modules/spinkit/scss/spinners/2-double-bounce";
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
 // For ember power select inside modals.
 .in-modal-dropdown {
   z-index: 1100;

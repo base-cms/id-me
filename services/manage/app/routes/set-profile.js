@@ -4,23 +4,21 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import gql from 'graphql-tag';
 
 const query = gql`
-  query Invitations {
-    userInvitations {
+  query SetProfile {
+    activeUser {
       id
-      organization {
-        id
-        name
-        description
-        photoURL
-      }
-      role
+      givenName
+      familyName
     }
   }
 `;
 
 export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
+  queryParams: {
+    route: { refreshModel: false, replace: false },
+  },
 
   model() {
-    return this.apollo.watchQuery({ query }, 'userInvitations');
+    return this.apollo.watchQuery({ query }, 'activeUser');
   },
 });

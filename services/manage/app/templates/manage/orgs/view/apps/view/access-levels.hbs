@@ -15,7 +15,7 @@
     {{#each fetch.nodes as |node|}}
       <AccessLevel::Card @accessLevel={{node}} />
     {{else}}
-      <p>No access levels were found.</p>
+      <p class="col">No access levels were found.</p>
     {{/each}}
 
     {{#if fetch.hasNextPage}}
