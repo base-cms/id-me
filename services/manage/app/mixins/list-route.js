@@ -18,4 +18,9 @@ export default Mixin.create({
       refreshModel: true,
     },
   },
+
+  resetController(controller, isExiting) {
+    this._super(...arguments);
+    if (isExiting) controller.send('reset');
+  },
 });
