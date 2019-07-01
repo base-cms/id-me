@@ -5,6 +5,7 @@ module.exports = gql`
 extend type Query {
   team(input: TeamQueryInput!): Team
   teams(input: TeamsQueryInput = {}): TeamConnection! @requiresAppRole
+  matchTeams(input: MatchTeamsQueryInput!): TeamConnection! @requiresAppRole
 }
 
 extend type Mutation {
@@ -51,6 +52,14 @@ input CreateTeamMutationInput {
   cidrs: [String!] = []
   domains: [String!] = []
   accessLevelIds: [String!] = []
+}
+
+input MatchTeamsQueryInput {
+  sort: TeamSortInput = {}
+  pagination: PaginationInput = {}
+  field: String!
+  phrase: String!
+  position: MatchPosition = contains
 }
 
 input TeamQueryInput {

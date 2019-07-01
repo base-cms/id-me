@@ -43,6 +43,29 @@ module.exports = {
       });
     },
 
+    matchTeams: (_, { input }, { app }, info) => {
+      const applicationId = app.getId();
+
+      const fields = connectionProjection(info);
+      const {
+        field,
+        phrase,
+        position,
+        pagination,
+        sort,
+      } = input;
+
+      return applicationService.request('team.matchForApp', {
+        applicationId,
+        field,
+        phrase,
+        position,
+        fields,
+        pagination,
+        sort,
+      });
+    },
+
     team: (_, { input }, ctx, info) => {
       const { id } = input;
       const fields = typeProjection(info);
