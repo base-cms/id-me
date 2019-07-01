@@ -87,6 +87,28 @@ module.exports = {
         fields,
       });
     },
+    matchAppUsers: (_, { input }, { app }, info) => {
+      const applicationId = app.getId();
+
+      const fields = connectionProjection(info);
+      const {
+        field,
+        phrase,
+        position,
+        pagination,
+        sort,
+      } = input;
+
+      return applicationService.request('user.matchForApp', {
+        applicationId,
+        field,
+        phrase,
+        position,
+        fields,
+        pagination,
+        sort,
+      });
+    },
   },
 
   Mutation: {

@@ -1,0 +1,30 @@
+{{#if options.length}}
+  <div class="btn-group {{directionClass}}" role="group">
+    <ListControls::Button
+      @id="dropdown-sort-type"
+      @disabled={{this.disabled}}
+      @class={{concat "dropdown-toggle" " " this.buttonClass}}
+      @data-toggle="dropdown"
+      @aria-haspopup="true"
+      @aria-expanded="false"
+    >
+      <span class="d-none d-sm-inline">{{this.selected.label}}</span>
+    </ListControls::Button>
+
+    <div
+      class="dropdown-menu {{alignmentClass}}"
+      aria-labelledby="dropdown-sort-type"
+    >
+      {{#each filteredOptions as |option|}}
+        <a class="dropdown-item" href="#sort-by" {{action "sortBy" option.key}}>{{option.label}}</a>
+      {{/each}}
+    </div>
+  </div>
+  <ListControls::Button
+    @class={{this.buttonClass}}
+    @disabled={{this.disabled}}
+    @click={{action "toggleAscending"}}
+  >
+    <EntypoIcon @name={{if ascending "arrow-up" "arrow-down"}} />
+  </ListControls::Button>
+{{/if}}

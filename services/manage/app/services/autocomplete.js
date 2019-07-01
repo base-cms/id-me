@@ -5,8 +5,12 @@ import gql from 'graphql-tag';
 const matchAccessLevels = gql`
   query AutocompleteAccessLevels($input: MatchAccessLevelsQueryInput!) {
     matchAccessLevels(input: $input) {
-      id
-      name
+      edges {
+        node {
+          id
+          name
+        }
+      }
     }
   }
 `;
@@ -49,7 +53,7 @@ export default Service.extend(ObjectQueryManager, {
     const variables = { input };
     try {
       const results = await this.get('apollo').watchQuery({ query, variables, context, fetchPolicy: 'network-only' }, resultKey);
-      return results;
+      return results.edges.map(edge => edge.node);
     } catch (e) {
       this.errorNotifier.show(e);
     }

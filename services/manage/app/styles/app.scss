@@ -187,3 +187,33 @@ body {
 .x-toggle-btn {
   box-shadow: $btn-box-shadow;
 }
+
+.btn-list-control {
+  box-shadow: none;
+}
+
+.input-group > .form-control-list-control {
+  &:focus {
+    z-index: auto;
+  }
+}
+
+.input-group-prepend .btn-group:last-child .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group-append .btn-group:last-child .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* clears the 'X' from Internet Explorer */
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+
+/* clears the 'X' from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }

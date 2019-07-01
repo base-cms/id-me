@@ -1,0 +1,28 @@
+<div class="input-group">
+  <div class="input-group-prepend">
+    <div class="btn-group">
+      <ListControls::SearchFields @fields={{this.fields}} @field={{this.field}} />
+      <ListControls::SearchType @type={{this.position}} />
+    </div>
+  </div>
+
+  <Input
+    @type="search"
+    @class="form-control form-control-list-control"
+    @placeholder={{this.placeholder}}
+    @value={{this.value}}
+    @disabled={{this.disabled}}
+    @focusIn={{action "selectAll"}}
+  />
+  <div class="input-group-append">
+    <div class="btn-group">
+      <ListControls::Button @class={{this.buttonClass}} @type="submit" @disabled={{this.disabled}}>
+        <EntypoIcon @name={{this.icon}}>{{#if this.label}} {{this.label}}{{/if}}</EntypoIcon>
+      </ListControls::Button>
+
+      <ListControls::Button @class={{this.buttonClass}} @disabled={{this.disabled}} @click={{action "clear"}}>
+        <EntypoIcon @name="cross" />
+      </ListControls::Button>
+    </div>
+  </div>
+</div>

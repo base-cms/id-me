@@ -5,7 +5,7 @@ module.exports = gql`
 extend type Query {
   accessLevel(input: AccessLevelQueryInput!): AccessLevel # must be public
   accessLevels(input: AccessLevelsQueryInput = {}): AccessLevelConnection! @requiresApp # must be public
-  matchAccessLevels(input: MatchAccessLevelsQueryInput!): [AccessLevel] @requiresAppRole
+  matchAccessLevels(input: MatchAccessLevelsQueryInput!): AccessLevelConnection @requiresAppRole
 }
 
 extend type Mutation {
