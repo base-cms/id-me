@@ -1,0 +1,25 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 col-lg-6 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="mb-0">
+            Welcome
+          </h1>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">You have been invited to join {{model.organization.name}}.</h3>
+          <p class="card-text">{{model.invitedBy.givenName}} {{model.invitedBy.familyName}} ({{model.invitedBy.email}}) has invited you to join the <em>{{model.organization.name}}</em> organization.</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between">
+          <button class="btn btn-success" type="button" disabled={{isActionRunning}} {{action "accept"}}>
+            {{entypo-icon "check"}} Accept
+          </button>
+          <button class="btn btn-danger" type="button" disabled={{isActionRunning}} {{action "reject"}}>
+            {{entypo-icon "cross"}} Reject
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
