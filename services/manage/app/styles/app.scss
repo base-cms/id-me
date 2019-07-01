@@ -192,6 +192,12 @@ body {
   box-shadow: none;
 }
 
+.input-group > .form-control-list-control {
+  &:focus {
+    z-index: auto;
+  }
+}
+
 .input-group-prepend .btn-group:last-child,
 .input-group-prepend .btn-group:last-child .btn {
   border-top-right-radius: 0;
