@@ -14,6 +14,8 @@ export default ListController.extend({
 
     this.set('searchFields', [
       { key: 'email', label: 'Email Address' },
+      { key: 'givenName', label: 'First Name' },
+      { key: 'familyName', label: 'Last Name' },
     ]);
     this.set('field', 'email');
   },
