@@ -66,6 +66,8 @@ input CreateAccessLevelMutationInput {
 }
 
 input MatchAccessLevelsQueryInput {
+  sort: AccessLevelSortInput = {}
+  pagination: PaginationInput = {}
   field: String!
   phrase: String!
   position: MatchPosition = contains

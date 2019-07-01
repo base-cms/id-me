@@ -92,6 +92,7 @@ input MatchAppUsersQueryInput {
   field: String!
   phrase: String!
   position: MatchPosition = contains
+  excludeIds: [String!] = []
 }
 
 input AppUserSortInput {

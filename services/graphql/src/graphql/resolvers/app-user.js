@@ -97,6 +97,7 @@ module.exports = {
         position,
         pagination,
         sort,
+        excludeIds,
       } = input;
 
       return applicationService.request('user.matchForApp', {
@@ -107,6 +108,7 @@ module.exports = {
         fields,
         pagination,
         sort,
+        excludeIds,
       });
     },
   },

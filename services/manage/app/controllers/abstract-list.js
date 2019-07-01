@@ -22,11 +22,11 @@ export default Controller.extend({
    * Sort
    */
   sortField: 'updatedAt',
-  sortDirection: 'desc',
+  sortOrder: 'desc',
 
   init() {
     this._super(...arguments);
-    this.set('queryParams', ['sortField', 'sortDirection', 'phrase', 'position', 'field']);
+    this.set('queryParams', ['sortField', 'sortOrder', 'phrase', 'position', 'field']);
 
     // Sets/resets default values.
     this.set('limit', 24);
@@ -34,7 +34,7 @@ export default Controller.extend({
     this.set('position', 'contains');
     this.set('field', 'name');
 
-    this.set('sortDirection', 'desc');
+    this.set('sortOrder', 'desc');
 
     // Should be overriden by the specific controller for different options.
     this.set('searchFields', []);
