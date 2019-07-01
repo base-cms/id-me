@@ -128,6 +128,28 @@ module.exports = {
       });
     },
 
+    manageCreateAppUser: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const {
+        email,
+        givenName,
+        familyName,
+        accessLevelIds,
+        teamIds,
+      } = input;
+      const payload = {
+        email,
+        givenName,
+        familyName,
+        accessLevelIds,
+        teamIds,
+      };
+      return applicationService.request('user.manageCreate', {
+        applicationId,
+        payload,
+      });
+    },
+
     /**
      *
      */
