@@ -188,12 +188,18 @@ body {
   box-shadow: $btn-box-shadow;
 }
 
+.btn-list-control {
+  box-shadow: none;
+}
+
 .input-group-prepend .btn-group:last-child,
 .input-group-prepend .btn-group:last-child .btn {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.shadowed {
-  box-shadow: 0 0 6px rgba(50, 50, 93, 0.11), 0 0 3px rgba(0, 0, 0, 0.08);
+.input-group-append .btn-group:last-child,
+.input-group-append .btn-group:last-child .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
