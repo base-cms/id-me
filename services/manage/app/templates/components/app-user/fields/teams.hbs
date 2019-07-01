@@ -1,0 +1,16 @@
+<FormElements::Label @for="app-user.teams">Teams</FormElements::Label>
+<FormElements::Typeahead
+  @id="app-user.teams"
+  @dropdownClass={{dropdownClass}}
+  @autocomplete="off"
+  @name="teams"
+  @label="Teams"
+  @multiple={{true}}
+  @closeOnSelect={{true}}
+  @value={{value}}
+  @on-change={{on-change}}
+  @on-search={{action "search"}}
+  as |item|
+>
+  {{item.name}}
+</FormElements::Typeahead>

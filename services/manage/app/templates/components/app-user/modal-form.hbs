@@ -1,0 +1,53 @@
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+
+  <form {{action this.onSubmit modal.actions.hide on="submit"}}>
+    {{#modal.header}}
+      <h2 class="modal-title">{{this.title}}</h2>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.given-name" @required={{true}}>First Name</FormElements::Label>
+            <Input @id="app-user.given-name" @type="text" @required={{true}} @class="form-control" @value={{this.model.givenName}} />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.family-name" @required={{true}}>Last Name</FormElements::Label>
+            <Input @id="app-user.family-name" @type="text" @required={{true}} @class="form-control" @value={{this.model.familyName}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.email" @required={{true}}>Email Address</FormElements::Label>
+            <Input @id="app-user.email" @type="email" @required={{true}} @class="form-control" @value={{this.model.email}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <AppUser::Fields::AccessLevels @dropdownClass="in-modal-dropdown" @value={{this.model.accessLevels}} @on-change={{action "setAccessLevels"}} />
+        </div>
+        <div class="col-lg-6">
+          <AppUser::Fields::Teams @dropdownClass="in-modal-dropdown" @value={{this.model.teams}} @on-change={{action "setTeams"}} />
+        </div>
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+    {{/modal.footer}}
+  </form>
+</BsModal>

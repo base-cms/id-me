@@ -1,45 +1,6 @@
-<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
-
-  <form {{action "create" modal.actions.hide on="submit"}}>
-    {{#modal.header}}
-      <h2 class="modal-title">Create User</h2>
-      <button
-        type="button"
-        class="close"
-        aria-label="Close"
-        {{action modal.actions.hide}}
-      >
-        {{entypo-icon "cross"}}
-      </button>
-    {{/modal.header}}
-
-    {{#modal.body}}
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="user.given-name" @required={{true}}>First Name</FormElements::Label>
-            <Input @id="user.given-name" @type="text" @required={{true}} @class="form-control" @value={{model.givenName}} />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="user.family-name" @required={{true}}>Last Name</FormElements::Label>
-            <Input @id="user.family-name" @type="text" @required={{true}} @class="form-control" @value={{model.familyName}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <FormElements::Label @for="user.email" @required={{true}}>Email Address</FormElements::Label>
-            <Input @id="user.email" @type="email" @required={{true}} @class="form-control" @value={{model.email}} />
-          </div>
-        </div>
-      </div>
-    {{/modal.body}}
-
-    {{#modal.footer}}
-      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{isActionRunning}} />
-    {{/modal.footer}}
-  </form>
-</BsModal>
+<AppUser::ModalForm
+  @model={{this.model}}
+  @onSubmit={{action "create"}}
+  @title="Create User"
+  @isActionRunning={{this.isActionRunning}}
+/>

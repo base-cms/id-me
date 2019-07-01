@@ -5,8 +5,8 @@ import gql from 'graphql-tag';
 import { inject } from '@ember/service';
 
 const mutation = gql`
-  mutation AppUserCreate($input: CreateAppUserMutationInput!) {
-    createAppUser(input: $input) {
+  mutation AppUserCreate($input: ManageCreateAppUserMutationInput!) {
+    manageCreateAppUser(input: $input) {
       id
       givenName
       familyName
@@ -22,8 +22,20 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
     async create(closeModal) {
       try {
         this.startAction();
-        const { givenName, familyName, email } = this.get('model');
-        const input = { givenName, familyName, email };
+        const {
+          givenName,
+          familyName,
+          email,
+          accessLevels,
+          teams,
+        } = this.get('model');
+        const input = {
+          givenName,
+          familyName,
+          email,
+          accessLevelIds: accessLevels.map(level => level.id),
+          teamIds: teams.map(team => team.id),
+        };
         const variables = { input };
         const refetchQueries = ['AppUsers'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createAppUser');

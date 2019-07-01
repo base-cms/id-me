@@ -2,6 +2,8 @@
   <div class="card-body">
     <h2 class="card-title">{{this.user.givenName}} {{this.user.familyName}}</h2>
     <p class="card-text">{{this.user.email}}</p>
+    <ArrayList @label="Access Levels" @values={{accessLevels}} />
+    <ArrayList @label="Teams" @values={{teams}} />
   </div>
   <div class="card-footer">
     {{#link-to "manage.orgs.view.apps.view.users.edit" this.user.id class="btn btn-primary" role="button"}}

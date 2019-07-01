@@ -7,5 +7,13 @@ export default gql`
     domain
     givenName
     familyName
+    accessLevels {
+      id
+      name
+    }
+    teams {
+      id
+      name
+    }
   }
 `;
