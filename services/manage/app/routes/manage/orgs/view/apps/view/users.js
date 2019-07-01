@@ -5,7 +5,7 @@ import RouteObservableMixin from '@base-cms/id-me-manage/mixins/route-observable
 import gql from 'graphql-tag';
 import fragment from '@base-cms/id-me-manage/graphql/fragments/app-user-list';
 
-const list = gql`
+const appUsers = gql`
   query AppUsers($input: AppUsersQueryInput!) {
     appUsers(input:$input) {
       edges {
@@ -23,7 +23,7 @@ const list = gql`
   ${fragment}
 `;
 
-const match = gql`
+const matchAppUsers = gql`
   query MatchAppUsers($input: MatchAppUsersQueryInput!){
     matchAppUsers(input:$input) {
       edges {
@@ -41,32 +41,11 @@ const match = gql`
   ${fragment}
 `;
 
-const getInput = (params) => {
-  const {
-    field,
-    limit,
-    phrase,
-    position,
-    sortField,
-    sortOrder,
-  } = params;
-
-  const common = {
-    sort: { field: sortField, order: sortOrder },
-    pagination: { limit },
-  };
-  const input = phrase ? { field, phrase, position, ...common } : common;
-  const variables = { input };
-  const query = phrase ? match : list;
-  const key = phrase ? 'matchAppUsers' : 'appUsers';
-
-  return [{ query, variables }, key];
-};
-
 export default Route.extend(ListRouteMixin, AppQueryMixin, RouteObservableMixin, {
   async model(params) {
-    const response = await this.query(...getInput(params));
-    this.getController().set('observable', this.getObservable(response));
-    return response;
-},
+    const apollo = this.query.bind(this);
+    const query = { key: 'appUsers', op: appUsers };
+    const search = { key: 'matchAppUsers', op: matchAppUsers };
+    return this.getResults(apollo, { query, search, params });
+  },
 });
