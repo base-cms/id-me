@@ -6,7 +6,7 @@
     <ArrayList @label="Teams" @values={{teams}} />
   </div>
   <div class="card-footer">
-    {{#link-to "manage.orgs.view.apps.view.users.edit" this.user.id class="btn btn-primary" role="button"}}
+    {{#link-to "manage.orgs.view.apps.view.users.edit" this.user.email class="btn btn-primary" role="button"}}
       {{entypo-icon "edit" class="mr-1"}} Modify
     {{/link-to}}
   </div>
