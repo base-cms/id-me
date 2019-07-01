@@ -1,4 +1,9 @@
-const { findById, find, listForApp } = require('@base-cms/id-me-utils').actions;
+const {
+  findById,
+  find,
+  listForApp,
+  matchForApp,
+} = require('@base-cms/id-me-utils').actions;
 const create = require('./create');
 const updateOne = require('./update-one');
 const Team = require('../../mongodb/models/team');
@@ -8,5 +13,6 @@ module.exports = {
   find: ({ query, fields }) => find(Team, { query, fields }),
   findById: ({ id, fields }) => findById(Team, { id, fields }),
   listForApp: params => listForApp(Team, params),
+  matchForApp: params => matchForApp(Team, params),
   updateOne,
 };
