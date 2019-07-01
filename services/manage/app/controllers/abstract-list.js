@@ -1,5 +1,4 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
 
 export default Controller.extend({
   /**
@@ -24,10 +23,6 @@ export default Controller.extend({
    */
   sortField: 'id',
   sortDirection: 'desc',
-
-  isSortDisabled: computed('phrase.length', function() {
-    return this.get('phrase.length') > 0;
-  }),
 
   init() {
     this._super(...arguments);
