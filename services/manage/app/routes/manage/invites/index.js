@@ -3,20 +3,20 @@ import { RouteQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
 
 const query = gql`
-  query Invitations {
+  query InvitesIndex {
     userInvitations {
       id
       organization {
         id
         name
-        description
-        photoURL
       }
-      user {
+      invitedBy {
+        id
         givenName
         familyName
+        email
       }
-      role
+      createdAt
     }
   }
 `;
