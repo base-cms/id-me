@@ -41,7 +41,7 @@ Router.map(function() {
             });
             this.route('users', function() {
               this.route('create');
-              this.route('edit', { path: ':user_id' });
+              this.route('edit', { path: ':email' });
             });
           });
         });

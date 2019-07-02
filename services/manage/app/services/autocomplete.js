@@ -15,6 +15,19 @@ const matchAccessLevels = gql`
   }
 `;
 
+const matchTeams = gql`
+  query AutocompleteTeams($input: MatchTeamsQueryInput!) {
+    matchTeams(input: $input) {
+      edges {
+        node {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+
 export default Service.extend(ObjectQueryManager, {
   errorNotifier: inject(),
   contextService: inject('context'),
@@ -28,6 +41,8 @@ export default Service.extend(ObjectQueryManager, {
     switch (type) {
       case 'AccessLevel':
         return { field: 'name', query: matchAccessLevels, resultKey: 'matchAccessLevels', scope: 'app' };
+      case 'Team':
+        return { field: 'name', query: matchTeams, resultKey: 'matchTeams', scope: 'app' };
       default:
         throw new Error(`The autocomplete type '${type}' is not registered.`);
     }

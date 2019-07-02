@@ -13,6 +13,8 @@ extend type Query {
 
 extend type Mutation {
   createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp # must be public
+  manageCreateAppUser(input: ManageCreateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
+  updateAppUser(input: UpdateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp # must be public
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp # must be public
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp # must be public
@@ -119,11 +121,32 @@ input LogoutAppUserMutationInput {
   token: String!
 }
 
+input ManageCreateAppUserMutationInput {
+  email: String!
+  givenName: String
+  familyName: String
+  accessLevelIds: [String!] = []
+  teamIds: [String!] = []
+}
+
 input SendAppUserLoginLinkMutationInput {
   email: String!
   authUrl: String!
   redirectTo: String
   fields: JSON
+}
+
+input UpdateAppUserPayloadInput {
+  email: String!
+  givenName: String
+  familyName: String
+  accessLevelIds: [String!] = []
+  teamIds: [String!] = []
+}
+
+input UpdateAppUserMutationInput {
+  id: String!
+  payload: UpdateAppUserPayloadInput!
 }
 
 `;

@@ -1,0 +1,16 @@
+<FormElements::Label @for="app-user.access-levels">Access Levels</FormElements::Label>
+<FormElements::Typeahead
+  @id="app-user.access-levels"
+  @dropdownClass={{dropdownClass}}
+  @autocomplete="off"
+  @name="access-levels"
+  @label="Access Levels"
+  @multiple={{true}}
+  @closeOnSelect={{true}}
+  @value={{value}}
+  @on-change={{on-change}}
+  @on-search={{action "search"}}
+  as |item|
+>
+  {{item.name}}
+</FormElements::Typeahead>
