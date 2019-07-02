@@ -30,7 +30,7 @@ module.exports = async ({
   if (!email) throw createRequiredParamError('email');
 
   const [app, user] = await Promise.all([
-    Application.findById(applicationId, ['id', 'name']),
+    Application.findById(applicationId, ['id', 'name', 'email']),
     findByEmail({ applicationId, email, fields: ['id', 'email'] }),
   ]);
 
@@ -40,6 +40,7 @@ module.exports = async ({
   const { token } = await createLoginToken({ applicationId, email: user.email, fields });
   let url = `${authUrl}?token=${token}`;
   if (redirectTo) url = `${url}&redirectTo=${encodeURIComponent(redirectTo)}`;
+  const supportEmail = app.email || 'base@endeavorb2b.com';
   const html = `
     <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
     <html lang="en">
@@ -53,12 +54,12 @@ module.exports = async ({
         <h1>Your personal login link.</h1>
         <p>You recently requested to login to <strong>${app.name}</strong>. This link is good for one hour and will expire immediately after use.</p>
         <p><a href="${url}">Login to ${app.name}</a></p>
-        <p>If you didn't request this link, simply ignore this email or <a href="mailto:base@endeavorb2b.com">contact our support staff</a>.</p>
+        <p>If you didn't request this link, simply ignore this email or <a href="mailto:${supportEmail}">contact our support staff</a>.</p>
         <hr>
         <small style="font-color: #ccc;">
           <p>Please add <em>identity-x.base-cms.io</em> to your address book or safe sender list to ensure you receive future emails from us.</p>
           <p>You are receiving this email because a login request was made on ${app.name}.</p>
-          <p>For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, base@endeavorb2b.com, 800-547-7377.</p>
+          <p>For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, ${supportEmail}, 800-547-7377.</p>
         </small>
       </body>
     </html>
@@ -73,13 +74,13 @@ You recently requested to login to ${app.name}. This link is good for one hour a
 Login to ${app.name} by visiting this link:
 ${url}
 
-If you didn't request this link, simply ignore this email or contact our support staff at base@endeavorb2b.com.
+If you didn't request this link, simply ignore this email or contact our support staff at ${supportEmail}.
 
 -------------------------
 
 Please add identity-x.base-cms.io to your address book or safe sender list to ensure you receive future emails from us.
 You are receiving this email because a login request was made on ${app.name}.
-For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, base@endeavorb2b.com, 800-547-7377.
+For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, ${supportEmail}, 800-547-7377.
   `;
 
   await mailerService.request('send', {
