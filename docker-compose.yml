@@ -140,6 +140,7 @@ services:
       - ip
       - locale
       - mongodb
+      - token
       - organization
     ports:
       - "12008:80"
