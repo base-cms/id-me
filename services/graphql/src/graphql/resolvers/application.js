@@ -23,8 +23,8 @@ module.exports = {
      *
      */
     createApplication: (_, { input }, { org }) => {
-      const { name, description } = input;
-      const payload = { name, description };
+      const { name, description, email } = input;
+      const payload = { name, description, email };
       const organizationId = org.getId();
       return applicationService.request('create', {
         organizationId,
