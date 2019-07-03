@@ -21,6 +21,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         this.startAction();
         const {
           name,
+          active,
           description,
           domains,
           cidrs,
@@ -28,6 +29,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         } = this.get('model');
         const input = {
           name,
+          active,
           description,
           domains,
           cidrs,

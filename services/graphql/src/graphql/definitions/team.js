@@ -48,6 +48,7 @@ type TeamEdge {
 
 input CreateTeamMutationInput {
   name: String!
+  active: Boolean! = true
   description: String
   cidrs: [String!] = []
   domains: [String!] = []
