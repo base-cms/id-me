@@ -12,5 +12,5 @@
   @on-search={{action "search"}}
   as |item|
 >
-  {{item.name}}
+  {{item.name}} ({{if item.active "Active" "Inactive"}})
 </FormElements::Typeahead>
