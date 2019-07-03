@@ -25,6 +25,14 @@
       <div class="row">
         <div class="col">
           <div class="form-group">
+            <FormElements::Label @for="app.email" @required={{true}}>Support Email</FormElements::Label>
+            <Input @id="app.email" @type="email" @required={{true}} @class="form-control" @value={{model.email}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
             <FormElements::Label @for="app.description">Description</FormElements::Label>
             <Textarea @id="app.description" @class="form-control" @value={{model.description}} @rows={{3}} />
           </div>

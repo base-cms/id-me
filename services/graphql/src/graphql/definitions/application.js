@@ -15,6 +15,7 @@ extend type Mutation {
 type Application {
   id: String!
   name: String!
+  email: String!
   description: String
 }
 
@@ -24,6 +25,7 @@ input ApplicationQueryInput {
 
 input CreateApplicationMutationInput {
   name: String!
+  email: String!
   description: String
 }
 

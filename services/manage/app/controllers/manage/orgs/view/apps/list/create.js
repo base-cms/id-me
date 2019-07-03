@@ -21,8 +21,8 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
     async create(closeModal) {
       try {
         this.startAction();
-        const { name, description } = this.get('model');
-        const input = { name, description };
+        const { name, description, email } = this.get('model');
+        const input = { name, description, email };
         const variables = { input };
         const refetchQueries = ['Org', 'OrgApps'];
         await this.mutate({ mutation, variables, refetchQueries }, 'createApplication');

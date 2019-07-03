@@ -22,6 +22,7 @@ const matchTeams = gql`
         node {
           id
           name
+          active
         }
       }
     }

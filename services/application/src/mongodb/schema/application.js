@@ -15,6 +15,7 @@ const schema = new Schema({
     lowercase: true,
     set: normalizeEmail,
     validate: emailValidator,
+    required: true,
   },
   description: {
     type: String,
