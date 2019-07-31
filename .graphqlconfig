@@ -1,0 +1,13 @@
+{
+  "projects": {
+    "identity-x": {
+      "schemaPath": "schema.graphql",
+      "extensions": {
+        "endpoints": {
+          "dev": "http://0.0.0.0:12001",
+          "prod": "https://identity-x.base-cms.io/graphql"
+        }
+      }
+    }
+  }
+}
