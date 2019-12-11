@@ -208,13 +208,10 @@ body {
   border-bottom-left-radius: 0;
 }
 
-.dropdown {
-  &--app,
-  &--org {
-    .dropdown-menu {
-      max-height: 418px;
-      overflow: scroll;
-    }
+.dropdown-menu {
+  &--item-wrapper {
+    max-height: 400px;
+    overflow: scroll;
   }
 }
 
