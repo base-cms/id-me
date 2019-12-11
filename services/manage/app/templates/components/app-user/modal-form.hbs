@@ -29,10 +29,29 @@
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col-sm-6">
           <div class="form-group">
             <FormElements::Label @for="app-user.email" @required={{true}}>Email Address</FormElements::Label>
             <Input @id="app-user.email" @type="email" @required={{true}} @class="form-control" @value={{this.model.email}} />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.country">Country</FormElements::Label>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.organization">Company/Org Name</FormElements::Label>
+            <Input @id="app-user.organization" @type="text" @class="form-control" @value={{this.model.organization}} />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.organization-title">Title</FormElements::Label>
+            <Input @id="app-user.organization-title" @type="text" @class="form-control" @value={{this.model.organizationTitle}} />
           </div>
         </div>
       </div>

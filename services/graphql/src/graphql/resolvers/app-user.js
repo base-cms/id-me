@@ -141,6 +141,9 @@ module.exports = {
         familyName,
         accessLevelIds,
         teamIds,
+        organization,
+        organizationTitle,
+        countryCode,
       } = input;
       const payload = {
         email,
@@ -148,6 +151,9 @@ module.exports = {
         familyName,
         accessLevelIds,
         teamIds,
+        organization,
+        organizationTitle,
+        country: countryCode,
       };
       return applicationService.request('user.manageCreate', {
         applicationId,
