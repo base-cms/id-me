@@ -1,4 +1,4 @@
-const { applicationService } = require('@base-cms/id-me-service-clients');
+const { applicationService, localeService } = require('@base-cms/id-me-service-clients');
 const { UserInputError } = require('apollo-server-express');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
@@ -17,6 +17,10 @@ module.exports = {
       if (!isArray(teamIds) || !teamIds.length) return [];
       const query = { _id: { $in: teamIds } };
       return applicationService.request('team.find', { query });
+    },
+    country: ({ country: code }) => {
+      if (!code) return null;
+      return localeService.request('asObject', { code });
     },
   },
 

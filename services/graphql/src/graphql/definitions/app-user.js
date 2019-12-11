@@ -51,6 +51,9 @@ type AppUser {
   domain: String! @projection
   givenName: String @projection
   familyName: String @projection
+  country: LocaleCountry @projection
+  organization: String @projection
+  organizationTitle: String @projection
   accessLevels: [AccessLevel] @projection(localField: "accessLevelIds")
   teams: [Team]  @projection(localField: "teamIds")
   lastLoggedIn: Date @projection
