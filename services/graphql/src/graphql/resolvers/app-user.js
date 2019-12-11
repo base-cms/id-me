@@ -20,7 +20,7 @@ module.exports = {
     },
     country: ({ country: code }) => {
       if (!code) return null;
-      return localeService.request('asObject', { code });
+      return localeService.request('country.asObject', { code });
     },
   },
 
