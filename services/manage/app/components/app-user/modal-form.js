@@ -29,5 +29,13 @@ export default Component.extend({
     setTeams(teams) {
       this.set('model.teams', teams);
     },
+
+    setCountry(country) {
+      if (!country || !country.id) {
+        this.set('model.country', null);
+      } else {
+        this.set('model.country', country);
+      }
+    },
   },
 });
