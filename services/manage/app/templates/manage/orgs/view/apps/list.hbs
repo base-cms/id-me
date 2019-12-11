@@ -13,9 +13,9 @@
         {{#link-to "manage.orgs.view.apps.view" app.id class="btn btn-primary" role="button"}}
           {{entypo-icon "popup" class="mr-1"}} Manage
         {{/link-to}}
-        {{!-- {{#link-to "manage.orgs.list.edit" org.id class="btn btn-secondary" role="button"}}
-          {{entypo-icon "cog" class="mr-1"}} Edit
-        {{/link-to}} --}}
+        {{#link-to "manage.orgs.view.apps.list.edit" app.id class="btn btn-secondary" role="button"}}
+          {{entypo-icon "edit"}}
+        {{/link-to}}
       </div>
     </ListCard>
   {{else}}
