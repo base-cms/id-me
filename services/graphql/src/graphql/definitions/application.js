@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   activeApplication: Application! @requiresApp
-  application(input: ApplicationQueryInput!): Application! @requiresApp
+  application(input: ApplicationQueryInput!): Application!
 }
 
 extend type Mutation {
