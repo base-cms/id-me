@@ -9,6 +9,7 @@ extend type Query {
 
 extend type Mutation {
   createApplication(input: CreateApplicationMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
+  updateApplication(input: UpdateApplicationMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
   setApplicationName(input: SetApplicationNameMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
 }
 
@@ -43,6 +44,17 @@ input SetApplicationNameMutationInput {
 input ApplicationSortInput {
   field: ApplicationSortField = id
   order: SortOrder = desc
+}
+
+input UpdateApplicationPayloadInput {
+  name: String!
+  email: String!
+  description: String
+}
+
+input UpdateApplicationMutationInput {
+  id: String!
+  payload: UpdateApplicationPayloadInput!
 }
 
 `;

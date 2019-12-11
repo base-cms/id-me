@@ -35,6 +35,17 @@ module.exports = {
     /**
      *
      */
+    updateApplication: (_, { input }) => {
+      const { id, payload } = input;
+      return applicationService.request('updateForId', {
+        id,
+        update: { $set: payload },
+      });
+    },
+
+    /**
+     *
+     */
     setApplicationName: (_, { input }, { app }) => {
       const id = app.getId();
       const { value } = input;
