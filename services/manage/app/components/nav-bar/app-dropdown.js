@@ -4,7 +4,7 @@ import { inject } from '@ember/service';
 
 export default Component.extend({
   tagName: 'li',
-  classNames: ['nav-item', 'dropdown', 'dropdown--org'],
+  classNames: ['nav-item', 'dropdown', 'dropdown--app'],
 
   context: inject(),
 

@@ -208,6 +208,16 @@ body {
   border-bottom-left-radius: 0;
 }
 
+.dropdown {
+  &--app,
+  &--org {
+    .dropdown-menu {
+      max-height: 418px;
+      overflow: scroll;
+    }
+  }
+}
+
 /* clears the 'X' from Internet Explorer */
 input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
 input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
