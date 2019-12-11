@@ -22,6 +22,7 @@ module.exports = {
       if (!code) return null;
       return localeService.request('country.asObject', { code });
     },
+    name: ({ givenName, familyName }) => [givenName, familyName].filter(v => v).join(' '),
   },
 
   Query: {

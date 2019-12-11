@@ -49,6 +49,7 @@ type AppUser {
   id: String! @projection(localField: "_id")
   email: String! @projection
   domain: String! @projection
+  name: String @projection(localField: "givenName", needs: ["familyName"])
   givenName: String @projection
   familyName: String @projection
   country: LocaleCountry @projection
