@@ -7,7 +7,7 @@ extend type Query {
   activeOrganization: Organization! @requiresOrgRole
   organizationUsers: [OrganizationMembership] @requiresOrgRole
   organizationInvitations: [OrganizationInvitation] @requiresOrgRole
-  organizationApplications: [Application] @requiresOrgRole
+  organizationApplications(input: OrganizationApplicationsQueryInput = {}): [Application] @requiresOrgRole
 }
 
 extend type Mutation {
@@ -62,6 +62,10 @@ input SetOrganizationPhotoURLMutationInput {
 
 input SetOrganizationNameMutationInput {
   value: String!
+}
+
+input OrganizationApplicationsQueryInput {
+  sort: ApplicationSortInput = { field: name, order: asc }
 }
 
 `;

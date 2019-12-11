@@ -43,9 +43,10 @@ module.exports = {
       return membershipService.request('listInvitesForOrg', { id });
     },
 
-    organizationApplications: (_, args, { org }) => {
+    organizationApplications: (_, { input }, { org }) => {
+      const { sort } = input;
       const id = org.getId();
-      return applicationService.request('listForOrg', { id });
+      return applicationService.request('listForOrg', { id, sort });
     },
   },
 

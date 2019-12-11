@@ -12,6 +12,13 @@ extend type Mutation {
   setApplicationName(input: SetApplicationNameMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
 }
 
+enum ApplicationSortField {
+  id
+  name
+  createdAt
+  updatedAt
+}
+
 type Application {
   id: String!
   name: String!
@@ -31,6 +38,11 @@ input CreateApplicationMutationInput {
 
 input SetApplicationNameMutationInput {
   value: String!
+}
+
+input ApplicationSortInput {
+  field: ApplicationSortField = id
+  order: SortOrder = desc
 }
 
 `;
