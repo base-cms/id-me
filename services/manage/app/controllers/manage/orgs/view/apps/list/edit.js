@@ -5,10 +5,11 @@ import gql from 'graphql-tag';
 import { inject } from '@ember/service';
 
 const mutation = gql`
-  mutation OrgAppCreate($input: CreateApplicationMutationInput!) {
-    createApplication(input: $input) {
+  mutation AppUpdate($input: UpdateApplicationMutationInput!) {
+    updateApplication(input: $input) {
       id
       name
+      email
       description
     }
   }
@@ -19,20 +20,25 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
 
   actions: {
     async update(closeModal) {
-      console.log('update!');
-      // try {
-      //   this.startAction();
-      //   const { name, description, email } = this.get('model');
-      //   const input = { name, description, email };
-      //   const variables = { input };
-      //   const refetchQueries = ['Org', 'OrgApps'];
-      //   await this.mutate({ mutation, variables, refetchQueries }, 'createApplication');
-      //   await closeModal();
-      // } catch (e) {
-      //   this.errorNotifier.show(e)
-      // } finally {
-      //   this.endAction();
-      // }
+      try {
+        this.startAction();
+        const {
+          id,
+          name,
+          description,
+          email
+        } = this.get('model');
+        const payload = { name, description, email };
+        const input = { id, payload };
+        const variables = { input };
+        const refetchQueries = ['OrgApps'];
+        await this.mutate({ mutation, variables, refetchQueries }, 'updateApplication');
+        await closeModal();
+      } catch (e) {
+        this.errorNotifier.show(e)
+      } finally {
+        this.endAction();
+      }
     },
 
     returnToAppList() {
