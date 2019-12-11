@@ -18,11 +18,10 @@ module.exports = {
       const query = { _id: { $in: teamIds } };
       return applicationService.request('team.find', { query });
     },
-    country: ({ country: code }) => {
-      if (!code) return null;
-      return localeService.request('country.asObject', { code });
+    country: ({ countryCode }) => {
+      if (!countryCode) return null;
+      return localeService.request('country.asObject', { code: countryCode });
     },
-    countryCode: ({ country }) => country,
     name: ({ givenName, familyName }) => [givenName, familyName].filter(v => v).join(' '),
   },
 
@@ -138,7 +137,7 @@ module.exports = {
         familyName,
         organization,
         organizationTitle,
-        country: countryCode,
+        countryCode,
       };
       return applicationService.request('user.create', {
         applicationId,
@@ -167,7 +166,7 @@ module.exports = {
         teamIds,
         organization,
         organizationTitle,
-        country: countryCode,
+        countryCode,
       };
       return applicationService.request('user.manageCreate', {
         applicationId,
@@ -250,7 +249,7 @@ module.exports = {
           teamIds,
           organization,
           organizationTitle,
-          country: countryCode,
+          countryCode,
         },
       });
     },

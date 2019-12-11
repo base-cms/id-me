@@ -52,8 +52,8 @@ type AppUser {
   name: String @projection(localField: "givenName", needs: ["familyName"])
   givenName: String @projection
   familyName: String @projection
-  country: LocaleCountry @projection
-  countryCode: String @projection(localField: "country")
+  country: LocaleCountry @projection(localField: "countryCode")
+  countryCode: String @projection
   organization: String @projection
   organizationTitle: String @projection
   accessLevels: [AccessLevel] @projection(localField: "accessLevelIds")
