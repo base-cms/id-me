@@ -1,16 +1,8 @@
 const countries = require('i18n-iso-countries');
 const getEmoji = require('./utils/get-emoji');
+const sortByName = require('../../utils/sort-by-name');
 
 const { isArray } = Array;
-
-const normalize = name => name.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-const sortByName = (a, b) => {
-  const nameA = normalize(a.name);
-  const nameB = normalize(b.name);
-  if (nameA > nameB) return 1;
-  if (nameA < nameB) return -1;
-  return 0;
-};
 
 module.exports = ({
   lang = 'en',
