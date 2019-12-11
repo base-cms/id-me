@@ -116,6 +116,9 @@ input CreateAppUserMutationInput {
   email: String!
   givenName: String
   familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
 }
 
 input LoginAppUserMutationInput {

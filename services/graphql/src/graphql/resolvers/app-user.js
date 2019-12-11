@@ -124,8 +124,21 @@ module.exports = {
      */
     createAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
-      const { email, givenName, familyName } = input;
-      const payload = { givenName, familyName };
+      const {
+        email,
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        countryCode,
+      } = input;
+      const payload = {
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        country: countryCode,
+      };
       return applicationService.request('user.create', {
         applicationId,
         email,
