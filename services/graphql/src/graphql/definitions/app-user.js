@@ -58,6 +58,7 @@ type AppUser {
   accessLevels: [AccessLevel] @projection(localField: "accessLevelIds")
   teams: [Team]  @projection(localField: "teamIds")
   lastLoggedIn: Date @projection
+  verified: Boolean @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
