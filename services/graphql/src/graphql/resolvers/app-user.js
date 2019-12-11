@@ -214,10 +214,30 @@ module.exports = {
     updateAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { id, payload } = input;
+      const {
+        email,
+        givenName,
+        familyName,
+        accessLevelIds,
+        teamIds,
+        organization,
+        organizationTitle,
+        countryCode,
+      } = payload;
+
       return applicationService.request('user.updateOne', {
         id,
         applicationId,
-        payload,
+        payload: {
+          email,
+          givenName,
+          familyName,
+          accessLevelIds,
+          teamIds,
+          organization,
+          organizationTitle,
+          country: countryCode,
+        },
       });
     },
   },

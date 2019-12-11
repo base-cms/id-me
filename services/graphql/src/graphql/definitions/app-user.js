@@ -148,6 +148,9 @@ input UpdateAppUserPayloadInput {
   email: String!
   givenName: String
   familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }
