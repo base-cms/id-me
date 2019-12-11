@@ -32,7 +32,7 @@
         <div class="col-sm-6">
           <div class="form-group">
             <FormElements::Label @for="app-user.email" @required={{true}}>Email Address</FormElements::Label>
-            <Input @id="app-user.email" @type="email" @required={{true}} @class="form-control" @value={{this.model.email}} />
+            <Input @id="app-user.email" @type="email" @required={{true}} @disabled={{this.model.verified}} @class="form-control" @value={{this.model.email}} />
           </div>
         </div>
         <div class="col-sm-6">
