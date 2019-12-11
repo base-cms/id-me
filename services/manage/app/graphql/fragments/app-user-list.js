@@ -23,5 +23,7 @@ export default gql`
     }
     organization
     organizationTitle
+    verified
+    lastLoggedIn
   }
 `;
