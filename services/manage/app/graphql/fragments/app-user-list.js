@@ -16,6 +16,7 @@ export default gql`
       id
       name
     }
+    countryCode
     country {
       id
       name

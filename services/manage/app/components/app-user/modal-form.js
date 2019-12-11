@@ -30,12 +30,8 @@ export default Component.extend({
       this.set('model.teams', teams);
     },
 
-    setCountry(country) {
-      if (!country || !country.id) {
-        this.set('model.country', null);
-      } else {
-        this.set('model.country', country);
-      }
+    setCountryCode(countryCode) {
+      this.set('model.countryCode', countryCode);
     },
   },
 });

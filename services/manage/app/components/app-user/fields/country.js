@@ -46,9 +46,8 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
   },
 
   actions: {
-    emitChange(id) {
-      const country = this.options.find(opt => opt.id === id);
-      this.sendEventAction('on-change', country || null);
+    emitChange(countryCode) {
+      this.sendEventAction('on-change', countryCode || null);
     }
   },
 });

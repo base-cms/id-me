@@ -29,7 +29,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           teams,
           organization,
           organizationTitle,
-          country,
+          countryCode,
         } = this.get('model');
         const input = {
           givenName,
@@ -39,7 +39,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           teamIds: teams.map(team => team.id),
           organization,
           organizationTitle,
-          countryCode: country ? country.id : null,
+          countryCode,
         };
         const variables = { input };
         const refetchQueries = ['AppUsers'];
