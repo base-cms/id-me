@@ -23,13 +23,8 @@ jobs:
       script: scripts/deploy-notify.sh
       install: skip
 
-    - stage: deploy
-      name: Application Service
-      script: scripts/deploy.js application
-
-    - stage: deploy
-      name: GraphQL Service
-      script: scripts/deploy.js graphql
+    # Deployment Order Matters. Some services are dependent on others.
+    # See the docker-compose.yml file for dependent services.
 
     - stage: deploy
       name: IP Service
@@ -40,25 +35,33 @@ jobs:
       script: scripts/deploy.js locale
 
     - stage: deploy
+      name: Token Service
+      script: scripts/deploy.js token
+
+    - stage: deploy
       name: Mailer Service
       script: scripts/deploy.js mailer
-
-    - stage: deploy
-      name: Manage UI Service
-      script: scripts/deploy.js manage
-
-    - stage: deploy
-      name: Membership Service
-      script: scripts/deploy.js membership
 
     - stage: deploy
       name: Organization Service
       script: scripts/deploy.js organization
 
     - stage: deploy
-      name: Token Service
-      script: scripts/deploy.js token
-
-    - stage: deploy
       name: User Service
       script: scripts/deploy.js user
+
+    - stage: deploy
+      name: Application Service
+      script: scripts/deploy.js application
+
+    - stage: deploy
+      name: Membership Service
+      script: scripts/deploy.js membership
+
+    - stage: deploy
+      name: GraphQL Service
+      script: scripts/deploy.js graphql
+
+    - stage: deploy
+      name: Manage UI Service
+      script: scripts/deploy.js manage
