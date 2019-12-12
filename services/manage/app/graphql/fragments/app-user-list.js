@@ -5,6 +5,7 @@ export default gql`
     id
     email
     domain
+    name
     givenName
     familyName
     accessLevels {
@@ -15,5 +16,15 @@ export default gql`
       id
       name
     }
+    countryCode
+    country {
+      id
+      name
+      flag
+    }
+    organization
+    organizationTitle
+    verified
+    lastLoggedIn
   }
 `;

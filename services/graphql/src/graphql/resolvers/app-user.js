@@ -1,4 +1,4 @@
-const { applicationService } = require('@base-cms/id-me-service-clients');
+const { applicationService, localeService } = require('@base-cms/id-me-service-clients');
 const { UserInputError } = require('apollo-server-express');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
@@ -18,6 +18,11 @@ module.exports = {
       const query = { _id: { $in: teamIds } };
       return applicationService.request('team.find', { query });
     },
+    country: ({ countryCode }) => {
+      if (!countryCode) return null;
+      return localeService.request('country.asObject', { code: countryCode });
+    },
+    name: ({ givenName, familyName }) => [givenName, familyName].filter(v => v).join(' '),
   },
 
   Query: {
@@ -119,8 +124,21 @@ module.exports = {
      */
     createAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
-      const { email, givenName, familyName } = input;
-      const payload = { givenName, familyName };
+      const {
+        email,
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        countryCode,
+      } = input;
+      const payload = {
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        countryCode,
+      };
       return applicationService.request('user.create', {
         applicationId,
         email,
@@ -136,6 +154,9 @@ module.exports = {
         familyName,
         accessLevelIds,
         teamIds,
+        organization,
+        organizationTitle,
+        countryCode,
       } = input;
       const payload = {
         email,
@@ -143,6 +164,9 @@ module.exports = {
         familyName,
         accessLevelIds,
         teamIds,
+        organization,
+        organizationTitle,
+        countryCode,
       };
       return applicationService.request('user.manageCreate', {
         applicationId,
@@ -203,10 +227,30 @@ module.exports = {
     updateAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { id, payload } = input;
+      const {
+        email,
+        givenName,
+        familyName,
+        accessLevelIds,
+        teamIds,
+        organization,
+        organizationTitle,
+        countryCode,
+      } = payload;
+
       return applicationService.request('user.updateOne', {
         id,
         applicationId,
-        payload,
+        payload: {
+          email,
+          givenName,
+          familyName,
+          accessLevelIds,
+          teamIds,
+          organization,
+          organizationTitle,
+          countryCode,
+        },
       });
     },
   },

@@ -28,6 +28,9 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           familyName,
           accessLevels,
           teams,
+          organization,
+          organizationTitle,
+          countryCode,
         } = this.get('model');
 
         const payload = {
@@ -36,6 +39,9 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           familyName,
           accessLevelIds: accessLevels.map(level => level.id),
           teamIds: teams.map(team => team.id),
+          organization,
+          organizationTitle,
+          countryCode,
         };
         const input = { id, payload };
         const variables = { input };

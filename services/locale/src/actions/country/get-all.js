@@ -1,5 +1,6 @@
 const countries = require('i18n-iso-countries');
 const getEmoji = require('./utils/get-emoji');
+const sortByName = require('../../utils/sort-by-name');
 
 const { isArray } = Array;
 
@@ -23,7 +24,12 @@ module.exports = ({
       return o;
     }, {});
 
-  const ordered = { ...top, ...data };
+  const sorted = Object.keys(data)
+    .map(code => ({ code, name: data[code] }))
+    .sort(sortByName)
+    .reduce((o, { code, name }) => ({ ...o, [code]: name }), {});
+
+  const ordered = { ...top, ...sorted };
   return Object.keys(ordered).map((code) => {
     const obj = { code, name: ordered[code] };
     if (!withFlag) return obj;

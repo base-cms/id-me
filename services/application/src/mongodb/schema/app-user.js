@@ -53,8 +53,7 @@ const schema = new Schema({
     trim: true,
     set: stripLines,
   },
-  // Country code.
-  country: {
+  countryCode: {
     type: String,
     trim: true,
     uppercase: true,
@@ -83,22 +82,22 @@ schema.pre('validate', async function setDomain() {
 });
 
 schema.pre('validate', async function convertCountryCode() {
-  const { country: code } = this;
-  if (!code) {
-    this.country = undefined;
+  const { countryCode } = this;
+  if (!countryCode) {
+    this.countryCode = undefined;
     return;
   }
-  const obj = await localeService.request('country.asObject', { code });
+  const obj = await localeService.request('country.asObject', { code: countryCode });
   if (!obj) {
-    this.country = code;
+    this.countryCode = countryCode;
     return;
   }
-  this.country = obj.code;
+  this.countryCode = obj.code;
 });
 
 schema.pre('save', async function setCountryName() {
-  const { country: code } = this;
-  this.countryName = code ? await localeService.request('country.getName', { code }) : undefined;
+  const { countryCode } = this;
+  this.countryName = countryCode ? await localeService.request('country.getName', { code: countryCode }) : undefined;
 });
 
 schema.index({ applicationId: 1, email: 1 }, { unique: true });

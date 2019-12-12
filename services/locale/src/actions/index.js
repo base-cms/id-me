@@ -1,4 +1,5 @@
 const country = require('./country');
+const region = require('./region');
 
 const { keys } = Object;
 
@@ -10,4 +11,5 @@ const load = (root, obj) => keys(obj).reduce((o, key) => {
 
 module.exports = {
   ...load('country', country),
+  ...load('region', region),
 };

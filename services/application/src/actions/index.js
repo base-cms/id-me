@@ -4,6 +4,7 @@ const {
   listForOrg,
   updateField,
   updateMany,
+  updateForId,
 } = require('@base-cms/id-me-utils').actions;
 
 const Application = require('../mongodb/models/application');
@@ -33,5 +34,6 @@ module.exports = {
   findById: params => findById(Application, params),
   listForOrg: params => listForOrg(Application, params),
   updateField: params => updateField(Application, params),
+  updateForId: params => updateForId(Application, params),
   updateMany: params => updateMany(Application, params),
 };

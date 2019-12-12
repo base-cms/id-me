@@ -9,11 +9,13 @@
 </a>
 
 <div class="dropdown-menu">
-  {{#each apps as |app|}}
-    {{#link-to "manage.orgs.view.apps.view" context.orgId app.id class="dropdown-item dropdown-item d-flex align-items-center"}}
-      {{app.name}}
-    {{/link-to}}
-  {{/each}}
+  <div class="dropdown-menu--item-wrapper">
+    {{#each apps as |app|}}
+      {{#link-to "manage.orgs.view.apps.view" context.orgId app.id class="dropdown-item dropdown-item d-flex align-items-center"}}
+        {{app.name}}
+      {{/link-to}}
+    {{/each}}
+  </div>
   {{#if apps.length}}
     <div class="dropdown-divider"></div>
   {{/if}}

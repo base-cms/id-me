@@ -49,11 +49,17 @@ type AppUser {
   id: String! @projection(localField: "_id")
   email: String! @projection
   domain: String! @projection
+  name: String @projection(localField: "givenName", needs: ["familyName"])
   givenName: String @projection
   familyName: String @projection
+  country: LocaleCountry @projection(localField: "countryCode")
+  countryCode: String @projection
+  organization: String @projection
+  organizationTitle: String @projection
   accessLevels: [AccessLevel] @projection(localField: "accessLevelIds")
   teams: [Team]  @projection(localField: "teamIds")
   lastLoggedIn: Date @projection
+  verified: Boolean @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
@@ -111,6 +117,9 @@ input CreateAppUserMutationInput {
   email: String!
   givenName: String
   familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
 }
 
 input LoginAppUserMutationInput {
@@ -125,6 +134,9 @@ input ManageCreateAppUserMutationInput {
   email: String!
   givenName: String
   familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }
@@ -140,6 +152,9 @@ input UpdateAppUserPayloadInput {
   email: String!
   givenName: String
   familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }

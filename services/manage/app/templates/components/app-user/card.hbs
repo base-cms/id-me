@@ -1,7 +1,39 @@
 <ListCard>
   <div class="card-body">
-    <h2 class="card-title">{{this.user.givenName}} {{this.user.familyName}}</h2>
-    <p class="card-text">{{this.user.email}}</p>
+    {{#if this.user.name}}
+      <h2 class="card-title">{{this.user.name}}</h2>
+    {{/if}}
+    <p class="card-text">
+      {{this.user.email}}
+      {{#if this.user.verified}}
+        <br>
+        <span class="email-verified">
+          {{entypo-icon "check"}}
+          Email Verified
+        </span>
+      {{/if}}
+    </p>
+
+    <div class="app-user-details">
+      {{#if this.user.organizationTitle}}
+        <p>{{entypo-icon "v-card"}} {{this.user.organizationTitle}}</p>
+      {{/if}}
+      {{#if this.user.organization}}
+        <p>{{entypo-icon "suitcase"}} {{this.user.organization}}</p>
+      {{/if}}
+      {{#if this.user.country}}
+        <p class="country">{{this.user.country.name}} {{this.user.country.flag}}</p>
+      {{/if}}
+      <p class="last-logged-in">
+        Last Logged In:
+        {{#if this.user.lastLoggedIn}}
+          {{moment-format this.user.lastLoggedIn "MM/DD/YYYY h:mma"}}
+        {{else}}
+          Never
+        {{/if}}
+      </p>
+    </div>
+
     <ArrayList @label="Access Levels" @values={{accessLevels}} />
     <ArrayList @label="Teams" @values={{teams}} />
   </div>
