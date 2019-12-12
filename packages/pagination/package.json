@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-pagination",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "IdentityX pagination functions.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
