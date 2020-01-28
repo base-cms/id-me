@@ -20,11 +20,9 @@ const fields = [
 
 module.exports = asyncRoute(async (req, res) => {
   const { applicationId } = req.params;
-
   const r = await applicationService.request('user.exportForApp', { applicationId, fields });
 
   res.set('Content-Type', 'text/plain');
   res.set('Content-Disposition', `attachment; filename="export-${applicationId}-${Date.now()}.csv"`);
-
   res.send(parse(r, { fields }));
 });
