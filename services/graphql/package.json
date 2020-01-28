@@ -26,6 +26,7 @@
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
     "graphql-type-json": "^0.3.0",
+    "json2csv": "^4.5.4",
     "mongodb": "3.2.5",
     "newrelic": "^5.9.1",
     "object-path": "^0.11.4"
