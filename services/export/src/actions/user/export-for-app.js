@@ -34,7 +34,7 @@ module.exports = async ({
   const projection = fields.reduce((obj, k) => ({ ...obj, [k]: 1 }), {});
 
   try {
-    const users = await AppUser.find({ applicationId }, projection).limit(10);
+    const users = await AppUser.find({ applicationId }, projection);
     const contents = await parse(users, { fields });
     const filename = `export-${applicationId}-${Date.now()}.csv`;
     await upload({ filename, contents });
