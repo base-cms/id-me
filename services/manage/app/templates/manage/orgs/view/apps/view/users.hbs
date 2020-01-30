@@ -45,4 +45,10 @@
   <Button::Create @routeName="manage.orgs.view.apps.view.users.create" @title="Create New User" />
 </aside>
 
+{{#if (gt this.model.totalCount 0)}}
+  <aside class="footer-controls right">
+    <Button::Export @title="Export Users" />
+  </aside>
+{{/if}}
+
 {{outlet}}
