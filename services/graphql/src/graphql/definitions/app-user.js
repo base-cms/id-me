@@ -13,6 +13,7 @@ extend type Query {
 
 extend type Mutation {
   createAppUser(input: CreateAppUserMutationInput!): AppUser! @requiresApp # must be public
+  exportAppUsers: String! @requiresAppRole
   manageCreateAppUser(input: ManageCreateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   updateAppUser(input: UpdateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp # must be public
