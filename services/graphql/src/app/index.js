@@ -1,6 +1,5 @@
 const express = require('express');
 const graphql = require('../graphql/server');
-const appUserExport = require('./app-user-export');
 const { TRUSTED_PROXIES } = require('../env');
 
 const app = express();
@@ -10,7 +9,6 @@ if (TRUSTED_PROXIES) {
 }
 app.set('trust proxy', proxies);
 
-app.get('/export/:applicationId', appUserExport);
 graphql({ app, path: '/' });
 
 module.exports = app;

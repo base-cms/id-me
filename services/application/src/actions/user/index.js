@@ -1,6 +1,5 @@
 const { updateField, listForApp, matchForApp } = require('@base-cms/id-me-utils').actions;
 const create = require('./create');
-const exportForApp = require('./export-for-app');
 const findByEmail = require('./find-by-email');
 const login = require('./login');
 const logout = require('./logout');
@@ -13,7 +12,6 @@ const AppUser = require('../../mongodb/models/app-user');
 
 module.exports = {
   create,
-  exportForApp,
   findByEmail,
   listForApp: params => listForApp(AppUser, params),
   login,
