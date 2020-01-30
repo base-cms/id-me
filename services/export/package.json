@@ -1,0 +1,34 @@
+{
+  "name": "@base-cms/id-me-export-service",
+  "version": "0.7.0",
+  "description": "The ID|Me export service.",
+  "main": "src/index.js",
+  "author": "Josh Worden <josh@limit0.io>",
+  "repository": "https://github.com/base-cms/id-me/tree/master/services/export",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "micro-dev",
+    "test": "./node_modules/.bin/eslint ."
+  },
+  "dependencies": {
+    "@base-cms/env": "^0.9.25",
+    "@base-cms/id-me-service-clients": "^0.7.0",
+    "@base-cms/id-me-utils": "^0.7.0",
+    "@base-cms/micro": "^0.9.28",
+    "@base-cms/utils": "^0.9.0",
+    "@newrelic/native-metrics": "^4.1.0",
+    "aws-sdk": "^2.610.0",
+    "json2csv": "^4.5.4",
+    "micro": "^9.3.4",
+    "mongoose": "^5.5.11",
+    "newrelic": "^5.9.1",
+    "validator": "^11.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2",
+    "micro-dev": "^3.0.0"
+  }
+}
