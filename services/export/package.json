@@ -16,6 +16,7 @@
     "@base-cms/id-me-service-clients": "^0.7.0",
     "@base-cms/id-me-utils": "^0.7.0",
     "@base-cms/micro": "^0.9.28",
+    "@base-cms/object-path": "^1.9.0",
     "@base-cms/utils": "^0.9.0",
     "@newrelic/native-metrics": "^4.1.0",
     "aws-sdk": "^2.610.0",
