@@ -714,10 +714,23 @@
     "@base-cms/utils" "^0.9.0"
     object-path "^0.11.4"
 
+"@base-cms/object-path@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@base-cms/object-path/-/object-path-1.9.0.tgz#a779d922bad3a77ee96a37ef5eb8a76c21a87fef"
+  integrity sha512-a+dJfyd+/d8ywzdJiqex+XVfCbRWOTWrz/IR6k2ikMRf5hNN0ZZ33CNb7WthNd003af3IeJTEWzz9YYXKod1kA==
+  dependencies:
+    "@base-cms/utils" "^1.9.0"
+    object-path "^0.11.4"
+
 "@base-cms/utils@^0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@base-cms/utils/-/utils-0.9.0.tgz#a54bfbd119aaf310ff4cbd0e3ae253f4ecfa8b27"
   integrity sha512-g7+XxYSqtBclVj0FgbRiai70DR+px8oun1jPiOw3hOIUOvlDx1fc7VRsKKWmD+V40t6xYFyJX5qSfTYxqvJvOQ==
+
+"@base-cms/utils@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@base-cms/utils/-/utils-1.9.0.tgz#fb208c11b155d019876806855e7a8bb1c56041fd"
+  integrity sha512-mo3sRxE/KL1i1haP8MrZa32aZaKz4dOqtUb84DOHSlNrhyoPEJ0wq/+KKi6gLjYAY6j2ECxmDcgBztcYjamIEg==
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
