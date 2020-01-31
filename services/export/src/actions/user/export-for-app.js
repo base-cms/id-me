@@ -36,7 +36,7 @@ module.exports = async ({
   try {
     const users = await AppUser.find({ applicationId }, projection);
     const contents = await parse(users, { fields });
-    const filename = `export-${applicationId}-${Date.now()}.csv`;
+    const filename = `app-user-export-${applicationId}-${Date.now()}.csv`;
     await upload({ filename, contents });
 
     const url = `https://${AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${filename}`;
