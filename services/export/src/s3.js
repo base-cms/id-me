@@ -19,7 +19,7 @@ module.exports = {
     Bucket: AWS_S3_BUCKET_NAME,
     ContentDisposition: `attachment; filename="${filename}"`,
     ContentType: 'text/plain; charset=utf8',
-    Expires: Math.floor(Date.now().valueOf() / 1000),
+    Expires: Math.floor(Date.now().valueOf() / 1000) * 60 * 60 * 24 * 30,
     Key: filename,
   }, (err, data) => {
     if (err) {
