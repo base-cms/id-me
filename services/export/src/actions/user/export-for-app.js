@@ -8,29 +8,28 @@ const { AWS_S3_BUCKET_NAME } = require('../../env');
 
 const { createRequiredParamError } = service;
 
-const fields = [
-  '_id',
-  'email',
-  'domain',
-  'verified',
-  'lastLoggedIn',
-  'givenName',
-  'familyName',
-  'organization',
-  'organizationTitle',
-  'countryCode',
-  'countryName',
-  'createdAt',
-  'updatedAt',
-];
-
 module.exports = async ({
   email,
   applicationId,
+  fields = [
+    '_id',
+    'email',
+    'domain',
+    'verified',
+    'lastLoggedIn',
+    'givenName',
+    'familyName',
+    'organization',
+    'organizationTitle',
+    'countryCode',
+    'countryName',
+    'createdAt',
+    'updatedAt',
+  ],
 } = {}) => {
   if (!email) throw createRequiredParamError('email');
   if (!applicationId) throw createRequiredParamError('applicationId');
-  if (!Array.isArray(fields)) throw createRequiredParamError('fields');
+  if (!Array.isArray(fields) || !fields.length) throw createRequiredParamError('fields');
   const projection = fields.reduce((obj, k) => ({ ...obj, [k]: 1 }), {});
 
   try {
