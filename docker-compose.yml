@@ -170,7 +170,7 @@ services:
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80", "--silent"]
     depends_on:
-      - mongodb
+      - application
       - mailer
     ports:
       - "12011:80"
