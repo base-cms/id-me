@@ -2,11 +2,12 @@ const { getAsArray, getAsObject } = require('@base-cms/object-path');
 
 /**
  * Pipes results to the passed input stream
- * @param client      - The service client
- * @param action      - The service action
- * @param params      - The service params
- * @param limit       - The number of results that should be returned with each page
- * @param stream      - The input stream to send results to
+ * @param {object} args The function args
+ * @param {object} args.client The service client
+ * @param {string} args.action The service action
+ * @param {string} args.params The service params
+ * @param {number} limit The number of results to process in each chunk
+ * @param {object} stream The json2csv AsyncProcessor input stream
  */
 const executor = async (args) => {
   const {
