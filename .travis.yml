@@ -8,6 +8,10 @@ stages:
     if: tag is present
   - name: deploy
     if: tag is present
+  - name: deploy_graphql
+    if: tag is present
+  - name: deploy_manage
+    if: tag is present
   - name: notify
     if: tag is present
 
@@ -62,10 +66,10 @@ jobs:
       name: Membership Service
       script: scripts/deploy.js membership
 
-    - stage: deploy
+    - stage: deploy_graphql
       name: GraphQL Service
       script: scripts/deploy.js graphql
 
-    - stage: deploy
+    - stage: deploy_manage
       name: Manage UI Service
       script: scripts/deploy.js manage
