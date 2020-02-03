@@ -47,7 +47,7 @@
 
 {{#if (gt this.model.totalCount 0)}}
   <aside class="footer-controls right">
-    <Button::Export @title="Export Users" @action={{action "export"}} />
+    <Button::Export @title="Export Users" @click={{action "export"}} />
   </aside>
 {{/if}}
 

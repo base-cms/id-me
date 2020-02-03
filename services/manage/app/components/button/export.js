@@ -5,9 +5,4 @@ export default Component.extend({
   classNames: 'btn btn-xl btn-info btn-circle btn-create',
   icon: 'download',
   title: 'Export',
-  action: null,
-
-  async click() {
-    this.action();
-  },
 });
