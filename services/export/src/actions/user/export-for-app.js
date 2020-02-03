@@ -60,7 +60,7 @@ module.exports = async ({
     return 'ok';
   } catch (e) {
     newrelic.noticeError(e);
-    await sendFailure({ email, error: e });
+    sendFailure({ email, error: e }).catch(newrelic.noticeError);
     return 'failure';
   }
 };
