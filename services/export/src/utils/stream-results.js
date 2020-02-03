@@ -25,7 +25,7 @@ const executor = async (args) => {
       limit,
     },
   });
-  const nodes = getAsArray(data, 'edges').map(({ node }) => node);
+  const nodes = getAsArray(data, 'edges').map(edge => edge.node);
   stream.push(JSON.stringify(nodes));
   const { hasNextPage, endCursor } = getAsObject(data, 'pageInfo');
   if (hasNextPage) {
