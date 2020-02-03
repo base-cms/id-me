@@ -14,7 +14,7 @@ const executor = async (args) => {
     client,
     action,
     params,
-    limit,
+    limit = 500,
     stream,
   } = args;
   const pagination = getAsObject(params, 'pagination');
@@ -33,23 +33,11 @@ const executor = async (args) => {
       ...args,
       params: {
         ...params,
-        pagination: { ...pagination, after: endCursor },
+        pagination: { ...pagination, limit, after: endCursor },
       },
     });
   }
   stream.push(null);
 };
 
-module.exports = async ({
-  client,
-  action,
-  params,
-  limit = 500,
-  stream,
-}) => executor({
-  client,
-  action,
-  params,
-  limit,
-  stream,
-});
+module.exports = executor;
