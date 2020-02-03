@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-export-service",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "The ID|Me export service.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
-    "@base-cms/id-me-service-clients": "^0.7.0",
+    "@base-cms/id-me-service-clients": "^0.8.0",
     "@base-cms/micro": "^0.9.28",
     "@base-cms/object-path": "^1.9.0",
     "@newrelic/native-metrics": "^4.1.0",
