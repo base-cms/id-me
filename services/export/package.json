@@ -20,7 +20,6 @@
     "aws-sdk": "^2.610.0",
     "json2csv": "^4.5.4",
     "micro": "^9.3.4",
-    "mongoose": "^5.5.11",
     "newrelic": "^5.9.1",
     "validator": "^11.0.0"
   },
