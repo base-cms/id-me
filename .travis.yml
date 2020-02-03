@@ -55,6 +55,10 @@ jobs:
       script: scripts/deploy.js application
 
     - stage: deploy
+      name: Export Service
+      script: scripts/deploy.js export
+
+    - stage: deploy
       name: Membership Service
       script: scripts/deploy.js membership
 
