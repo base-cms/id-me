@@ -3,6 +3,7 @@ version: '3.7'
 x-env-defaults: &env
   APPLICATION_URL: ${APPLICATION_URL-http://0.0.0.0:12002}
   APPLICATION_SERVICE_URL: ${APPLICATION_SERVICE_URL-http://application}
+  EXPORT_SERVICE_URL: ${EXPORT_SERVICE_URL-http://export}
   LOCALE_SERVICE_URL: ${LOCALE_SERVICE_URL-http://locale}
   MAILER_SERVICE_URL: ${MAILER_SERVICE_URL-http://mailer}
   MEMBERSHIP_SERVICE_URL: ${MEMBERSHIP_SERVICE_URL-http://membership}
@@ -20,6 +21,7 @@ x-node-defaults: &node
   init: true
   image: node:10.15
   working_dir: /identity-x
+  restart: always
   volumes:
     - .:/identity-x:cached
     - ./node_modules:/identity-x/node_modules:delegated
@@ -51,6 +53,7 @@ services:
       EXTERNAL_PORT: 12001
     depends_on:
       - application
+      - export
       - locale
       - membership
       - organization
@@ -160,6 +163,23 @@ services:
     command: ["--port", "80", "--silent"]
     ports:
       - "12010:80"
+
+  export:
+    <<: *node
+    working_dir: /identity-x/services/export
+    entrypoint: ["node_modules/.bin/micro-dev"]
+    command: ["--port", "80", "--silent"]
+    depends_on:
+      - application
+      - mailer
+    ports:
+      - "12011:80"
+
+    environment:
+      <<: *env
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
 
 volumes:
   mongodb: {}

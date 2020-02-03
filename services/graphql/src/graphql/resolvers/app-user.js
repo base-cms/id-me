@@ -1,4 +1,4 @@
-const { applicationService, localeService } = require('@base-cms/id-me-service-clients');
+const { applicationService, exportService, localeService } = require('@base-cms/id-me-service-clients');
 const { UserInputError } = require('apollo-server-express');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
@@ -144,6 +144,16 @@ module.exports = {
         email,
         payload,
       });
+    },
+
+    /**
+     *
+     */
+    exportAppUsers: (_, __, { app, user }) => {
+      const applicationId = app.getId();
+      const email = user.get('email');
+      exportService.request('user.exportForApp', { applicationId, email });
+      return 'ok';
     },
 
     manageCreateAppUser: (_, { input }, { app }) => {
