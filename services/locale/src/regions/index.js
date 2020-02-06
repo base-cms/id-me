@@ -1,5 +1,6 @@
 const sortByName = require('../utils/sort-by-name');
 const CA = require('./ca');
+const MX = require('./mx');
 const US = require('./us');
 
 const set = (data, countryCode) => Object.keys(data)
@@ -17,5 +18,6 @@ const set = (data, countryCode) => Object.keys(data)
 
 module.exports = {
   CA: set(CA, 'CA'),
+  MX: set(MX, 'MX'),
   US: set(US, 'US'),
 };
