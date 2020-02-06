@@ -124,6 +124,8 @@ input CreateAppUserMutationInput {
   organization: String
   organizationTitle: String
   countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 input LoginAppUserMutationInput {
@@ -141,6 +143,8 @@ input ManageCreateAppUserMutationInput {
   organization: String
   organizationTitle: String
   countryCode: String
+  regionCode: String
+  postalCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }
@@ -159,6 +163,8 @@ input UpdateAppUserPayloadInput {
   organization: String
   organizationTitle: String
   countryCode: String
+  regionCode: String
+  postalCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }
