@@ -2,6 +2,7 @@ const { Schema } = require('mongoose');
 const { normalizeEmail } = require('@base-cms/id-me-utils');
 const { emailValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
 const { localeService } = require('@base-cms/id-me-service-clients');
+const { isPostalCode } = require('validator');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');
 
@@ -57,6 +58,15 @@ const schema = new Schema({
     type: String,
     trim: true,
     uppercase: true,
+    validate: {
+      async validator(regionCode) {
+        if (!regionCode) return true;
+        const { countryCode } = this;
+        if (!countryCode) return false;
+        return localeService.request('region.isValid', { countryCode, regionCode });
+      },
+      message: 'Either an invalid region code {VALUE} was set, or no country was defined.',
+    },
   },
   regionName: {
     type: String,
@@ -81,6 +91,17 @@ const schema = new Schema({
   postalCode: {
     type: String,
     trim: true,
+    uppercase: true,
+    validate: {
+      async validator(postalCode) {
+        if (!postalCode) return true;
+        const { countryCode } = this;
+        if (!countryCode) return true;
+        if (!['US', 'CA', 'MX'].includes(countryCode)) return true;
+        return isPostalCode(postalCode, countryCode);
+      },
+      message: 'Invalid postal code {VALUE} for the provided country.',
+    },
   },
 }, { timestamps: true });
 
@@ -98,6 +119,7 @@ schema.pre('validate', async function convertCountryCode() {
   const { countryCode } = this;
   if (!countryCode) {
     this.countryCode = undefined;
+    this.regionCode = undefined;
     return;
   }
   const obj = await localeService.request('country.asObject', { code: countryCode });
@@ -111,6 +133,16 @@ schema.pre('validate', async function convertCountryCode() {
 schema.pre('save', async function setCountryName() {
   const { countryCode } = this;
   this.countryName = countryCode ? await localeService.request('country.getName', { code: countryCode }) : undefined;
+});
+
+schema.pre('save', async function setRegionName() {
+  const { countryCode, regionCode } = this;
+  if (countryCode && regionCode) {
+    const name = await localeService.request('region.getName', { countryCode, regionCode });
+    this.regionName = name || undefined;
+  } else {
+    this.regionName = undefined;
+  }
 });
 
 schema.index({ applicationId: 1, email: 1 }, { unique: true });
