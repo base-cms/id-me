@@ -7,6 +7,7 @@ extend type Query {
   localeRegionsForCountry(input: LocaleRegionsForCountryQueryInput = {}): [LocaleRegion!]! @requiresApp
 }
 
+"A list of regional category designations."
 enum LocaleRegionCategory {
   Capital
   District
@@ -16,28 +17,48 @@ enum LocaleRegionCategory {
   Territory
 }
 
+"A list of country codes that currently have regional data."
+enum LocaleCountriesWithRegions {
+  CA
+  MX
+  US
+}
+
 type LocaleCountry {
+  "The ISO-3166 Alpha2 country code"
   id: String!
+  "The country name"
   name: String!
+  "The country's flag emoji"
   flag: String
 }
 
 type LocaleRegion {
-  id: String! # a combination of the country+region code, e.g. US-WI
-  code: String! # the region code, e.g. WI
-  name: String! # the region name, e.g. Wisconsin
-  category: LocaleRegionCategory! # the region category, e.g. State
-  country: LocaleCountry! # the country information
+  "A combination of the country + region code, e.g. US-WI"
+  id: String!
+  "The region code, e.g. WI"
+  code: String!
+  "The region name, e.g. Wisconsin"
+  name: String!
+  "The region category, e.g. State"
+  category: LocaleRegionCategory!
+  "The country information"
+  country: LocaleCountry!
 }
 
 input LocaleCountriesQueryInput {
+  "The language to return."
   lang: String = "en"
+  "A list of country codes to prioritize. These countries will be listed first in the response."
   prioritize: [String!]! = ["US", "CA"]
+  "Whether to include the country flag emoji."
   withFlag: Boolean = true
 }
 
 input LocaleRegionsForCountryQueryInput {
-  countryCode: String!
+  "The Alpha2 country code to return regions for. For example, setting US will return all regions for the United States"
+  countryCode: LocaleCountriesWithRegions!
+  "The region category to filter results by, e.g. State, Territory, District, etc."
   category: LocaleRegionCategory
 }
 
