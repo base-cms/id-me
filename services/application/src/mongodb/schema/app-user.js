@@ -53,6 +53,15 @@ const schema = new Schema({
     trim: true,
     set: stripLines,
   },
+  regionCode: {
+    type: String,
+    trim: true,
+    uppercase: true,
+  },
+  regionName: {
+    type: String,
+    trim: true,
+  },
   countryCode: {
     type: String,
     trim: true,
@@ -66,6 +75,10 @@ const schema = new Schema({
     },
   },
   countryName: {
+    type: String,
+    trim: true,
+  },
+  postalCode: {
     type: String,
     trim: true,
   },
