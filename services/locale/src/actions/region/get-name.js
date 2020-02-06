@@ -1,11 +1,6 @@
-const { createRequiredParamError } = require('@base-cms/micro').service;
-const regions = require('../../regions');
+const asObject = require('./as-object');
 
 module.exports = ({ countryCode, regionCode }) => {
-  if (!countryCode) throw createRequiredParamError('countryCode');
-  if (!regionCode) throw createRequiredParamError('regionCode');
-  const data = regions[countryCode.toUpperCase()];
-  if (!data) return null;
-  const region = data[regionCode.toUpperCase()];
+  const region = asObject({ countryCode, regionCode });
   return region ? region.name : null;
 };
