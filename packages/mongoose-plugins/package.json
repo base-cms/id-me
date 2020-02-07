@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-mongoose-plugins",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "A collection of Mongoose plugins for ID|Me schemas.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/id-me-pagination": "^0.8.1",
-    "@base-cms/id-me-utils": "^0.8.1",
+    "@base-cms/id-me-pagination": "^0.9.0",
+    "@base-cms/id-me-utils": "^0.9.0",
     "mongoose": "^5.5.11",
     "validator": "^11.0.0"
   },
