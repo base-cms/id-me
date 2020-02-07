@@ -37,6 +37,12 @@ module.exports = async ({
   if (!app) throw createError(404, `No application was found for '${applicationId}'`);
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
+  // Ensure any new, incoming fields will pass validation.
+  if (fields) {
+    user.set(fields);
+    await user.validate();
+  }
+
   const { token } = await createLoginToken({ applicationId, email: user.email, fields });
   let url = `${authUrl}?token=${token}`;
   if (redirectTo) url = `${url}&redirectTo=${encodeURIComponent(redirectTo)}`;
