@@ -1,6 +1,8 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 
+const getValue = v => (v == null ? '' : v);
+
 export default Component.extend({
   tagName: 'option',
   attributeBindings: ['isSelected:selected', 'value'],
@@ -21,6 +23,8 @@ export default Component.extend({
    * Will set the options `selected` attribute if true.
    */
   isSelected: computed('value', 'selected', function() {
-    return this.get('value') === this.get('selected');
+    const value = getValue(this.value);
+    const selected = getValue(this.selected);
+    return value === selected;
   }),
 });
