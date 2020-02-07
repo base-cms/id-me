@@ -31,6 +31,8 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           organization,
           organizationTitle,
           countryCode,
+          regionCode,
+          postalCode,
         } = this.get('model');
 
         const payload = {
@@ -42,6 +44,8 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           organization,
           organizationTitle,
           countryCode,
+          regionCode,
+          postalCode,
         };
         const input = { id, payload };
         const variables = { input };
