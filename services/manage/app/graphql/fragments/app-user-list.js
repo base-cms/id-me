@@ -22,6 +22,12 @@ export default gql`
       name
       flag
     }
+    regionCode
+    region {
+      id
+      name
+    }
+    postalCode
     organization
     organizationTitle
     verified
