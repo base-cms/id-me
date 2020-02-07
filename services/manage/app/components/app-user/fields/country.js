@@ -7,7 +7,7 @@ import gql from 'graphql-tag';
 
 const query = gql`
   query CountryOptionList {
-    localeCountries {
+    localeCountries(input: { prioritize: ["US", "CA", "MX"] }) {
       id
       name
       flag

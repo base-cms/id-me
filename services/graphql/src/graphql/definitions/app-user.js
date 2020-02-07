@@ -53,6 +53,9 @@ type AppUser {
   name: String @projection(localField: "givenName", needs: ["familyName"])
   givenName: String @projection
   familyName: String @projection
+  region: LocaleRegion @projection(localField: "regionCode", needs: ["countryCode"])
+  regionCode: String @projection
+  postalCode: String @projection
   country: LocaleCountry @projection(localField: "countryCode")
   countryCode: String @projection
   organization: String @projection
@@ -121,6 +124,8 @@ input CreateAppUserMutationInput {
   organization: String
   organizationTitle: String
   countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 input LoginAppUserMutationInput {
@@ -138,6 +143,8 @@ input ManageCreateAppUserMutationInput {
   organization: String
   organizationTitle: String
   countryCode: String
+  regionCode: String
+  postalCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }
@@ -156,6 +163,8 @@ input UpdateAppUserPayloadInput {
   organization: String
   organizationTitle: String
   countryCode: String
+  regionCode: String
+  postalCode: String
   accessLevelIds: [String!] = []
   teamIds: [String!] = []
 }

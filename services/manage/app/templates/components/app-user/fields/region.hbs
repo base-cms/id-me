@@ -1,0 +1,15 @@
+<FormElements::Label @for="app-user.region">State / Region</FormElements::Label>
+<FormElements::Select
+  @id="app-user.region"
+  @value={{this.value}}
+  @class="custom-select"
+  @disabled={{this.isDisabled}}
+  @on-change={{action "emitChange"}}
+  as |select|
+>
+  {{#each options as |option|}}
+    {{#select.option value=option.code}}
+      {{option.name}}
+    {{/select.option}}
+  {{/each}}
+</FormElements::Select>

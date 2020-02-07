@@ -14,24 +14,38 @@
       {{/if}}
     </p>
 
-    <div class="app-user-details">
+    <div class="app-user-details app-user-details--org">
       {{#if this.user.organizationTitle}}
         <p>{{entypo-icon "v-card"}} {{this.user.organizationTitle}}</p>
       {{/if}}
       {{#if this.user.organization}}
         <p>{{entypo-icon "suitcase"}} {{this.user.organization}}</p>
       {{/if}}
-      {{#if this.user.country}}
-        <p class="country">{{this.user.country.name}} {{this.user.country.flag}}</p>
+    </div>
+
+    <div class="app-user-details app-user-details--locale">
+      {{#if (or this.user.region.name this.user.postalCode)}}
+        <p>
+          {{#if this.user.region.name}}
+            <span>{{this.user.region.name}}</span>
+          {{/if}}
+          {{#if this.user.postalCode}}
+            <span>{{this.user.postalCode}}</span>
+          {{/if}}
+        </p>
       {{/if}}
-      <p class="last-logged-in">
-        Last Logged In:
-        {{#if this.user.lastLoggedIn}}
-          {{moment-format this.user.lastLoggedIn "MM/DD/YYYY h:mma"}}
-        {{else}}
-          Never
-        {{/if}}
-      </p>
+      {{#if this.user.country}}
+        <p>{{this.user.country.name}} {{this.user.country.flag}}</p>
+      {{/if}}
+    </div>
+
+    <div class="app-user-details app-user-details--login-info">
+      Last Logged In:
+      {{#if this.user.lastLoggedIn}}
+        {{moment-format this.user.lastLoggedIn "MM/DD/YYYY h:mma"}}
+      {{else}}
+        Never
+      {{/if}}
     </div>
 
     <ArrayList @label="Access Levels" @values={{accessLevels}} />

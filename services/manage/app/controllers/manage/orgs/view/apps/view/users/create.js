@@ -30,6 +30,8 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           organization,
           organizationTitle,
           countryCode,
+          regionCode,
+          postalCode,
         } = this.get('model');
         const input = {
           givenName,
@@ -40,6 +42,8 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           organization,
           organizationTitle,
           countryCode,
+          regionCode,
+          postalCode,
         };
         const variables = { input };
         const refetchQueries = ['AppUsers'];

@@ -1,4 +1,4 @@
-// @see https://en.wikipedia.org/wiki/ISO_3166-2:US
+// @see https://en.wikipedia.org/wiki/ISO_3166-2:CA
 module.exports = {
   AB: { name: 'Alberta', category: 'Province' },
   BC: { name: 'British Columbia', category: 'Province' },

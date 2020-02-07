@@ -41,6 +41,17 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
+          <AppUser::Fields::Region @value={{this.model.regionCode}} @countryCode={{this.model.countryCode}} @on-change={{action "setRegionCode"}} />
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <FormElements::Label @for="app-user.postal-code">Postal/ZIP Code</FormElements::Label>
+            <Input @id="app-user.postal-code" @type="text" @class="form-control" @value={{this.model.postalCode}} />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
           <div class="form-group">
             <FormElements::Label @for="app-user.organization">Company Name</FormElements::Label>
             <Input @id="app-user.organization" @type="text" @class="form-control" @value={{this.model.organization}} />

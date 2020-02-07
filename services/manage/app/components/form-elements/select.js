@@ -28,21 +28,12 @@ export default Component.extend(OnInsertMixin, ValidityMixin, {
    * The formatted value used by the input.
    * Is passed to the option elements.
    */
-  selected: computed('_value', function() {
-    const value = this.get('_value');
-    return value;
-  }),
-
-  /**
-   * Sets the internal value used by the select component.
-   */
-  init() {
-    this._super(...arguments);
-    if (this.get('multiple') && !Array.isArray(this.get('value'))) {
-      this.set('value', []);
+  selected: computed('value', function() {
+    if (this.get('multiple') && !Array.isArray(this.value)) {
+      return [];
     }
-    this.set('_value', this.get('value'));
-  },
+    return this.value;
+  }),
 
   didInsertElement() {
     this._super(...arguments);
@@ -60,8 +51,6 @@ export default Component.extend(OnInsertMixin, ValidityMixin, {
   change(event) {
     const { target } = event;
     const { value } = target;
-    // Set the internal value.
-    this.set('_value', value);
     const fn = this.get('on-change');
     if (typeof fn === 'function') {
       fn(value, event);

@@ -22,6 +22,10 @@ module.exports = {
       if (!countryCode) return null;
       return localeService.request('country.asObject', { code: countryCode });
     },
+    region: ({ countryCode, regionCode }) => {
+      if (!countryCode || !regionCode) return null;
+      return localeService.request('region.asObject', { countryCode, regionCode });
+    },
     name: ({ givenName, familyName }) => [givenName, familyName].filter(v => v).join(' '),
   },
 
@@ -131,6 +135,8 @@ module.exports = {
         organization,
         organizationTitle,
         countryCode,
+        regionCode,
+        postalCode,
       } = input;
       const payload = {
         givenName,
@@ -138,6 +144,8 @@ module.exports = {
         organization,
         organizationTitle,
         countryCode,
+        regionCode,
+        postalCode,
       };
       return applicationService.request('user.create', {
         applicationId,
@@ -167,6 +175,8 @@ module.exports = {
         organization,
         organizationTitle,
         countryCode,
+        regionCode,
+        postalCode,
       } = input;
       const payload = {
         email,
@@ -177,6 +187,8 @@ module.exports = {
         organization,
         organizationTitle,
         countryCode,
+        regionCode,
+        postalCode,
       };
       return applicationService.request('user.manageCreate', {
         applicationId,
@@ -246,6 +258,8 @@ module.exports = {
         organization,
         organizationTitle,
         countryCode,
+        regionCode,
+        postalCode,
       } = payload;
 
       return applicationService.request('user.updateOne', {
@@ -260,6 +274,8 @@ module.exports = {
           organization,
           organizationTitle,
           countryCode,
+          regionCode,
+          postalCode,
         },
       });
     },
