@@ -4,7 +4,7 @@ module.exports = gql`
 
 extend type Query {
   localeCountries(input: LocaleCountriesQueryInput = {}): [LocaleCountry!]! @requiresApp
-  localeRegionsForCountry(input: LocaleRegionsForCountryQueryInput = {}): [LocaleRegion!]! @requiresApp
+  localeRegions(input: LocaleRegionsQueryInput = {}): [LocaleRegion!]! @requiresApp
 }
 
 "A list of regional category designations."
@@ -55,11 +55,11 @@ input LocaleCountriesQueryInput {
   withFlag: Boolean = true
 }
 
-input LocaleRegionsForCountryQueryInput {
-  "The Alpha2 country code to return regions for. For example, setting US will return all regions for the United States"
-  countryCode: LocaleCountriesWithRegions!
-  "The region category to filter results by, e.g. State, Territory, District, etc."
-  category: LocaleRegionCategory
+input LocaleRegionsQueryInput {
+  "The Alpha2 country codes to filter by, e.g. [US, CA]. Leaving empty will return all countries."
+  countryCodes: [LocaleCountriesWithRegions] = []
+  "The region categories to filter by, e.g. [State, Territory, District]. Leaving empty will return all region types."
+  categories: [LocaleRegionCategory] = []
 }
 
 `;

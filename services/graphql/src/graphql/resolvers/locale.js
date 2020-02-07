@@ -28,9 +28,9 @@ module.exports = {
     /**
      *
      */
-    localeRegionsForCountry: (_, { input }) => {
-      const { countryCode, category } = input;
-      return localeService.request('region.getAllFor', { countryCode, category });
+    localeRegions: (_, { input }) => {
+      const { countryCodes, categories } = input;
+      return localeService.request('region.getAll', { countryCodes, categories });
     },
   },
 };
