@@ -58,6 +58,7 @@ const schema = new Schema({
     type: String,
     trim: true,
     uppercase: true,
+    set: stripLines,
     validate: {
       async validator(regionCode) {
         if (!regionCode) return true;
@@ -76,6 +77,7 @@ const schema = new Schema({
     type: String,
     trim: true,
     uppercase: true,
+    set: stripLines,
     validate: {
       async validator(code) {
         if (!code) return true;
@@ -92,6 +94,7 @@ const schema = new Schema({
     type: String,
     trim: true,
     uppercase: true,
+    set: stripLines,
     validate: {
       async validator(postalCode) {
         if (!postalCode) return true;
