@@ -12,6 +12,7 @@ x-env-defaults: &env
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
   NODE_ENV: development
   ORGANIZATION_SERVICE_URL: ${ORGANIZATION_SERVICE_URL-http://organization}
+  SENDING_DOMAIN: ${SENDING_DOMAIN-identity-x.base-cms.io}
   TOKEN_SERVICE_URL: ${TOKEN_SERVICE_URL-http://token}
   USER_SERVICE_URL: ${USER_SERVICE_URL-http://user}
   YARN_CACHE_FOLDER: /.yarn-cache

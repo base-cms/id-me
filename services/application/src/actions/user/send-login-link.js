@@ -2,7 +2,7 @@ const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 const { tokenService, mailerService } = require('@base-cms/id-me-service-clients');
 const { Application } = require('../../mongodb/models');
-
+const { SENDING_DOMAIN } = require('../../env');
 const findByEmail = require('./find-by-email');
 
 const createLoginToken = ({
@@ -16,7 +16,6 @@ const createLoginToken = ({
   sub: 'app-user-login-link',
   ttl,
 });
-
 
 module.exports = async ({
   authUrl,
@@ -63,7 +62,7 @@ module.exports = async ({
         <p>If you didn't request this link, simply ignore this email or <a href="mailto:${supportEmail}">contact our support staff</a>.</p>
         <hr>
         <small style="font-color: #ccc;">
-          <p>Please add <em>identity-x.base-cms.io</em> to your address book or safe sender list to ensure you receive future emails from us.</p>
+          <p>Please add <em>${SENDING_DOMAIN}</em> to your address book or safe sender list to ensure you receive future emails from us.</p>
           <p>You are receiving this email because a login request was made on ${app.name}.</p>
           <p>For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, ${supportEmail}, 800-547-7377.</p>
         </small>
@@ -84,14 +83,14 @@ If you didn't request this link, simply ignore this email or contact our support
 
 -------------------------
 
-Please add identity-x.base-cms.io to your address book or safe sender list to ensure you receive future emails from us.
+Please add ${SENDING_DOMAIN} to your address book or safe sender list to ensure you receive future emails from us.
 You are receiving this email because a login request was made on ${app.name}.
 For additional information please contact ${app.name} c/o Endeavor Business Media, 1233 Janesville Ave, Fort Atkinson, WI 53551, ${supportEmail}, 800-547-7377.
   `;
 
   await mailerService.request('send', {
     to: user.email,
-    from: `${app.name} <noreply@identity-x.base-cms.io>`,
+    from: `${app.name} <noreply@${SENDING_DOMAIN}>`,
     subject: 'Your personal login link',
     html,
     text,

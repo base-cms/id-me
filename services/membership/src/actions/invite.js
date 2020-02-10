@@ -9,7 +9,7 @@ const { createLoginToken } = require('@base-cms/id-me-utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 
 const { OrgMembership, OrgInvitation } = require('../mongodb/models');
-const { APPLICATION_URL } = require('../env');
+const { APPLICATION_URL, SENDING_DOMAIN } = require('../env');
 
 module.exports = async ({
   organizationId,
@@ -66,7 +66,7 @@ module.exports = async ({
   `;
   await mailerService.request('send', {
     to: user.email,
-    from: `${invitedBy.givenName} ${invitedBy.familyName} <noreply@identity-x.base-cms.io>`,
+    from: `${invitedBy.givenName} ${invitedBy.familyName} <noreply@${SENDING_DOMAIN}>`,
     subject: `You've been invited to join ${org.name}`,
     html,
   });

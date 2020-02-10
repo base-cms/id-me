@@ -4,7 +4,7 @@ const { createRequiredParamError } = require('@base-cms/micro').service;
 const { tokenService, mailerService } = require('@base-cms/id-me-service-clients');
 
 const findByEmail = require('./find-by-email');
-const { APPLICATION_URL } = require('../env');
+const { APPLICATION_URL, SENDING_DOMAIN } = require('../env');
 
 module.exports = async ({ email } = {}) => {
   if (!email) throw createRequiredParamError('email');
@@ -26,7 +26,7 @@ module.exports = async ({ email } = {}) => {
   `;
   await mailerService.request('send', {
     to: user.email,
-    from: 'IdentityX <noreply@identity-x.base-cms.io>',
+    from: `IdentityX <noreply@${SENDING_DOMAIN}>`,
     subject: 'Your personal login link',
     html,
   });
