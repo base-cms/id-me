@@ -277,5 +277,35 @@ module.exports = {
         },
       });
     },
+
+    /**
+     *
+     */
+    updateOwnAppUser: (_, { input }, { user }) => {
+      const id = user.getId();
+      const applicationId = user.getAppId();
+      const {
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        countryCode,
+        regionCode,
+        postalCode,
+      } = input;
+      return applicationService.request('user.updateOne', {
+        id,
+        applicationId,
+        payload: {
+          givenName,
+          familyName,
+          organization,
+          organizationTitle,
+          countryCode,
+          regionCode,
+          postalCode,
+        },
+      });
+    },
   },
 };

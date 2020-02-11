@@ -16,6 +16,7 @@ extend type Mutation {
   exportAppUsers: String! @requiresAppRole
   manageCreateAppUser(input: ManageCreateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   updateAppUser(input: UpdateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
+  updateOwnAppUser(input: UpdateOwnAppUserMutationInput!): AppUser! @requiresAuth(type: AppUser)
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp # must be public
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp # must be public
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp # must be public
@@ -173,6 +174,16 @@ input UpdateAppUserPayloadInput {
 input UpdateAppUserMutationInput {
   id: String!
   payload: UpdateAppUserPayloadInput!
+}
+
+input UpdateOwnAppUserMutationInput {
+  givenName: String
+  familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 `;
