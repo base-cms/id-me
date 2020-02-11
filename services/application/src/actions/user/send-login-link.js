@@ -8,10 +8,9 @@ const findByEmail = require('./find-by-email');
 const createLoginToken = ({
   email,
   applicationId,
-  fields,
   ttl = 60 * 60,
 } = {}) => tokenService.request('create', {
-  payload: { aud: email, fields },
+  payload: { aud: email },
   iss: applicationId,
   sub: 'app-user-login-link',
   ttl,
@@ -22,7 +21,6 @@ module.exports = async ({
   redirectTo,
   applicationId,
   email,
-  fields,
 } = {}) => {
   if (!authUrl) throw createRequiredParamError('authUrl');
   if (!applicationId) throw createRequiredParamError('applicationId');
@@ -36,13 +34,7 @@ module.exports = async ({
   if (!app) throw createError(404, `No application was found for '${applicationId}'`);
   if (!user) throw createError(404, `No user was found for '${email}'`);
 
-  // Ensure any new, incoming fields will pass validation.
-  if (fields) {
-    user.set(fields);
-    await user.validate();
-  }
-
-  const { token } = await createLoginToken({ applicationId, email: user.email, fields });
+  const { token } = await createLoginToken({ applicationId, email: user.email });
   let url = `${authUrl}?token=${token}`;
   if (redirectTo) url = `${url}&redirectTo=${encodeURIComponent(redirectTo)}`;
   const supportEmail = app.email || SUPPORT_EMAIL;

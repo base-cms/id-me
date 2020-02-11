@@ -230,7 +230,6 @@ module.exports = {
       const applicationId = app.getId();
       const {
         email,
-        fields,
         authUrl,
         redirectTo,
       } = input;
@@ -239,7 +238,6 @@ module.exports = {
         authUrl,
         redirectTo,
         email,
-        fields,
       });
     },
 

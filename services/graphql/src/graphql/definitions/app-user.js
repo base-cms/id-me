@@ -153,6 +153,7 @@ input SendAppUserLoginLinkMutationInput {
   email: String!
   authUrl: String!
   redirectTo: String
+  "Deprecated. While this field can still be sent, it is no longer used or handled."
   fields: JSON
 }
 
