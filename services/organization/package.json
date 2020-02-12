@@ -1,6 +1,6 @@
 {
   "name": "@base-cms/id-me-organization-service",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "The ID|Me organization service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^0.9.25",
-    "@base-cms/id-me-utils": "^0.9.0",
+    "@base-cms/id-me-utils": "^0.10.0",
     "@base-cms/micro": "^0.9.28",
     "@base-cms/utils": "^0.9.0",
     "@newrelic/native-metrics": "^4.1.0",
