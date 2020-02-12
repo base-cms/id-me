@@ -21,7 +21,6 @@ module.exports = async ({
     aud: email,
     iss,
     jti,
-    fields: input = {},
   } = await tokenService.request('verify', { sub: 'app-user-login-link', token });
 
   if (!email) throw createError(400, 'No email address was provided in the token payload');
@@ -50,13 +49,11 @@ module.exports = async ({
     ua,
   });
 
-  // Update the user with last logged in, verified, and any fields provided on the token.
-  const toUpdate = Object.keys(input).filter(field => field !== 'email').reduce((o, field) => ({ ...o, [field]: input[field] }), {
+  // Update the user with last logged in date and verified flag
+  user.set({
     verified: true,
     lastLoggedIn: new Date(),
   });
-
-  user.set(toUpdate);
   await user.save();
 
   return { user: user.toObject(), token: { id: payload.jti, value: authToken } };

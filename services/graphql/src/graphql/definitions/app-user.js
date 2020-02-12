@@ -16,6 +16,7 @@ extend type Mutation {
   exportAppUsers: String! @requiresAppRole
   manageCreateAppUser(input: ManageCreateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   updateAppUser(input: UpdateAppUserMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
+  updateOwnAppUser(input: UpdateOwnAppUserMutationInput!): AppUser! @requiresAuth(type: AppUser)
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp # must be public
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp # must be public
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp # must be public
@@ -153,6 +154,7 @@ input SendAppUserLoginLinkMutationInput {
   email: String!
   authUrl: String!
   redirectTo: String
+  "Deprecated. While this field can still be sent, it is no longer used or handled."
   fields: JSON
 }
 
@@ -172,6 +174,16 @@ input UpdateAppUserPayloadInput {
 input UpdateAppUserMutationInput {
   id: String!
   payload: UpdateAppUserPayloadInput!
+}
+
+input UpdateOwnAppUserMutationInput {
+  givenName: String
+  familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 `;
