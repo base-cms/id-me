@@ -82,8 +82,11 @@ services:
   organization:
     <<: *node
     working_dir: /identity-x/services/organization
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12003
     depends_on:
       - mongodb
     ports:
