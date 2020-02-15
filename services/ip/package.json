@@ -8,8 +8,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "micro-dev",
-    "test": "./node_modules/.bin/eslint .; node test"
+    "dev": "gulp",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint && node test"
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
@@ -24,6 +25,8 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
     "glob": "^7.0.0",
-    "micro-dev": "^3.0.0"
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^5.0.0"
   }
 }
