@@ -5,7 +5,8 @@
   "private": true,
   "repository": "https://github.com/base-cms/id-me.git",
   "scripts": {
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "lint": "lerna run lint"
   },
   "workspaces": [
     "packages/*",
