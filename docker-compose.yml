@@ -185,17 +185,16 @@ services:
     working_dir: /identity-x/services/export
     entrypoint: ["node_modules/.bin/micro-dev"]
     command: ["--port", "80", "--silent"]
-    depends_on:
-      - application
-      - mailer
-    ports:
-      - "12011:80"
-
     environment:
       <<: *env
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    depends_on:
+      - application
+      - mailer
+    ports:
+      - "12011:80"
 
 volumes:
   mongodb: {}
