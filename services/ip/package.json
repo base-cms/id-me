@@ -12,8 +12,8 @@
     "test": "./node_modules/.bin/eslint .; node test"
   },
   "dependencies": {
-    "@base-cms/env": "^0.9.25",
-    "@base-cms/micro": "^0.9.28",
+    "@base-cms/env": "^1.0.0",
+    "@base-cms/micro": "^1.21.0",
     "@newrelic/native-metrics": "^4.1.0",
     "ip6addr": "^0.2.2",
     "micro": "^9.3.4",

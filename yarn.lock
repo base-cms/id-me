@@ -691,28 +691,22 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@base-cms/env@^0.9.25":
-  version "0.9.25"
-  resolved "https://registry.yarnpkg.com/@base-cms/env/-/env-0.9.25.tgz#a0275b0a747b53d2ca5c6043c30d8243fec73bf2"
-  integrity sha512-mLQtLhd9UYhgbN+X+5hDBbWQ6cQCP9kVw7VEuo5IjxyUNdjzFSJr0ZzGEyxrIdV5MpukreWaaMCYQ6RzQ8VR9g==
+"@base-cms/env@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@base-cms/env/-/env-1.0.0.tgz#175c8ab6c4b5a182f4431f4496e9e99e0679c756"
+  integrity sha512-s1c2rUA8kY7596Ni10RBgBuO0haLchijIzaD8Fp+hDBBClEz+JOC51mcoWhQk11A94ZKDMV7ovJ8eKaQtA7Lhw==
   dependencies:
     envalid "^5.0.0"
     validator "^11.0.0"
 
-"@base-cms/micro@^0.9.28":
-  version "0.9.28"
-  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-0.9.28.tgz#74e8117c234d3e4484c9d5615767dc1540fd24f1"
-  integrity sha512-sSU0zNS2pCPQeIhXm88+4z2IkPmn1tAmZ+bNfxwI8WwS644XoD85HVX6TLi+IMZiSJqmuwmOc9b8/jhVKVez3Q==
+"@base-cms/micro@^1.21.0":
+  version "1.21.0"
+  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-1.21.0.tgz#5996301570245b3bf66a3924332b82ddc93c8866"
+  integrity sha512-fcnVS0mWThsgBIg1pGEPKgPtYM1GHcazlkJZytGVyQK7Ar1XiVFaiPFL4RXUvbLHqVqylHsArmQQTWonJ/ywQw==
   dependencies:
+    "@base-cms/object-path" "^1.9.0"
+    "@godaddy/terminus" "^4.2.0"
     node-fetch "^2.6.0"
-
-"@base-cms/object-path@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@base-cms/object-path/-/object-path-0.9.0.tgz#58a89074df85966d07870085a23ef6d53651b9d4"
-  integrity sha512-8Av+1wHQboBDr71IwJelECrSpExI+VX7X2ao4+z2faE1L1hhxMTFmQufRXL7JgxR+M/Tjf5OiJww83qhRdYKnA==
-  dependencies:
-    "@base-cms/utils" "^0.9.0"
-    object-path "^0.11.4"
 
 "@base-cms/object-path@^1.9.0":
   version "1.9.0"
@@ -721,11 +715,6 @@
   dependencies:
     "@base-cms/utils" "^1.9.0"
     object-path "^0.11.4"
-
-"@base-cms/utils@^0.9.0":
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/@base-cms/utils/-/utils-0.9.0.tgz#a54bfbd119aaf310ff4cbd0e3ae253f4ecfa8b27"
-  integrity sha512-g7+XxYSqtBclVj0FgbRiai70DR+px8oun1jPiOw3hOIUOvlDx1fc7VRsKKWmD+V40t6xYFyJX5qSfTYxqvJvOQ==
 
 "@base-cms/utils@^1.9.0":
   version "1.9.0"
@@ -833,6 +822,14 @@
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/@godaddy/terminus/-/terminus-4.1.2.tgz#8abe108b8890b1582e79e3d1aa7e31ec1a46c5dd"
   integrity sha512-bhO4yCMuC76fA8VPYVD5HRuFmpBCe5QjLswY10ck/IX/xjQNiX7SzJyB6YFu3++OU9B11j9ZUIUqOULfVIUvXQ==
+  dependencies:
+    es6-promisify "^6.0.0"
+    stoppable "^1.0.5"
+
+"@godaddy/terminus@^4.2.0":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@godaddy/terminus/-/terminus-4.3.1.tgz#20bc24271df373ae362b3948c9dd95d22736b5c2"
+  integrity sha512-zChILIprb4nWTGJ/pXafbGZqJA7yB6JzFQp5f8PBR5B0cJ6f9Nd40ySLFTBzko+PEZgVaJlKrJi5gUQLTI9dpw==
   dependencies:
     es6-promisify "^6.0.0"
     stoppable "^1.0.5"

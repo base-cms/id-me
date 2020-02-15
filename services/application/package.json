@@ -12,12 +12,12 @@
     "test": "./node_modules/.bin/eslint ."
   },
   "dependencies": {
-    "@base-cms/env": "^0.9.25",
+    "@base-cms/env": "^1.0.0",
     "@base-cms/id-me-mongoose-plugins": "^0.10.0",
     "@base-cms/id-me-service-clients": "^0.10.0",
     "@base-cms/id-me-utils": "^0.10.0",
-    "@base-cms/micro": "^0.9.28",
-    "@base-cms/utils": "^0.9.0",
+    "@base-cms/micro": "^1.21.0",
+    "@base-cms/utils": "^1.9.0",
     "@newrelic/native-metrics": "^4.1.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
