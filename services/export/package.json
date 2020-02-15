@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-export-service",
+  "name": "@identity-x/export-service",
   "version": "0.10.0",
   "description": "The ID|Me export service.",
   "main": "src/index.js",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/id-me-service-clients": "^0.10.0",
     "@base-cms/micro": "^1.21.0",
     "@base-cms/object-path": "^1.9.0",
+    "@identity-x/service-clients": "^0.10.0",
     "@newrelic/native-metrics": "^4.1.0",
     "aws-sdk": "^2.610.0",
     "json2csv": "^4.5.4",

@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-organization-service",
+  "name": "@identity-x/organization-service",
   "version": "0.10.0",
   "description": "The ID|Me organization service.",
   "main": "src/index.js",
@@ -13,9 +13,9 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/id-me-utils": "^0.10.0",
     "@base-cms/micro": "^1.21.0",
     "@base-cms/utils": "^1.9.0",
+    "@identity-x/utils": "^0.10.0",
     "@newrelic/native-metrics": "^4.1.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",

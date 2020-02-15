@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-service-clients",
+  "name": "@identity-x/service-clients",
   "version": "0.10.0",
   "description": "The ID|Me service clients.",
   "main": "src/index.js",

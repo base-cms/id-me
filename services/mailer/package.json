@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-mailer-service",
+  "name": "@identity-x/mailer-service",
   "version": "0.10.0",
   "description": "The ID|Me mailer service.",
   "main": "src/index.js",

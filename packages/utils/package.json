@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-utils",
+  "name": "@identity-x/utils",
   "version": "0.10.0",
   "description": "The ID|Me utility functions.",
   "main": "src/index.js",

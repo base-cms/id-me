@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-locale-service",
+  "name": "@identity-x/locale-service",
   "version": "0.10.0",
   "description": "The ID|Me locale service.",
   "main": "src/index.js",

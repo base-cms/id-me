@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-ip-service",
+  "name": "@identity-x/ip-service",
   "version": "0.10.0",
   "description": "The IdentityX ip service.",
   "main": "src/index.js",

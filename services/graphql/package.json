@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-graphql-service",
+  "name": "@identity-x/graphql-service",
   "version": "0.10.0",
   "description": "The ID|Me GraphQL API server.",
   "main": "src/index.js",
@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/id-me-service-clients": "^0.10.0",
     "@base-cms/object-path": "^1.9.0",
     "@base-cms/utils": "^1.9.0",
     "@godaddy/terminus": "^4.1.2",
+    "@identity-x/service-clients": "^0.10.0",
     "@newrelic/native-metrics": "^4.1.0",
     "apollo-newrelic-extension": "^0.1.1",
     "apollo-server-express": "^2.5.0",
