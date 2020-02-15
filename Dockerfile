@@ -9,4 +9,4 @@ ADD services/$SERVICE /identity-x/services/$SERVICE
 RUN yarn --production --pure-lockfile
 
 WORKDIR /identity-x/services/$SERVICE
-ENTRYPOINT [ "./node_modules/.bin/micro", "-l", "tcp://0.0.0.0:80" ]
+ENTRYPOINT [ "node", "src/index.js" ]
