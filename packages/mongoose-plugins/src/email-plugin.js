@@ -1,4 +1,4 @@
-const { normalizeEmail } = require('@base-cms/id-me-utils');
+const { normalizeEmail } = require('@identity-x/utils');
 const emailValidator = require('./email-validator');
 
 module.exports = function emailPlugin(schema, { name = 'email', options = {} } = {}) {

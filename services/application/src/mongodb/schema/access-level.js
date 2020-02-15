@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { applicationPlugin } = require('@identity-x/mongoose-plugins');
 
 const messagesSchema = new Schema({
   loggedInNoAccess: {

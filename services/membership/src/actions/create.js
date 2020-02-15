@@ -1,6 +1,6 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { orgService, userService } = require('@base-cms/id-me-service-clients');
+const { orgService, userService } = require('@identity-x/service-clients');
 
 const { OrgMembership } = require('../mongodb/models');
 

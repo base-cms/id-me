@@ -1,4 +1,4 @@
-const { applicationService } = require('@base-cms/id-me-service-clients');
+const { applicationService } = require('@identity-x/service-clients');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
 

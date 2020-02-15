@@ -1,4 +1,4 @@
-const { membershipService, orgService, userService } = require('@base-cms/id-me-service-clients');
+const { membershipService, orgService, userService } = require('@identity-x/service-clients');
 const { UserInputError } = require('apollo-server-express');
 
 module.exports = {

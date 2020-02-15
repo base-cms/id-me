@@ -1,5 +1,5 @@
 const { createError } = require('micro');
-const { handleError } = require('@base-cms/id-me-utils').mongoose;
+const { handleError } = require('@identity-x/utils').mongoose;
 const { isObject } = require('@base-cms/utils');
 const { service } = require('@base-cms/micro');
 const Organization = require('../mongodb/models/organization');

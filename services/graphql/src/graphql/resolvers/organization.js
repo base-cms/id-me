@@ -3,7 +3,7 @@ const {
   membershipService,
   orgService,
   userService,
-} = require('@base-cms/id-me-service-clients');
+} = require('@identity-x/service-clients');
 
 const membershipResolvers = {
   id: membership => membership._id,

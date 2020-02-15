@@ -1,4 +1,4 @@
-const { applicationService, exportService, localeService } = require('@base-cms/id-me-service-clients');
+const { applicationService, exportService, localeService } = require('@identity-x/service-clients');
 const { UserInputError } = require('apollo-server-express');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');

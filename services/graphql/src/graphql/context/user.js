@@ -1,6 +1,6 @@
 const { UserInputError, AuthenticationError } = require('apollo-server-express');
 const { get } = require('object-path');
-const { membershipService, userService, applicationService } = require('@base-cms/id-me-service-clients');
+const { membershipService, userService, applicationService } = require('@identity-x/service-clients');
 
 const { isArray } = Array;
 const allowedTypes = ['OrgUser', 'AppUser'];

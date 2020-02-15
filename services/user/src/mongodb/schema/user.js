@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { emailPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { emailPlugin } = require('@identity-x/mongoose-plugins');
 const crypto = require('crypto');
 const connection = require('../connection');
 

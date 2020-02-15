@@ -3,7 +3,7 @@ const {
   find,
   listForApp,
   matchForApp,
-} = require('@base-cms/id-me-utils').actions;
+} = require('@identity-x/utils').actions;
 const create = require('./create');
 const updateOne = require('./update-one');
 const AccessLevel = require('../../mongodb/models/access-level');

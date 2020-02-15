@@ -1,4 +1,4 @@
-const { mailerService } = require('@base-cms/id-me-service-clients');
+const { mailerService } = require('@identity-x/service-clients');
 const { SENDING_DOMAIN, SUPPORT_EMAIL, SUPPORT_ENTITY } = require('../env');
 
 const html = error => `

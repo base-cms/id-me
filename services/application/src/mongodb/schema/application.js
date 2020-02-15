@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
-const { organizationPlugin } = require('@base-cms/id-me-mongoose-plugins');
-const { normalizeEmail } = require('@base-cms/id-me-utils');
-const { emailValidator } = require('@base-cms/id-me-mongoose-plugins');
+const { organizationPlugin } = require('@identity-x/mongoose-plugins');
+const { normalizeEmail } = require('@identity-x/utils');
+const { emailValidator } = require('@identity-x/mongoose-plugins');
 
 const schema = new Schema({
   name: {

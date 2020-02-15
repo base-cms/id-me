@@ -1,7 +1,7 @@
 const { createError } = require('micro');
-const { createLoginToken } = require('@base-cms/id-me-utils');
+const { createLoginToken } = require('@identity-x/utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { tokenService, mailerService } = require('@base-cms/id-me-service-clients');
+const { tokenService, mailerService } = require('@identity-x/service-clients');
 
 const findByEmail = require('./find-by-email');
 const { APPLICATION_URL, SENDING_DOMAIN } = require('../env');

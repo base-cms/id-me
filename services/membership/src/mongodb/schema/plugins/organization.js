@@ -1,5 +1,5 @@
-const { referencePlugin } = require('@base-cms/id-me-mongoose-plugins');
-const { normalizeEmail } = require('@base-cms/id-me-utils');
+const { referencePlugin } = require('@identity-x/mongoose-plugins');
+const { normalizeEmail } = require('@identity-x/utils');
 
 module.exports = function organizationPlugin(schema) {
   schema.plugin(referencePlugin, {

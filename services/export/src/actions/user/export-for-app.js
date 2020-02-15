@@ -1,5 +1,5 @@
 const { service } = require('@base-cms/micro');
-const { applicationService } = require('@base-cms/id-me-service-clients');
+const { applicationService } = require('@identity-x/service-clients');
 const { AsyncParser } = require('json2csv');
 const newrelic = require('../../newrelic');
 const { sendFailure, sendSuccess, streamResults } = require('../../utils');

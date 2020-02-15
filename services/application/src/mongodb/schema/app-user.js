@@ -1,7 +1,7 @@
 const { Schema } = require('mongoose');
-const { normalizeEmail } = require('@base-cms/id-me-utils');
-const { emailValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
-const { localeService } = require('@base-cms/id-me-service-clients');
+const { normalizeEmail } = require('@identity-x/utils');
+const { emailValidator, applicationPlugin } = require('@identity-x/mongoose-plugins');
+const { localeService } = require('@identity-x/service-clients');
 const { isPostalCode } = require('validator');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');

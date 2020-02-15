@@ -1,8 +1,8 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { handleError } = require('@base-cms/id-me-utils').mongoose;
+const { handleError } = require('@identity-x/utils').mongoose;
 const { isObject } = require('@base-cms/utils');
-const { orgService } = require('@base-cms/id-me-service-clients');
+const { orgService } = require('@identity-x/service-clients');
 
 const Application = require('../mongodb/models/application');
 

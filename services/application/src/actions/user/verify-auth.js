@@ -1,6 +1,6 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { tokenService } = require('@base-cms/id-me-service-clients');
+const { tokenService } = require('@identity-x/service-clients');
 const { Application } = require('../../mongodb/models');
 
 const findByEmail = require('./find-by-email');

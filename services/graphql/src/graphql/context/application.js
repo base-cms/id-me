@@ -1,6 +1,6 @@
 const { UserInputError } = require('apollo-server-express');
 const { get } = require('object-path');
-const { applicationService } = require('@base-cms/id-me-service-clients');
+const { applicationService } = require('@identity-x/service-clients');
 
 class AppContext {
   constructor(id) {

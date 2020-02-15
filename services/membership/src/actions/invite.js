@@ -3,9 +3,9 @@ const {
   orgService,
   tokenService,
   userService,
-} = require('@base-cms/id-me-service-clients');
+} = require('@identity-x/service-clients');
 const { createError } = require('micro');
-const { createLoginToken } = require('@base-cms/id-me-utils');
+const { createLoginToken } = require('@identity-x/utils');
 const { createRequiredParamError } = require('@base-cms/micro').service;
 
 const { OrgMembership, OrgInvitation } = require('../mongodb/models');

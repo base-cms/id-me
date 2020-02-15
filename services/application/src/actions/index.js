@@ -5,7 +5,7 @@ const {
   updateField,
   updateMany,
   updateForId,
-} = require('@base-cms/id-me-utils').actions;
+} = require('@identity-x/utils').actions;
 
 const Application = require('../mongodb/models/application');
 

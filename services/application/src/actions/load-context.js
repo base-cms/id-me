@@ -1,6 +1,6 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { ipService } = require('@base-cms/id-me-service-clients');
+const { ipService } = require('@identity-x/service-clients');
 const findByEmail = require('./user/find-by-email');
 const { Application, Team, AccessLevel } = require('../mongodb/models');
 
