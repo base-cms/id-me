@@ -167,8 +167,11 @@ services:
   ip:
     <<: *node
     working_dir: /identity-x/services/ip
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12010
     ports:
       - "12010:80"
 
