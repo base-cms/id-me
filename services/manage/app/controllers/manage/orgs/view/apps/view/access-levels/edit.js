@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
-import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
+import AppQueryMixin from '@identity-x/manage/mixins/app-query';
 import gql from 'graphql-tag';
 import { inject } from '@ember/service';
-import fragment from '@base-cms/id-me-manage/graphql/fragments/access-level-list';
+import fragment from '@identity-x/manage/graphql/fragments/access-level-list';
 
 const mutation = gql`
   mutation AppAccessLevelEdit($input: UpdateAccessLevelMutationInput!) {

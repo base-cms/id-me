@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import ActionMixinMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import ActionMixinMixin from '@identity-x/manage/mixins/action-mixin';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | action-mixin', function() {

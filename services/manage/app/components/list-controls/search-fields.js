@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import MenuMixin from '@base-cms/id-me-manage/components/list-controls/menu-mixin';
+import MenuMixin from '@identity-x/manage/components/list-controls/menu-mixin';
 
 export default Component.extend(MenuMixin, {
   tagName: 'div',

@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: '@base-cms/id-me-manage',
+    modulePrefix: '@identity-x/manage',
     environment,
     rootURL: '/',
     locationType: 'auto',

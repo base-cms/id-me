@@ -1,4 +1,4 @@
-import ListController from '@base-cms/id-me-manage/controllers/abstract-list';
+import ListController from '@identity-x/manage/controllers/abstract-list';
 
 export default ListController.extend({
   init() {

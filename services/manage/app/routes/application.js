@@ -1,6 +1,6 @@
 import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import { get } from '@ember/object';
 import { inject } from '@ember/service';
 

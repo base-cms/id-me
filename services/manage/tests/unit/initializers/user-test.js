@@ -1,6 +1,6 @@
 import Application from '@ember/application';
 
-import { initialize } from '@base-cms/id-me-manage/initializers/user';
+import { initialize } from '@identity-x/manage/initializers/user';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { run } from '@ember/runloop';

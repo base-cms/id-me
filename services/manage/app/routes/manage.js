@@ -3,7 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 import { inject } from '@ember/service';
 import { RouteQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
-import fragment from '@base-cms/id-me-manage/graphql/fragments/user-profile';
+import fragment from '@identity-x/manage/graphql/fragments/user-profile';
 
 const query = gql`
   query ActiveUser {

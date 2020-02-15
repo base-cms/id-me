@@ -1,8 +1,8 @@
 import { inject } from '@ember/service';
-import ListController from '@base-cms/id-me-manage/controllers/abstract-list';
+import ListController from '@identity-x/manage/controllers/abstract-list';
 import gql from 'graphql-tag';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
-import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
+import AppQueryMixin from '@identity-x/manage/mixins/app-query';
 
 const mutation = gql`
   mutation RequestExportAppUsers {

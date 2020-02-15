@@ -1,6 +1,6 @@
 import Application from '@ember/application';
 
-import { initialize } from '@base-cms/id-me-manage/initializers/graph-errors';
+import { initialize } from '@identity-x/manage/initializers/graph-errors';
 import { module, test } from 'qunit';
 import { setupTest } from 'ember-qunit';
 import { run } from '@ember/runloop';

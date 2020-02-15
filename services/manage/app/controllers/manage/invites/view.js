@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import { ObjectQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
 import { inject } from '@ember/service';

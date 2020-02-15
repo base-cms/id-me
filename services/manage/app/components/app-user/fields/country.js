@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
-import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
+import AppQueryMixin from '@identity-x/manage/mixins/app-query';
 import { inject } from '@ember/service';
 import gql from 'graphql-tag';
 
