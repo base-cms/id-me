@@ -1,5 +1,3 @@
-const ping = (promise, name) => promise.then(() => `${name} pinged successfully.`);
-
 const mongodb = (connection, pkg) => {
   const args = [{ _id: pkg.name }, { $set: { last: new Date() } }, { upsert: true }];
   return Promise.all([
@@ -8,8 +6,4 @@ const mongodb = (connection, pkg) => {
   ]);
 };
 
-module.exports = ({ connection, pkg } = {}) => () => {
-  const promises = [];
-  if (connection) promises.push(ping(mongodb(connection, pkg), 'MongoDB'));
-  return Promise.all(promises);
-};
+module.exports = ({ connection, pkg } = {}) => () => mongodb(connection, pkg).then(() => 'MongoDB pinged successfully.');
