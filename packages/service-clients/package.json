@@ -9,7 +9,7 @@
   "private": true,
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/micro": "^1.21.0",
+    "@base-cms/micro": "^1.21.1",
     "micro": "^9.3.4"
   },
   "devDependencies": {

@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/micro": "^1.21.0",
+    "@base-cms/micro": "^1.21.1",
     "@identity-x/utils": "^0.10.0",
     "@newrelic/native-metrics": "^4.1.0",
     "jsonwebtoken": "^8.5.1",

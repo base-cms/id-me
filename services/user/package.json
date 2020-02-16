@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/micro": "^1.21.0",
+    "@base-cms/micro": "^1.21.1",
     "@identity-x/mongoose-plugins": "^0.10.0",
     "@identity-x/service-clients": "^0.10.0",
     "@identity-x/utils": "^0.10.0",

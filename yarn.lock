@@ -699,10 +699,10 @@
     envalid "^5.0.0"
     validator "^11.0.0"
 
-"@base-cms/micro@^1.21.0":
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-1.21.0.tgz#5996301570245b3bf66a3924332b82ddc93c8866"
-  integrity sha512-fcnVS0mWThsgBIg1pGEPKgPtYM1GHcazlkJZytGVyQK7Ar1XiVFaiPFL4RXUvbLHqVqylHsArmQQTWonJ/ywQw==
+"@base-cms/micro@^1.21.1":
+  version "1.21.1"
+  resolved "https://registry.yarnpkg.com/@base-cms/micro/-/micro-1.21.1.tgz#f8384fdb35e189bba23cdbc65af771f2d7c97e2b"
+  integrity sha512-ZVxV50CSlnJZ5lB05ig+d9eX4OfXu2GwjTqX2C9xRiemqneTS+q6HKQ+PFIypO2qMcoKT7Jv+QWuSimLDtbHcQ==
   dependencies:
     "@base-cms/object-path" "^1.9.0"
     "@godaddy/terminus" "^4.2.0"
