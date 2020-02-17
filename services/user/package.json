@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/user-service",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "The IdentityX user service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
