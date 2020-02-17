@@ -57,7 +57,7 @@ if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 const pkg = require(`../${servicePath}/package.json`);
-const name = pkg.name.replace('@identity-x/', 'identity-x').replace('-service', '');
+const name = pkg.name.replace('@identity-x/', 'identity-x-').replace('-service', '');
 const image = `basecms/${name}-service`;
 
 if (version !== `v${pkg.version}`) {
