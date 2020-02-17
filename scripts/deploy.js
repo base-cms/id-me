@@ -76,7 +76,7 @@ const build = async () => {
   const Dockerfile = join(process.cwd(), 'services', service, 'Dockerfile');
   await spawnSync('cp', [Dockerfile, process.cwd()]);
   await docker(['login', '-u', DOCKER_USERNAME, '-p', DOCKER_PASSWORD]);
-  await docker(['build', '-t', imageTag, process.cwd()]);
+  await docker(['build', '-t', imageTag, '--build-arg', `SERVICE=${service}`, process.cwd()]);
   await docker(['tag', imageTag, `${image}:${version}`]);
   await docker(['push', `${image}:${version}`]);
   await docker(['image', 'rm', imageTag]);
