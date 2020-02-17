@@ -3,7 +3,7 @@ const {
   ipService,
   localeService,
   tokenService,
-  orgService,
+  organizationService,
 } = require('@identity-x/service-clients');
 const connection = require('./mongodb/connection');
 const pkg = require('../package.json');
@@ -13,5 +13,5 @@ module.exports = () => Promise.all([
   ipService.ping(),
   localeService.ping(),
   tokenService.ping(),
-  orgService.ping(),
+  organizationService.ping(),
 ]);

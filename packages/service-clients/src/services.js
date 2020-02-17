@@ -5,7 +5,7 @@ module.exports = [
   { key: 'locale', name: 'Locale' },
   { key: 'mailer', name: 'Mailer' },
   { key: 'membership', name: 'Membership' },
-  { key: 'org', name: 'Organization' },
+  { key: 'organization', name: 'Organization' },
   { key: 'token', name: 'Token' },
   { key: 'user', name: 'User' },
 ];

@@ -1,4 +1,4 @@
-const { membershipService, orgService, userService } = require('@identity-x/service-clients');
+const { membershipService, organizationService, userService } = require('@identity-x/service-clients');
 const { UserInputError } = require('apollo-server-express');
 
 module.exports = {
@@ -77,7 +77,7 @@ module.exports = {
       } = input;
       const userPayload = { givenName, familyName };
       const user = await userService.request('create', { email, payload: userPayload });
-      const organization = await orgService.request('create', { payload: { name: orgName } });
+      const organization = await organizationService.request('create', { payload: { name: orgName } });
       await membershipService.request('create', {
         organizationId: organization._id,
         email: user.email,

@@ -1,6 +1,6 @@
 const {
   mailerService,
-  orgService,
+  organizationService,
   tokenService,
   userService,
 } = require('@identity-x/service-clients');
@@ -22,7 +22,7 @@ module.exports = async ({
   if (!invitedByEmail) throw createRequiredParamError('invitedByEmail');
 
   const [org, membership, user, invitedBy] = await Promise.all([
-    orgService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
+    organizationService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
     OrgMembership.findFor(organizationId, email, ['id']),
     userService.request('create', { email, fields: ['id', 'email'] }),
     userService.request('findByEmail', { email: invitedByEmail, fields: ['id', 'email', 'givenName', 'familyName'] }),
