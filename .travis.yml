@@ -2,74 +2,203 @@ language: node_js
 node_js: "10.15"
 cache: yarn
 
+_production-env: &production-env
+  ENVIRONMENT: production
+  RANCHER_CLUSTERID: c-gxsr7
+
+_staging-env: &staging-env
+  ENVIRONMENT: staging
+  RANCHER_CLUSTERID: c-rc5kp
+
+_production-job: &production-job
+  name: SERVICE_NAME
+  script: scripts/deploy.js SERVICE_NAME
+  install: skip
+  env:
+    <<: *production-env
+
+_staging-job: &staging-job
+  name: SERVICE_NAME
+  script: scripts/deploy.js SERVICE_NAME
+  install: skip
+  env:
+    <<: *staging-env
+
 stages:
   - name: test
-  - name: notify_start
+
+  - name: production-started
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-group1
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-group2
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-group3
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-group4
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-group5
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+  - name: production-finished
+    if: tag =~ /^v\d+\.\d+\.\d+$/
+
+  - name: staging-started
     if: tag is present
-  - name: deploy
+  - name: staging-group1
     if: tag is present
-  - name: deploy_graphql
+  - name: staging-group2
     if: tag is present
-  - name: deploy_manage
+  - name: staging-group3
     if: tag is present
-  - name: notify
+  - name: staging-group4
+    if: tag is present
+  - name: staging-group5
+    if: tag is present
+  - name: staging-finished
     if: tag is present
 
 jobs:
   include:
     - stage: test
+      env:
+        NODE_ENV: test
 
-    - stage: notify_start
-      script: scripts/deploy-notify-start.sh
+    - stage: production-started
+      name: Deployment Started
+      script: npx @base-cms/website-deployment-tool notify-started
       install: skip
+      env:
+        <<: *production-env
 
-    - stage: notify
-      script: scripts/deploy-notify.sh
+    - stage: staging-started
+      name: Deployment Started
+      script: npx @base-cms/website-deployment-tool notify-started
       install: skip
+      env:
+        <<: *staging-env
 
-    # Deployment Order Matters. Some services are dependent on others.
-    # See the docker-compose.yml file for dependent services.
+    #############################
+    # vvv ADD SERVICES HERE vvv #
+    #############################
 
-    - stage: deploy
+    # GROUP 1
+    - <<: *production-job
+      stage: production-group1
+      name: IP Service
+      script: scripts/deploy.js ip
+    - <<: *staging-job
+      stage: staging-group1
       name: IP Service
       script: scripts/deploy.js ip
 
-    - stage: deploy
+    - <<: *production-job
+      stage: production-group1
+      name: Locale Service
+      script: scripts/deploy.js locale
+    - <<: *staging-job
+      stage: staging-group1
       name: Locale Service
       script: scripts/deploy.js locale
 
-    - stage: deploy
-      name: Token Service
-      script: scripts/deploy.js token
-
-    - stage: deploy
+    - <<: *production-job
+      stage: production-group1
+      name: Mailer Service
+      script: scripts/deploy.js mailer
+    - <<: *staging-job
+      stage: staging-group1
       name: Mailer Service
       script: scripts/deploy.js mailer
 
-    - stage: deploy
+    - <<: *production-job
+      stage: production-group1
+      name: Token Service
+      script: scripts/deploy.js token
+    - <<: *staging-job
+      stage: staging-group1
+      name: Token Service
+      script: scripts/deploy.js token
+
+    - <<: *production-job
+      stage: production-group1
+      name: Organization Service
+      script: scripts/deploy.js organization
+    - <<: *staging-job
+      stage: staging-group1
       name: Organization Service
       script: scripts/deploy.js organization
 
-    - stage: deploy
+    # GROUP 2
+    - <<: *production-job
+      stage: production-group2
+      name: User Service
+      script: scripts/deploy.js user
+    - <<: *staging-job
+      stage: staging-group2
       name: User Service
       script: scripts/deploy.js user
 
-    - stage: deploy
+    - <<: *production-job
+      stage: production-group2
+      name: Application Service
+      script: scripts/deploy.js application
+    - <<: *staging-job
+      stage: staging-group2
       name: Application Service
       script: scripts/deploy.js application
 
-    - stage: deploy
+    # GROUP 3
+    - <<: *production-job
+      stage: production-group3
+      name: Export Service
+      script: scripts/deploy.js export
+    - <<: *staging-job
+      stage: staging-group3
       name: Export Service
       script: scripts/deploy.js export
 
-    - stage: deploy
+    - <<: *production-job
+      stage: production-group3
+      name: Membership Service
+      script: scripts/deploy.js membership
+    - <<: *staging-job
+      stage: staging-group3
       name: Membership Service
       script: scripts/deploy.js membership
 
-    - stage: deploy_graphql
+    # GROUP 4
+    - <<: *production-job
+      stage: production-group4
+      name: GraphQL Service
+      script: scripts/deploy.js graphql
+    - <<: *staging-job
+      stage: staging-group4
       name: GraphQL Service
       script: scripts/deploy.js graphql
 
-    - stage: deploy_manage
+    # GROUP 5
+    - <<: *production-job
+      stage: production-group5
       name: Manage UI Service
       script: scripts/deploy.js manage
+    - <<: *staging-job
+      stage: staging-group5
+      name: Manage UI Service
+      script: scripts/deploy.js manage
+
+    #############################
+    # ^^^ ADD SERVICES HERE ^^^ #
+    #############################
+
+    - stage: production-finished
+      name: Deployment Finished
+      script: npx @base-cms/website-deployment-tool notify-finished
+      install: skip
+      env:
+        <<: *production-env
+
+    - stage: staging-finished
+      name: Deployment Finished
+      script: npx @base-cms/website-deployment-tool notify-finished
+      install: skip
+      env:
+        <<: *staging-env
