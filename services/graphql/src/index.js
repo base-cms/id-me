@@ -4,7 +4,7 @@ const { createTerminus } = require('@godaddy/terminus');
 const newrelic = require('./newrelic');
 const app = require('./app');
 const env = require('./env');
-const health = require('./app/health');
+const ping = require('./ping');
 const pkg = require('../package.json');
 const start = require('./app/start');
 const stop = require('./app/stop');
@@ -33,7 +33,7 @@ const run = async () => {
   createTerminus(server, {
     timeout: TERMINUS_TIMEOUT,
     signals: ['SIGTERM', 'SIGINT', 'SIGHUP', 'SIGQUIT'],
-    healthChecks: { '/_health': () => health() },
+    healthChecks: { '/_health': () => ping() },
     onSignal: async () => {
       // Stop required services here...
       log('Signal received, running cleanup hook...');
