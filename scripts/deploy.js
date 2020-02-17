@@ -57,8 +57,8 @@ if (!existsSync(servicePath)) error(`Could not read ${servicePath}!`);
 
 // eslint-disable-next-line import/no-dynamic-require, global-require
 const pkg = require(`../${servicePath}/package.json`);
-const name = pkg.name.replace('@identity-x/', '').replace('/', '-');
-const image = `basecms/identity-x-${service}-service`;
+const name = pkg.name.replace('@identity-x/', 'identity-x').replace('-service', '');
+const image = `basecms/${name}-service`;
 
 if (version !== `v${pkg.version}`) {
   log(`Service ${name} is at version ${pkg.version}. Skipping deployment.`);
@@ -103,7 +103,7 @@ const main = async () => { // eslint-disable-line consistent-return
   if (!RANCHER_URL) return error('Deployment aborted: Environment variable RANCHER_URL is missing!');
 
   await deploy({
-    key: 'basecms-identity-x-service',
+    key: 'basecms-service',
     value: name,
     image: `${image}:${version}`,
   });
