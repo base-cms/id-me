@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { emailPlugin, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { emailPlugin, applicationPlugin } = require('@identity-x/mongoose-plugins');
 
 const schema = new Schema({
   date: {

@@ -1,6 +1,6 @@
 const { UserInputError } = require('apollo-server-express');
 const { get } = require('object-path');
-const { orgService } = require('@base-cms/id-me-service-clients');
+const { organizationService } = require('@identity-x/service-clients');
 
 class OrgContext {
   constructor(id) {
@@ -12,7 +12,7 @@ class OrgContext {
     const { id } = this;
     if (id) {
       try {
-        this.org = await orgService.request('findById', { id }) || {};
+        this.org = await organizationService.request('findById', { id }) || {};
       } catch (e) {
         this.error = e;
       }

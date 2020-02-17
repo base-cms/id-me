@@ -1,5 +1,5 @@
 import EmberObject from '@ember/object';
-import LoadingMixinMixin from '@base-cms/id-me-manage/mixins/loading-mixin';
+import LoadingMixinMixin from '@identity-x/manage/mixins/loading-mixin';
 import { module, test } from 'qunit';
 
 module('Unit | Mixin | loading-mixin', function() {

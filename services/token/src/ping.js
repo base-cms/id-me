@@ -1,4 +1,4 @@
-const { ping } = require('@base-cms/id-me-utils').mongoose;
+const { ping } = require('@identity-x/utils').mongoose;
 const connection = require('./mongodb/connection');
 const pkg = require('../package.json');
 

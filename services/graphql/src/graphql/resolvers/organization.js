@@ -1,13 +1,13 @@
 const {
   applicationService,
   membershipService,
-  orgService,
+  organizationService,
   userService,
-} = require('@base-cms/id-me-service-clients');
+} = require('@identity-x/service-clients');
 
 const membershipResolvers = {
   id: membership => membership._id,
-  organization: membership => orgService.request('findById', { id: membership.organizationId }),
+  organization: membership => organizationService.request('findById', { id: membership.organizationId }),
   user: membership => userService.request('findByEmail', { email: membership.email }),
 };
 
@@ -25,12 +25,12 @@ module.exports = {
   Query: {
     organization: (_, { input }) => {
       const { id } = input;
-      return orgService.request('findById', { id });
+      return organizationService.request('findById', { id });
     },
 
     activeOrganization: (_, args, { org }) => {
       const id = org.getId();
-      return orgService.request('findById', { id });
+      return organizationService.request('findById', { id });
     },
 
     organizationUsers: (_, args, { org }) => {
@@ -54,7 +54,7 @@ module.exports = {
     createOrganization: async (_, { input }, { user }) => {
       const { name, description } = input;
       const payload = { name, description };
-      const org = await orgService.request('create', { payload });
+      const org = await organizationService.request('create', { payload });
       await membershipService.request('create', {
         organizationId: org._id,
         email: user.get('email'),
@@ -66,18 +66,18 @@ module.exports = {
     setOrganizationDescription: (_, { input }, { org }) => {
       const id = org.getId();
       const { value } = input;
-      return orgService.request('updateField', { id, path: 'description', value });
+      return organizationService.request('updateField', { id, path: 'description', value });
     },
 
     setOrganizationName: (_, { input }, { org }) => {
       const id = org.getId();
       const { value } = input;
-      return orgService.request('updateField', { id, path: 'name', value });
+      return organizationService.request('updateField', { id, path: 'name', value });
     },
 
     setOrganizationPhotoURL: (_, { input }) => {
       const { id, value } = input;
-      return orgService.request('updateField', { id, path: 'photoURL', value });
+      return organizationService.request('updateField', { id, path: 'photoURL', value });
     },
   },
 };

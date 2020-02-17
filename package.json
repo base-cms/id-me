@@ -1,11 +1,12 @@
 {
-  "name": "id-me",
-  "description": "ID|Me Identity Management Monorepo",
+  "name": "identity-x",
+  "description": "IdentityX Identity Management Monorepo",
   "author": "Jacob Bare <jacob@limit0.io>",
   "private": true,
   "repository": "https://github.com/base-cms/id-me.git",
   "scripts": {
-    "test": "lerna run test"
+    "test": "lerna run test",
+    "lint": "lerna run lint"
   },
   "workspaces": [
     "packages/*",

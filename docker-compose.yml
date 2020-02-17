@@ -16,6 +16,8 @@ x-env-defaults: &env
   TOKEN_SERVICE_URL: ${TOKEN_SERVICE_URL-http://token}
   SUPPORT_EMAIl: ${SUPPORT_EMAIL-root@localhost}
   SUPPORT_ENTITY: ${SUPPORT_ENTITY-My Dev Company}
+  TERMINUS_TIMEOUT: 1000
+  TERMINUS_SHUTDOWN_DELAY: 0
   USER_SERVICE_URL: ${USER_SERVICE_URL-http://user}
   YARN_CACHE_FOLDER: /.yarn-cache
 
@@ -80,8 +82,11 @@ services:
   organization:
     <<: *node
     working_dir: /identity-x/services/organization
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12003
     depends_on:
       - mongodb
     ports:
@@ -90,10 +95,11 @@ services:
   token:
     <<: *node
     working_dir: /identity-x/services/token
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
     environment:
       <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12004
       TOKEN_SECRET: ${TOKEN_SECRET-thisisntverysecret}
     depends_on:
       - mongodb
@@ -103,10 +109,11 @@ services:
   mailer:
     <<: *node
     working_dir: /identity-x/services/mailer
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
     environment:
       <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12005
       SENDGRID_API_KEY: ${SENDGRID_API_KEY}
     ports:
       - "12005:80"
@@ -114,8 +121,11 @@ services:
   user:
     <<: *node
     working_dir: /identity-x/services/user
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12006
     depends_on:
       - mongodb
       - token
@@ -126,8 +136,11 @@ services:
   membership:
     <<: *node
     working_dir: /identity-x/services/membership
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12007
     depends_on:
       - mailer
       - mongodb
@@ -140,8 +153,11 @@ services:
   application:
     <<: *node
     working_dir: /identity-x/services/application
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12008
     depends_on:
       - ip
       - locale
@@ -154,35 +170,41 @@ services:
   locale:
     <<: *node
     working_dir: /identity-x/services/locale
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12009
     ports:
       - "12009:80"
 
   ip:
     <<: *node
     working_dir: /identity-x/services/ip
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
+    command: ["node_modules/.bin/gulp"]
+    environment:
+      <<: *env
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12010
     ports:
       - "12010:80"
 
   export:
     <<: *node
     working_dir: /identity-x/services/export
-    entrypoint: ["node_modules/.bin/micro-dev"]
-    command: ["--port", "80", "--silent"]
-    depends_on:
-      - application
-      - mailer
-    ports:
-      - "12011:80"
-
+    command: ["node_modules/.bin/gulp"]
     environment:
       <<: *env
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_S3_BUCKET_NAME: ${AWS_S3_BUCKET_NAME}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      INTERNAL_PORT: 80
+      EXTERNAL_PORT: 12011
+    depends_on:
+      - application
+      - mailer
+    ports:
+      - "12011:80"
 
 volumes:
   mongodb: {}

@@ -1,15 +1,15 @@
 {
-  "name": "@base-cms/id-me-mongoose-plugins",
+  "name": "@identity-x/mongoose-plugins",
   "version": "0.10.0",
-  "description": "A collection of Mongoose plugins for ID|Me schemas.",
+  "description": "A collection of Mongoose plugins for IdentityX schemas.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/packages/mongoose-plugins",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@base-cms/id-me-pagination": "^0.10.0",
-    "@base-cms/id-me-utils": "^0.10.0",
+    "@identity-x/pagination": "^0.10.0",
+    "@identity-x/utils": "^0.10.0",
     "mongoose": "^5.5.11",
     "validator": "^11.0.0"
   },

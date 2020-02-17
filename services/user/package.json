@@ -1,22 +1,23 @@
 {
-  "name": "@base-cms/id-me-user-service",
+  "name": "@identity-x/user-service",
   "version": "0.10.0",
-  "description": "The ID|Me user service.",
+  "description": "The IdentityX user service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/user",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "micro-dev",
-    "test": "./node_modules/.bin/eslint ."
+    "dev": "gulp",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/env": "^0.9.25",
-    "@base-cms/id-me-mongoose-plugins": "^0.10.0",
-    "@base-cms/id-me-service-clients": "^0.10.0",
-    "@base-cms/id-me-utils": "^0.10.0",
-    "@base-cms/micro": "^0.9.28",
+    "@base-cms/env": "^1.0.0",
+    "@base-cms/micro": "^1.21.1",
+    "@identity-x/mongoose-plugins": "^0.10.0",
+    "@identity-x/service-clients": "^0.10.0",
+    "@identity-x/utils": "^0.10.0",
     "@newrelic/native-metrics": "^4.1.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
@@ -26,6 +27,8 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
-    "micro-dev": "^3.0.0"
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^5.0.0"
   }
 }

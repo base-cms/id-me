@@ -1,19 +1,20 @@
 {
-  "name": "@base-cms/id-me-locale-service",
+  "name": "@identity-x/locale-service",
   "version": "0.10.0",
-  "description": "The ID|Me locale service.",
+  "description": "The IdentityX locale service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/locale",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "micro-dev",
-    "test": "./node_modules/.bin/eslint ."
+    "dev": "gulp",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/env": "^0.9.25",
-    "@base-cms/micro": "^0.9.28",
+    "@base-cms/env": "^1.0.0",
+    "@base-cms/micro": "^1.21.1",
     "@newrelic/native-metrics": "^4.1.0",
     "i18n-iso-countries": "^4.3.1",
     "micro": "^9.3.4",
@@ -23,6 +24,8 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
-    "micro-dev": "^3.0.0"
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^5.0.0"
   }
 }

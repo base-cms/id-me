@@ -1,10 +1,10 @@
 import Component from '@ember/component';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import { ObjectQueryManager } from 'ember-apollo-client';
 import gql from 'graphql-tag';
 import { computed } from '@ember/object';
 import { inject } from '@ember/service';
-import fragment from '@base-cms/id-me-manage/graphql/fragments/user-profile';
+import fragment from '@identity-x/manage/graphql/fragments/user-profile';
 
 const mutation = gql`
   mutation UserProfileEdit($input: UpdateUserProfileMutationInput!) {

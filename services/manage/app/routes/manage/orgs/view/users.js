@@ -1,5 +1,5 @@
 import Route from '@ember/routing/route';
-import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
+import OrgQueryMixin from '@identity-x/manage/mixins/org-query';
 import gql from 'graphql-tag';
 
 const query = gql`

@@ -1,9 +1,9 @@
 import Controller from '@ember/controller';
 import { ObjectQueryManager } from 'ember-apollo-client';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import { inject } from '@ember/service';
 import gql from 'graphql-tag';
-import fragment from '@base-cms/id-me-manage/graphql/fragments/user-profile';
+import fragment from '@identity-x/manage/graphql/fragments/user-profile';
 
 const mutation = gql`
   mutation SetProfile($input: UpdateUserProfileMutationInput!) {

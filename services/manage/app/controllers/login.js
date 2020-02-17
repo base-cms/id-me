@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 import { inject } from '@ember/service';
 import { ObjectQueryManager } from 'ember-apollo-client';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import gql from 'graphql-tag';
 
 const mutation = gql`

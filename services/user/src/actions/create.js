@@ -1,5 +1,5 @@
 const { createError } = require('micro');
-const { handleError } = require('@base-cms/id-me-utils').mongoose;
+const { handleError } = require('@identity-x/utils').mongoose;
 const { service } = require('@base-cms/micro');
 const User = require('../mongodb/models/user');
 const findByEmail = require('./find-by-email');

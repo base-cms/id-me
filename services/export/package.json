@@ -1,21 +1,22 @@
 {
-  "name": "@base-cms/id-me-export-service",
+  "name": "@identity-x/export-service",
   "version": "0.10.0",
-  "description": "The ID|Me export service.",
+  "description": "The IdentityX export service.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/export",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "micro-dev",
-    "test": "./node_modules/.bin/eslint ."
+    "dev": "gulp",
+    "lint": "eslint --ext .js --max-warnings 5 ./",
+    "test": "yarn lint"
   },
   "dependencies": {
-    "@base-cms/env": "^0.9.25",
-    "@base-cms/id-me-service-clients": "^0.10.0",
-    "@base-cms/micro": "^0.9.28",
+    "@base-cms/env": "^1.0.0",
+    "@base-cms/micro": "^1.21.1",
     "@base-cms/object-path": "^1.9.0",
+    "@identity-x/service-clients": "^0.10.0",
     "@newrelic/native-metrics": "^4.1.0",
     "aws-sdk": "^2.610.0",
     "json2csv": "^4.5.4",
@@ -27,6 +28,8 @@
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.17.2",
-    "micro-dev": "^3.0.0"
+    "gulp": "^4.0.2",
+    "gulp-cached": "^1.1.1",
+    "gulp-eslint": "^5.0.0"
   }
 }

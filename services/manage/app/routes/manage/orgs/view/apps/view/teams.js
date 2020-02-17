@@ -1,8 +1,8 @@
 import Route from '@ember/routing/route';
-import AppQueryMixin from '@base-cms/id-me-manage/mixins/app-query';
-import ListRouteMixin from '@base-cms/id-me-manage/mixins/list-route';
+import AppQueryMixin from '@identity-x/manage/mixins/app-query';
+import ListRouteMixin from '@identity-x/manage/mixins/list-route';
 import gql from 'graphql-tag';
-import fragment from '@base-cms/id-me-manage/graphql/fragments/team-list';
+import fragment from '@identity-x/manage/graphql/fragments/team-list';
 
 const teams = gql`
   query AppTeams($input: TeamsQueryInput!) {

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { createConnection } = require('@base-cms/id-me-utils').mongoose;
+const { createConnection } = require('@identity-x/utils').mongoose;
 const env = require('../env');
 const pkg = require('../../package.json');
 

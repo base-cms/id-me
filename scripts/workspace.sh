@@ -1,2 +1,2 @@
 #!/bin/bash
-scripts/yarn.sh workspace "@base-cms/id-me-$@"
+scripts/yarn.sh workspace "@identity-x/$@"

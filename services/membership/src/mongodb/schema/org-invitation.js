@@ -1,5 +1,5 @@
 const { Schema } = require('mongoose');
-const { emailPlugin, orgRolePlugin } = require('@base-cms/id-me-mongoose-plugins');
+const { emailPlugin, orgRolePlugin } = require('@identity-x/mongoose-plugins');
 const organizationPlugin = require('./plugins/organization');
 
 const schema = new Schema({}, { timestamps: true });

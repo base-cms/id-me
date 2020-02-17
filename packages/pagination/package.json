@@ -1,5 +1,5 @@
 {
-  "name": "@base-cms/id-me-pagination",
+  "name": "@identity-x/pagination",
   "version": "0.10.0",
   "description": "IdentityX pagination functions.",
   "main": "src/index.js",

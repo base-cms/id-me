@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import RouteObservableMixin from '@base-cms/id-me-manage/mixins/route-observable';
+import RouteObservableMixin from '@identity-x/manage/mixins/route-observable';
 import { inject } from '@ember/service';
 
 export default Mixin.create(RouteObservableMixin, {

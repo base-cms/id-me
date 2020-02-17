@@ -1,4 +1,4 @@
-const { applicationService } = require('@base-cms/id-me-service-clients');
+const { applicationService } = require('@identity-x/service-clients');
 
 module.exports = {
   Application: {

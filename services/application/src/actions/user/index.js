@@ -1,4 +1,4 @@
-const { updateField, listForApp, matchForApp } = require('@base-cms/id-me-utils').actions;
+const { updateField, listForApp, matchForApp } = require('@identity-x/utils').actions;
 const create = require('./create');
 const findByEmail = require('./find-by-email');
 const login = require('./login');

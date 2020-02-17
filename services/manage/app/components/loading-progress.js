@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { computed } from '@ember/object';
-import LoadingMixin from '@base-cms/id-me-manage/mixins/loading-mixin';
+import LoadingMixin from '@identity-x/manage/mixins/loading-mixin';
 
 export default Component.extend(LoadingMixin, {
   classNames: ['loading', 'progress'],

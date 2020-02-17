@@ -1,4 +1,4 @@
-const { start } = require('@base-cms/id-me-utils').mongoose;
+const { start } = require('@identity-x/utils').mongoose;
 const connection = require('./mongodb/connection');
 const models = require('./mongodb/models');
 

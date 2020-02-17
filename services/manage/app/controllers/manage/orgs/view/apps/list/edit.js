@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
-import ActionMixin from '@base-cms/id-me-manage/mixins/action-mixin';
-import OrgQueryMixin from '@base-cms/id-me-manage/mixins/org-query';
+import ActionMixin from '@identity-x/manage/mixins/action-mixin';
+import OrgQueryMixin from '@identity-x/manage/mixins/org-query';
 import gql from 'graphql-tag';
 import { inject } from '@ember/service';
 

@@ -1,4 +1,4 @@
-const { localeService } = require('@base-cms/id-me-service-clients');
+const { localeService } = require('@identity-x/service-clients');
 
 module.exports = {
   /**

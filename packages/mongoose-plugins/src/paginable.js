@@ -1,4 +1,4 @@
-const { find, utils } = require('@base-cms/id-me-pagination');
+const { find, utils } = require('@identity-x/pagination');
 
 const { createEmptyResponse } = utils;
 

@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose');
-const { domainValidator, applicationPlugin } = require('@base-cms/id-me-mongoose-plugins');
-const { ipService } = require('@base-cms/id-me-service-clients');
+const { domainValidator, applicationPlugin } = require('@identity-x/mongoose-plugins');
+const { ipService } = require('@identity-x/service-clients');
 const accessLevelPlugin = require('./plugins/access-level');
 
 const cidrSchema = new Schema({

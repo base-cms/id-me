@@ -1,5 +1,5 @@
 import Mixin from '@ember/object/mixin';
-import RouteSearchMixin from '@base-cms/id-me-manage/mixins/route-search';
+import RouteSearchMixin from '@identity-x/manage/mixins/route-search';
 import { inject } from '@ember/service';
 
 export default Mixin.create(RouteSearchMixin, {

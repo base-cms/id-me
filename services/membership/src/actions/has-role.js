@@ -1,6 +1,6 @@
 const { createError } = require('micro');
 const { createRequiredParamError } = require('@base-cms/micro').service;
-const { orgService } = require('@base-cms/id-me-service-clients');
+const { organizationService } = require('@identity-x/service-clients');
 
 const OrgMembership = require('../mongodb/models/org-membership');
 
@@ -13,7 +13,7 @@ module.exports = async ({ email, organizationId, roles }) => {
 
   const r = isArray(roles) ? roles : [roles];
   const [org, membership] = await Promise.all([
-    orgService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
+    organizationService.request('findById', { id: organizationId, fields: ['id', 'name'] }),
     OrgMembership.findFor(organizationId, email, ['role']),
   ]);
 
