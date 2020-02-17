@@ -1,6 +1,6 @@
 {
   "name": "id-me",
-  "description": "ID|Me Identity Management Monorepo",
+  "description": "IdentityX Identity Management Monorepo",
   "author": "Jacob Bare <jacob@limit0.io>",
   "private": true,
   "repository": "https://github.com/base-cms/id-me.git",

@@ -1,7 +1,7 @@
 {
   "name": "@identity-x/organization-service",
   "version": "0.10.0",
-  "description": "The ID|Me organization service.",
+  "description": "The IdentityX organization service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/organization",

@@ -1,7 +1,7 @@
 {
   "name": "@identity-x/utils",
   "version": "0.10.0",
-  "description": "The ID|Me utility functions.",
+  "description": "The IdentityX utility functions.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/packages/utils",

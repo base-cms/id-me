@@ -1,7 +1,7 @@
 {
   "name": "@identity-x/export-service",
   "version": "0.10.0",
-  "description": "The ID|Me export service.",
+  "description": "The IdentityX export service.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/export",

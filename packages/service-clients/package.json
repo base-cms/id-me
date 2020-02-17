@@ -1,7 +1,7 @@
 {
   "name": "@identity-x/service-clients",
   "version": "0.10.0",
-  "description": "The ID|Me service clients.",
+  "description": "The IdentityX service clients.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/packages/service-clients",

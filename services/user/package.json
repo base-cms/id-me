@@ -1,7 +1,7 @@
 {
   "name": "@identity-x/user-service",
   "version": "0.10.0",
-  "description": "The ID|Me user service.",
+  "description": "The IdentityX user service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/user",

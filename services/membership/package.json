@@ -1,7 +1,7 @@
 {
   "name": "@identity-x/membership-service",
   "version": "0.10.0",
-  "description": "The ID|Me organization membership service.",
+  "description": "The IdentityX organization membership service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
   "repository": "https://github.com/base-cms/id-me/tree/master/services/membership",
