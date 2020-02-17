@@ -179,11 +179,11 @@ jobs:
     - <<: *production-job
       stage: production-group5
       name: Manage UI Service
-      script: scripts/deploy.js app
+      script: scripts/deploy.js manage
     - <<: *staging-job
       stage: staging-group5
       name: Manage UI Service
-      script: scripts/deploy.js app
+      script: scripts/deploy.js manage
 
     #############################
     # ^^^ ADD SERVICES HERE ^^^ #
