@@ -16,17 +16,10 @@ const loadContext = require('./load-context');
 const team = require('./team');
 const user = require('./user');
 
-const { keys } = Object;
-
-const load = (root, obj) => keys(obj).reduce((o, key) => {
-  const k = `${root}.${key}`;
-  return { ...o, [k]: obj[key] };
-}, {});
-
 module.exports = {
-  ...load('access-level', accessLevel),
-  ...load('team', team),
-  ...load('user', user),
+  'access-level': accessLevel,
+  team,
+  user,
   checkAccess,
   create,
   loadContext,
