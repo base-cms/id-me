@@ -3,6 +3,6 @@ const Token = require('../mongodb/models/token');
 
 module.exports = async ({ jti } = {}) => {
   if (!jti) throw createRequiredParamError('jti');
-  await Token.remove({ _id: jti });
+  await Token.deleteOne({ _id: jti });
   return 'ok';
 };
