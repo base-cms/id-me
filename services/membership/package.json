@@ -19,10 +19,9 @@
     "@identity-x/mongoose-plugins": "^0.11.0",
     "@identity-x/service-clients": "^0.11.0",
     "@identity-x/utils": "^0.11.0",
-    "@newrelic/native-metrics": "^4.1.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
-    "newrelic": "^5.9.1",
+    "newrelic": "^6.4.0",
     "validator": "^11.0.0"
   },
   "devDependencies": {
