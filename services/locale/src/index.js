@@ -17,7 +17,14 @@ service.jsonServer({
   onStart: async () => {
     log(`> Booting ${pkg.name} v${pkg.version}...`);
   },
-  onError: e => newrelic.noticeError(e),
+  onError: (e) => {
+    const status = e.statusCode || e.status || 500;
+    if (status >= 500) {
+      newrelic.noticeError(e);
+    } else {
+      log('Error not sent to New Relic.');
+    }
+  },
   port: INTERNAL_PORT,
   exposedPort: EXTERNAL_PORT,
 }).catch(e => setImmediate(() => {
