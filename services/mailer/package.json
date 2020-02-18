@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/micro": "^1.21.1",
+    "@base-cms/micro": "^1.21.3",
     "@sendgrid/mail": "^6.4.0",
     "micro": "^9.3.4",
     "newrelic": "^6.4.0"
