@@ -16,19 +16,17 @@ process.on('unhandledRejection', (e) => {
 
 service.jsonServer({
   actions,
+  context: ({ input }) => {
+    const { action } = input;
+    newrelic.setTransactionName(action);
+    return {};
+  },
   onStart: async () => {
     log(`> Booting ${pkg.name} v${pkg.version}...`);
     await init();
   },
   onHealthCheck: ping,
-  onError: (e) => {
-    const status = e.statusCode || e.status || 500;
-    if (status >= 500) {
-      newrelic.noticeError(e);
-    } else {
-      log('Error not sent to New Relic.');
-    }
-  },
+  onError: newrelic.noticeError.bind(newrelic),
   port: INTERNAL_PORT,
   exposedPort: EXTERNAL_PORT,
 }).catch(e => setImmediate(() => {
