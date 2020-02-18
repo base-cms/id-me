@@ -11,7 +11,7 @@
     "escape-string-regexp": "^2.0.0"
   },
   "peerDependencies": {
-    "@base-cms/micro": "^1.21.3"
+    "@base-cms/micro": "^1.21.4"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
