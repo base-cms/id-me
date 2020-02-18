@@ -21,7 +21,7 @@ service.jsonServer({
     await init();
   },
   onHealthCheck: ping,
-  onError: newrelic.noticeError,
+  onError: e => newrelic.noticeError(e),
   port: INTERNAL_PORT,
   exposedPort: EXTERNAL_PORT,
 }).catch(e => setImmediate(() => {
