@@ -4,7 +4,6 @@ const newrelic = require('./newrelic');
 const { INTERNAL_PORT, EXTERNAL_PORT } = require('./env');
 const pkg = require('../package.json');
 const actions = require('./actions');
-const ping = require('./ping');
 
 const { log } = console;
 
@@ -18,8 +17,7 @@ service.jsonServer({
   onStart: async () => {
     log(`> Booting ${pkg.name} v${pkg.version}...`);
   },
-  onHealthCheck: ping,
-  onError: newrelic.noticeError,
+  onError: e => newrelic.noticeError(e),
   port: INTERNAL_PORT,
   exposedPort: EXTERNAL_PORT,
 }).catch(e => setImmediate(() => {

@@ -14,11 +14,10 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/micro": "^1.21.1",
-    "@newrelic/native-metrics": "^4.1.0",
+    "@base-cms/micro": "^1.21.3",
     "i18n-iso-countries": "^4.3.1",
     "micro": "^9.3.4",
-    "newrelic": "^5.9.1"
+    "newrelic": "^6.4.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",

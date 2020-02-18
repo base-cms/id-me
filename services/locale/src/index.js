@@ -17,7 +17,7 @@ service.jsonServer({
   onStart: async () => {
     log(`> Booting ${pkg.name} v${pkg.version}...`);
   },
-  onError: newrelic.noticeError,
+  onError: e => newrelic.noticeError(e),
   port: INTERNAL_PORT,
   exposedPort: EXTERNAL_PORT,
 }).catch(e => setImmediate(() => {

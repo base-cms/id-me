@@ -14,14 +14,13 @@
   },
   "dependencies": {
     "@base-cms/env": "^1.0.0",
-    "@base-cms/micro": "^1.21.1",
+    "@base-cms/micro": "^1.21.3",
     "@base-cms/object-path": "^1.9.0",
     "@identity-x/service-clients": "^0.11.0",
-    "@newrelic/native-metrics": "^4.1.0",
     "aws-sdk": "^2.610.0",
     "json2csv": "^4.5.4",
     "micro": "^9.3.4",
-    "newrelic": "^5.9.1",
+    "newrelic": "^6.4.0",
     "validator": "^11.0.0"
   },
   "devDependencies": {
