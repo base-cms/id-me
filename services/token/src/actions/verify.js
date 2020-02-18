@@ -23,7 +23,7 @@ module.exports = async ({ token, sub }) => {
     // Ensure the token exists in the db and matches the subject.
     const { jti } = verified;
     const doc = await Token.findById(jti);
-    if (!doc) throw createError(400, 'No token was found for the provided token identifier.');
+    if (!doc) throw createError(404, 'No token was found for the provided token identifier.');
     if (sub !== doc.sub) throw createError(400, 'The token subject does not match.');
     return verified;
   } catch (e) {
@@ -32,7 +32,7 @@ module.exports = async ({ token, sub }) => {
       case 'invalid signature':
         throw createError(400, message);
       case 'jwt expired':
-        throw createError(400, message);
+        throw createError(401, message);
       case 'jwt malformed':
         throw createError(422, message);
       default:
