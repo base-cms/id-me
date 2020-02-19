@@ -5,6 +5,7 @@ const { localeService } = require('@identity-x/service-clients');
 const { isPostalCode } = require('validator');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');
+const { isBurnerDomain } = require('../../utils/burner-email');
 
 const stripLines = (value) => {
   if (!value) return undefined;
@@ -26,6 +27,13 @@ const schema = new Schema({
     type: String,
     required: true,
     trim: true,
+    lowercase: true,
+    validate: {
+      validator(domain) {
+        return !isBurnerDomain(domain);
+      },
+      message: props => `The email domain "${props.value}" is not allowed. Please enter a valid email address.`,
+    },
   },
   verified: {
     type: Boolean,
