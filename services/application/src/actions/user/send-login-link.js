@@ -4,6 +4,7 @@ const { tokenService, mailerService } = require('@identity-x/service-clients');
 const { Application } = require('../../mongodb/models');
 const { SENDING_DOMAIN, SUPPORT_EMAIL, SUPPORT_ENTITY } = require('../../env');
 const findByEmail = require('./find-by-email');
+const { isBurnerDomain } = require('../../utils/burner-email');
 
 const createLoginToken = ({
   email,
@@ -28,11 +29,14 @@ module.exports = async ({
 
   const [app, user] = await Promise.all([
     Application.findById(applicationId, ['id', 'name', 'email']),
-    findByEmail({ applicationId, email, fields: ['id', 'email'] }),
+    findByEmail({ applicationId, email, fields: ['id', 'email', 'domain'] }),
   ]);
 
   if (!app) throw createError(404, `No application was found for '${applicationId}'`);
   if (!user) throw createError(404, `No user was found for '${email}'`);
+
+  // Ensure the email domain is valid (it's possible imported or old data may be invalid).
+  if (isBurnerDomain(user.domain)) throw createError(422, `The email domain "${user.domain}" is not allowed. Please re-register with a valid email address.`);
 
   const { token } = await createLoginToken({ applicationId, email: user.email });
   let url = `${authUrl}?token=${token}`;
