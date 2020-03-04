@@ -5,7 +5,7 @@
   href="#user-settings"
   role="button"
 >
-  <NavBar::Item @icon="user">{{this.user.givenName}} {{this.user.familyName}}</NavBar::Item>
+  <NavBar::Item @icon="user">{{this.user.givenName}} <span class="d-none d-xl-inline">{{this.user.familyName}}</span></NavBar::Item>
 </a>
 
 <div class="dropdown-menu dropdown-menu-right">
