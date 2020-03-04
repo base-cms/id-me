@@ -40,6 +40,7 @@ type AppContentAccess {
 }
 
 type AppContext {
+  application: Application!
   user: AppUser
   mergedAccessLevels: [AccessLevel]
   mergedTeams: [Team]

@@ -6,6 +6,10 @@ const typeProjection = require('../utils/type-projection');
 const { isArray } = Array;
 
 module.exports = {
+  AppContext: {
+    application: (_, __, { app }) => applicationService.request('findById', { id: app.getId() }),
+  },
+
   AppUser: {
     id: user => user._id,
     accessLevels: ({ accessLevelIds }) => {
