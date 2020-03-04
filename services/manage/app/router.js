@@ -23,6 +23,7 @@ Router.map(function() {
         this.route('edit', { path: '/edit/:org_id' });
       });
       this.route('view', { path: ':org_id' }, function() {
+        this.route('settings');
         this.route('users', function() {
           this.route('invite');
         });

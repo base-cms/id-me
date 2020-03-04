@@ -15,6 +15,11 @@
           <NavBar::Item @icon="users">Users</NavBar::Item>
         {{/link-to}}
       </li>
+      <li class="nav-item">
+        {{#link-to "manage.orgs.view.settings" context.orgId class="nav-link"}}
+          <NavBar::Item @icon="cog">Settings</NavBar::Item>
+        {{/link-to}}
+      </li>
     {{/if}}
   {{/if}}
 </ul>

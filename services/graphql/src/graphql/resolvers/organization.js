@@ -63,6 +63,17 @@ module.exports = {
       return org;
     },
 
+    /**
+     *
+     */
+    updateOrganization: (_, { input }) => {
+      const { id, payload } = input;
+      return organizationService.request('updateForId', {
+        id,
+        update: { $set: payload },
+      });
+    },
+
     setOrganizationDescription: (_, { input }, { org }) => {
       const id = org.getId();
       const { value } = input;
