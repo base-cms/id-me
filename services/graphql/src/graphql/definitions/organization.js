@@ -12,6 +12,7 @@ extend type Query {
 
 extend type Mutation {
   createOrganization(input: CreateOrganizationMutationInput!): Organization! @requiresAuth
+  updateOrganization(input: UpdateOrganizationMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationName(input: SetOrganizationNameMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationDescription(input: SetOrganizationDescriptionMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationPhotoURL(input: SetOrganizationPhotoURLMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
@@ -67,6 +68,17 @@ input SetOrganizationNameMutationInput {
 
 input OrganizationApplicationsQueryInput {
   sort: ApplicationSortInput = { field: name, order: asc }
+}
+
+input UpdateOrganizationPayloadInput {
+  name: String!
+  description: String
+  consentPolicy: String
+}
+
+input UpdateOrganizationMutationInput {
+  id: String!
+  payload: UpdateOrganizationPayloadInput!
 }
 
 `;
