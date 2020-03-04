@@ -25,6 +25,7 @@ type Application {
   name: String!
   email: String!
   description: String
+  organization: Organization!
 }
 
 input ApplicationQueryInput {

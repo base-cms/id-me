@@ -1,8 +1,9 @@
-const { applicationService } = require('@identity-x/service-clients');
+const { applicationService, organizationService } = require('@identity-x/service-clients');
 
 module.exports = {
   Application: {
     id: app => app._id,
+    organization: app => organizationService.request('findById', { id: app.organizationId }),
   },
 
   Query: {
