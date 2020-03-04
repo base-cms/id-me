@@ -22,6 +22,7 @@ type Organization {
   name: String!
   description: String
   photoURL: String
+  consentPolicy: String
   applications: [Application!]!
 }
 

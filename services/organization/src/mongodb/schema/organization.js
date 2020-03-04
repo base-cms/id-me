@@ -17,6 +17,10 @@ const schema = new Schema({
       return `https://robohash.org/${this.id}?set=set3&bgset=bg2`;
     },
   },
+  consentPolicy: {
+    type: String,
+    trim: true,
+  },
 }, { timestamps: true });
 
 module.exports = schema;
