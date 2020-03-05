@@ -30,6 +30,10 @@ body {
   &.transitioning {
     // Showing progress cursor when transitioning/loading.
     cursor: progress;
+
+    .sk-double-bounce--nav-bar {
+      display: block;
+    }
   }
 }
 
@@ -139,6 +143,18 @@ body {
     overflow: auto;
   }
 }
+
+// Loading navbar spinner
+.sk-double-bounce {
+  &--nav-bar {
+    display: none;
+    margin: 0;
+    width: 25px;
+    height: 25px;
+  }
+}
+
+
 
 .icon {
   display: inline-block;
