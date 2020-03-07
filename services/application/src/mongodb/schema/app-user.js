@@ -39,6 +39,10 @@ const schema = new Schema({
     type: Boolean,
     default: false,
   },
+  banned: {
+    type: Boolean,
+    default: false,
+  },
   lastLoggedIn: {
     type: Date,
   },
