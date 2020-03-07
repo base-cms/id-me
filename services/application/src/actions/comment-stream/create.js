@@ -4,6 +4,7 @@ const { handleError } = require('@identity-x/utils').mongoose;
 const { isObject } = require('@base-cms/utils');
 
 const { Application, CommentStream } = require('../../mongodb/models');
+const findByIdentifier = require('./find-by-identifier');
 
 module.exports = async ({ applicationId, payload } = {}) => {
   if (!applicationId) throw createRequiredParamError('applicationId');
@@ -35,7 +36,7 @@ module.exports = async ({ applicationId, payload } = {}) => {
       $set: { title, description },
       ...(url && { $addToSet: { urls: url } }),
     }, { upsert: true });
-    return CommentStream.findOne(criteria);
+    return findByIdentifier({ applicationId, identifier });
   } catch (e) {
     throw handleError(createError, e);
   }
