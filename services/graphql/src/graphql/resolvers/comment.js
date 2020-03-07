@@ -31,4 +31,24 @@ module.exports = {
       return applicationService.request('comment.listForStream', { applicationId, identifier });
     },
   },
+
+  /**
+   *
+   */
+  Mutation: {
+    /**
+     *
+     */
+    createComment: (_, { input }, { app, user }) => {
+      const { body, stream } = input;
+      const applicationId = app.getId();
+      const appUserId = user.getId();
+      return applicationService.request('comment.create', {
+        applicationId,
+        appUserId,
+        body,
+        stream,
+      });
+    },
+  },
 };

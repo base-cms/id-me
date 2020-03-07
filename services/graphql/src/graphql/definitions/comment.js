@@ -6,6 +6,10 @@ extend type Query {
   commentsForStream(input: CommentsForStreamQueryInput!): CommentConnection! @requiresApp
 }
 
+extend type Mutation {
+  createComment(input: CreateCommentMutationInput!): Comment! @requiresAuth(type: AppUser)
+}
+
 type Comment {
   "The internal comment ID."
   id: String!
@@ -43,6 +47,24 @@ type CommentEdge {
 input CommentsForStreamQueryInput {
   "The external stream identifier to retrieve comments for."
   identifier: String!
+}
+
+input CreateCommentMutationInput {
+  "The comment body."
+  body: String!
+  "The stream this comment should be posted to. Also allows for upserting the stream info."
+  stream: CreateCommentMutationStreamInput!
+}
+
+input CreateCommentMutationStreamInput {
+  "The stream external identifier."
+  identifier: String!
+  "The (optional) stream title."
+  title: String
+  "The (optional) stream description."
+  description: String
+  "The (optional) URL where this stream appears."
+  url: String
 }
 
 `;
