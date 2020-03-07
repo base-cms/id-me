@@ -23,6 +23,10 @@ type Comment {
   deleted: Boolean!
   "The IP address at the time of posting."
   ipAddress: String
+  "The date the comment was created."
+  createdAt: Date!
+  "The date the comment was updated."
+  updatedAt: Date!
 }
 
 type CommentConnection @projectUsing(type: "Comment") {
