@@ -1,16 +1,22 @@
 const { createRequiredParamError } = require('@base-cms/micro').service;
 
-const { Comment } = require('../../mongodb/models');
+const { Comment, CommentStream } = require('../../mongodb/models');
 
 module.exports = async ({
-  streamId,
+  applicationId,
+  identifier,
   fields,
   sort,
   pagination,
 } = {}) => {
-  if (!streamId) throw createRequiredParamError('streamId');
+  if (!applicationId) throw createRequiredParamError('applicationId');
+  if (!identifier) throw createRequiredParamError('identifier');
+
+  const stream = await CommentStream.findOne({ applicationId, identifier }, ['id']);
+  if (!stream) return Comment.paginateEmpty();
+
   return Comment.paginate({
-    query: { streamId },
+    query: { streamId: stream._id },
     sort: sort || { field: '_id', order: 'desc' },
     projection: fields,
     ...pagination,
