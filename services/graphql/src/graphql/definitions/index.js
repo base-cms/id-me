@@ -2,6 +2,7 @@ const gql = require('graphql-tag');
 const accessLevel = require('./access-level');
 const appUser = require('./app-user');
 const application = require('./application');
+const commentStream = require('./comment-stream');
 const locale = require('./locale');
 const organization = require('./organization');
 const team = require('./team');
@@ -65,6 +66,7 @@ input PaginationInput {
 ${accessLevel}
 ${appUser}
 ${application}
+${commentStream}
 ${locale}
 ${organization}
 ${team}
