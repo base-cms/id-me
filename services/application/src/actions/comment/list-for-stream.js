@@ -5,6 +5,7 @@ const { Comment, CommentStream } = require('../../mongodb/models');
 module.exports = async ({
   applicationId,
   identifier,
+  deleted = false,
   fields,
   sort,
   pagination,
@@ -16,7 +17,7 @@ module.exports = async ({
   if (!stream) return Comment.paginateEmpty();
 
   return Comment.paginate({
-    query: { streamId: stream._id },
+    query: { streamId: stream._id, deleted },
     sort: sort || { field: '_id', order: 'desc' },
     projection: fields,
     ...pagination,
