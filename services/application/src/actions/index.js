@@ -10,6 +10,7 @@ const {
 const Application = require('../mongodb/models/application');
 
 const accessLevel = require('./access-level');
+const commentStream = require('./comment-stream');
 const checkAccess = require('./check-access');
 const create = require('./create');
 const loadContext = require('./load-context');
@@ -18,6 +19,7 @@ const user = require('./user');
 
 module.exports = {
   'access-level': accessLevel,
+  'comment-stream': commentStream,
   team,
   user,
   checkAccess,
