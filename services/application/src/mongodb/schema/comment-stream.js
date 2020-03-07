@@ -1,5 +1,6 @@
 const { Schema } = require('mongoose');
 const { applicationPlugin } = require('@identity-x/mongoose-plugins');
+const { isURL } = require('validator');
 
 const schema = new Schema({
   identifier: {
@@ -15,6 +16,15 @@ const schema = new Schema({
   description: {
     type: String,
     trim: true,
+  },
+  urls: {
+    type: [String],
+    validate: {
+      validator(urls) {
+        return urls.every(url => isURL(url, { require_protocol: true, required_host: true }));
+      },
+      message: props => `The URL "${props.value}" is invalid.`,
+    },
   },
   archived: {
     type: Boolean,
