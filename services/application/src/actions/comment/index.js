@@ -4,11 +4,13 @@ const {
   listForApp,
   matchForApp,
 } = require('@identity-x/utils').actions;
+const banForUser = require('./ban-for-user');
 const create = require('./create');
 const listForStream = require('./list-for-stream');
 const Comment = require('../../mongodb/models/comment');
 
 module.exports = {
+  banForUser,
   create,
   listForStream,
   find: ({ query, fields }) => find(Comment, { query, fields }),
