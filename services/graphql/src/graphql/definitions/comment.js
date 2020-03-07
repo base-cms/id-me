@@ -2,6 +2,10 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
+extend type Query {
+  commentsForStream(input: CommentsForStreamQueryInput!): CommentConnection! @requiresApp
+}
+
 type Comment {
   "The internal comment ID."
   id: String!
@@ -19,6 +23,22 @@ type Comment {
   deleted: Boolean!
   "The IP address at the time of posting."
   ipAddress: String
+}
+
+type CommentConnection @projectUsing(type: "Comment") {
+  totalCount: Int!
+  edges: [CommentEdge]!
+  pageInfo: PageInfo!
+}
+
+type CommentEdge {
+  node: Comment!
+  cursor: String!
+}
+
+input CommentsForStreamQueryInput {
+  "The external stream identifier to retrieve comments for."
+  identifier: String!
 }
 
 `;
