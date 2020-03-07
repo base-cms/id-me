@@ -55,6 +55,7 @@ type AppUser {
   name: String @projection(localField: "givenName", needs: ["familyName"])
   givenName: String @projection
   familyName: String @projection
+  displayName: String @projection(localField: "displayName", needs: ["email"])
   region: LocaleRegion @projection(localField: "regionCode", needs: ["countryCode"])
   regionCode: String @projection
   postalCode: String @projection
