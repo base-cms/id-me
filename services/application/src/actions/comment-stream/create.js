@@ -12,19 +12,28 @@ module.exports = async ({ applicationId, payload } = {}) => {
   const application = await Application.findById(applicationId, ['id']);
   if (!application) throw createError(404, `No application was found for '${applicationId}'`);
 
+  const {
+    title,
+    description,
+    identifier,
+    url,
+  } = payload;
+
   try {
     const stream = new CommentStream({
-      ...payload,
       applicationId,
+      title,
+      description,
+      identifier,
+      ...(url && { urls: [url] }),
     });
+
     await stream.validate();
-    const criteria = { applicationId, identifier: stream.identifier };
+    const criteria = { applicationId, identifier };
     await CommentStream.updateOne(criteria, {
       $setOnInsert: criteria,
-      $set: {
-        title: stream.title,
-        description: stream.description,
-      },
+      $set: { title, description },
+      ...(url && { $addToSet: { urls: url } }),
     }, { upsert: true });
     return CommentStream.findOne(criteria);
   } catch (e) {
