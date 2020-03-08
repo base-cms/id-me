@@ -24,11 +24,11 @@ module.exports = {
     /**
      *
      */
-    commentsForStream: (_, { input }, { app }) => {
+    commentsForStream: (_, { input }, { app, user }) => {
       const { identifier } = input;
       const applicationId = app.getId();
-      // @todo need to display unapproved and banned comments _only_ for the logged in user.
-      return applicationService.request('comment.listForStream', { applicationId, identifier });
+      const activeUserId = user.hasValidUser('AppUser') ? user.getId() : undefined;
+      return applicationService.request('comment.listForStream', { applicationId, identifier, activeUserId });
     },
   },
 

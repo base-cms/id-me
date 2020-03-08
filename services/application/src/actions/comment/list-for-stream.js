@@ -6,6 +6,9 @@ module.exports = async ({
   applicationId,
   identifier,
   deleted = false,
+  approved = true,
+  banned = false,
+  activeUserId,
   fields,
   sort,
   pagination,
@@ -16,8 +19,25 @@ module.exports = async ({
   const stream = await CommentStream.findOne({ applicationId, identifier }, ['id']);
   if (!stream) return Comment.paginateEmpty();
 
+  const criteria = {
+    streamId: stream._id,
+    deleted,
+    approved,
+    banned,
+  };
+
+  let query = {};
+  if (activeUserId) {
+    query.$or = [
+      criteria,
+      { appUserId: activeUserId },
+    ];
+  } else {
+    query = criteria;
+  }
+
   return Comment.paginate({
-    query: { streamId: stream._id, deleted },
+    query,
     sort: sort || { field: '_id', order: 'desc' },
     projection: fields,
     ...pagination,
