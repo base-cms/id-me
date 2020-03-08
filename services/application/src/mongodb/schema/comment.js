@@ -41,5 +41,11 @@ const schema = new Schema({
 }, { timestamps: true });
 
 schema.plugin(applicationPlugin);
+schema.index({
+  deleted: 1,
+  approved: 1,
+  banned: 1,
+  streamId: 1,
+});
 
 module.exports = schema;
