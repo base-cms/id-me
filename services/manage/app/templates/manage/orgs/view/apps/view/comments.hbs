@@ -30,7 +30,7 @@
                 />
                 <p class="app-user-details mb-3">
                   <AppUser::Icon /> {{node.user.email}} ({{node.user.displayName}})
-                  {{#if node.user.banned}}<span class="text-danger">[banned]</span>{{/if}}
+                  {{#if node.user.banned}}<span class="badge badge-danger">banned</span>{{/if}}
                 </p>
                 <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now node.createdAt}} on {{moment-format node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
                 <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{node.id}}</p>
