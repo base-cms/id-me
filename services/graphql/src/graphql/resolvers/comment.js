@@ -40,7 +40,7 @@ module.exports = {
      *
      */
     createComment: (_, { input }, { app, user }) => {
-      const { body, stream } = input;
+      const { body, displayName, stream } = input;
       const applicationId = app.getId();
       const appUserId = user.getId();
       return applicationService.request('comment.create', {
@@ -48,6 +48,7 @@ module.exports = {
         appUserId,
         body,
         stream,
+        displayName,
       });
     },
   },

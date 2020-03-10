@@ -52,6 +52,8 @@ input CommentsForStreamQueryInput {
 input CreateCommentMutationInput {
   "The comment body."
   body: String!
+  "The user's display/posting name. Will update the user's display name if this value is set and different than the current value."
+  displayName: String
   "The stream this comment should be posted to. Also allows for upserting the stream info."
   stream: CreateCommentMutationStreamInput!
 }

@@ -10,6 +10,7 @@ const { Application, Comment, AppUser } = require('../../mongodb/models');
 module.exports = async ({
   applicationId,
   appUserId,
+  displayName,
   stream,
   body,
 } = {}, { req }) => {
@@ -20,15 +21,23 @@ module.exports = async ({
 
   const [application, user] = await Promise.all([
     Application.findById(applicationId, ['id']),
-    AppUser.findOne({ _id: appUserId, applicationId }, ['id', 'banned', 'verified']),
+    AppUser.findOne({ _id: appUserId, applicationId }, ['id', 'banned', 'verified', 'email', 'displayName']),
   ]);
 
   if (!application) throw createError(404, `No application was found for '${applicationId}'`);
   if (!user) throw createError(404, `No user was found for '${appUserId}' using app '${applicationId}'`);
   if (!user.verified) throw createError(401, 'The provided user is not verified.');
 
+  const promises = [];
   // Create/upsert the stream.
-  const streamData = await createStram({ applicationId, payload: stream });
+  promises.push(createStram({ applicationId, payload: stream }));
+
+  // Update the display name if set and different.
+  if (displayName && displayName !== user.displayName) {
+    promises.push(AppUser.updateOne({ _id: user._id }, { $set: { displayName } }));
+  }
+
+  const [streamData] = await Promise.all(promises);
 
   const comment = new Comment({
     applicationId: application._id,
