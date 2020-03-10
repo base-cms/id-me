@@ -67,6 +67,7 @@ type AppUser {
   teams: [Team]  @projection(localField: "teamIds")
   lastLoggedIn: Date @projection
   verified: Boolean @projection
+  banned: Boolean @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
