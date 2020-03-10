@@ -2,3 +2,45 @@
   <Comment::Icon /> Comments
   <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
 </h1>
+
+<div class="row">
+  <div class="col-xl-8">
+    <FetchMore
+      @query={{this.observable}}
+      @edges={{this.model.edges}}
+      @hasNextPage={{this.model.pageInfo.hasNextPage}}
+      @endCursor={{this.model.pageInfo.endCursor}}
+      @resultKey={{this.resultKey}}
+      as |fetch|
+    >
+      {{#if fetch.nodes.length}}
+        <div class="card">
+          <div class="list-group list-group-flush">
+            {{#each fetch.nodes as |node|}}
+              <div class="list-group-item">
+                <h2 class="card-title">
+                  <EntypoIcon @name="list" />
+                  {{node.stream.title}}
+                </h2>
+                <p class="card-text">{{node.body}}</p>
+                <Comment::Status
+                  @approved={{node.approved}}
+                  @banned={{node.banned}}
+                  @class="mb-1"
+                />
+                <p class="app-user-details mb-3">
+                  <AppUser::Icon /> {{node.user.email}} ({{node.user.displayName}})
+                  {{#if node.user.banned}}<span class="text-danger">[banned]</span>{{/if}}
+                </p>
+                <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now node.createdAt}} on {{moment-format node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
+                <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{node.id}}</p>
+              </div>
+            {{/each}}
+          </div>
+        </div>
+      {{else}}
+        <p>No comments were found.</p>
+      {{/if}}
+    </FetchMore>
+  </div>
+</div>
