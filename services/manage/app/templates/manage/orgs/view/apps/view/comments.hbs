@@ -29,11 +29,59 @@
                   @class="mb-1"
                 />
                 <p class="app-user-details mb-3">
-                  <AppUser::Icon /> {{node.user.email}} ({{node.user.displayName}})
+                  <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.users.edit" node.user.email}}{{node.user.email}}{{/link-to}} ({{node.user.displayName}})
                   {{#if node.user.banned}}<span class="badge badge-danger">banned</span>{{/if}}
                 </p>
-                <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now node.createdAt}} on {{moment-format node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
-                <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{node.id}}</p>
+
+                <div class="d-block d-sm-flex justify-content-between">
+                  <div class="mb-3 mb-sm-0">
+                    <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now node.createdAt}} on {{moment-format node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
+                    <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{node.id}}</p>
+                  </div>
+
+                  <div class="btn-toolbar">
+                    <div class="btn-group mr-2">
+                      {{#if node.approved}}
+                        <button type="button" class="btn btn-warning" disabled={{node.user.banned}}>
+                          <EntypoIcon @name="cross" /> Deny
+                        </button>
+                      {{else}}
+                        <button type="button" class="btn btn-success" disabled={{node.user.banned}}>
+                          <EntypoIcon @name="check" /> Approve
+                        </button>
+                      {{/if}}
+                    </div>
+
+                    <div class="btn-group">
+                      <div class="btn-group dropup">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                          <EntypoIcon @name="cog" />
+                        </button>
+                        <div class="dropdown-menu">
+                          <h6 class="dropdown-header">User</h6>
+                          <a class="dropdown-item d-flex justify-content-between" href="#">Edit <AppUser::Icon /></a>
+                          <a class="dropdown-item d-flex justify-content-between" href="#">Ban <EntypoIcon @name="block" /></a>
+                          <div class="dropdown-divider"></div>
+                          <h6 class="dropdown-header">Comment</h6>
+                          <a class="dropdown-item d-flex justify-content-between" href="#">Delete <EntypoIcon @name="trash" /></a>
+                          <a class="dropdown-item d-flex justify-content-between" href="#">Flag <EntypoIcon @name="flag" /></a>
+                          <a class="dropdown-item d-flex justify-content-between" href="#">Edit <EntypoIcon @name="edit" /></a>
+
+                        </div>
+                      </div>
+
+                      <div class="btn-group dropup">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                          <EntypoIcon @name="eye" />
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                          <h6 class="dropdown-header">View Online</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
               </div>
             {{/each}}
             {{#if fetch.hasNextPage}}
