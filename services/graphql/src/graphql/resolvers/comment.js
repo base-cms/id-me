@@ -36,6 +36,19 @@ module.exports = {
         pagination,
       });
     },
+
+    /**
+     *
+     */
+    comments: (_, { input }, { app }) => {
+      const id = app.getId();
+      const { sort, pagination } = input;
+      return applicationService.request('comment.listForApp', {
+        id,
+        sort,
+        pagination,
+      });
+    },
   },
 
   /**

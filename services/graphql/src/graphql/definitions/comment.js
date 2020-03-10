@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  comments(input: CommentsQueryInput = {}): CommentConnection! @requiresAppRole
   commentsForStream(input: CommentsForStreamQueryInput!): CommentConnection! @requiresApp
 }
 
@@ -59,6 +60,12 @@ input CommentSortInput {
   field: CommentSortField = id
   order: SortOrder = desc
 }
+
+input CommentsQueryInput {
+  sort: CommentSortInput = {}
+  pagination: PaginationInput = {}
+}
+
 
 input CreateCommentMutationInput {
   "The comment body."
