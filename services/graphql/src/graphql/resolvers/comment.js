@@ -25,10 +25,16 @@ module.exports = {
      *
      */
     commentsForStream: (_, { input }, { app, user }) => {
-      const { identifier } = input;
+      const { identifier, sort, pagination } = input;
       const applicationId = app.getId();
       const activeUserId = user.hasValidUser('AppUser') ? user.getId() : undefined;
-      return applicationService.request('comment.listForStream', { applicationId, identifier, activeUserId });
+      return applicationService.request('comment.listForStream', {
+        applicationId,
+        identifier,
+        activeUserId,
+        sort,
+        pagination,
+      });
     },
   },
 

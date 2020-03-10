@@ -10,6 +10,10 @@ extend type Mutation {
   createComment(input: CreateCommentMutationInput!): Comment! @requiresAuth(type: AppUser)
 }
 
+enum CommentSortField {
+  id
+}
+
 type Comment {
   "The internal comment ID."
   id: String!
@@ -47,6 +51,13 @@ type CommentEdge {
 input CommentsForStreamQueryInput {
   "The external stream identifier to retrieve comments for."
   identifier: String!
+  sort: CommentSortInput = {}
+  pagination: PaginationInput = {}
+}
+
+input CommentSortInput {
+  field: CommentSortField = id
+  order: SortOrder = desc
 }
 
 input CreateCommentMutationInput {
