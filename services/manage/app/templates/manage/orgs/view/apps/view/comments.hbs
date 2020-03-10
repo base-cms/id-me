@@ -36,6 +36,13 @@
                 <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{node.id}}</p>
               </div>
             {{/each}}
+            {{#if fetch.hasNextPage}}
+              <InView @on-viewport-enter={{action fetch.actions.loadMore}} />
+            {{/if}}
+
+            {{#if fetch.isFetching}}
+              <FetchMoreLoading @class="my-3" />
+            {{/if}}
           </div>
         </div>
       {{else}}
