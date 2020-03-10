@@ -254,6 +254,20 @@ body {
   font-family: Montserrat, sans-serif;
 }
 
+.comment-status {
+  font-size: 14px;
+  font-family: Montserrat, sans-serif;
+  &--approved {
+    color: $success;
+  }
+  &--denied {
+    color: $warning;
+  }
+  &--banned {
+    color: $danger;
+  }
+}
+
 /* clears the 'X' from Internet Explorer */
 input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
 input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
