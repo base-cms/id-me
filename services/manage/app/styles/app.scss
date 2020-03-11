@@ -26,6 +26,10 @@ body {
   z-index: 1100;
 }
 
+.dropdown-menu {
+  min-width: 10rem;
+}
+
 body {
   &.transitioning {
     // Showing progress cursor when transitioning/loading.
@@ -272,6 +276,9 @@ body {
   @extend .dropdown-item;
   display: flex;
   justify-content: space-between;
+  .entypo {
+    margin-left: map-get($spacers, 2);
+  }
 }
 
 /* clears the 'X' from Internet Explorer */
