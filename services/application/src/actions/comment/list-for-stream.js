@@ -28,6 +28,7 @@ module.exports = async ({
 
   let query = {};
   if (activeUserId) {
+    query.deleted = deleted;
     query.$or = [
       criteria,
       { appUserId: activeUserId },
