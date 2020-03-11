@@ -22,6 +22,15 @@ const setCommentFlagged = gql`
   }
 `;
 
+const setAppUserBanned = gql`
+  mutation SetAppUserBanned($id: String!, $value: Boolean!) {
+    setAppUserBanned(input: { id: $id, value: $value }) {
+      id
+      banned
+    }
+  }
+`;
+
 const deleteComment = gql`
   mutation DeleteComment($id: String!) {
     deleteComment(input: { id: $id })
@@ -78,13 +87,14 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
 
     async toggleUserBan() {
       try {
-        this.set('isTogglingFlag', true);
-        // const variables = { id: this.node.id, value: !this.node.user.banned };
-        // await this.mutate({ mutation: setCommentFlagged, variables }, 'setCommentFlagged');
+        this.set('isTogglingUserBan', true);
+        const { user } = this.node;
+        const variables = { id: user.id, value: !user.banned };
+        await this.mutate({ mutation: setAppUserBanned, variables, refetchQueries: ['AppComments'] }, 'setAppUserBanned');
       } catch (e) {
         this.errorNotifier.show(e);
       } finally {
-        if (!this.isDestroyed) this.set('isTogglingFlag', false);
+        if (!this.isDestroyed) this.set('isTogglingUserBan', false);
       }
     },
   },

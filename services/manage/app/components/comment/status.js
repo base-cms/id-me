@@ -14,15 +14,13 @@ export default Component.extend({
     return 'cross';
   }),
 
-  label: computed('approved', 'banned', function() {
+  label: computed('approved', function() {
     if (this.approved) return 'Approved';
-    if (this.banned) return 'Banned';
     return 'Rejected';
   }),
 
-  modifier: computed('approved', 'banned', function() {
+  modifier: computed('approved', function() {
     if (this.approved) return 'badge-success';
-    if (this.banned) return 'badge-danger';
     return 'badge-warning';
   }),
 });
