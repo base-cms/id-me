@@ -1,16 +1,25 @@
-<h2 class="card-title">
+<h3 class="card-title">
   <EntypoIcon @name="list" />
   {{this.node.stream.title}}
-</h2>
+</h3>
+
 <p class="card-text">{{this.node.body}}</p>
-<Comment::Status
-  @approved={{this.node.approved}}
-  @banned={{this.node.banned}}
-  @class="mb-1"
-/>
+
+<div>
+  {{#if this.node.user.banned}}
+    <h2 class="badge badge-danger">
+      <EntypoIcon @name="block" />
+      User Banned
+    </h2>
+  {{/if}}
+  <Comment::Status
+    @approved={{this.node.approved}}
+    @banned={{this.node.banned}}
+    @class="mb-3"
+  />
+</div>
 <p class="app-user-details mb-3">
   <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
-  {{#if this.node.user.banned}}<span class="badge badge-danger">banned</span>{{/if}}
 </p>
 
 <div class="d-block d-sm-flex justify-content-between">
