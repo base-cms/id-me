@@ -1,0 +1,61 @@
+<h2 class="card-title">
+  <EntypoIcon @name="list" />
+  {{this.node.stream.title}}
+</h2>
+<p class="card-text">{{this.node.body}}</p>
+<Comment::Status
+  @approved={{this.node.approved}}
+  @banned={{this.node.banned}}
+  @class="mb-1"
+/>
+<p class="app-user-details mb-3">
+  <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
+  {{#if this.node.user.banned}}<span class="badge badge-danger">banned</span>{{/if}}
+</p>
+
+<div class="d-block d-sm-flex justify-content-between">
+  <div class="mb-3 mb-sm-0">
+    <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
+    <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{this.node.id}}</p>
+  </div>
+
+  <div class="btn-toolbar">
+    <div class="btn-group mr-2">
+      <Comment::ApprovalButton
+        @approved={{this.node.approved}}
+        @banned={{this.node.user.banned}}
+        @isLoading={{this.isActionRunning}}
+        @onClick={{action "toggleApproval"}}
+      />
+    </div>
+
+    <div class="btn-group">
+      <div class="btn-group dropup">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+          <EntypoIcon @name="cog" />
+        </button>
+        <div class="dropdown-menu">
+          <h6 class="dropdown-header">User</h6>
+          <a class="dropdown-item d-flex justify-content-between" href="#">Edit <AppUser::Icon /></a>
+          <a class="dropdown-item d-flex justify-content-between" href="#">Ban <EntypoIcon @name="block" /></a>
+          <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header">Comment</h6>
+          <a class="dropdown-item d-flex justify-content-between" href="#">Delete <EntypoIcon @name="trash" /></a>
+          <a class="dropdown-item d-flex justify-content-between" href="#">Flag <EntypoIcon @name="flag" /></a>
+          <a class="dropdown-item d-flex justify-content-between" href="#">Edit <EntypoIcon @name="edit" /></a>
+
+        </div>
+      </div>
+
+      <div class="btn-group dropup">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+          <EntypoIcon @name="eye" />
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <h6 class="dropdown-header">View Online</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
