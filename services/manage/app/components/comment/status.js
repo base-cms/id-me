@@ -19,7 +19,8 @@ export default Component.extend({
     return 'Rejected';
   }),
 
-  modifier: computed('approved', function() {
+  modifier: computed('approved', 'banned', function() {
+    if (this.banned) return 'badge-secondary';
     if (this.approved) return 'badge-success';
     return 'badge-warning';
   }),
