@@ -74,28 +74,28 @@ module.exports = {
     /**
      *
      */
-    denyComment: (_, { input }, { app }) => {
+    setCommentApproved: (_, { input }, { app }) => {
       const applicationId = app.getId();
-      const { id } = input;
+      const { id, value } = input;
       return applicationService.request('comment.updateFieldWithApp', {
         applicationId,
         id,
         path: 'approved',
-        value: false,
+        value,
       });
     },
 
     /**
      *
      */
-    approveComment: (_, { input }, { app }) => {
+    setCommentFlagged: (_, { input }, { app }) => {
       const applicationId = app.getId();
-      const { id } = input;
+      const { id, value } = input;
       return applicationService.request('comment.updateFieldWithApp', {
         applicationId,
         id,
-        path: 'approved',
-        value: true,
+        path: 'flagged',
+        value,
       });
     },
 

@@ -9,9 +9,10 @@ extend type Query {
 
 extend type Mutation {
   createComment(input: CreateCommentMutationInput!): Comment! @requiresAuth(type: AppUser)
-  denyComment(input: DenyCommentMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
-  approveComment(input: ApproveCommentMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
   deleteComment(input: DeleteCommentMutationInput!): String! @requiresAppRole(roles: [Owner, Administrator, Member])
+
+  setCommentApproved(input: SetCommentApprovedMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
+  setCommentFlagged(input: SetCommentFlaggedMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 enum CommentSortField {
@@ -54,11 +55,6 @@ type CommentEdge {
   cursor: String!
 }
 
-input ApproveCommentMutationInput {
-  "The comment ID to approve."
-  id: String!
-}
-
 input CommentsForStreamQueryInput {
   "The external stream identifier to retrieve comments for."
   identifier: String!
@@ -75,7 +71,6 @@ input CommentsQueryInput {
   sort: CommentSortInput = {}
   pagination: PaginationInput = {}
 }
-
 
 input CreateCommentMutationInput {
   "The comment body."
@@ -102,9 +97,18 @@ input DeleteCommentMutationInput {
   id: String!
 }
 
-input DenyCommentMutationInput {
-  "The comment ID to deny."
+input SetCommentApprovedMutationInput {
+  "The comment ID to approved/reject."
   id: String!
+  "Whether the comment is approved or rejected."
+  value: Boolean!
+}
+
+input SetCommentFlaggedMutationInput {
+  "The comment ID to flag/unflag."
+  id: String!
+  "Whether the comment is flagged or not."
+  value: Boolean!
 }
 
 `;
