@@ -9,7 +9,7 @@ export default Component.extend({
   isLoading: false,
 
   label: computed('approved', function() {
-    if (this.approved) return 'Deny';
+    if (this.approved) return 'Reject';
     return 'Approve';
   }),
 

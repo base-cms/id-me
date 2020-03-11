@@ -2,7 +2,8 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
-  classNames: ['comment-status'],
+  tagName: 'h2',
+  classNames: ['badge'],
   classNameBindings: ['modifier'],
 
   approved: true,
@@ -16,12 +17,12 @@ export default Component.extend({
   label: computed('approved', 'banned', function() {
     if (this.approved) return 'Approved';
     if (this.banned) return 'Banned';
-    return 'Denied';
+    return 'Rejected';
   }),
 
   modifier: computed('approved', 'banned', function() {
-    if (this.approved) return 'comment-status--approved';
-    if (this.banned) return 'comment-status--banned';
-    return 'comment-status--denied';
+    if (this.approved) return 'badge-success';
+    if (this.banned) return 'badge-danger';
+    return 'badge-warning';
   }),
 });
