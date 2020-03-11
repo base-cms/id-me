@@ -3,6 +3,7 @@ const {
   listForApp,
   matchForApp,
   findById,
+  updateFieldWithApp,
 } = require('@identity-x/utils').actions;
 const create = require('./create');
 const findByEmail = require('./find-by-email');
@@ -26,6 +27,7 @@ module.exports = {
   matchForApp: params => matchForApp(AppUser, params),
   sendLoginLink,
   updateField: params => updateField(AppUser, params),
+  updateFieldWithApp: params => updateFieldWithApp(AppUser, params),
   updateOne,
   verifyAuth,
 };
