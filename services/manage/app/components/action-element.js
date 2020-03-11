@@ -5,7 +5,7 @@ export default Component.extend({
   label: null, // required
   icon: null, // required
 
-  confirmLabel: 'Click to confirm',
+  confirmLabel: 'Confirm',
   loadingLabel: 'Saving...',
 
   isLoading: false,
@@ -41,6 +41,11 @@ export default Component.extend({
     if (this.isLoading) return 'hour-glass';
     if (this.isConfirming) return 'warning';
     return this.icon;
+  }),
+
+  iconClass: computed('isLoading', function() {
+    if (this.isLoading) return 'd-inline-block spin';
+    return null;
   }),
 
   click(event) {
