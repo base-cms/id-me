@@ -6,6 +6,7 @@ export default gql`
     body
     approved
     banned
+    flagged
     createdAt
     user {
       id
