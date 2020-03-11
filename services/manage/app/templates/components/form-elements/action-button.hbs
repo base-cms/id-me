@@ -1,14 +1,7 @@
-
 {{#if this.showIcons}}
-  {{#if this.isLoading}}
-    <EntypoIcon @name="hour-glass" />
-  {{else if this.isConfirming}}
-    <EntypoIcon @name="warning" />
-  {{else}}
-    <EntypoIcon @name={{this.icon}} />
-  {{/if}}
+  <EntypoIcon @name={{this.currentIcon}} />
 {{/if}}
 
 {{#if this.showLabel}}
-  <span>{{this.buttonLabel}}</span>
+  <span>{{this.currentLabel}}</span>
 {{/if}}
