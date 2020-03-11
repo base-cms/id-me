@@ -15,10 +15,7 @@
         </h2>
       {{/if}}
       {{#if this.node.flagged}}
-        <h2 class="badge badge-danger">
-          <EntypoIcon @name="flag" />
-          Flagged
-        </h2>
+        <Comment::Flagged @banned={{this.node.user.banned}} />
       {{/if}}
       <Comment::Status
         @approved={{this.node.approved}}
