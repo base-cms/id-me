@@ -248,6 +248,20 @@ module.exports = {
     /**
      *
      */
+    setAppUserBanned: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, value } = input;
+      return applicationService.request('user.updateFieldWithApp', {
+        applicationId,
+        id,
+        path: 'banned',
+        value,
+      });
+    },
+
+    /**
+     *
+     */
     updateAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { id, payload } = input;
