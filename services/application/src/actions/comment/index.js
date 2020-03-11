@@ -3,6 +3,7 @@ const {
   find,
   listForApp,
   matchForApp,
+  updateFieldWithApp,
 } = require('@identity-x/utils').actions;
 const banForUser = require('./ban-for-user');
 const create = require('./create');
@@ -17,4 +18,5 @@ module.exports = {
   findById: ({ id, fields }) => findById(Comment, { id, fields }),
   listForApp: params => listForApp(Comment, params),
   matchForApp: params => matchForApp(Comment, params),
+  updateFieldWithApp: params => updateFieldWithApp(Comment, params),
 };
