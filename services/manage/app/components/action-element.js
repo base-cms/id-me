@@ -16,6 +16,8 @@ export default Component.extend({
   showIcons: true,
   showLabel: true,
 
+  stopPropagation: true,
+
   // private data
   promptConfirm: false,
 
@@ -37,6 +39,7 @@ export default Component.extend({
 
   click(event) {
     event.preventDefault();
+    if (this.stopPropagation) event.stopPropagation();
     if (this.timeout) clearTimeout(this.timeout);
     if (this.mustConfirm) {
       if (!this.promptConfirm) {
