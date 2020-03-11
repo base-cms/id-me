@@ -4,7 +4,7 @@ import { computed } from '@ember/object'
 export default ActionElement.extend({
   tagName: 'button',
   attributeBindings: [
-    'disabled',
+    'isDisabled:disabled',
     'buttonType:type',
     'buttonLabel:title',
   ],
@@ -16,7 +16,6 @@ export default ActionElement.extend({
   size: null,
   buttonClass: null,
 
-  disabled: false,
   buttonType: 'button',
 
   classes: computed('type', 'outline', 'size', 'block', 'buttonClass', function() {

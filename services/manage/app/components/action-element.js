@@ -9,6 +9,7 @@ export default Component.extend({
   loadingLabel: 'Saving...',
 
   isLoading: false,
+  disabled: false,
 
   mustConfirm: false,
   confirmTimeout: 2500,
@@ -20,6 +21,11 @@ export default Component.extend({
 
   // private data
   promptConfirm: false,
+
+  isDisabled: computed('disabled', 'isLoading', function() {
+    if (this.isLoading) return true;
+    return this.disabled;
+  }),
 
   isConfirming: computed('mustConfirm', 'promptConfirm', function() {
     return this.mustConfirm && this.promptConfirm;
