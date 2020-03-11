@@ -272,6 +272,16 @@ body {
   }
 }
 
+.comment-actions {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  margin-left: map-get($spacers, 4);
+  &__group {
+    width: 120px;
+  }
+}
+
 .dropdown-item-with-icon {
   @extend .dropdown-item;
   display: flex;
