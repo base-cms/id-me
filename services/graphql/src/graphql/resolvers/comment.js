@@ -70,5 +70,48 @@ module.exports = {
         displayName,
       });
     },
+
+    /**
+     *
+     */
+    denyComment: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id } = input;
+      return applicationService.request('comment.updateFieldWithApp', {
+        applicationId,
+        id,
+        path: 'approved',
+        value: false,
+      });
+    },
+
+    /**
+     *
+     */
+    approveComment: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id } = input;
+      return applicationService.request('comment.updateFieldWithApp', {
+        applicationId,
+        id,
+        path: 'approved',
+        value: true,
+      });
+    },
+
+    /**
+     *
+     */
+    deleteComment: async (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id } = input;
+      await applicationService.request('comment.updateFieldWithApp', {
+        applicationId,
+        id,
+        path: 'deleted',
+        value: true,
+      });
+      return 'ok';
+    },
   },
 };

@@ -9,6 +9,9 @@ extend type Query {
 
 extend type Mutation {
   createComment(input: CreateCommentMutationInput!): Comment! @requiresAuth(type: AppUser)
+  denyComment(input: DenyCommentMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
+  approveComment(input: ApproveCommentMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
+  deleteComment(input: DeleteCommentMutationInput!): String! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 enum CommentSortField {
@@ -49,6 +52,11 @@ type CommentEdge {
   cursor: String!
 }
 
+input ApproveCommentMutationInput {
+  "The comment ID to approve."
+  id: String!
+}
+
 input CommentsForStreamQueryInput {
   "The external stream identifier to retrieve comments for."
   identifier: String!
@@ -85,6 +93,16 @@ input CreateCommentMutationStreamInput {
   description: String
   "The (optional) URL where this stream appears."
   url: String
+}
+
+input DeleteCommentMutationInput {
+  "The comment ID to delete."
+  id: String!
+}
+
+input DenyCommentMutationInput {
+  "The comment ID to deny."
+  id: String!
 }
 
 `;
