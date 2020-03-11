@@ -23,6 +23,10 @@ const schema = new Schema({
     required: true,
     trim: true,
   },
+  flagged: {
+    type: Boolean,
+    default: false,
+  },
   approved: {
     type: Boolean,
     default: false,

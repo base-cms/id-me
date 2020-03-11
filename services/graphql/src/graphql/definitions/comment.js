@@ -32,6 +32,8 @@ type Comment {
   "Whether this comment has been banned. This is automatically set based on the banned status of the posting user."
   banned: Boolean!
   "Whether this comment has been deleted."
+  flagged: Boolean!
+  "Whether this comment has been flagged by a user."
   deleted: Boolean!
   "The IP address at the time of posting."
   ipAddress: String
