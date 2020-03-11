@@ -45,6 +45,7 @@ module.exports = {
       const { sort, pagination } = input;
       return applicationService.request('comment.listForApp', {
         id,
+        query: { deleted: { $ne: true } },
         sort,
         pagination,
       });
