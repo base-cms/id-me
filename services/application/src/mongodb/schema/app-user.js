@@ -3,6 +3,7 @@ const { normalizeEmail } = require('@identity-x/utils');
 const { emailValidator, applicationPlugin } = require('@identity-x/mongoose-plugins');
 const { localeService } = require('@identity-x/service-clients');
 const { isPostalCode } = require('validator');
+const connection = require('../connection');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');
 const { isBurnerDomain } = require('../../utils/burner-email');
@@ -164,6 +165,13 @@ schema.pre('save', async function setRegionName() {
     this.regionName = name || undefined;
   } else {
     this.regionName = undefined;
+  }
+});
+
+schema.pre('save', async function updateComments() {
+  console.log(this.isModified('banned'));
+  if (this.isModified('banned')) {
+    await connection.model('comment').updateMany({ appUserId: this._id }, { $set: { banned: this.banned } });
   }
 });
 
