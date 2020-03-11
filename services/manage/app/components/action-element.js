@@ -56,13 +56,15 @@ export default Component.extend({
       if (!this.promptConfirm) {
         this.set('promptConfirm', true);
         const timeout = setTimeout(() => {
-          this.set('promptConfirm', false);
-          this.element.blur();
+          if (!this.isDestroyed) {
+            this.set('promptConfirm', false);
+            this.element.blur();
+          }
         }, this.confirmTimeout);
-        this.set('timeout', timeout);
+        if (!this.isDestroyed) this.set('timeout', timeout);
       } else {
         this.onClick(event);
-        this.set('promptConfirm', false);
+        if (!this.isDestroyed) this.set('promptConfirm', false);
       }
     } else {
       this.onClick(event);
