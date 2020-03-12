@@ -1,4 +1,5 @@
 const { applicationService } = require('@identity-x/service-clients');
+const { AuthenticationError } = require('apollo-server-express');
 
 module.exports = {
   /**
@@ -89,7 +90,10 @@ module.exports = {
     /**
      *
      */
-    setCommentFlagged: (_, { input }, { app }) => {
+    setCommentFlagged: (_, { input }, { app, user }) => {
+      if (user.type === 'AppUser' && user.get('banned')) {
+        throw new AuthenticationError('You do not have permission to flag comments.');
+      }
       const applicationId = app.getId();
       const { id, value } = input;
       return applicationService.request('comment.updateFieldWithApp', {
