@@ -3,6 +3,7 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  comment(input: CommentQueryInput!): Comment
   comments(input: CommentsQueryInput = {}): CommentConnection! @requiresAppRole
   commentsForStream(input: CommentsForStreamQueryInput!): CommentConnection! @requiresApp
 }
@@ -22,27 +23,27 @@ enum CommentSortField {
 
 type Comment {
   "The internal comment ID."
-  id: String!
+  id: String! @projection(localField: "_id")
   "The stream that this comment belongs to."
-  stream: CommentStream!
+  stream: CommentStream! @projection(localField: "streamId")
   "The application user that posted the comment."
-  user: AppUser!
+  user: AppUser! @projection(localField: "appUserId")
   "The comment body/post."
-  body: String!
+  body: String! @projection
   "Whether the comment has been approved (or is awaiting moderation)."
-  approved: Boolean!
+  approved: Boolean! @projection
   "Whether this comment has been banned. This is automatically set based on the banned status of the posting user."
-  banned: Boolean!
+  banned: Boolean! @projection
   "Whether this comment has been deleted."
-  flagged: Boolean!
+  flagged: Boolean! @projection
   "Whether this comment has been flagged by a user."
-  deleted: Boolean!
+  deleted: Boolean! @projection
   "The IP address at the time of posting."
-  ipAddress: String
+  ipAddress: String @projection
   "The date the comment was created."
-  createdAt: Date!
+  createdAt: Date! @projection
   "The date the comment was updated."
-  updatedAt: Date!
+  updatedAt: Date! @projection
 }
 
 type CommentConnection @projectUsing(type: "Comment") {
@@ -66,6 +67,10 @@ input CommentsForStreamQueryInput {
 input CommentSortInput {
   field: CommentSortField = id
   order: SortOrder = desc
+}
+
+input CommentQueryInput {
+  id: String!
 }
 
 input CommentsQueryInput {

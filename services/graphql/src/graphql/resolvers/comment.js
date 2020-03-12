@@ -1,5 +1,6 @@
 const { applicationService } = require('@identity-x/service-clients');
 const { AuthenticationError } = require('apollo-server-express');
+const typeProjection = require('../utils/type-projection');
 
 module.exports = {
   /**
@@ -22,6 +23,15 @@ module.exports = {
    *
    */
   Query: {
+    /**
+     *
+     */
+    comment: (_, { input }, ctx, info) => {
+      const { id } = input;
+      const fields = typeProjection(info);
+      return applicationService.request('comment.findById', { id, fields });
+    },
+
     /**
      *
      */
