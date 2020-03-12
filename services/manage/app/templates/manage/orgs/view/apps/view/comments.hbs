@@ -1,10 +1,60 @@
-<h1 class="mb-4">
-  <Comment::Icon /> Comments
-  <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
-</h1>
+<div class="comment-index">
+  <div class="comment-index__sidebar">
+    <div class="comment-filters">
+      <h1 class="mb-4">
+        <Comment::Icon /> Comments
+        <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
+      </h1>
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          <strong><EntypoIcon @name="layers" /> Filters</strong>
+          <button class="btn btn-sm btn-dark"><EntypoIcon @name="cross" /></button>
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>Status</label>
+            {{#power-select-multiple
+              placeholder="Select..."
+              onchange=(action (mut foo))
+              as |domain|
+            }}
+              {{domain}}
+            {{/power-select-multiple}}
+          </div>
 
-<div class="row">
-  <div class="col-xl-8">
+          <div class="form-group">
+            <label>Stream</label>
+            {{#power-select-multiple
+              placeholder="Select..."
+              onchange=(action (mut foo))
+              as |domain|
+            }}
+              {{domain}}
+            {{/power-select-multiple}}
+          </div>
+
+          <div class="form-group">
+            <label>User</label>
+            {{#power-select-multiple
+              placeholder="Select..."
+              onchange=(action (mut foo))
+              as |domain|
+            }}
+              {{domain}}
+            {{/power-select-multiple}}
+          </div>
+
+          <div class="form-group mb-0">
+            <label>Dates</label>
+          </div>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-dark"><EntypoIcon @name="check" /> Apply</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comment-index__main">
     <FetchMore
       @query={{this.observable}}
       @edges={{this.model.edges}}
