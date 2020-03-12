@@ -16,6 +16,6 @@ export default Route.extend(AppQueryMixin, {
   model({ email }) {
     const input = { email };
     const variables = { input };
-    return this.query({ query, variables, fetchPolicy: 'cache-and-network' }, 'appUser');
+    return this.query({ query, variables, fetchPolicy: 'network-only' }, 'appUser');
   },
 });

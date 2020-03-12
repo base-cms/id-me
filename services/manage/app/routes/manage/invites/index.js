@@ -23,6 +23,6 @@ const query = gql`
 
 export default Route.extend(RouteQueryManager, {
   model() {
-    return this.apollo.watchQuery({ query, fetchPolicy: 'cache-and-network' }, 'userInvitations');
+    return this.apollo.watchQuery({ query, fetchPolicy: 'network-only' }, 'userInvitations');
   },
 });

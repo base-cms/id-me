@@ -19,6 +19,6 @@ export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
   },
 
   model() {
-    return this.apollo.watchQuery({ query, fetchPolicy: 'cache-and-network' }, 'activeUser');
+    return this.apollo.watchQuery({ query, fetchPolicy: 'network-only' }, 'activeUser');
   },
 });

@@ -16,6 +16,6 @@ export default Route.extend(AppQueryMixin, {
   model({ team_id: id }) {
     const input = { id };
     const variables = { input };
-    return this.query({ query, variables, fetchPolicy: 'cache-and-network' }, 'team');
+    return this.query({ query, variables, fetchPolicy: 'network-only' }, 'team');
   },
 });

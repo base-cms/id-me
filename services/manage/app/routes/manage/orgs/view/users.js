@@ -36,6 +36,6 @@ const query = gql`
 
 export default Route.extend(OrgQueryMixin, {
   model() {
-    return this.query({ query, fetchPolicy: 'cache-and-network' });
+    return this.query({ query, fetchPolicy: 'network-only' });
   },
 });

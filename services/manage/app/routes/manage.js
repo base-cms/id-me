@@ -18,7 +18,7 @@ export default Route.extend(AuthenticatedRouteMixin, RouteQueryManager, {
   contextService: inject('context'),
 
   model() {
-    return this.apollo.watchQuery({ query, fetchPolicy: 'cache-and-network' }, 'activeUser');
+    return this.apollo.watchQuery({ query, fetchPolicy: 'network-only' }, 'activeUser');
   },
 
   afterModel(user) {

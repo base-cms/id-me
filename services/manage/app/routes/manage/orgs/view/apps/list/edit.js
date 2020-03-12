@@ -16,6 +16,6 @@ const query = gql`
 export default Route.extend(RouteQueryManager, {
   model({ app_id: id }) {
     const variables = { input: { id } };
-    return this.apollo.watchQuery({ query, variables, fetchPolicy: 'cache-and-network' }, 'application');
+    return this.apollo.watchQuery({ query, variables, fetchPolicy: 'network-only' }, 'application');
   },
 });
