@@ -16,11 +16,11 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
-  urls: {
-    type: [String],
+  url: {
+    type: String,
     validate: {
-      validator(urls) {
-        return urls.every(url => isURL(url, { require_protocol: true, required_host: true }));
+      validator(url) {
+        return isURL(url, { require_protocol: true, required_host: true });
       },
       message: props => `The URL "${props.value}" is invalid.`,
     },

@@ -26,15 +26,14 @@ module.exports = async ({ applicationId, payload } = {}) => {
       title,
       description,
       identifier,
-      ...(url && { urls: [url] }),
+      url,
     });
 
     await stream.validate();
     const criteria = { applicationId, identifier };
     await CommentStream.updateOne(criteria, {
       $setOnInsert: criteria,
-      $set: { title, description },
-      ...(url && { $addToSet: { urls: url } }),
+      $set: { title, description, url },
     }, { upsert: true });
     return findByIdentifier({ applicationId, identifier });
   } catch (e) {
