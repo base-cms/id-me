@@ -19,12 +19,12 @@ extend type Mutation {
 }
 
 type Organization {
-  id: String!
-  name: String!
-  description: String
-  photoURL: String
-  consentPolicy: String
-  applications: [Application!]!
+  id: String! @projection(localField: "_id")
+  name: String! @projection
+  description: String @projection
+  photoURL: String @projection
+  consentPolicy: String @projection
+  applications: [Application!]! @projection(localField: "_id")
 }
 
 type OrganizationMembership {

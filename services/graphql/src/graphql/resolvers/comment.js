@@ -1,5 +1,6 @@
 const { applicationService } = require('@identity-x/service-clients');
 const { AuthenticationError } = require('apollo-server-express');
+const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
 
 module.exports = {
@@ -11,12 +12,18 @@ module.exports = {
     /**
      *
      */
-    stream: comment => applicationService.request('comment-stream.findById', { id: comment.streamId }),
+    stream: (comment, _, __, info) => {
+      const fields = typeProjection(info);
+      return applicationService.request('comment-stream.findById', { id: comment.streamId, fields });
+    },
 
     /**
      *
      */
-    user: comment => applicationService.request('user.findById', { id: comment.appUserId }),
+    user: (comment, _, __, info) => {
+      const fields = typeProjection(info);
+      return applicationService.request('user.findById', { id: comment.appUserId, fields });
+    },
   },
 
   /**
@@ -35,30 +42,34 @@ module.exports = {
     /**
      *
      */
-    commentsForStream: (_, { input }, { app, user }) => {
+    commentsForStream: (_, { input }, { app, user }, info) => {
       const { identifier, sort, pagination } = input;
       const applicationId = app.getId();
       const activeUserId = user.hasValidUser('AppUser') ? user.getId() : undefined;
+      const fields = connectionProjection(info);
       return applicationService.request('comment.listForStream', {
         applicationId,
         identifier,
         activeUserId,
         sort,
         pagination,
+        fields,
       });
     },
 
     /**
      *
      */
-    comments: (_, { input }, { app }) => {
+    comments: (_, { input }, { app }, info) => {
       const id = app.getId();
       const { sort, pagination } = input;
+      const fields = connectionProjection(info);
       return applicationService.request('comment.listForApp', {
         id,
         query: { deleted: { $ne: true } },
         sort,
         pagination,
+        fields,
       });
     },
   },

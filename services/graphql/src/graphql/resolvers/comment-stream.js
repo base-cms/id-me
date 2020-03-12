@@ -1,6 +1,5 @@
 const { applicationService } = require('@identity-x/service-clients');
-
-const { isArray } = Array;
+const typeProjection = require('../utils/type-projection');
 
 module.exports = {
   /**
@@ -11,11 +10,9 @@ module.exports = {
     /**
      *
      */
-    application: stream => applicationService.request('findById', { id: stream.applicationId }),
-
-    /**
-     *
-     */
-    urls: stream => (isArray(stream.urls) ? stream.urls : []),
+    application: (stream, _, __, info) => {
+      const fields = typeProjection(info);
+      return applicationService.request('findById', { id: stream.applicationId, fields });
+    },
   },
 };
