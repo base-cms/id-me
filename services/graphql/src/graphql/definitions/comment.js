@@ -12,7 +12,7 @@ extend type Mutation {
   deleteComment(input: DeleteCommentMutationInput!): String! @requiresAppRole(roles: [Owner, Administrator, Member])
 
   setCommentApproved(input: SetCommentApprovedMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
-  setCommentFlagged(input: SetCommentFlaggedMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
+  setCommentFlagged(input: SetCommentFlaggedMutationInput!): Comment! @requiresAuth(type: AnyUser)
 }
 
 enum CommentSortField {

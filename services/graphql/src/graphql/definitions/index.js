@@ -32,6 +32,7 @@ enum OrganizationRole {
 enum AuthorizationType {
   OrgUser
   AppUser
+  AnyUser
 }
 
 enum MatchPosition {
