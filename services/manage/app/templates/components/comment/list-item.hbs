@@ -43,7 +43,7 @@
     </div>
 
     <div class="btn-group-vertical comment-actions__group">
-      <a class="btn btn-secondary" href="#"><EntypoIcon @name="edit" /> Edit</a>
+      {{#link-to "manage.orgs.view.apps.view.comments.edit" this.node.id class="btn btn-secondary"}}<EntypoIcon @name="edit" /> Edit{{/link-to}}
       <Comment::FlagButton
         @flagged={{this.node.flagged}}
         @banned={{this.node.user.banned}}
