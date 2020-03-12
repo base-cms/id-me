@@ -2,6 +2,10 @@ const gql = require('graphql-tag');
 
 module.exports = gql`
 
+extend type Query {
+  commentStream(input: CommentStreamQueryInput!): CommentStream
+}
+
 type CommentStream {
   "The internal comment stream ID."
   id: String! @projection(localField: "_id")
@@ -17,6 +21,11 @@ type CommentStream {
   url: String @projection
   "Whether the stream is currently archived. Archived streams will still display comments, but will prevent new comments from being submitted."
   archived: Boolean! @projection
+}
+
+input CommentStreamQueryInput {
+  "The comment stream ID to retrieve."
+  id: String!
 }
 
 `;

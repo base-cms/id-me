@@ -15,4 +15,18 @@ module.exports = {
       return applicationService.request('findById', { id: stream.applicationId, fields });
     },
   },
+
+  /**
+   *
+   */
+  Query: {
+    /**
+     *
+     */
+    commentStream: (_, { input }, ctx, info) => {
+      const { id } = input;
+      const fields = typeProjection(info);
+      return applicationService.request('comment.findById', { id, fields });
+    },
+  },
 };
