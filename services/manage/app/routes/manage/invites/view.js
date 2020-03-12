@@ -26,6 +26,6 @@ export default Route.extend(RouteQueryManager, {
   model({ org_id: organizationId }) {
     const input = { organizationId };
     const variables = { input };
-    return this.apollo.watchQuery({ query, variables }, 'viewInvitation');
+    return this.apollo.watchQuery({ query, variables, fetchPolicy: 'cache-and-network' }, 'viewInvitation');
   },
 });

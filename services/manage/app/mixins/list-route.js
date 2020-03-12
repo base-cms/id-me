@@ -60,7 +60,7 @@ export default Mixin.create(RouteSearchMixin, {
     const variables = this.buildQueryVariables(query.input, params);
     this.getController().set('resultKey', query.key);
     try {
-      const response = await apollo({ query: query.op, variables, fetchPolicy: 'network-only' }, query.key);
+      const response = await apollo({ query: query.op, variables, fetchPolicy: 'cache-and-network' }, query.key);
       this.getController().set('observable', this.getObservable(response));
       return response;
     } catch (e) {

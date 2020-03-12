@@ -15,6 +15,6 @@ export default Route.extend(AppQueryMixin, {
   model({ comment_id: id }) {
     const input = { id };
     const variables = { input };
-    return this.query({ query, variables }, 'comment');
+    return this.query({ query, variables, fetchPolicy: 'cache-and-network' }, 'comment');
   },
 });

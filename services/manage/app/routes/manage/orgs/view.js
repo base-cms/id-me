@@ -28,7 +28,7 @@ export default Route.extend(RouteQueryManager, {
 
   async model({ org_id: id }) {
     const context = { orgId: id };
-    const data = await this.apollo.watchQuery({ query, context });
+    const data = await this.apollo.watchQuery({ query, context, fetchPolicy: 'cache-and-network' });
     this.contextService.set('orgAppQuery', data);
     return data.activeOrganization;
   },

@@ -29,7 +29,7 @@ export default Route.extend(AppQueryMixin, RouteObservableMixin, {
   async model() {
     this.getController().set('resultKey', 'comments');
     try {
-      const response = await this.query({ query: comments, fetchPolicy: 'network-only' }, 'comments');
+      const response = await this.query({ query: comments, fetchPolicy: 'cache-and-network' }, 'comments');
       this.getController().set('observable', this.getObservable(response));
       return response;
     } catch (e) {

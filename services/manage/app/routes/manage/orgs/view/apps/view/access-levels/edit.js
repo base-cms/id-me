@@ -20,6 +20,6 @@ export default Route.extend(AppQueryMixin, {
   model({ access_level_id: id }) {
     const input = { id };
     const variables = { input };
-    return this.query({ query, variables }, 'accessLevel');
+    return this.query({ query, variables, fetchPolicy: 'cache-and-network' }, 'accessLevel');
   },
 });
