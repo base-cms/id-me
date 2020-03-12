@@ -3,6 +3,9 @@
     <h3 class="card-title">
       <EntypoIcon @name="list" />
       {{this.node.stream.title}}
+      {{#if this.node.stream.url}}
+        <span>[<a href="{{this.node.stream.url}}" target="_blank" rel="noopener">view</a>]</span>
+      {{/if}}
     </h3>
 
     <p class="card-text">{{this.node.body}}</p>
