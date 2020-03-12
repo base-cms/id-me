@@ -12,6 +12,7 @@ extend type Mutation {
   deleteComment(input: DeleteCommentMutationInput!): String! @requiresAppRole(roles: [Owner, Administrator, Member])
 
   setCommentApproved(input: SetCommentApprovedMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
+  setCommentBody(input: SetCommentBodyMutationInput!): Comment! @requiresAppRole(roles: [Owner, Administrator, Member])
   setCommentFlagged(input: SetCommentFlaggedMutationInput!): Comment! @requiresAuth(type: AnyUser)
 }
 
@@ -102,6 +103,13 @@ input SetCommentApprovedMutationInput {
   id: String!
   "Whether the comment is approved or rejected."
   value: Boolean!
+}
+
+input SetCommentBodyMutationInput {
+  "The comment ID to update."
+  id: String!
+  "The new comment body."
+  value: String!
 }
 
 input SetCommentFlaggedMutationInput {

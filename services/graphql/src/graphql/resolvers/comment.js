@@ -90,6 +90,20 @@ module.exports = {
     /**
      *
      */
+    setCommentBody: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, value } = input;
+      return applicationService.request('comment.updateFieldWithApp', {
+        applicationId,
+        id,
+        path: 'body',
+        value,
+      });
+    },
+
+    /**
+     *
+     */
     setCommentFlagged: (_, { input }, { app, user }) => {
       if (user.type === 'AppUser' && user.get('banned')) {
         throw new AuthenticationError('You do not have permission to flag comments.');
