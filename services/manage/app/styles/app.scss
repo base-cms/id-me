@@ -291,6 +291,14 @@ body {
   }
 }
 
+.list-group {
+  &--comments {
+    > .list-group-item {
+      border-width: 2px;
+    }
+  }
+}
+
 .comment-index {
   @include make-row();
 
