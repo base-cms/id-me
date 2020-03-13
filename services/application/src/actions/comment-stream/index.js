@@ -3,6 +3,7 @@ const {
   find,
   listForApp,
   matchForApp,
+  updateFieldWithApp,
 } = require('@identity-x/utils').actions;
 const create = require('./create');
 const findByIdentifier = require('./find-by-identifier');
@@ -15,4 +16,5 @@ module.exports = {
   findById: ({ id, fields }) => findById(CommentStream, { id, fields }),
   listForApp: params => listForApp(CommentStream, params),
   matchForApp: params => matchForApp(CommentStream, params),
+  updateFieldWithApp: params => updateFieldWithApp(CommentStream, params),
 };
