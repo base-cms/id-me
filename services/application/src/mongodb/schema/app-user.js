@@ -169,7 +169,6 @@ schema.pre('save', async function setRegionName() {
 });
 
 schema.pre('save', async function updateComments() {
-  console.log(this.isModified('banned'));
   if (this.isModified('banned')) {
     await connection.model('comment').updateMany({ appUserId: this._id }, { $set: { banned: this.banned } });
   }
