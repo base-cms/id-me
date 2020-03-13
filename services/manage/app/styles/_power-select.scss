@@ -275,7 +275,6 @@ $ember-power-select-multiple-option-padding: $power-select-half-padding-y $custo
 .ember-power-select-option {
   // Mimics Bootstrap's "dropdown-item" component.
   display: block;
-  white-space: nowrap;
   padding: $dropdown-item-padding-y $dropdown-item-padding-x;
   color: $dropdown-link-color;
 
