@@ -57,4 +57,23 @@ module.exports = {
       });
     },
   },
+
+  /**
+   *
+   */
+  Mutation: {
+    /**
+     *
+     */
+    setCommentStreamArchived: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, value } = input;
+      return applicationService.request('comment-stream.updateFieldWithApp', {
+        applicationId,
+        id,
+        path: 'archived',
+        value,
+      });
+    },
+  },
 };

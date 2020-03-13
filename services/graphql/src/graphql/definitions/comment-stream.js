@@ -7,6 +7,10 @@ extend type Query {
   matchCommentStreams(input: MatchCommentStreamsQueryInput!): CommentStreamConnection! @requiresAppRole
 }
 
+extend type Mutation {
+  setCommentStreamArchived(input: SetCommentStreamArchivedMutationInput!): CommentStream! @requiresAppRole(roles: [Owner, Administrator, Member])
+}
+
 enum CommentStreamSortField {
   id
 }
@@ -60,6 +64,13 @@ input MatchCommentStreamsQueryInput {
   phrase: String!
   position: MatchPosition = contains
   excludeIds: [String!] = []
+}
+
+input SetCommentStreamArchivedMutationInput {
+  "The comment stream ID to archived/unarchive."
+  id: String!
+  "Whether to archive the stream."
+  value: Boolean!
 }
 
 `;
