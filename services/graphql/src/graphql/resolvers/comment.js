@@ -65,6 +65,7 @@ module.exports = {
       const {
         statuses,
         userIds,
+        streamIds,
         sort,
         pagination,
       } = input;
@@ -85,6 +86,7 @@ module.exports = {
       }
 
       if (userIds.length) $and.push({ appUserId: { $in: userIds } });
+      if (streamIds.length) $and.push({ streamId: { $in: streamIds } });
 
       if ($and.length) query.$and = $and;
       return applicationService.request('comment.listForApp', {

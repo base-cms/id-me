@@ -83,6 +83,7 @@ input CommentQueryInput {
 input CommentsQueryInput {
   statuses: [CommentStatus!] = []
   userIds: [String!] = []
+  streamIds: [String!] = []
   sort: CommentSortInput = {}
   pagination: PaginationInput = {}
 }
