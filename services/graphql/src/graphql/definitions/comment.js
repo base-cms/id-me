@@ -21,6 +21,13 @@ enum CommentSortField {
   id
 }
 
+enum CommentStatus {
+  Approved
+  Rejected
+  Flagged
+  Banned
+}
+
 type Comment {
   "The internal comment ID."
   id: String! @projection(localField: "_id")
@@ -74,6 +81,8 @@ input CommentQueryInput {
 }
 
 input CommentsQueryInput {
+  statuses: [CommentStatus!] = []
+  userIds: [String!] = []
   sort: CommentSortInput = {}
   pagination: PaginationInput = {}
 }

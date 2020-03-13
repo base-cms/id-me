@@ -62,11 +62,34 @@ module.exports = {
      */
     comments: (_, { input }, { app }, info) => {
       const id = app.getId();
-      const { sort, pagination } = input;
+      const {
+        statuses,
+        userIds,
+        sort,
+        pagination,
+      } = input;
       const fields = connectionProjection(info);
+
+      const query = { deleted: { $ne: true } };
+
+      const $and = [];
+      if (statuses.length) {
+        const statusMap = {
+          Approved: { approved: true },
+          Rejected: { approved: false },
+          Banned: { banned: true },
+          Flagged: { flagged: true },
+        };
+        const statusOr = statuses.map(status => statusMap[status]);
+        $and.push({ $or: statusOr });
+      }
+
+      if (userIds.length) $and.push({ appUserId: { $in: userIds } });
+
+      if ($and.length) query.$and = $and;
       return applicationService.request('comment.listForApp', {
         id,
-        query: { deleted: { $ne: true } },
+        query,
         sort,
         pagination,
         fields,
