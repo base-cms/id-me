@@ -12,6 +12,7 @@ module.exports = function paginablePlugin(schema, {
     sort,
     projection,
     excludeProjection,
+    additionalData,
   }) {
     return find(this, {
       query,
@@ -21,6 +22,7 @@ module.exports = function paginablePlugin(schema, {
       collate: collateWhen.includes(sort.field),
       projection,
       excludeProjection,
+      additionalData,
     });
   });
 
