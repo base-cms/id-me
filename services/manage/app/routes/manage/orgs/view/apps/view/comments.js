@@ -26,11 +26,24 @@ const comments = gql`
 export default Route.extend(AppQueryMixin, RouteObservableMixin, {
   errorNotifier: inject(),
 
-  async model() {
+  queryParams: {
+    statuses: {
+      refreshModel: true,
+    },
+    users: {
+      refreshModel: true,
+    },
+  },
+
+  async model({ statuses, users } = {}) {
     this.getController().set('resultKey', 'comments');
     try {
-      const response = await this.query({ query: comments, fetchPolicy: 'network-only' }, 'comments');
+      const userIds = users.map(user => user.id);
+      const input = { statuses, userIds };
+      const variables = { input };
+      const response = await this.query({ query: comments, variables, fetchPolicy: 'network-only' }, 'comments');
       this.getController().set('observable', this.getObservable(response));
+      window.scrollTo(0, 0);
       return response;
     } catch (e) {
       this.errorNotifier.show(e);

@@ -6,26 +6,16 @@
         <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
       </h1>
       <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <div class="card-header d-flex justify-content-between">
           <strong><EntypoIcon @name="layers" /> Filters</strong>
-          <button class="btn btn-sm btn-dark"><EntypoIcon @name="cross" /></button>
+          <button class="btn btn-sm btn-dark" disabled={{filtersNotSelected}} {{action "clearFilters"}}><EntypoIcon @name="cross" /> Clear</button>
         </div>
         <div class="card-body">
-          <div class="form-group">
-            <label>Status</label>
-            {{#power-select-multiple
-              placeholder="Select..."
-              onchange=(action (mut foo))
-              as |domain|
-            }}
-              {{domain}}
-            {{/power-select-multiple}}
-          </div>
+          <Comment::Fields::Statuses @selected={{statuses}} @onChange={{action "setStatuses"}} />
 
           <div class="form-group">
             <label>Stream</label>
             {{#power-select-multiple
-              placeholder="Select..."
               onchange=(action (mut foo))
               as |domain|
             }}
@@ -33,23 +23,11 @@
             {{/power-select-multiple}}
           </div>
 
-          <div class="form-group">
-            <label>User</label>
-            {{#power-select-multiple
-              placeholder="Select..."
-              onchange=(action (mut foo))
-              as |domain|
-            }}
-              {{domain}}
-            {{/power-select-multiple}}
-          </div>
+          <Comment::Fields::Users @value={{users}} @on-change={{action "setUsers"}} />
 
           <div class="form-group mb-0">
             <label>Dates</label>
           </div>
-        </div>
-        <div class="card-footer">
-          <button class="btn btn-dark"><EntypoIcon @name="check" /> Apply</button>
         </div>
       </div>
     </div>
@@ -65,7 +43,7 @@
     >
       {{#if fetch.nodes.length}}
         <div class="card">
-          <div class="list-group list-group-flush">
+          <div class="list-group list-group-flush list-group--comments">
             {{#each fetch.nodes as |node|}}
               <Comment::ListItem @node={{node}} />
             {{/each}}
