@@ -276,10 +276,10 @@ body {
 .comment-actions {
   display: flex;
   flex-direction: column;
-  width: 120px;
+  width: 135px;
   margin-left: map-get($spacers, 4);
   &__group {
-    width: 120px;
+    width: 135px;
   }
 }
 
