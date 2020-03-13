@@ -6329,6 +6329,15 @@ ember-moment@^7.8.1:
     ember-getowner-polyfill "^2.2.0"
     ember-macro-helpers "^2.1.0"
 
+ember-power-calendar-moment@^0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/ember-power-calendar-moment/-/ember-power-calendar-moment-0.1.7.tgz#2e79125f449bdcc94e62afff4e5411012792ed43"
+  integrity sha512-tkxGrSfJJq3MkgDQXfKr3o2vJp8kTokcyZnSxwGC1KByMv/TgtDp4+74cTzaK/Di0qnj5AYeeElwEEcGIn4F3A==
+  dependencies:
+    broccoli-funnel "^2.0.2"
+    ember-cli-babel "^7.7.3"
+    ember-cli-moment-shim "^3.7.1"
+
 ember-power-calendar@^0.13.3:
   version "0.13.3"
   resolved "https://registry.yarnpkg.com/ember-power-calendar/-/ember-power-calendar-0.13.3.tgz#daff0f668ffbe65fd59c479aa5569e58c59daafd"
