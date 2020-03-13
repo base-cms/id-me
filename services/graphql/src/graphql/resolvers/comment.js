@@ -66,6 +66,8 @@ module.exports = {
         statuses,
         userIds,
         streamIds,
+        starting,
+        ending,
         sort,
         pagination,
       } = input;
@@ -87,6 +89,15 @@ module.exports = {
 
       if (userIds.length) $and.push({ appUserId: { $in: userIds } });
       if (streamIds.length) $and.push({ streamId: { $in: streamIds } });
+      console.log({ starting, ending });
+      if (starting || ending) {
+        $and.push({
+          createdAt: {
+            ...(starting && { $gte: starting }),
+            ...(ending && { $lte: ending }),
+          },
+        });
+      }
 
       if ($and.length) query.$and = $and;
       return applicationService.request('comment.listForApp', {

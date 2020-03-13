@@ -86,6 +86,8 @@ input CommentsQueryInput {
   streamIds: [String!] = []
   sort: CommentSortInput = {}
   pagination: PaginationInput = {}
+  starting: Date
+  ending: Date
 }
 
 input CreateCommentMutationInput {
