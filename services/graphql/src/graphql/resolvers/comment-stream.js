@@ -45,7 +45,7 @@ module.exports = {
         excludeIds,
       } = input;
 
-      return applicationService.request('comment.matchForApp', {
+      return applicationService.request('comment-stream.matchForApp', {
         applicationId,
         field,
         phrase,
