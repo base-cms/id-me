@@ -12,19 +12,8 @@
         </div>
         <div class="card-body">
           <Comment::Fields::Statuses @selected={{statuses}} @onChange={{action "setStatuses"}} />
-
-          <div class="form-group">
-            <label>Stream</label>
-            {{#power-select-multiple
-              onchange=(action (mut foo))
-              as |domain|
-            }}
-              {{domain}}
-            {{/power-select-multiple}}
-          </div>
-
+          <Comment::Fields::Streams @value={{streams}} @on-change={{action "setStreams"}} />
           <Comment::Fields::Users @value={{users}} @on-change={{action "setUsers"}} />
-
           <div class="form-group mb-0">
             <label>Dates</label>
           </div>

@@ -4,14 +4,15 @@ import { computed } from '@ember/object';
 export default Controller.extend({
 
 
-  hasFilters: computed.or('statuses.length', 'users.length'),
+  hasFilters: computed.or('statuses.length', 'users.length', 'streams.length'),
   filtersNotSelected: computed.not('hasFilters'),
 
   init() {
     this._super(...arguments);
-    this.set('queryParams', ['statuses', 'users']);
+    this.set('queryParams', ['statuses', 'users', 'streams']);
     this.set('statuses', []);
     this.set('users', []);
+    this.set('streams', []);
   },
 
   actions: {
@@ -21,9 +22,13 @@ export default Controller.extend({
     setUsers(users) {
       this.set('users', users);
     },
+    setStreams(streams) {
+      this.set('streams', streams);
+    },
     clearFilters() {
       this.set('statuses', []);
       this.set('users', []);
+      this.set('streams', []);
     },
   },
 });

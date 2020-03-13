@@ -33,13 +33,17 @@ export default Route.extend(AppQueryMixin, RouteObservableMixin, {
     users: {
       refreshModel: true,
     },
+    streams: {
+      refreshModel: true,
+    },
   },
 
-  async model({ statuses, users } = {}) {
+  async model({ statuses, users, streams } = {}) {
     this.getController().set('resultKey', 'comments');
     try {
       const userIds = users.map(user => user.id);
-      const input = { statuses, userIds };
+      const streamIds = streams.map(stream => stream.id);
+      const input = { statuses, userIds, streamIds };
       const variables = { input };
       const response = await this.query({ query: comments, variables, fetchPolicy: 'network-only' }, 'comments');
       this.getController().set('observable', this.getObservable(response));

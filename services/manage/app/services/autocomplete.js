@@ -48,9 +48,7 @@ const matchCommentStreams = gql`
       edges {
         node {
           id
-          identifier
           fullTitle
-          title
         }
       }
     }

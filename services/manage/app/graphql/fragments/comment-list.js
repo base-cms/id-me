@@ -18,7 +18,7 @@ export default gql`
     }
     stream {
       id
-      title
+      fullTitle
       archived
       url
     }
