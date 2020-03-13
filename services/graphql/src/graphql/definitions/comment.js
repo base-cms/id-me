@@ -55,6 +55,7 @@ type Comment {
 
 type CommentConnection @projectUsing(type: "Comment") {
   totalCount: Int!
+  stream: CommentStream
   edges: [CommentEdge]!
   pageInfo: PageInfo!
 }

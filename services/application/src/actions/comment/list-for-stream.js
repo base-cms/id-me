@@ -44,6 +44,7 @@ module.exports = async ({
     query,
     sort: sort || { field: '_id', order: 'desc' },
     projection: fields,
+    additionalData: { streamId: stream._id },
     ...pagination,
   });
 };

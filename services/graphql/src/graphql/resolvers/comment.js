@@ -29,6 +29,20 @@ module.exports = {
   /**
    *
    */
+  CommentConnection: {
+    /**
+     *
+     */
+    stream: ({ streamId }, _, __, info) => {
+      if (!streamId) return null;
+      const fields = typeProjection(info);
+      return applicationService.request('comment-stream.findById', { id: streamId, fields });
+    },
+  },
+
+  /**
+   *
+   */
   Query: {
     /**
      *
