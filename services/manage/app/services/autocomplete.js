@@ -42,6 +42,21 @@ const matchAppUsers = gql`
   }
 `;
 
+const matchCommentStreams = gql`
+  query AutocompleteCommentStreams($input: MatchCommentStreamsQueryInput!) {
+    matchCommentStreams(input: $input) {
+      edges {
+        node {
+          id
+          identifier
+          fullTitle
+          title
+        }
+      }
+    }
+  }
+`;
+
 export default Service.extend(ObjectQueryManager, {
   errorNotifier: inject(),
   contextService: inject('context'),
@@ -59,6 +74,8 @@ export default Service.extend(ObjectQueryManager, {
         return { field: 'name', query: matchTeams, resultKey: 'matchTeams', scope: 'app' };
       case 'AppUser':
         return { field: 'email', query: matchAppUsers, resultKey: 'matchAppUsers', scope: 'app' };
+      case 'CommentStream':
+        return { field: 'fullTitle', query: matchCommentStreams, resultKey: 'matchCommentStreams', scope: 'app' };
       default:
         throw new Error(`The autocomplete type '${type}' is not registered.`);
     }
