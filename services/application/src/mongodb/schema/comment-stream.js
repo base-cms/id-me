@@ -12,6 +12,10 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
+  fullTitle: {
+    type: String,
+    trim: true,
+  },
   description: {
     type: String,
     trim: true,
@@ -32,6 +36,15 @@ const schema = new Schema({
 }, { timestamps: true });
 
 schema.plugin(applicationPlugin, { collateWhen: ['title', 'identifier'] });
+
+schema.pre('save', async function setFullTitle() {
+  const { title, identifier } = this;
+  if (!title) {
+    this.fullTitle = identifier;
+  } else {
+    this.fullTitle = `${title} (${identifier})`;
+  }
+});
 
 schema.index({ applicationId: 1, identifier: 1 }, { unique: true });
 schema.index({ title: 1, _id: 1 }, { collation: { locale: 'en_US' } });

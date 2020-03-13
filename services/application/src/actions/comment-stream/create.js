@@ -29,11 +29,18 @@ module.exports = async ({ applicationId, payload } = {}) => {
       url,
     });
 
+    const fullTitle = title ? `${title} (${identifier})` : identifier;
+
     await stream.validate();
     const criteria = { applicationId, identifier };
     await CommentStream.updateOne(criteria, {
       $setOnInsert: criteria,
-      $set: { title, description, url },
+      $set: {
+        title,
+        description,
+        url,
+        fullTitle,
+      },
     }, { upsert: true });
     return findByIdentifier({ applicationId, identifier });
   } catch (e) {
