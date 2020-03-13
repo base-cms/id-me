@@ -319,11 +319,6 @@ body {
     }
 
     @include media-breakpoint-down(md) {
-      flex: 0 0 300px;
-      max-width: 300px;
-    }
-
-    @include media-breakpoint-down(sm) {
       flex: 0 0 100%;
       max-width: 100%;
       height: auto;
