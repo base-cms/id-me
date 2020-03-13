@@ -4,6 +4,11 @@ module.exports = gql`
 
 extend type Query {
   commentStream(input: CommentStreamQueryInput!): CommentStream
+  matchCommentStreams(input: MatchCommentStreamsQueryInput!): CommentStreamConnection! @requiresAppRole
+}
+
+enum CommentStreamSortField {
+  id
 }
 
 type CommentStream {
@@ -25,9 +30,36 @@ type CommentStream {
   archived: Boolean! @projection
 }
 
+type CommentStreamConnection @projectUsing(type: "CommentStream") {
+  totalCount: Int!
+  edges: [CommentStreamEdge]!
+  pageInfo: PageInfo!
+}
+
+type CommentStreamEdge {
+  node: CommentStream!
+  cursor: String!
+}
+
 input CommentStreamQueryInput {
   "The comment stream ID to retrieve."
   id: String!
+}
+
+input CommentStreamSortInput {
+  field: CommentStreamSortField = id
+  order: SortOrder = desc
+}
+
+input MatchCommentStreamsQueryInput {
+  sort: CommentStreamSortInput = {}
+  pagination: PaginationInput = {}
+  "The field to search against."
+  field: String!
+  "The phrease to search for."
+  phrase: String!
+  position: MatchPosition = contains
+  excludeIds: [String!] = []
 }
 
 `;
