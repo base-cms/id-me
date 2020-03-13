@@ -8,15 +8,17 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between">
           <strong><EntypoIcon @name="layers" /> Filters</strong>
-          <button class="btn btn-sm btn-dark" disabled={{filtersNotSelected}} {{action "clearFilters"}}><EntypoIcon @name="cross" /> Clear</button>
+          <button class="btn btn-sm btn-dark" disabled={{this.filtersNotSelected}} {{action "clearFilters"}}><EntypoIcon @name="cross" /> Clear All</button>
         </div>
         <div class="card-body">
-          <Comment::Fields::Statuses @selected={{statuses}} @onChange={{action "setStatuses"}} />
-          <Comment::Fields::Streams @value={{streams}} @on-change={{action "setStreams"}} />
-          <Comment::Fields::Users @value={{users}} @on-change={{action "setUsers"}} />
-          <div class="form-group mb-0">
-            <label>Dates</label>
-          </div>
+          <Comment::Fields::Statuses @selected={{this.statuses}} @onChange={{action "setStatuses"}} />
+          <Comment::Fields::Streams @value={{this.streams}} @on-change={{action "setStreams"}} />
+          <Comment::Fields::Users @value={{this.users}} @on-change={{action "setUsers"}} />
+          <Comment::Fields::Dates
+            @start={{this.formattedRange.start}}
+            @end={{this.formattedRange.end}}
+            @onChange={{action "setRange"}}
+          />
         </div>
       </div>
     </div>
