@@ -334,6 +334,14 @@ body {
   }
 }
 
+.link-dark {
+  color: $gray-800;
+  &:hover {
+    color: $gray-800;
+    text-decoration: underline;
+  }
+}
+
 /* clears the 'X' from Internet Explorer */
 input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
 input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
