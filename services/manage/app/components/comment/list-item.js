@@ -1,5 +1,6 @@
 import Component from '@ember/component';
 import { inject } from '@ember/service';
+import { computed } from '@ember/object';
 import gql from 'graphql-tag';
 import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import AppQueryMixin from '@identity-x/manage/mixins/app-query';
@@ -47,6 +48,10 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
   isTogglingFlag: false,
   isDeleting: false,
   isTogglingUserBan: false,
+
+  streamQueryParams: computed('node.stream.{id,fullTitle}', function() {
+    return [{ id: this.get('node.stream.id'), fullTitle: this.get('node.stream.fullTitle') }];
+  }),
 
   actions: {
     async toggleApproval() {

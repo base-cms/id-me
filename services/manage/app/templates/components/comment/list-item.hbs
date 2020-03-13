@@ -2,9 +2,11 @@
   <div class="w-100">
     <h3 class="card-title">
       <EntypoIcon @name="list" />
-      {{this.node.stream.fullTitle}}
+      {{#link-to "manage.orgs.view.apps.view.comments" (query-params streams=this.streamQueryParams) class="link-dark"}}
+        {{this.node.stream.fullTitle}}
+      {{/link-to}}
       {{#if this.node.stream.url}}
-        <span>[<a href="{{this.node.stream.url}}" target="_blank" rel="noopener">view</a>]</span>
+        <span>[<a href={{this.node.stream.url}} target="_blank" rel="noopener">view</a>]</span>
       {{/if}}
     </h3>
 
