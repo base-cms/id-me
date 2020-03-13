@@ -32,6 +32,15 @@ const setAppUserBanned = gql`
   }
 `;
 
+const setCommentStreamArchived = gql`
+  mutation SetCommentStreamArchived($id: String!, $value: Boolean!) {
+    setCommentStreamArchived(input: { id: $id, value: $value }) {
+      id
+      archived
+    }
+  }
+`;
+
 const deleteComment = gql`
   mutation DeleteComment($id: String!) {
     deleteComment(input: { id: $id })
@@ -48,6 +57,7 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
   isTogglingFlag: false,
   isDeleting: false,
   isTogglingUserBan: false,
+  isTogglingStreamArchive: false,
 
   streamQueryParams: computed('node.stream.{id,fullTitle}', function() {
     return [{ id: this.get('node.stream.id'), fullTitle: this.get('node.stream.fullTitle') }];
@@ -100,6 +110,19 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
         this.errorNotifier.show(e);
       } finally {
         if (!this.isDestroyed) this.set('isTogglingUserBan', false);
+      }
+    },
+
+    async toggleStreamArchive() {
+      try {
+        this.set('isTogglingStreamArchive', true);
+        const { stream } = this.node;
+        const variables = { id: stream.id, value: !stream.archived };
+        await this.mutate({ mutation: setCommentStreamArchived, variables, refetchQueries: ['AppComments'] }, 'setCommentStreamArchived');
+      } catch (e) {
+        this.errorNotifier.show(e);
+      } finally {
+        if (!this.isDestroyed) this.set('isTogglingStreamArchive', false);
       }
     },
   },

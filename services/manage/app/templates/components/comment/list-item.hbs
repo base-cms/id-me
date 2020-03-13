@@ -22,6 +22,11 @@
       {{#if this.node.flagged}}
         <Comment::Flagged @banned={{this.node.user.banned}} />
       {{/if}}
+      {{#if this.node.stream.archived}}
+        <h2 class="badge badge-info">
+          <EntypoIcon @name="archive" /> Archived
+        </h2>
+      {{/if}}
       <Comment::Status
         @approved={{this.node.approved}}
         @banned={{this.node.banned}}
@@ -67,6 +72,11 @@
         @banned={{this.node.user.banned}}
         @isLoading={{this.isTogglingUserBan}}
         @onClick={{action "toggleUserBan"}}
+      />
+      <Comment::ArchiveStreamButton
+        @archived={{this.node.stream.archived}}
+        @isLoading={{this.isTogglingStreamArchive}}
+        @onClick={{action "toggleStreamArchive"}}
       />
     </div>
   </div>
