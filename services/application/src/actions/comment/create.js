@@ -38,6 +38,7 @@ module.exports = async ({
   }
 
   const [streamData] = await Promise.all(promises);
+  if (streamData.archived) throw createError(400, 'This comment stream has been archived and no longer accepts posts.');
 
   const comment = new Comment({
     applicationId: application._id,
