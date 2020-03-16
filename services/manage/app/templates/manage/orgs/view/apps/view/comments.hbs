@@ -1,10 +1,6 @@
 <div class="comment-index">
   <div class="comment-index__sidebar">
     <div class="comment-filters">
-      <h1 class="mb-4">
-        <Comment::Icon /> Comments
-        <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
-      </h1>
       <div class="card">
         <div class="card-header d-flex justify-content-between">
           <strong><EntypoIcon @name="layers" /> Filters</strong>
@@ -24,6 +20,10 @@
     </div>
   </div>
   <div class="comment-index__main">
+    <h1 class="mb-4">
+      <Comment::Icon /> Comments
+      <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
+    </h1>
     <FetchMore
       @query={{this.observable}}
       @edges={{this.model.edges}}
