@@ -3,7 +3,7 @@ const { createRequiredParamError } = require('@base-cms/micro').service;
 const { handleError } = require('@identity-x/utils').mongoose;
 const { isObject } = require('@base-cms/utils');
 
-const createStram = require('../comment-stream/create');
+const createStream = require('../comment-stream/create');
 
 const { Application, Comment, AppUser } = require('../../mongodb/models');
 
@@ -30,7 +30,7 @@ module.exports = async ({
 
   const promises = [];
   // Create/upsert the stream.
-  promises.push(createStram({ applicationId, payload: stream }));
+  promises.push(createStream({ applicationId, payload: stream }));
 
   // Update the display name if set and different.
   if (displayName && displayName !== user.displayName) {
