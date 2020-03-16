@@ -22,7 +22,7 @@ export default Route.extend(RouteQueryManager, {
   contextService: inject('context'),
 
   model() {
-    return this.apollo.watchQuery({ query }, 'userOrganizations');
+    return this.apollo.watchQuery({ query, fetchPolicy: 'network-only' }, 'userOrganizations');
   },
 
   afterModel(model) {

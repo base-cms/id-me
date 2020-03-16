@@ -22,6 +22,7 @@ module.exports = async (Model, {
   projection,
   excludeProjection,
   collate = false,
+  additionalData,
 }) => {
   const $limit = new Limit({ value: limit });
   const $sort = new Sort(sort);
@@ -52,5 +53,5 @@ module.exports = async (Model, {
 
   const results = await Model.find($query, $projection, options);
 
-  return createResponse(Model, results, params);
+  return createResponse(Model, results, params, additionalData);
 };

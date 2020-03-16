@@ -7,6 +7,7 @@ export default Component.extend({
 
   actions: {
     openUserProfile() {
+      this.element.querySelector('#user-settings-dropdown').click();
       this.set('isUserProfileOpen', true);
     },
   },

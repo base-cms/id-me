@@ -4,6 +4,8 @@ const deepAssign = require('deep-assign');
 const accessLevel = require('./access-level');
 const appUser = require('./app-user');
 const application = require('./application');
+const comment = require('./comment');
+const commentStream = require('./comment-stream');
 const locale = require('./locale');
 const organization = require('./organization');
 const team = require('./team');
@@ -14,6 +16,8 @@ module.exports = deepAssign(
   accessLevel,
   appUser,
   application,
+  comment,
+  commentStream,
   locale,
   organization,
   team,

@@ -23,7 +23,7 @@ export default Route.extend(RouteQueryManager, {
 
   async model({ app_id: id }) {
     const context = { appId: id };
-    const app = await this.apollo.watchQuery({ query, context }, 'activeApplication');
+    const app = await this.apollo.watchQuery({ query, context, fetchPolicy: 'network-only' }, 'activeApplication');
     this.contextService.set('app', app);
     return app;
   },

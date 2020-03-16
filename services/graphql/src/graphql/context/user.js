@@ -92,6 +92,10 @@ class UserContext {
   check(type) {
     if (this.errored()) throw new AuthenticationError(this.error.message);
     if (!this.exists()) throw new UserInputError('No user authentication was provided with this request.');
+    if (type === 'AnyUser') {
+      if (this.type === 'AppUser' && !this.hasAppId()) throw new Error('No user associated application ID was found');
+      return true;
+    }
     if (type !== this.type) throw new AuthenticationError('The wrong user authorization type was provided.');
     if (this.type === 'AppUser' && !this.hasAppId()) throw new Error('No user associated application ID was found');
     return true;

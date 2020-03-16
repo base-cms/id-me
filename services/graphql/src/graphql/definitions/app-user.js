@@ -20,6 +20,8 @@ extend type Mutation {
   sendAppUserLoginLink(input: SendAppUserLoginLinkMutationInput!): String @requiresApp # must be public
   loginAppUser(input: LoginAppUserMutationInput!): AppUserAuthentication! @requiresApp # must be public
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp # must be public
+
+  setAppUserBanned(input: SetAppUserBannedMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 enum AppUserSortField {
@@ -55,6 +57,7 @@ type AppUser {
   name: String @projection(localField: "givenName", needs: ["familyName"])
   givenName: String @projection
   familyName: String @projection
+  displayName: String @projection(localField: "displayName", needs: ["email"])
   region: LocaleRegion @projection(localField: "regionCode", needs: ["countryCode"])
   regionCode: String @projection
   postalCode: String @projection
@@ -66,6 +69,7 @@ type AppUser {
   teams: [Team]  @projection(localField: "teamIds")
   lastLoggedIn: Date @projection
   verified: Boolean @projection
+  banned: Boolean @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
@@ -157,6 +161,13 @@ input SendAppUserLoginLinkMutationInput {
   redirectTo: String
   "Deprecated. While this field can still be sent, it is no longer used or handled."
   fields: JSON
+}
+
+input SetAppUserBannedMutationInput {
+  "The user ID to ban/unban."
+  id: String!
+  "Whether the user will be banned or not."
+  value: Boolean!
 }
 
 input UpdateAppUserPayloadInput {

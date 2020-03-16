@@ -1,0 +1,16 @@
+<FormElements::Label @for="comment.users">Users</FormElements::Label>
+<FormElements::Typeahead
+  @id="comment.users"
+  @dropdownClass={{dropdownClass}}
+  @autocomplete="off"
+  @name="users"
+  @label="Users"
+  @multiple={{true}}
+  @closeOnSelect={{true}}
+  @value={{value}}
+  @on-change={{on-change}}
+  @on-search={{action "search"}}
+  as |item|
+>
+  {{item.email}}
+</FormElements::Typeahead>

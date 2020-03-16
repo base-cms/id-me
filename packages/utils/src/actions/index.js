@@ -4,6 +4,7 @@ const listForApp = require('./list-for-app');
 const listForOrg = require('./list-for-org');
 const matchForApp = require('./match-for-app');
 const updateField = require('./update-field');
+const updateFieldWithApp = require('./update-field-with-app');
 const updateForId = require('./update-for-id');
 const updateMany = require('./update-many');
 
@@ -14,6 +15,7 @@ module.exports = {
   listForOrg,
   matchForApp,
   updateField,
+  updateFieldWithApp,
   updateForId,
   updateMany,
 };

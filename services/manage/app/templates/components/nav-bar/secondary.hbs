@@ -17,6 +17,11 @@
         <NavBar::Item @icon="man">Users</NavBar::Item>
       {{/link-to}}
     </li>
+    <li class="nav-item">
+      {{#link-to "manage.orgs.view.apps.view.comments" context.appId class="nav-link"}}
+        <NavBar::Item @icon="message">Comments</NavBar::Item>
+      {{/link-to}}
+    </li>
   {{/if}}
 </ul>
 

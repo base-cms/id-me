@@ -1,0 +1,14 @@
+<FormElements::Label @for="comment.dates">Dates</FormElements::Label>
+<PowerCalendarRange
+  @center={{this.center}}
+  @selected={{this.range}}
+  @onCenterChange={{action (mut center) value="moment"}}
+  @onSelect={{action "emitChange" value="moment"}}
+  as |calendar|
+>
+  <calendar.nav />
+  <calendar.days />
+</PowerCalendarRange>
+<button class="btn btn-dark btn-sm mt-2" disabled={{this.noDatesSelected}} {{action "clear"}}>
+  <EntypoIcon @name="cross" /> Clear
+</button>

@@ -1,0 +1,10 @@
+<FormElements::Label @for="comment.statuses">Status</FormElements::Label>
+<PowerSelectMultiple
+  @id="comment.statuses"
+  @selected={{this.selected}}
+  @options={{this.options}}
+  @onchange={{action this.onChange}}
+  as |status|
+>
+  {{status}}
+</PowerSelectMultiple>

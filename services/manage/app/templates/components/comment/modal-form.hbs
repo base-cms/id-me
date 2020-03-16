@@ -1,0 +1,31 @@
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+
+  <form {{action this.onSubmit modal.actions.hide on="submit"}}>
+    {{#modal.header}}
+      <h2 class="modal-title">{{this.title}}</h2>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <div class="row">
+        <div class="col">
+          <div class="form-group mb-0">
+            <FormElements::Label @for="comment.body" @required={{true}}>Body</FormElements::Label>
+            <Textarea @id="comment.body" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.body}} @rows="4" />
+          </div>
+        </div>
+      </div>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+    {{/modal.footer}}
+  </form>
+</BsModal>

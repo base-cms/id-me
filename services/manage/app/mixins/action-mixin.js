@@ -6,11 +6,11 @@ export default Mixin.create(LoadingMixin, {
 
   startAction() {
     this.showLoading();
-    this.set('isActionRunning', true);
+    if (!this.isDestroyed) this.set('isActionRunning', true);
   },
 
   endAction() {
-    this.set('isActionRunning', false);
+    if (!this.isDestroyed) this.set('isActionRunning', false);
     this.hideLoading();
   },
 

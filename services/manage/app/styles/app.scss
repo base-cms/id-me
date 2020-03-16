@@ -7,6 +7,7 @@
 $ember-power-select-dropdown-box-shadow: none;
 $ember-power-select-dropdown-border: $custom-select-border-width solid $custom-select-border-color;
 
+@import "ember-power-calendar";
 @import "power-select";
 @import "buttons";
 @import "spin";
@@ -24,6 +25,10 @@ body {
 // For ember power select inside modals.
 .in-modal-dropdown {
   z-index: 1100;
+}
+
+.dropdown-menu {
+  min-width: 10rem;
 }
 
 body {
@@ -252,6 +257,101 @@ body {
   color: $success;
   font-size: 12px;
   font-family: Montserrat, sans-serif;
+}
+
+.comment-status {
+  font-size: 14px;
+  font-family: Montserrat, sans-serif;
+  &--approved {
+    color: $success;
+  }
+  &--denied {
+    color: $warning;
+  }
+  &--banned {
+    color: $danger;
+  }
+}
+
+.comment-actions {
+  display: flex;
+  flex-direction: column;
+  width: 135px;
+  margin-left: map-get($spacers, 4);
+  &__group {
+    width: 135px;
+  }
+}
+
+.dropdown-item-with-icon {
+  @extend .dropdown-item;
+  display: flex;
+  justify-content: space-between;
+  .entypo {
+    margin-left: map-get($spacers, 2);
+  }
+}
+
+.list-group {
+  &--comments {
+    > .list-group-item {
+      border-width: 2px;
+    }
+  }
+}
+
+.comment-index {
+  @include make-row();
+
+  &__sidebar {
+    @include make-col-ready();
+
+    position: sticky;
+    top: 144px;
+    overflow: scroll;
+    height: calc(100vh - 144px);
+    flex: 0 0 400px;
+    max-width: 400px;
+    width: 100%;
+
+    @include media-breakpoint-down(lg) {
+      flex: 0 0 350px;
+      max-width: 350px;
+    }
+
+    @include media-breakpoint-down(md) {
+      flex: 0 0 100%;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: map-get($spacers, 4);
+    }
+  }
+
+  &__main {
+    @include make-col-ready();
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+  }
+}
+
+.link-dark {
+  color: $gray-800;
+  &:hover {
+    color: $gray-800;
+    text-decoration: underline;
+  }
+}
+
+
+.ember-power-calendar {
+  @include ember-power-calendar(
+    $cell-size: 35px,
+    $primary-color: $primary,
+    $day-range-bookend-color: $primary,
+    $day-selected-color: lighten($primary, 7%),
+    $day-selected-text-color: #fff,
+  );
 }
 
 /* clears the 'X' from Internet Explorer */

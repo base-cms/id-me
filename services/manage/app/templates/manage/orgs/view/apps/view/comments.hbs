@@ -1,0 +1,57 @@
+<div class="comment-index">
+  <div class="comment-index__sidebar">
+    <div class="comment-filters">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between">
+          <strong><EntypoIcon @name="layers" /> Filters</strong>
+          <button class="btn btn-sm btn-dark" disabled={{this.filtersNotSelected}} {{action "clearFilters"}}><EntypoIcon @name="cross" /> Clear All</button>
+        </div>
+        <div class="card-body">
+          <Comment::Fields::Statuses @selected={{this.statuses}} @onChange={{action "setStatuses"}} />
+          <Comment::Fields::Streams @value={{this.streams}} @on-change={{action "setStreams"}} />
+          <Comment::Fields::Users @value={{this.users}} @on-change={{action "setUsers"}} />
+          <Comment::Fields::Dates
+            @start={{this.formattedRange.start}}
+            @end={{this.formattedRange.end}}
+            @onChange={{action "setRange"}}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="comment-index__main">
+    <h1 class="mb-4">
+      <Comment::Icon /> Comments
+      <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
+    </h1>
+    <FetchMore
+      @query={{this.observable}}
+      @edges={{this.model.edges}}
+      @hasNextPage={{this.model.pageInfo.hasNextPage}}
+      @endCursor={{this.model.pageInfo.endCursor}}
+      @resultKey={{this.resultKey}}
+      as |fetch|
+    >
+      {{#if fetch.nodes.length}}
+        <div class="card">
+          <div class="list-group list-group-flush list-group--comments">
+            {{#each fetch.nodes as |node|}}
+              <Comment::ListItem @node={{node}} />
+            {{/each}}
+            {{#if fetch.hasNextPage}}
+              <InView @on-viewport-enter={{action fetch.actions.loadMore}} />
+            {{/if}}
+
+            {{#if fetch.isFetching}}
+              <FetchMoreLoading @class="my-3" />
+            {{/if}}
+          </div>
+        </div>
+      {{else}}
+        <p>No comments were found.</p>
+      {{/if}}
+    </FetchMore>
+  </div>
+</div>
+
+{{outlet}}

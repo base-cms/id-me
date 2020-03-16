@@ -1,0 +1,83 @@
+<div class="d-flex">
+  <div class="w-100">
+    <h3 class="card-title">
+      <EntypoIcon @name="list" />
+      {{#link-to "manage.orgs.view.apps.view.comments" (query-params streams=this.streamQueryParams) class="link-dark"}}
+        {{this.node.stream.fullTitle}}
+      {{/link-to}}
+      {{#if this.node.stream.url}}
+        <span>[<a href={{this.node.stream.url}} target="_blank" rel="noopener">view</a>]</span>
+      {{/if}}
+    </h3>
+
+    <p class="card-text">{{this.node.body}}</p>
+
+    <div>
+      {{#if this.node.user.banned}}
+        <h2 class="badge badge-primary">
+          <EntypoIcon @name="block" />
+          User Banned
+        </h2>
+      {{/if}}
+      {{#if this.node.flagged}}
+        <Comment::Flagged @banned={{this.node.user.banned}} />
+      {{/if}}
+      {{#if this.node.stream.archived}}
+        <h2 class="badge badge-info">
+          <EntypoIcon @name="archive" /> Archived
+        </h2>
+      {{/if}}
+      <Comment::Status
+        @approved={{this.node.approved}}
+        @banned={{this.node.banned}}
+        @class="mb-3"
+      />
+    </div>
+    <p class="app-user-details mb-3">
+      <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
+    </p>
+    <div>
+      <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
+      <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{this.node.id}}</p>
+    </div>
+  </div>
+
+  <div class="comment-actions">
+    <div class="btn-group-vertical comment-actions__group mb-3">
+      <Comment::ApprovalButton
+        @approved={{this.node.approved}}
+        @banned={{this.node.user.banned}}
+        @isLoading={{this.isTogglingApproval}}
+        @onClick={{action "toggleApproval"}}
+      />
+    </div>
+
+    <div class="btn-group-vertical comment-actions__group">
+      {{#link-to "manage.orgs.view.apps.view.comments.edit" this.node.id class="btn btn-secondary"}}<EntypoIcon @name="edit" /> Edit{{/link-to}}
+      <Comment::FlagButton
+        @flagged={{this.node.flagged}}
+        @banned={{this.node.user.banned}}
+        @isLoading={{this.isTogglingFlag}}
+        @onClick={{action "toggleFlag"}}
+      />
+      <FormElements::ActionButton
+        @label="Delete"
+        @icon="trash"
+        @type="secondary"
+        @isLoading={{this.isDeleting}}
+        @mustConfirm={{true}}
+        @onClick={{action "deleteComment"}}
+      />
+      <Comment::BanUserButton
+        @banned={{this.node.user.banned}}
+        @isLoading={{this.isTogglingUserBan}}
+        @onClick={{action "toggleUserBan"}}
+      />
+      <Comment::ArchiveStreamButton
+        @archived={{this.node.stream.archived}}
+        @isLoading={{this.isTogglingStreamArchive}}
+        @onClick={{action "toggleStreamArchive"}}
+      />
+    </div>
+  </div>
+</div>

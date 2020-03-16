@@ -3,6 +3,7 @@ const { normalizeEmail } = require('@identity-x/utils');
 const { emailValidator, applicationPlugin } = require('@identity-x/mongoose-plugins');
 const { localeService } = require('@identity-x/service-clients');
 const { isPostalCode } = require('validator');
+const connection = require('../connection');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');
 const { isBurnerDomain } = require('../../utils/burner-email');
@@ -35,7 +36,18 @@ const schema = new Schema({
       message: props => `The email domain "${props.value}" is not allowed. Please enter a valid email address.`,
     },
   },
+  displayName: {
+    type: String,
+    default() {
+      const [displayName] = this.email.split('@');
+      return displayName;
+    },
+  },
   verified: {
+    type: Boolean,
+    default: false,
+  },
+  banned: {
     type: Boolean,
     default: false,
   },
@@ -153,6 +165,12 @@ schema.pre('save', async function setRegionName() {
     this.regionName = name || undefined;
   } else {
     this.regionName = undefined;
+  }
+});
+
+schema.pre('save', async function updateComments() {
+  if (this.isModified('banned')) {
+    await connection.model('comment').updateMany({ appUserId: this._id }, { $set: { banned: this.banned } });
   }
 });
 

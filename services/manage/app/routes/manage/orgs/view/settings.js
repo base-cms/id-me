@@ -19,6 +19,6 @@ export default Route.extend(OrgQueryMixin, {
 
   model() {
     const input = { id: this.contextService.orgId };
-    return this.query({ query, variables: { input } }, 'organization');
+    return this.query({ query, variables: { input }, fetchPolicy: 'network-only' }, 'organization');
   },
 });

@@ -2,6 +2,8 @@ const gql = require('graphql-tag');
 const accessLevel = require('./access-level');
 const appUser = require('./app-user');
 const application = require('./application');
+const comment = require('./comment');
+const commentStream = require('./comment-stream');
 const locale = require('./locale');
 const organization = require('./organization');
 const team = require('./team');
@@ -30,6 +32,7 @@ enum OrganizationRole {
 enum AuthorizationType {
   OrgUser
   AppUser
+  AnyUser
 }
 
 enum MatchPosition {
@@ -65,6 +68,8 @@ input PaginationInput {
 ${accessLevel}
 ${appUser}
 ${application}
+${comment}
+${commentStream}
 ${locale}
 ${organization}
 ${team}

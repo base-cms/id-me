@@ -1,4 +1,10 @@
-const { updateField, listForApp, matchForApp } = require('@identity-x/utils').actions;
+const {
+  updateField,
+  listForApp,
+  matchForApp,
+  findById,
+  updateFieldWithApp,
+} = require('@identity-x/utils').actions;
 const create = require('./create');
 const findByEmail = require('./find-by-email');
 const login = require('./login');
@@ -13,6 +19,7 @@ const AppUser = require('../../mongodb/models/app-user');
 module.exports = {
   create,
   findByEmail,
+  findById: params => findById(AppUser, params),
   listForApp: params => listForApp(AppUser, params),
   login,
   logout,
@@ -20,6 +27,7 @@ module.exports = {
   matchForApp: params => matchForApp(AppUser, params),
   sendLoginLink,
   updateField: params => updateField(AppUser, params),
+  updateFieldWithApp: params => updateFieldWithApp(AppUser, params),
   updateOne,
   verifyAuth,
 };

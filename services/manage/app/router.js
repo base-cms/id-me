@@ -45,6 +45,9 @@ Router.map(function() {
               this.route('create');
               this.route('edit', { path: ':email' });
             });
+            this.route('comments', function() {
+              this.route('edit', { path: ':comment_id' });
+            });
           });
         });
       })
