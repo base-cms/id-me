@@ -3,7 +3,7 @@
     <h3 class="card-title">
       <EntypoIcon @name="list" />
       {{#link-to "manage.orgs.view.apps.view.comments" (query-params streams=this.streamQueryParams) class="link-dark"}}
-        {{this.node.stream.fullTitle}}
+        {{this.node.stream.title}}
       {{/link-to}}
       {{#if this.node.stream.url}}
         <span>[<a href={{this.node.stream.url}} target="_blank" rel="noopener">view</a>]</span>

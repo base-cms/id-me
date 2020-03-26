@@ -59,8 +59,8 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
   isTogglingUserBan: false,
   isTogglingStreamArchive: false,
 
-  streamQueryParams: computed('node.stream.{id,fullTitle}', function() {
-    return [{ id: this.get('node.stream.id'), fullTitle: this.get('node.stream.fullTitle') }];
+  streamQueryParams: computed('node.stream.{id,identifier}', function() {
+    return [{ id: this.get('node.stream.id'), identifier: this.get('node.stream.identifier') }];
   }),
 
   actions: {
