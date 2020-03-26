@@ -67,4 +67,10 @@ export default Route.extend(AppQueryMixin, RouteObservableMixin, {
       this.errorNotifier.show(e);
     }
   },
+
+  actions: {
+    refresh() {
+      this.refresh();
+    },
+  },
 });

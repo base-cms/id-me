@@ -333,6 +333,13 @@ body {
     flex-grow: 1;
     max-width: 100%;
   }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 }
 
 .link-dark {
