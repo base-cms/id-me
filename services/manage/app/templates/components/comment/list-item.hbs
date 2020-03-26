@@ -40,11 +40,7 @@
     <div>
       <p class="small text-muted mb-1">
         <EntypoIcon @name="clock" />
-        {{moment-from-now this.node.createdAt}} on
-        {{#link-to "manage.orgs.view.apps.view.comments" (query-params starting=this.node.createdAt) class="link-details"}}
-          {{moment-format this.node.createdAt "MM/DD/YYYY"}}
-        {{/link-to}}
-        at {{moment-format this.node.createdAt "h:mma"}}
+        {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}
       </p>
       <p class="small text-muted mb-1">
         <EntypoIcon @name="list" />
