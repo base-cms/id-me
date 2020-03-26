@@ -55,6 +55,7 @@
     "ember-power-select-with-create": "^0.6.1",
     "ember-qunit": "^4.4.1",
     "ember-resolver": "^5.0.1",
+    "ember-route-action-helper": "^2.0.8",
     "ember-simple-auth": "^1.8.2",
     "ember-source": "~3.10.0",
     "ember-toggle": "^5.3.2",

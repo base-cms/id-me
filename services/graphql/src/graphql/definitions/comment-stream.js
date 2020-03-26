@@ -24,8 +24,6 @@ type CommentStream {
   application: Application! @projection(localField: "applicationId")
   "The stream title. Usually the title of the webpage where the stream is displayed."
   title: String @projection
-  "The full stream title. Includes the title with the stream identifier."
-  fullTitle: String @projection
   "The stream description."
   description: String @projection
   "The url where the stream can be viewed."

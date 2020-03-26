@@ -20,10 +20,16 @@
     </div>
   </div>
   <div class="comment-index__main">
-    <h1 class="mb-4">
-      <Comment::Icon /> Comments
-      <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
-    </h1>
+
+    <div class="comment-index__header">
+      <h1 class="mb-4">
+        <Comment::Icon /> Comments
+        <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
+      </h1>
+
+      <button class="btn btn-dark btn-sm" title="Refresh" {{action (route-action "refresh")}}><EntypoIcon @name="cw" /> Refresh</button>
+    </div>
+
     <FetchMore
       @query={{this.observable}}
       @edges={{this.model.edges}}

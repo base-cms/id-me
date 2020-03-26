@@ -333,6 +333,13 @@ body {
     flex-grow: 1;
     max-width: 100%;
   }
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
 }
 
 .link-dark {
@@ -340,6 +347,16 @@ body {
   &:hover {
     color: $gray-800;
     text-decoration: underline;
+  }
+}
+
+.link-details {
+  color: $gray-600;
+  border-bottom: 1px dashed $gray-600;
+  transition: border-color ease 200ms;
+  &:hover {
+    color: $gray-600;
+    border-color: $gray-800;
   }
 }
 

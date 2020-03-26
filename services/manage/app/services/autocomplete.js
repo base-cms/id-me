@@ -48,7 +48,7 @@ const matchCommentStreams = gql`
       edges {
         node {
           id
-          fullTitle
+          identifier
         }
       }
     }
@@ -73,7 +73,7 @@ export default Service.extend(ObjectQueryManager, {
       case 'AppUser':
         return { field: 'email', query: matchAppUsers, resultKey: 'matchAppUsers', scope: 'app' };
       case 'CommentStream':
-        return { field: 'fullTitle', query: matchCommentStreams, resultKey: 'matchCommentStreams', scope: 'app' };
+        return { field: 'identifier', query: matchCommentStreams, resultKey: 'matchCommentStreams', scope: 'app' };
       default:
         throw new Error(`The autocomplete type '${type}' is not registered.`);
     }

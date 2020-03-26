@@ -29,8 +29,6 @@ module.exports = async ({ applicationId, payload } = {}) => {
       url,
     });
 
-    const fullTitle = title ? `${title} (${identifier})` : identifier;
-
     await stream.validate();
     const criteria = { applicationId, identifier };
     await CommentStream.updateOne(criteria, {
@@ -39,7 +37,6 @@ module.exports = async ({ applicationId, payload } = {}) => {
         title,
         description,
         url,
-        fullTitle,
       },
     }, { upsert: true });
     return findByIdentifier({ applicationId, identifier });

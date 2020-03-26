@@ -3,7 +3,7 @@
     <h3 class="card-title">
       <EntypoIcon @name="list" />
       {{#link-to "manage.orgs.view.apps.view.comments" (query-params streams=this.streamQueryParams) class="link-dark"}}
-        {{this.node.stream.fullTitle}}
+        {{this.node.stream.title}}
       {{/link-to}}
       {{#if this.node.stream.url}}
         <span>[<a href={{this.node.stream.url}} target="_blank" rel="noopener">view</a>]</span>
@@ -34,10 +34,21 @@
       />
     </div>
     <p class="app-user-details mb-3">
-      <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
+      <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.comments" (query-params users=this.userQueryParams)}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
+      [{{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email class="link-dark"}}edit user{{/link-to}}]
     </p>
     <div>
-      <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
+      <p class="small text-muted mb-1">
+        <EntypoIcon @name="clock" />
+        {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}
+      </p>
+      <p class="small text-muted mb-1">
+        <EntypoIcon @name="list" />
+        Stream
+        {{#link-to "manage.orgs.view.apps.view.comments" (query-params streams=this.streamQueryParams) class="link-details"}}
+          {{this.node.stream.identifier}}
+        {{/link-to}}
+      </p>
       <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{this.node.id}}</p>
     </div>
   </div>
