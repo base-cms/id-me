@@ -34,7 +34,8 @@
       />
     </div>
     <p class="app-user-details mb-3">
-      <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
+      <AppUser::Icon /> {{#link-to "manage.orgs.view.apps.view.comments" (query-params users=this.userQueryParams)}}{{this.node.user.email}}{{/link-to}} ({{this.node.user.displayName}})
+      [{{#link-to "manage.orgs.view.apps.view.users.edit" this.node.user.email class="link-dark"}}edit user{{/link-to}}]
     </p>
     <div>
       <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>

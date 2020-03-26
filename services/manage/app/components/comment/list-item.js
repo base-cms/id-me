@@ -63,6 +63,10 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
     return [{ id: this.get('node.stream.id'), identifier: this.get('node.stream.identifier') }];
   }),
 
+  userQueryParams: computed('node.user.{id,email}', function() {
+    return [{ id: this.get('node.user.id'), email: this.get('node.user.email') }];
+  }),
+
   actions: {
     async toggleApproval() {
       try {
