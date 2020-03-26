@@ -350,6 +350,16 @@ body {
   }
 }
 
+.link-details {
+  color: $gray-600;
+  border-bottom: 1px dashed $gray-600;
+  transition: border-color ease 200ms;
+  &:hover {
+    color: $gray-600;
+    border-color: $gray-800;
+  }
+}
+
 
 .ember-power-calendar {
   @include ember-power-calendar(
