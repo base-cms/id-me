@@ -39,6 +39,7 @@
     </p>
     <div>
       <p class="small text-muted mb-1"><EntypoIcon @name="clock" /> {{moment-from-now this.node.createdAt}} on {{moment-format this.node.createdAt "MM/DD/YYYY \a\t h:mma"}}</p>
+      <p class="small text-muted mb-1"><EntypoIcon @name="list" /> Stream {{this.node.stream.identifier}}</p>
       <p class="small text-muted mb-0"><EntypoIcon @name="key" /> {{this.node.id}}</p>
     </div>
   </div>
