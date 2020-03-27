@@ -1,8 +1,7 @@
 const { Schema } = require('mongoose');
 const { normalizeEmail } = require('@identity-x/utils');
-const { emailValidator, applicationPlugin } = require('@identity-x/mongoose-plugins');
+const { emailValidator, applicationPlugin, localePlugin } = require('@identity-x/mongoose-plugins');
 const { localeService } = require('@identity-x/service-clients');
-const { isPostalCode } = require('validator');
 const connection = require('../connection');
 const accessLevelPlugin = require('./plugins/access-level');
 const teamPlugin = require('./plugins/team');
@@ -74,98 +73,17 @@ const schema = new Schema({
     trim: true,
     set: stripLines,
   },
-  regionCode: {
-    type: String,
-    trim: true,
-    uppercase: true,
-    set: stripLines,
-    validate: {
-      async validator(regionCode) {
-        if (!regionCode) return true;
-        const { countryCode } = this;
-        if (!countryCode) return false;
-        return localeService.request('region.isValid', { countryCode, regionCode });
-      },
-      message: 'Either an invalid region code {VALUE} was set, or no country was defined.',
-    },
-  },
-  regionName: {
-    type: String,
-    trim: true,
-  },
-  countryCode: {
-    type: String,
-    trim: true,
-    uppercase: true,
-    set: stripLines,
-    validate: {
-      async validator(code) {
-        if (!code) return true;
-        return localeService.request('country.isValid', { code });
-      },
-      message: 'Invalid country code {VALUE}',
-    },
-  },
-  countryName: {
-    type: String,
-    trim: true,
-  },
-  postalCode: {
-    type: String,
-    trim: true,
-    uppercase: true,
-    set: stripLines,
-    validate: {
-      async validator(postalCode) {
-        if (!postalCode) return true;
-        const { countryCode } = this;
-        if (!countryCode) return true;
-        if (!['US', 'CA', 'MX'].includes(countryCode)) return true;
-        return isPostalCode(postalCode, countryCode);
-      },
-      message: 'Invalid postal code {VALUE} for the provided country.',
-    },
-  },
 }, { timestamps: true });
 
 schema.plugin(applicationPlugin, { collateWhen: ['email'] });
 schema.plugin(accessLevelPlugin);
 schema.plugin(teamPlugin);
+schema.plugin(localePlugin, { localeService });
 
 schema.pre('validate', async function setDomain() {
   const { email } = this;
   const [, domain] = email.split('@');
   this.domain = domain;
-});
-
-schema.pre('validate', async function convertCountryCode() {
-  const { countryCode } = this;
-  if (!countryCode) {
-    this.countryCode = undefined;
-    this.regionCode = undefined;
-    return;
-  }
-  const obj = await localeService.request('country.asObject', { code: countryCode });
-  if (!obj) {
-    this.countryCode = countryCode;
-    return;
-  }
-  this.countryCode = obj.code;
-});
-
-schema.pre('save', async function setCountryName() {
-  const { countryCode } = this;
-  this.countryName = countryCode ? await localeService.request('country.getName', { code: countryCode }) : undefined;
-});
-
-schema.pre('save', async function setRegionName() {
-  const { countryCode, regionCode } = this;
-  if (countryCode && regionCode) {
-    const name = await localeService.request('region.getName', { countryCode, regionCode });
-    this.regionName = name || undefined;
-  } else {
-    this.regionName = undefined;
-  }
 });
 
 schema.pre('save', async function updateComments() {
