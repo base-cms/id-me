@@ -25,6 +25,8 @@ type Organization {
   photoURL: String @projection
   consentPolicy: String @projection
 
+  phoneNumber: String @projection
+
   streetAddress: String @projection
   city: String @projection
   region: LocaleRegion @projection(localField: "regionCode", needs: ["countryCode"])

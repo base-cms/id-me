@@ -29,6 +29,11 @@ const schema = new Schema({
     trim: true,
     set: stripLines,
   },
+  phoneNumber: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
   consentPolicy: {
     type: String,
     trim: true,
