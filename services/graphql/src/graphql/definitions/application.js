@@ -23,7 +23,7 @@ enum ApplicationSortField {
 type Application {
   id: String! @projection(localField: "_id")
   name: String! @projection
-  email: String! @projection
+  email: String @projection
   description: String @projection
   organization: Organization! @projection(localField: "organizationId")
 }
