@@ -16,6 +16,9 @@ module.exports = {
     id: org => org._id,
     applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
   },
+  OrganizationCompany: {
+    id: company => company._id,
+  },
   OrganizationInvitation: {
     invitedBy: ({ invitedByEmail }) => userService.request('findByEmail', { email: invitedByEmail }),
     ...membershipResolvers,
