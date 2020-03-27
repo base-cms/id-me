@@ -4,25 +4,25 @@ import LoadingMixin from '@identity-x/manage/mixins/loading-mixin';
 export default Mixin.create(LoadingMixin, {
   isActionRunning: false,
 
-  startAction() {
+  startAction({ prop = 'isActionRunning' } = {}) {
     this.showLoading();
-    if (!this.isDestroyed) this.set('isActionRunning', true);
+    if (!this.isDestroyed) this.set(prop, true);
   },
 
-  endAction() {
-    if (!this.isDestroyed) this.set('isActionRunning', false);
+  endAction({ prop = 'isActionRunning' } = {}) {
+    if (!this.isDestroyed) this.set(prop, false);
     this.hideLoading();
   },
 
-  startRouteAction() {
+  startRouteAction({ prop = 'isActionRunning' } = {}) {
     this.showLoading();
     const controller = this.controllerFor(this.get('routeName'));
-    controller.set('isActionRunning', true);
+    controller.set(prop, true);
   },
 
-  endRouteAction() {
+  endRouteAction({ prop = 'isActionRunning' } = {}) {
     const controller = this.controllerFor(this.get('routeName'));
-    controller.set('isActionRunning', false);
+    controller.set(prop, false);
     this.hideLoading();
   },
 
