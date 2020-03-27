@@ -2,6 +2,7 @@ import Route from '@ember/routing/route';
 import OrgQueryMixin from '@identity-x/manage/mixins/org-query';
 import { inject } from '@ember/service';
 import gql from 'graphql-tag';
+import orgCompanyFragment from '@identity-x/manage/graphql/fragments/organization-company';
 
 const query = gql`
   query OrganizationSettings($input: OrganizationQueryInput!) {
@@ -10,15 +11,22 @@ const query = gql`
       name
       description
       consentPolicy
+      company {
+        ...OrganizationCompanyFragment
+      }
     }
   }
+
+  ${orgCompanyFragment}
 `;
 
 export default Route.extend(OrgQueryMixin, {
   contextService: inject('context'),
 
-  model() {
+  async model() {
     const input = { id: this.contextService.orgId };
-    return this.query({ query, variables: { input }, fetchPolicy: 'network-only' }, 'organization');
+    const org = await this.query({ query, variables: { input }, fetchPolicy: 'network-only' }, 'organization');
+    if (!org.company) org.set('company', {});
+    return org;
   },
 });

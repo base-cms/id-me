@@ -23,13 +23,13 @@
         </div>
       </div>
       <div class="card-footer">
-        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isActionRunning}} @isSaving={{this.isActionRunning}} />
+        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isSaving}} @isSaving={{this.isActionRunning}} />
       </div>
     </form>
   </div>
 
   <div class="col-lg-6">
-    <form class="card" {{action "saveContactInfo" on="submit"}}>
+    <form class="card" {{action "saveCompanyInfo" on="submit"}}>
       <div class="card-header">
         <EntypoIcon @name="briefcase" /> Company Info
       </div>
@@ -76,7 +76,7 @@
         </div>
       </div>
       <div class="card-footer">
-        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isActionRunning}} @isSaving={{this.isActionRunning}} />
+        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isSavingCompanyInfo}} @isSaving={{this.isActionRunning}} />
       </div>
     </form>
   </div>
