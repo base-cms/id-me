@@ -89,6 +89,7 @@ services:
       EXTERNAL_PORT: 12003
     depends_on:
       - mongodb
+      - locale
     ports:
       - "12003:80"
 
