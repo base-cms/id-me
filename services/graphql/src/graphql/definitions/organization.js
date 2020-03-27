@@ -64,6 +64,12 @@ input OrganizationQueryInput {
 input CreateOrganizationMutationInput {
   name: String!
   description: String
+  phoneNumber: String
+  streetAddress: String
+  city: String
+  countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 input SetOrganizationDescriptionMutationInput {

@@ -68,6 +68,13 @@ input RegisterNewUserMutationInput {
   givenName: String!
   familyName: String!
   orgName: String!
+
+  phoneNumber: String
+  streetAddress: String
+  city: String
+  countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 input RejectOrgInviteMutationInput {

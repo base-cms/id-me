@@ -73,11 +73,28 @@ module.exports = {
         email,
         givenName,
         familyName,
+
         orgName,
+        phoneNumber,
+        streetAddress,
+        city,
+        countryCode,
+        regionCode,
+        postalCode,
       } = input;
+
+      const orgPayload = {
+        name: orgName,
+        phoneNumber,
+        streetAddress,
+        city,
+        countryCode,
+        regionCode,
+        postalCode,
+      };
       const userPayload = { givenName, familyName };
       const user = await userService.request('create', { email, payload: userPayload });
-      const organization = await organizationService.request('create', { payload: { name: orgName } });
+      const organization = await organizationService.request('create', { payload: orgPayload });
       await membershipService.request('create', {
         organizationId: organization._id,
         email: user.email,
