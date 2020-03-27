@@ -75,22 +75,12 @@ module.exports = {
         familyName,
 
         orgName,
-        phoneNumber,
-        streetAddress,
-        city,
-        countryCode,
-        regionCode,
-        postalCode,
+        company,
       } = input;
 
       const orgPayload = {
         name: orgName,
-        phoneNumber,
-        streetAddress,
-        city,
-        countryCode,
-        regionCode,
-        postalCode,
+        company,
       };
       const userPayload = { givenName, familyName };
       const user = await userService.request('create', { email, payload: userPayload });

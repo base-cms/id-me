@@ -1,6 +1,5 @@
 const {
   applicationService,
-  localeService,
   membershipService,
   organizationService,
   userService,
@@ -16,14 +15,6 @@ module.exports = {
   Organization: {
     id: org => org._id,
     applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
-    country: ({ countryCode }) => {
-      if (!countryCode) return null;
-      return localeService.request('country.asObject', { code: countryCode });
-    },
-    region: ({ countryCode, regionCode }) => {
-      if (!countryCode || !regionCode) return null;
-      return localeService.request('region.asObject', { countryCode, regionCode });
-    },
   },
   OrganizationInvitation: {
     invitedBy: ({ invitedByEmail }) => userService.request('findByEmail', { email: invitedByEmail }),
@@ -61,26 +52,8 @@ module.exports = {
 
   Mutation: {
     createOrganization: async (_, { input }, { user }) => {
-      const {
-        name,
-        description,
-        phoneNumber,
-        streetAddress,
-        city,
-        countryCode,
-        regionCode,
-        postalCode,
-      } = input;
-      const payload = {
-        name,
-        description,
-        phoneNumber,
-        streetAddress,
-        city,
-        countryCode,
-        regionCode,
-        postalCode,
-      };
+      const { name, description, company } = input;
+      const payload = { name, description, company };
       const org = await organizationService.request('create', { payload });
       await membershipService.request('create', {
         organizationId: org._id,
@@ -104,11 +77,11 @@ module.exports = {
     /**
      *
      */
-    setOrganizationContactInfo: (_, { input }) => {
-      const { id, payload } = input;
-      return organizationService.request('updateContactInfo', {
+    setOrganizationCompanyInfo: (_, { input }) => {
+      const { id, company } = input;
+      return organizationService.request('updateCompanyInfo', {
         id,
-        update: { $set: payload },
+        payload: company,
       });
     },
 

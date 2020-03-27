@@ -17,7 +17,7 @@ extend type Mutation {
   setOrganizationDescription(input: SetOrganizationDescriptionMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationPhotoURL(input: SetOrganizationPhotoURLMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 
-  setOrganizationContactInfo(input: SetOrganizationContactInfoMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+  setOrganizationCompanyInfo(input: SetOrganizationCompanyInfoMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 type Organization {
@@ -27,17 +27,19 @@ type Organization {
   photoURL: String @projection
   consentPolicy: String @projection
 
-  phoneNumber: String @projection
-
-  streetAddress: String @projection
-  city: String @projection
-  region: LocaleRegion @projection(localField: "regionCode", needs: ["countryCode"])
-  regionCode: String @projection
-  postalCode: String @projection
-  country: LocaleCountry @projection(localField: "countryCode")
-  countryCode: String @projection
+  company: OrganizationCompany @projection
 
   applications: [Application!]! @projection(localField: "_id")
+}
+
+type OrganizationCompany {
+  id: String!
+  name: String
+  streetAddress: String
+  city: String
+  regionName: String
+  postalCode: String
+  phoneNumber: String
 }
 
 type OrganizationMembership {
@@ -61,15 +63,19 @@ input OrganizationQueryInput {
   id: String!
 }
 
+input OrganizationCompanyPayloadInput {
+  name: String
+  streetAddress: String
+  city: String
+  regionName: String
+  postalCode: String
+  phoneNumber: String
+}
+
 input CreateOrganizationMutationInput {
   name: String!
   description: String
-  phoneNumber: String
-  streetAddress: String
-  city: String
-  countryCode: String
-  regionCode: String
-  postalCode: String
+  company: OrganizationCompanyPayloadInput
 }
 
 input SetOrganizationDescriptionMutationInput {
@@ -89,18 +95,9 @@ input OrganizationApplicationsQueryInput {
   sort: ApplicationSortInput = { field: name, order: asc }
 }
 
-input SetOrganizationContactInfoMutationInput {
+input SetOrganizationCompanyInfoMutationInput {
   id: String!
-  payload: SetOrganizationContactInfoPayloadInput!
-}
-
-input SetOrganizationContactInfoPayloadInput {
-  phoneNumber: String
-  streetAddress: String
-  city: String
-  countryCode: String
-  regionCode: String
-  postalCode: String
+  company: OrganizationCompanyPayloadInput
 }
 
 input UpdateOrganizationPayloadInput {
