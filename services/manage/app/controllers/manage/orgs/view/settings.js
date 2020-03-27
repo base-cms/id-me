@@ -38,5 +38,9 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
         this.endAction();
       }
     },
+
+    async saveContactInfo() {
+
+    },
   }
 })
