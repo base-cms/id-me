@@ -16,6 +16,8 @@ extend type Mutation {
   setOrganizationName(input: SetOrganizationNameMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationDescription(input: SetOrganizationDescriptionMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationPhotoURL(input: SetOrganizationPhotoURLMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+
+  setOrganizationContactInfo(input: SetOrganizationContactInfoMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 type Organization {
@@ -79,6 +81,20 @@ input SetOrganizationNameMutationInput {
 
 input OrganizationApplicationsQueryInput {
   sort: ApplicationSortInput = { field: name, order: asc }
+}
+
+input SetOrganizationContactInfoMutationInput {
+  id: String!
+  payload: SetOrganizationContactInfoPayloadInput!
+}
+
+input SetOrganizationContactInfoPayloadInput {
+  phoneNumber: String
+  streetAddress: String
+  city: String
+  countryCode: String
+  regionCode: String
+  postalCode: String
 }
 
 input UpdateOrganizationPayloadInput {

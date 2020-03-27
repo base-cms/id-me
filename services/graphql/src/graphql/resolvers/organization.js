@@ -83,6 +83,17 @@ module.exports = {
       });
     },
 
+    /**
+     *
+     */
+    setOrganizationContactInfo: (_, { input }) => {
+      const { id, payload } = input;
+      return organizationService.request('updateContactInfo', {
+        id,
+        update: { $set: payload },
+      });
+    },
+
     setOrganizationDescription: (_, { input }, { org }) => {
       const id = org.getId();
       const { value } = input;
