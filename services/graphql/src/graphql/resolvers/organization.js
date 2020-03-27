@@ -1,5 +1,6 @@
 const {
   applicationService,
+  localeService,
   membershipService,
   organizationService,
   userService,
@@ -15,6 +16,14 @@ module.exports = {
   Organization: {
     id: org => org._id,
     applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
+    country: ({ countryCode }) => {
+      if (!countryCode) return null;
+      return localeService.request('country.asObject', { code: countryCode });
+    },
+    region: ({ countryCode, regionCode }) => {
+      if (!countryCode || !regionCode) return null;
+      return localeService.request('region.asObject', { countryCode, regionCode });
+    },
   },
   OrganizationInvitation: {
     invitedBy: ({ invitedByEmail }) => userService.request('findByEmail', { email: invitedByEmail }),
