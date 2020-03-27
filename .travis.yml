@@ -39,8 +39,6 @@ stages:
     if: tag =~ /^v\d+\.\d+\.\d+$/
   - name: production-group5
     if: tag =~ /^v\d+\.\d+\.\d+$/
-  - name: production-group6
-    if: tag =~ /^v\d+\.\d+\.\d+$/
   - name: production-finished
     if: tag =~ /^v\d+\.\d+\.\d+$/
 
@@ -55,8 +53,6 @@ stages:
   - name: staging-group4
     if: tag is present
   - name: staging-group5
-    if: tag is present
-  - name: staging-group6
     if: tag is present
   - name: staging-finished
     if: tag is present
@@ -122,6 +118,15 @@ jobs:
       name: Token Service
       script: scripts/deploy.js token
 
+    - <<: *production-job
+      stage: production-group1
+      name: Organization Service
+      script: scripts/deploy.js organization
+    - <<: *staging-job
+      stage: staging-group1
+      name: Organization Service
+      script: scripts/deploy.js organization
+
     # GROUP 2
     - <<: *production-job
       stage: production-group2
@@ -134,59 +139,49 @@ jobs:
 
     - <<: *production-job
       stage: production-group2
-      name: Organization Service
-      script: scripts/deploy.js organization
+      name: Application Service
+      script: scripts/deploy.js application
     - <<: *staging-job
       stage: staging-group2
-      name: Organization Service
-      script: scripts/deploy.js organization
+      name: Application Service
+      script: scripts/deploy.js application
 
     # GROUP 3
     - <<: *production-job
       stage: production-group3
-      name: Application Service
-      script: scripts/deploy.js application
+      name: Export Service
+      script: scripts/deploy.js export
     - <<: *staging-job
       stage: staging-group3
-      name: Application Service
-      script: scripts/deploy.js application
+      name: Export Service
+      script: scripts/deploy.js export
+
+    - <<: *production-job
+      stage: production-group3
+      name: Membership Service
+      script: scripts/deploy.js membership
+    - <<: *staging-job
+      stage: staging-group3
+      name: Membership Service
+      script: scripts/deploy.js membership
 
     # GROUP 4
     - <<: *production-job
       stage: production-group4
-      name: Export Service
-      script: scripts/deploy.js export
+      name: GraphQL Service
+      script: scripts/deploy.js graphql
     - <<: *staging-job
       stage: staging-group4
-      name: Export Service
-      script: scripts/deploy.js export
-
-    - <<: *production-job
-      stage: production-group4
-      name: Membership Service
-      script: scripts/deploy.js membership
-    - <<: *staging-job
-      stage: staging-group4
-      name: Membership Service
-      script: scripts/deploy.js membership
+      name: GraphQL Service
+      script: scripts/deploy.js graphql
 
     # GROUP 5
     - <<: *production-job
       stage: production-group5
-      name: GraphQL Service
-      script: scripts/deploy.js graphql
-    - <<: *staging-job
-      stage: staging-group5
-      name: GraphQL Service
-      script: scripts/deploy.js graphql
-
-    # GROUP 6
-    - <<: *production-job
-      stage: production-group6
       name: Manage UI Service
       script: scripts/deploy.js manage
     - <<: *staging-job
-      stage: staging-group6
+      stage: staging-group5
       name: Manage UI Service
       script: scripts/deploy.js manage
 
