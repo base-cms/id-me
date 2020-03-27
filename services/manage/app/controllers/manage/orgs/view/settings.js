@@ -56,10 +56,7 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
     async saveCompanyInfo() {
       try {
         this.startAction({ prop: 'isSavingCompanyInfo' });
-        const {
-          id,
-          company,
-        } = this.model;
+        const { company } = this.model;
         const {
           name,
           streetAddress,
@@ -67,6 +64,7 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
           regionName,
           postalCode,
           phoneNumber,
+          supportEmail,
         } = company || {};
         const payload = {
           name,
@@ -75,8 +73,9 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
           regionName,
           postalCode,
           phoneNumber,
+          supportEmail,
         };
-        const input = { id, company: payload };
+        const input = { company: payload };
         const variables = { input };
         await this.mutate({ mutation: setOrganizationCompanyInfo, variables }, 'setOrganizationCompanyInfo');
       } catch (e) {

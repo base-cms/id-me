@@ -92,8 +92,9 @@ module.exports = {
     /**
      *
      */
-    setOrganizationCompanyInfo: (_, { input }) => {
-      const { id, company } = input;
+    setOrganizationCompanyInfo: (_, { input }, { org }) => {
+      const id = org.getId();
+      const { company } = input;
       return organizationService.request('updateCompanyInfo', {
         id,
         payload: company,

@@ -40,6 +40,7 @@ type OrganizationCompany {
   regionName: String
   postalCode: String
   phoneNumber: String
+  supportEmail: String
 }
 
 type OrganizationMembership {
@@ -70,6 +71,7 @@ input OrganizationCompanyPayloadInput {
   regionName: String
   postalCode: String
   phoneNumber: String
+  supportEmail: String
 }
 
 input CreateOrganizationMutationInput {
@@ -96,7 +98,6 @@ input OrganizationApplicationsQueryInput {
 }
 
 input SetOrganizationCompanyInfoMutationInput {
-  id: String!
   company: OrganizationCompanyPayloadInput
 }
 

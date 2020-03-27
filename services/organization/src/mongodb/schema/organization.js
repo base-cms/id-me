@@ -1,5 +1,6 @@
 const { Schema } = require('mongoose');
 const { stripLines } = require('@identity-x/utils');
+const { emailPlugin } = require('@identity-x/mongoose-plugins');
 
 const companySchema = new Schema({
   name: {
@@ -32,6 +33,8 @@ const companySchema = new Schema({
     set: stripLines,
   },
 });
+
+companySchema.plugin(emailPlugin, { name: 'supportEmail', options: { required: false } });
 
 const schema = new Schema({
   name: {

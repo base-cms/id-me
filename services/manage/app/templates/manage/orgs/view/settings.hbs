@@ -68,9 +68,16 @@
 
         <div class="row">
           <div class="col-md-6 col-lg-12 col-xl-6">
-            <div class="form-group mb-0">
+            <div class="form-group mb-3 mb-md-0 mb-lg-3 mb-xl-0">
               <FormElements::Label @for="org.company.phoneNumber">Phone Number</FormElements::Label>
               <Input @id="org.company.phoneNumber" @type="tel" @class="form-control" @value={{this.model.company.phoneNumber}} />
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-12 col-xl-6">
+            <div class="form-group mb-0">
+              <FormElements::Label @for="org.company.supportEmail">Support Email</FormElements::Label>
+              <Input @id="org.company.supportEmail" @type="email" @class="form-control" @value={{this.model.company.supportEmail}} />
             </div>
           </div>
         </div>

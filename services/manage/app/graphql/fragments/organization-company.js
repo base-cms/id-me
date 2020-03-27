@@ -9,5 +9,6 @@ export default gql`
     regionName
     postalCode
     phoneNumber
+    supportEmail
   }
 `;
