@@ -11,6 +11,10 @@ extend type Mutation {
   createApplication(input: CreateApplicationMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
   updateApplication(input: UpdateApplicationMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
   setApplicationName(input: SetApplicationNameMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
+
+  addApplicationContext(input: AddApplicationContextMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
+  updateApplicationContext(input: UpdateApplicationContextMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
+  removeApplicationContext(input: RemoveApplicationContextMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
 }
 
 enum ApplicationSortField {
@@ -26,6 +30,25 @@ type Application {
   email: String @projection
   description: String @projection
   organization: Organization! @projection(localField: "organizationId")
+  contexts: [ApplicationContext!]! @projection
+}
+
+type ApplicationContext {
+  id: String!
+  name: String!
+  email: String
+  description: String
+}
+
+input AddApplicationContextMutationInput {
+  payload: ApplicationContextPayloadInput!
+}
+
+
+input ApplicationContextPayloadInput {
+  name: String!
+  email: String!
+  description: String
 }
 
 input ApplicationQueryInput {
@@ -38,6 +61,10 @@ input CreateApplicationMutationInput {
   description: String
 }
 
+input RemoveApplicationContextMutationInput {
+  contextId: String!
+}
+
 input SetApplicationNameMutationInput {
   value: String!
 }
@@ -45,6 +72,11 @@ input SetApplicationNameMutationInput {
 input ApplicationSortInput {
   field: ApplicationSortField = id
   order: SortOrder = desc
+}
+
+input UpdateApplicationContextMutationInput {
+  contextId: String!
+  payload: ApplicationContextPayloadInput!
 }
 
 input UpdateApplicationPayloadInput {
