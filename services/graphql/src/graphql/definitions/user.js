@@ -68,6 +68,7 @@ input RegisterNewUserMutationInput {
   givenName: String!
   familyName: String!
   orgName: String!
+  company: OrganizationCompanyPayloadInput
 }
 
 input RejectOrgInviteMutationInput {

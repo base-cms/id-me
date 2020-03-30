@@ -1,5 +1,6 @@
 const { membershipService, organizationService, userService } = require('@identity-x/service-clients');
 const { UserInputError } = require('apollo-server-express');
+const { getAsObject } = require('@base-cms/object-path');
 
 module.exports = {
   User: {
@@ -73,11 +74,22 @@ module.exports = {
         email,
         givenName,
         familyName,
+
         orgName,
       } = input;
+
+      const company = getAsObject(input, 'company');
+
+      const orgPayload = {
+        name: orgName,
+        company: {
+          ...company,
+          ...(!company.name && { name: orgName }),
+        },
+      };
       const userPayload = { givenName, familyName };
       const user = await userService.request('create', { email, payload: userPayload });
-      const organization = await organizationService.request('create', { payload: { name: orgName } });
+      const organization = await organizationService.request('create', { payload: orgPayload });
       await membershipService.request('create', {
         organizationId: organization._id,
         email: user.email,

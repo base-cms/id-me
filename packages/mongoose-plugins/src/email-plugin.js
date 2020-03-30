@@ -4,9 +4,9 @@ const emailValidator = require('./email-validator');
 module.exports = function emailPlugin(schema, { name = 'email', options = {} } = {}) {
   schema.add({
     [name]: {
+      required: true,
       ...options,
       type: String,
-      required: true,
       trim: true,
       lowercase: true,
       set: normalizeEmail,

@@ -4,6 +4,11 @@ module.exports = {
   Application: {
     id: app => app._id,
     organization: app => organizationService.request('findById', { id: app.organizationId }),
+    contexts: app => app.contexts,
+  },
+
+  ApplicationContext: {
+    id: context => context._id,
   },
 
   Query: {
@@ -23,6 +28,17 @@ module.exports = {
     /**
      *
      */
+    addApplicationContext: (_, { input }) => {
+      const { applicationId, payload } = input;
+      return applicationService.request('addContext', {
+        applicationId,
+        context: payload,
+      });
+    },
+
+    /**
+     *
+     */
     createApplication: (_, { input }, { org }) => {
       const { name, description, email } = input;
       const payload = { name, description, email };
@@ -31,6 +47,26 @@ module.exports = {
         organizationId,
         payload,
       });
+    },
+
+    /**
+     *
+     */
+    removeApplicationContext: (_, { input }) => {
+      const { applicationId, contextId } = input;
+      return applicationService.request('removeContext', {
+        applicationId,
+        contextId,
+      });
+    },
+
+    /**
+     *
+     */
+    setApplicationName: (_, { input }, { app }) => {
+      const id = app.getId();
+      const { value } = input;
+      return applicationService.request('updateField', { id, path: 'name', value });
     },
 
     /**
@@ -47,10 +83,13 @@ module.exports = {
     /**
      *
      */
-    setApplicationName: (_, { input }, { app }) => {
-      const id = app.getId();
-      const { value } = input;
-      return applicationService.request('updateField', { id, path: 'name', value });
+    updateApplicationContext: (_, { input }) => {
+      const { applicationId, contextId, payload } = input;
+      return applicationService.request('updateContext', {
+        applicationId,
+        contextId,
+        payload,
+      });
     },
   },
 };

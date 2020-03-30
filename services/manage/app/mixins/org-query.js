@@ -21,4 +21,13 @@ export default Mixin.create(RouteQueryManager, {
     };
     return this.apollo.mutate(params, queryName);
   },
+
+  /**
+   * Since this uses the route query manager, we also need to subsubscribe
+   * when a component is destroyed.
+   */
+  willDestroyElement() {
+    this._super(...arguments);
+    this.get('apollo').unsubscribeAll(false);
+  },
 });

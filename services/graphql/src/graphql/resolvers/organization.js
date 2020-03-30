@@ -4,6 +4,7 @@ const {
   organizationService,
   userService,
 } = require('@identity-x/service-clients');
+const { getAsObject } = require('@base-cms/object-path');
 
 const membershipResolvers = {
   id: membership => membership._id,
@@ -15,6 +16,9 @@ module.exports = {
   Organization: {
     id: org => org._id,
     applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
+  },
+  OrganizationCompany: {
+    id: company => company._id,
   },
   OrganizationInvitation: {
     invitedBy: ({ invitedByEmail }) => userService.request('findByEmail', { email: invitedByEmail }),
@@ -53,7 +57,18 @@ module.exports = {
   Mutation: {
     createOrganization: async (_, { input }, { user }) => {
       const { name, description } = input;
-      const payload = { name, description };
+
+      const company = getAsObject(input, 'company');
+
+      const payload = {
+        name,
+        description,
+        company: {
+          ...company,
+          ...(!company.name && { name }),
+        },
+      };
+
       const org = await organizationService.request('create', { payload });
       await membershipService.request('create', {
         organizationId: org._id,
@@ -71,6 +86,18 @@ module.exports = {
       return organizationService.request('updateForId', {
         id,
         update: { $set: payload },
+      });
+    },
+
+    /**
+     *
+     */
+    setOrganizationCompanyInfo: (_, { input }, { org }) => {
+      const id = org.getId();
+      const { company } = input;
+      return organizationService.request('updateCompanyInfo', {
+        id,
+        payload: company,
       });
     },
 

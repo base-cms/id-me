@@ -1,4 +1,40 @@
 const { Schema } = require('mongoose');
+const { stripLines } = require('@identity-x/utils');
+const { emailPlugin } = require('@identity-x/mongoose-plugins');
+
+const companySchema = new Schema({
+  name: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  streetAddress: {
+    type: String,
+    trim: true,
+  },
+  city: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  regionName: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  postalCode: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+  phoneNumber: {
+    type: String,
+    trim: true,
+    set: stripLines,
+  },
+});
+
+companySchema.plugin(emailPlugin, { name: 'supportEmail', options: { required: false } });
 
 const schema = new Schema({
   name: {
@@ -20,6 +56,9 @@ const schema = new Schema({
   consentPolicy: {
     type: String,
     trim: true,
+  },
+  company: {
+    type: companySchema,
   },
 }, { timestamps: true });
 

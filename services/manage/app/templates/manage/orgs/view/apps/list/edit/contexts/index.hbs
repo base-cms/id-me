@@ -1,0 +1,35 @@
+<BsModal::Body>
+  <div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Support Email</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.model.contexts as |context|}}
+          <tr>
+            <td class="align-middle">{{context.name}}</td>
+            <td class="align-middle">{{context.email}}</td>
+            <td class="align-middle text-right">
+              {{#link-to "manage.orgs.view.apps.list.edit.contexts.edit" context.id class="btn btn-primary"}}
+                <EntypoIcon @name="edit" /> Edit
+              {{/link-to}}
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan="3" class="text-center text-muted">No contexts found</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</BsModal::Body>
+<BsModal::Footer>
+  {{#link-to "manage.orgs.view.apps.list.edit.contexts.add" class="btn btn-success"}}
+    <EntypoIcon @name="plus" /> Add
+  {{/link-to}}
+</BsModal::Footer>

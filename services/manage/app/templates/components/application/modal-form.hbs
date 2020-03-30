@@ -13,32 +13,9 @@
       </button>
     {{/modal.header}}
 
-    {{#modal.body}}
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <FormElements::Label @for="app.name" @required={{true}}>Name</FormElements::Label>
-            <Input @id="app.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{model.name}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group">
-            <FormElements::Label @for="app.email" @required={{true}}>Support Email</FormElements::Label>
-            <Input @id="app.email" @type="email" @required={{true}} @class="form-control" @value={{model.email}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <div class="form-group mb-0">
-            <FormElements::Label @for="app.description">Description</FormElements::Label>
-            <Textarea @id="app.description" @class="form-control" @value={{model.description}} @rows={{3}} />
-          </div>
-        </div>
-      </div>
-    {{/modal.body}}
+    <BsModal::Body>
+      <Application::ModalForm::GeneralFields @model={{this.model}} />
+    </BsModal::Body>
 
     {{#modal.footer}}
       <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />

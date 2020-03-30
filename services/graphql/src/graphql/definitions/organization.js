@@ -16,6 +16,8 @@ extend type Mutation {
   setOrganizationName(input: SetOrganizationNameMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationDescription(input: SetOrganizationDescriptionMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
   setOrganizationPhotoURL(input: SetOrganizationPhotoURLMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+
+  setOrganizationCompanyInfo(input: SetOrganizationCompanyInfoMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 type Organization {
@@ -24,7 +26,21 @@ type Organization {
   description: String @projection
   photoURL: String @projection
   consentPolicy: String @projection
+
+  company: OrganizationCompany @projection
+
   applications: [Application!]! @projection(localField: "_id")
+}
+
+type OrganizationCompany {
+  id: String!
+  name: String
+  streetAddress: String
+  city: String
+  regionName: String
+  postalCode: String
+  phoneNumber: String
+  supportEmail: String
 }
 
 type OrganizationMembership {
@@ -48,9 +64,20 @@ input OrganizationQueryInput {
   id: String!
 }
 
+input OrganizationCompanyPayloadInput {
+  name: String
+  streetAddress: String
+  city: String
+  regionName: String
+  postalCode: String
+  phoneNumber: String
+  supportEmail: String
+}
+
 input CreateOrganizationMutationInput {
   name: String!
   description: String
+  company: OrganizationCompanyPayloadInput
 }
 
 input SetOrganizationDescriptionMutationInput {
@@ -68,6 +95,10 @@ input SetOrganizationNameMutationInput {
 
 input OrganizationApplicationsQueryInput {
   sort: ApplicationSortInput = { field: name, order: asc }
+}
+
+input SetOrganizationCompanyInfoMutationInput {
+  company: OrganizationCompanyPayloadInput
 }
 
 input UpdateOrganizationPayloadInput {

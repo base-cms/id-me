@@ -1,8 +1,11 @@
 <h1 class="mb-4">Settings</h1>
 
 <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-6 mb-4">
     <form class="card" {{action "save" on="submit"}}>
+      <div class="card-header">
+        <EntypoIcon @name="list" /> Details
+      </div>
       <div class="card-body">
         <div class="form-group">
           <FormElements::Label @for="org.name" @required={{true}}>Name</FormElements::Label>
@@ -20,7 +23,67 @@
         </div>
       </div>
       <div class="card-footer">
-        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isActionRunning}} @isSaving={{this.isActionRunning}} />
+        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isSaving}} @isSaving={{this.isActionRunning}} />
+      </div>
+    </form>
+  </div>
+
+  <div class="col-lg-6">
+    <form class="card" {{action "saveCompanyInfo" on="submit"}}>
+      <div class="card-header">
+        <EntypoIcon @name="briefcase" /> Company Info
+      </div>
+      <div class="card-body">
+        <div class="form-group">
+          <FormElements::Label @for="org.company.name">Company Name</FormElements::Label>
+          <Input @id="org.company.name" @type="text" @class="form-control" @value={{this.model.company.name}} />
+        </div>
+        <div class="form-group">
+          <FormElements::Label @for="org.company.streetAddress">Street Address</FormElements::Label>
+          <Textarea @id="org.company.streetAddress" @class="form-control" @value={{this.model.company.streetAddress}} @rows={{2}} />
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-12 col-xl-6">
+            <div class="form-group">
+              <FormElements::Label @for="org.company.city">City</FormElements::Label>
+              <Input @id="org.company.city" @type="text" @class="form-control" @value={{this.model.company.city}} />
+            </div>
+          </div>
+
+          <div class="col-md-3 col-lg-12 col-xl-3">
+            <div class="form-group">
+              <FormElements::Label @for="org.company.regionName">State/Region</FormElements::Label>
+              <Input @id="org.company.regionName" @type="text" @class="form-control" @value={{this.model.company.regionName}} />
+            </div>
+          </div>
+
+          <div class="col-md-3 col-lg-12 col-xl-3">
+            <div class="form-group">
+              <FormElements::Label @for="org.company.postalCode">Postal Code</FormElements::Label>
+              <Input @id="org.company.postalCode" @type="text" @class="form-control" @value={{this.model.company.postalCode}} />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-lg-12 col-xl-6">
+            <div class="form-group mb-3 mb-md-0 mb-lg-3 mb-xl-0">
+              <FormElements::Label @for="org.company.phoneNumber">Phone Number</FormElements::Label>
+              <Input @id="org.company.phoneNumber" @type="tel" @class="form-control" @value={{this.model.company.phoneNumber}} />
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-12 col-xl-6">
+            <div class="form-group mb-0">
+              <FormElements::Label @for="org.company.supportEmail">Support Email</FormElements::Label>
+              <Input @id="org.company.supportEmail" @type="email" @class="form-control" @value={{this.model.company.supportEmail}} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isSavingCompanyInfo}} @isSaving={{this.isActionRunning}} />
       </div>
     </form>
   </div>
