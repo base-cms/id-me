@@ -28,9 +28,8 @@ module.exports = {
     /**
      *
      */
-    addApplicationContext: (_, { input }, { app }) => {
-      const applicationId = app.getId();
-      const { payload } = input;
+    addApplicationContext: (_, { input }) => {
+      const { applicationId, payload } = input;
       return applicationService.request('addContext', {
         applicationId,
         context: payload,
@@ -53,9 +52,8 @@ module.exports = {
     /**
      *
      */
-    removeApplicationContext: (_, { input }, { app }) => {
-      const applicationId = app.getId();
-      const { contextId } = input;
+    removeApplicationContext: (_, { input }) => {
+      const { applicationId, contextId } = input;
       return applicationService.request('removeContext', {
         applicationId,
         contextId,
@@ -85,9 +83,8 @@ module.exports = {
     /**
      *
      */
-    updateApplicationContext: (_, { input }, { app }) => {
-      const applicationId = app.getId();
-      const { contextId, payload } = input;
+    updateApplicationContext: (_, { input }) => {
+      const { applicationId, contextId, payload } = input;
       return applicationService.request('updateContext', {
         applicationId,
         contextId,

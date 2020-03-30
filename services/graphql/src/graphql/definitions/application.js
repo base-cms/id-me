@@ -12,9 +12,9 @@ extend type Mutation {
   updateApplication(input: UpdateApplicationMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
   setApplicationName(input: SetApplicationNameMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
 
-  addApplicationContext(input: AddApplicationContextMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
-  updateApplicationContext(input: UpdateApplicationContextMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
-  removeApplicationContext(input: RemoveApplicationContextMutationInput!): Application! @requiresAppRole(roles: [Owner, Administrator])
+  addApplicationContext(input: AddApplicationContextMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
+  updateApplicationContext(input: UpdateApplicationContextMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
+  removeApplicationContext(input: RemoveApplicationContextMutationInput!): Application! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 enum ApplicationSortField {
@@ -41,6 +41,7 @@ type ApplicationContext {
 }
 
 input AddApplicationContextMutationInput {
+  applicationId: String!
   payload: ApplicationContextPayloadInput!
 }
 
@@ -62,6 +63,7 @@ input CreateApplicationMutationInput {
 }
 
 input RemoveApplicationContextMutationInput {
+  applicationId: String!
   contextId: String!
 }
 
@@ -75,6 +77,7 @@ input ApplicationSortInput {
 }
 
 input UpdateApplicationContextMutationInput {
+  applicationId: String!
   contextId: String!
   payload: ApplicationContextPayloadInput!
 }
