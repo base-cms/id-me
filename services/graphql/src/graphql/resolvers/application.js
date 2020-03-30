@@ -88,7 +88,7 @@ module.exports = {
       return applicationService.request('updateContext', {
         applicationId,
         contextId,
-        context: payload,
+        payload,
       });
     },
   },
