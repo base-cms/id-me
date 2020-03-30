@@ -31,7 +31,10 @@ Router.map(function() {
           this.route('list', { path: '/' }, function() {
             this.route('create');
             this.route('edit', { path: 'edit/:app_id' }, function() {
-              this.route('contexts');
+              this.route('contexts', function() {
+                this.route('add');
+                this.route('edit', { path: ':context_id' });
+              });
             });
           });
           this.route('view', { path: ':app_id' }, function() {

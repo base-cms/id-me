@@ -1,0 +1,16 @@
+<BsModal::Header>
+  <h2 class="modal-title">
+    Modify Context
+  </h2>
+</BsModal::Header>
+
+<BsModal::Body>
+
+</BsModal::Body>
+<BsModal::Footer>
+  <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+
+  {{#link-to "manage.orgs.view.apps.list.edit.contexts.index" class="btn btn-warning"}}
+    <EntypoIcon @name="cross" /> Cancel
+  {{/link-to}}
+</BsModal::Footer>

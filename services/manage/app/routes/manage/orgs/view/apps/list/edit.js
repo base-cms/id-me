@@ -9,6 +9,12 @@ const query = gql`
       name
       email
       description
+      contexts {
+        id
+        name
+        email
+        description
+      }
     }
   }
 `;
