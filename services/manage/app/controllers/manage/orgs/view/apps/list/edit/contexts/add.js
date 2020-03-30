@@ -25,14 +25,13 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
     async addContext() {
       try {
         this.startAction();
-        const applicationId = this.application.id;
         const {
           name,
           description,
           email
         } = this.get('model');
         const payload = { name, description, email };
-        const variables = { applicationId, payload };
+        const variables = { applicationId: this.application.id, payload };
         await this.mutate({ mutation, variables }, 'addApplicationContext');
         await this.transitionToRoute('manage.orgs.view.apps.list.edit.contexts.index');
       } catch (e) {
