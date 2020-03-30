@@ -159,6 +159,8 @@ input SendAppUserLoginLinkMutationInput {
   email: String!
   authUrl: String!
   redirectTo: String
+  "If provided, will use the matched application context when sending the login email."
+  appContextId: String
   "Deprecated. While this field can still be sent, it is no longer used or handled."
   fields: JSON
 }

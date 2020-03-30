@@ -23,6 +23,7 @@ module.exports = async ({
   authUrl,
   redirectTo,
   applicationId,
+  appContextId,
   email,
 } = {}) => {
   if (!authUrl) throw createRequiredParamError('authUrl');
@@ -30,7 +31,7 @@ module.exports = async ({
   if (!email) throw createRequiredParamError('email');
 
   const [app, user] = await Promise.all([
-    Application.findById(applicationId, ['id', 'name', 'email', 'organizationId']),
+    Application.findById(applicationId, ['id', 'name', 'email', 'organizationId', 'contexts']),
     findByEmail({ applicationId, email, fields: ['id', 'email', 'domain'] }),
   ]);
 
@@ -44,9 +45,13 @@ module.exports = async ({
   if (!org) throw createError(404, `No organization was found for '${app.organizationId}'`);
   const company = getAsObject(org, 'company');
 
+  // Load the active context
+  const context = app.contexts.id(appContextId) || {};
+  const appName = context.name || app.name;
+
   const addressFields = ['name', 'streetAddress', 'city', 'regionName', 'postalCode'];
   const addressValues = addressFields.map(field => company[field]).filter(v => v).map(stripLines);
-  const supportEmail = app.email || company.supportEmail;
+  const supportEmail = context.email || app.email || company.supportEmail;
   if (supportEmail) addressValues.push(supportEmail);
 
   const { token } = await createLoginToken({ applicationId, email: user.email });
@@ -66,27 +71,23 @@ module.exports = async ({
         <title>Your personal login link</title>
       </head>
       <body>
-        <h1>Your personal login link.</h1>
-        <p>You recently requested to login to <strong>${app.name}</strong>. This link is good for one hour and will expire immediately after use.</p>
-        <p><a href="${url}">Login to ${app.name}</a></p>
+        <p>You recently requested to login to <strong>${appName}</strong>. This link is good for one hour and will expire immediately after use.</p>
+        <p><a href="${url}">Login to ${appName}</a></p>
         <p>If you didn't request this link, simply ignore this email${supportEmailHtml}.</p>
         <hr>
         <small style="font-color: #ccc;">
           <p>Please add <em>${SENDING_DOMAIN}</em> to your address book or safe sender list to ensure you receive future emails from us.</p>
-          <p>You are receiving this email because a login request was made on ${app.name}.</p>
-          <p>For additional information please contact ${app.name} c/o ${addressValues.join(', ')}.</p>
+          <p>You are receiving this email because a login request was made on ${appName}.</p>
+          <p>For additional information please contact ${appName} c/o ${addressValues.join(', ')}.</p>
         </small>
       </body>
     </html>
   `;
 
   const text = `
-Your personal login link.
--------------------------
+You recently requested to login to ${appName}. This link is good for one hour and will expire immediately after use.
 
-You recently requested to login to ${app.name}. This link is good for one hour and will expire immediately after use.
-
-Login to ${app.name} by visiting this link:
+Login to ${appName} by visiting this link:
 ${url}
 
 If you didn't request this link, simply ignore this email${supportEmailText}.
@@ -94,13 +95,13 @@ If you didn't request this link, simply ignore this email${supportEmailText}.
 -------------------------
 
 Please add ${SENDING_DOMAIN} to your address book or safe sender list to ensure you receive future emails from us.
-You are receiving this email because a login request was made on ${app.name}.
-For additional information please contact ${app.name} c/o ${addressValues.join(', ')}.
+You are receiving this email because a login request was made on ${appName}.
+For additional information please contact ${appName} c/o ${addressValues.join(', ')}.
   `;
 
   await mailerService.request('send', {
     to: user.email,
-    from: `${app.name} <noreply@${SENDING_DOMAIN}>`,
+    from: `${appName} <noreply@${SENDING_DOMAIN}>`,
     subject: 'Your personal login link',
     html,
     text,
