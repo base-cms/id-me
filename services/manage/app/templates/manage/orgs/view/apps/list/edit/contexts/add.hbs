@@ -1,16 +1,20 @@
 <BsModal::Header>
   <h2 class="modal-title">
-    Add Context
+    Add Context to {{this.application.name}}
   </h2>
 </BsModal::Header>
 
-<BsModal::Body>
+<form {{action "addContext" on="submit"}}>
+  <fieldset disabled={{this.isActionRunning}}>
+    <BsModal::Body>
+      <Application::Context::Fields @model={{this.model}} />
+    </BsModal::Body>
+    <BsModal::Footer>
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
 
-</BsModal::Body>
-<BsModal::Footer>
-  <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
-
-  {{#link-to "manage.orgs.view.apps.list.edit.contexts.index" class="btn btn-warning"}}
-    <EntypoIcon @name="cross" /> Cancel
-  {{/link-to}}
-</BsModal::Footer>
+      {{#link-to "manage.orgs.view.apps.list.edit.contexts.index" class="btn btn-warning"}}
+        <EntypoIcon @name="cross" /> Cancel
+      {{/link-to}}
+    </BsModal::Footer>
+  </fieldset>
+</form>

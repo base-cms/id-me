@@ -5,4 +5,10 @@ import { inject } from '@ember/service';
 
 export default Controller.extend(ActionMixin, OrgQueryMixin, {
   errorNotifier: inject(),
+
+  actions: {
+    async updateContext() {
+
+    },
+  },
 });
