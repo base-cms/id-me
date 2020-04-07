@@ -12,6 +12,13 @@
           Verified
         </span>
       {{/if}}
+      {{#if this.user.receiveEmail}}
+        <br>
+        <span class="receives-email">
+          {{entypo-icon "mail"}}
+          Email Opt-In
+        </span>
+      {{/if}}
     </p>
 
     <div class="app-user-details app-user-details--org">

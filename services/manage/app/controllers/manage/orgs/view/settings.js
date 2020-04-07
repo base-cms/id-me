@@ -12,6 +12,7 @@ const mutation = gql`
       name
       description
       consentPolicy
+      emailConsentRequest
     }
   }
 `;
@@ -41,8 +42,9 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
           name,
           description,
           consentPolicy,
+          emailConsentRequest,
         } = this.model;
-        const payload = { name, description, consentPolicy };
+        const payload = { name, description, consentPolicy, emailConsentRequest };
         const input = { id, payload };
         const variables = { input };
         await this.mutate({ mutation, variables }, 'updateOrganization');

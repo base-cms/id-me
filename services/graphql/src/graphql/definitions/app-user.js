@@ -70,6 +70,7 @@ type AppUser {
   lastLoggedIn: Date @projection
   verified: Boolean @projection
   banned: Boolean @projection
+  receiveEmail: Boolean @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
@@ -198,6 +199,7 @@ input UpdateOwnAppUserMutationInput {
   countryCode: String
   regionCode: String
   postalCode: String
+  receiveEmail: Boolean
 }
 
 `;

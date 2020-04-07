@@ -16,6 +16,7 @@ module.exports = async ({
     'email',
     'domain',
     'verified',
+    'receiveEmail',
     'lastLoggedIn',
     'givenName',
     'familyName',

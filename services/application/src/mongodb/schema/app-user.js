@@ -50,6 +50,14 @@ const schema = new Schema({
     type: Boolean,
     default: false,
   },
+  /**
+   * A general flag whether the user wishes to receive
+   * email communications from the app/website.
+   */
+  receiveEmail: {
+    type: Boolean,
+    default: false,
+  },
   lastLoggedIn: {
     type: Date,
   },

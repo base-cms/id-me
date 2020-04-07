@@ -57,6 +57,10 @@ const schema = new Schema({
     type: String,
     trim: true,
   },
+  emailConsentRequest: {
+    type: String,
+    trim: true,
+  },
   company: {
     type: companySchema,
   },
