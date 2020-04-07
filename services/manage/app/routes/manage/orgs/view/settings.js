@@ -11,6 +11,7 @@ const query = gql`
       name
       description
       consentPolicy
+      emailConsentRequest
       company {
         ...OrganizationCompanyFragment
       }

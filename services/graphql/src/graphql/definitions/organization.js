@@ -26,6 +26,7 @@ type Organization {
   description: String @projection
   photoURL: String @projection
   consentPolicy: String @projection
+  emailConsentRequest: String @projection
 
   company: OrganizationCompany @projection
 
@@ -105,6 +106,7 @@ input UpdateOrganizationPayloadInput {
   name: String!
   description: String
   consentPolicy: String
+  emailConsentRequest: String
 }
 
 input UpdateOrganizationMutationInput {
