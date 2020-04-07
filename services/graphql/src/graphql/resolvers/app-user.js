@@ -312,6 +312,7 @@ module.exports = {
         countryCode,
         regionCode,
         postalCode,
+        receiveEmail,
       } = input;
       return applicationService.request('user.updateOne', {
         id,
@@ -324,6 +325,7 @@ module.exports = {
           countryCode,
           regionCode,
           postalCode,
+          receiveEmail,
         },
       });
     },
