@@ -32,5 +32,6 @@ export default gql`
     organizationTitle
     verified
     lastLoggedIn
+    receiveEmail
   }
 `;
