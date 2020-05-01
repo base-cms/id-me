@@ -40,7 +40,6 @@ module.exports = {
       throw err;
     }
     doc.set('lastSeen', new Date());
-    console.log('HERE!!');
     return doc.save();
   },
 };
