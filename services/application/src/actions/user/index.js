@@ -5,6 +5,7 @@ const {
   findById,
   updateFieldWithApp,
 } = require('@identity-x/utils').actions;
+const { createRequiredParamError } = require('@base-cms/micro').service;
 const create = require('./create');
 const findByEmail = require('./find-by-email');
 const login = require('./login');
@@ -30,4 +31,16 @@ module.exports = {
   updateFieldWithApp: params => updateFieldWithApp(AppUser, params),
   updateOne,
   verifyAuth,
+  setLastSeen: async ({ id }) => {
+    if (!id) throw createRequiredParamError('id');
+    const doc = await AppUser.findById(id);
+    if (!doc) {
+      const err = new Error(`No user found for ID ${id}.`);
+      err.statusCode = 404;
+      throw err;
+    }
+    doc.set('lastSeen', new Date());
+    console.log('HERE!!');
+    return doc.save();
+  },
 };
