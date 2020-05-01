@@ -61,6 +61,9 @@ const schema = new Schema({
   lastLoggedIn: {
     type: Date,
   },
+  lastSeen: {
+    type: Date,
+  },
   givenName: {
     type: String,
     trim: true,

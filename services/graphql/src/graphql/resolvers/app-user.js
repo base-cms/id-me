@@ -44,7 +44,10 @@ module.exports = {
       if (user.hasValidUser('AppUser') && applicationId !== user.getAppId()) {
         throw new UserInputError('The provided application context does not match the app for the user.');
       }
-      return applicationService.request('loadContext', { applicationId, email, ipAddress });
+      const context = await applicationService.request('loadContext', { applicationId, email, ipAddress });
+      // set last seen (do not await)
+      if (context.user) applicationService.request('user.setLastSeen', { id: context.user._id });
+      return context;
     },
 
     checkContentAccess: async (_, { input }, { user, app, req }) => {
@@ -78,13 +81,15 @@ module.exports = {
     /**
      *
      */
-    activeAppUser: (_, args, { user }) => {
+    activeAppUser: async (_, args, { user }) => {
       const email = user.get('email');
       const applicationId = user.getAppId();
-      return applicationService.request('user.findByEmail', {
+      const userDoc = await applicationService.request('user.findByEmail', {
         applicationId,
         email,
       });
+      applicationService.request('user.setLastSeen', { id: userDoc._id });
+      return userDoc;
     },
 
     /**
