@@ -34,7 +34,7 @@
   </div>
 
   <div class="col-lg-6">
-    <form class="card" {{action "saveCompanyInfo" on="submit"}}>
+    <form class="card mb-3" {{action "saveCompanyInfo" on="submit"}}>
       <div class="card-header">
         <EntypoIcon @name="briefcase" /> Company Info
       </div>
@@ -91,5 +91,9 @@
         <FormElements::SubmitButton @class="btn btn-success" @disabled={{this.isSavingCompanyInfo}} @isSaving={{this.isActionRunning}} />
       </div>
     </form>
+
+    <Organization::RegionalConsentPolicies @policies={{this.model.regionalConsentPolicies}} />
   </div>
 </div>
+
+{{outlet}}

@@ -3,6 +3,7 @@ import OrgQueryMixin from '@identity-x/manage/mixins/org-query';
 import { inject } from '@ember/service';
 import gql from 'graphql-tag';
 import orgCompanyFragment from '@identity-x/manage/graphql/fragments/organization-company';
+import orgRegionalConsentPolicy from '@identity-x/manage/graphql/fragments/organization-regional-consent-policy';
 
 const query = gql`
   query OrganizationSettings($input: OrganizationQueryInput!) {
@@ -15,10 +16,14 @@ const query = gql`
       company {
         ...OrganizationCompanyFragment
       }
+      regionalConsentPolicies {
+        ...OrganizationRegionalConsentPolicyFragment
+      }
     }
   }
 
   ${orgCompanyFragment}
+  ${orgRegionalConsentPolicy}
 `;
 
 export default Route.extend(OrgQueryMixin, {

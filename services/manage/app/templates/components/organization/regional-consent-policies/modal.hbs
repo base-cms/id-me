@@ -1,0 +1,49 @@
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToSettings"}} as |modal|>
+  <form {{action this.onSubmit modal.actions.hide on="submit"}}>
+    {{#modal.header}}
+      <h2 class="modal-title">{{this.title}}</h2>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        {{action modal.actions.hide}}
+      >
+        {{entypo-icon "cross"}}
+      </button>
+    {{/modal.header}}
+
+    {{#modal.body}}
+      <fieldset disabled={{this.isActionRunning}}>
+        <div class="form-group">
+          <FormElements::Label @for="content-policy.name" @required={{true}}>Name</FormElements::Label>
+          <Input @id="content-policy.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.name}} />
+        </div>
+
+        <Organization::RegionalConsentPolicies::Countries @dropdownClass="in-modal-dropdown" @value={{this.model.countryCodes}} />
+
+        <div class="form-group">
+          <FormElements::Label @for="consent-policy.message" @required={{true}}>Message</FormElements::Label>
+          <Textarea @id="consent-policy.message" @required={{true}} @class="form-control" @value={{this.model.message}} @rows={{5}} />
+        </div>
+
+        <div class="form-group">
+          <div class="custom-control custom-checkbox">
+            <Input @id="consent-policy.enabled" @type="checkbox" @class="custom-control-input" @checked={{this.model.enabled}} />
+            <FormElements::Label @class="custom-control-label" @for="consent-policy.enabled">Enabled</FormElements::Label>
+          </div>
+        </div>
+
+        <div class="form-group mb-0">
+          <div class="custom-control custom-checkbox">
+            <Input @id="consent-policy.required" @type="checkbox" @class="custom-control-input" @checked={{this.model.required}} />
+            <FormElements::Label @class="custom-control-label" @for="consent-policy.required">Required</FormElements::Label>
+          </div>
+        </div>
+      </fieldset>
+    {{/modal.body}}
+
+    {{#modal.footer}}
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+    {{/modal.footer}}
+  </form>
+</BsModal>

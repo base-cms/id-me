@@ -1,0 +1,11 @@
+<FormElements::Label @required={{true}} @for="consent-policy.country-codes">Countries</FormElements::Label>
+{{#power-select-multiple
+  dropdownClass=dropdownClass
+  selected=value
+  options=countries
+  onchange=(action (mut value))
+  searchField="name"
+  closeOnSelect=false as |item|
+}}
+  {{item.name}} {{item.flag}}
+{{/power-select-multiple}}

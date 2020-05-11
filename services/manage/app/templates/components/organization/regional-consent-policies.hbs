@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header">
+    <EntypoIcon @name="globe" /> Regional Consent Policies
+  </div>
+  <ul class="list-group list-group-flush">
+    {{#each policies as |policy|}}
+      <li class="list-group-item">
+        <h5>{{policy.name}}</h5>
+      </li>
+    {{else}}
+      <li class="list-group-item text-muted text-center">
+        No policies found
+      </li>
+    {{/each}}
+  </ul>
+  <div class="card-footer">
+    {{#link-to "manage.orgs.view.settings.regional-consent.index" class="btn btn-success"}}
+      <EntypoIcon @name="plus" /> Add
+    {{/link-to}}
+  </div>
+</div>
