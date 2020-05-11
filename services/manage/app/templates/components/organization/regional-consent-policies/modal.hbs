@@ -49,7 +49,7 @@
           @label="Delete"
           @icon="trash"
           @type="warning"
-          @isLoading={{this.isActionRunning}}
+          @disabled={{this.isActionRunning}}
           @mustConfirm={{true}}
           @onClick={{action this.onDelete modal.actions.hide}}
         />
