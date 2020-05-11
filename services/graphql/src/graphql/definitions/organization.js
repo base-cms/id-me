@@ -29,7 +29,7 @@ type Organization {
   emailConsentRequest: String @projection
 
   company: OrganizationCompany @projection
-  regionalConsentPolicies: OrganizationRegionalConsentPolicies! @projection
+  regionalConsentPolicies: [OrganizationRegionalConsentPolicy!]! @projection
 
   applications: [Application!]! @projection(localField: "_id")
 }
@@ -62,12 +62,10 @@ type OrganizationInvitation {
   createdAt: Date
 }
 
-type OrganizationRegionalConsentPolicies {
-  ca: OrganizationRegionalConsentPolicy!
-  eu: OrganizationRegionalConsentPolicy!
-}
-
 type OrganizationRegionalConsentPolicy {
+  id: String!
+  name: String!
+  countryCodes: [String!]!
   enabled: Boolean!
   message: String
   required: Boolean!
