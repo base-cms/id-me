@@ -69,7 +69,7 @@ type OrganizationInvitation {
 type OrganizationRegionalConsentPolicy {
   id: String!
   name: String!
-  countryCodes: [String!]!
+  countries: [LocaleCountry!]!
   enabled: Boolean!
   message: String
   required: Boolean!

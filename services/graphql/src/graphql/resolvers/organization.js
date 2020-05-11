@@ -3,6 +3,7 @@ const {
   membershipService,
   organizationService,
   userService,
+  localeService,
 } = require('@identity-x/service-clients');
 const { getAsObject } = require('@base-cms/object-path');
 
@@ -25,6 +26,11 @@ module.exports = {
     ...membershipResolvers,
   },
   OrganizationMembership: membershipResolvers,
+
+  OrganizationRegionalConsentPolicy: {
+    id: policy => policy._id,
+    countries: ({ countryCodes }) => localeService.request('country.asObjects', { codes: countryCodes }),
+  },
 
   Query: {
     organization: (_, { input }) => {
