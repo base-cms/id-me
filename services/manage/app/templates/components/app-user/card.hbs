@@ -19,6 +19,16 @@
           Email Opt-In
         </span>
       {{/if}}
+      {{#if this.user.regionalConsentAnswers.length}}
+        <p class="mt-3">
+          <strong class="consent-answer">Consent Answers</strong>
+          {{#each this.user.regionalConsentAnswers as |consentAnswer|}}
+            <span class="consent-answer d-block">
+              {{consentAnswer.policy.name}}: {{#if consentAnswer.given}}Yes{{else}}No{{/if}}
+            </span>
+          {{/each}}
+        </p>
+      {{/if}}
     </p>
 
     <div class="app-user-details app-user-details--org">

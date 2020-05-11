@@ -33,5 +33,13 @@ export default gql`
     verified
     lastLoggedIn
     receiveEmail
+    regionalConsentAnswers {
+      id
+      given
+      policy {
+        id
+        name
+      }
+    }
   }
 `;
