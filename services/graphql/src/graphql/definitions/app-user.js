@@ -71,8 +71,14 @@ type AppUser {
   verified: Boolean @projection
   banned: Boolean @projection
   receiveEmail: Boolean @projection
+  regionalConsent: AppUserRegionalConsent! @projection
   createdAt: Date @projection
   updatedAt: Date @projection
+}
+
+type AppUserRegionalConsent {
+  eu: Boolean!
+  ca: Boolean!
 }
 
 type AppUserConnection @projectUsing(type: "AppUser") {

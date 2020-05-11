@@ -13,6 +13,17 @@ const stripLines = (value) => {
   return v.replace(/[\r\n]/g, ' ').replace(/\s\s+/g, ' ');
 };
 
+const regionalConsentSchema = new Schema({
+  ca: {
+    type: Boolean,
+    default: false,
+  },
+  eu: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const schema = new Schema({
   email: {
     type: String,
@@ -57,6 +68,13 @@ const schema = new Schema({
   receiveEmail: {
     type: Boolean,
     default: false,
+  },
+  /**
+   * Consent flags
+   */
+  regionalConsent: {
+    type: regionalConsentSchema,
+    default: () => ({}),
   },
   lastLoggedIn: {
     type: Date,
