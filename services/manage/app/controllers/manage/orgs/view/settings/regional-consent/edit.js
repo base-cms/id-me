@@ -18,6 +18,19 @@ const mutation = gql`
   ${orgRegionalConsentPolicy}
 `;
 
+const remove = gql`
+  mutation RemoveOrganizationRegionalConsentPolicy($input: RemoveOrganizationRegionalConsentPolicyMutationInput!) {
+    removeOrganizationRegionalConsentPolicy(input: $input) {
+      id
+      regionalConsentPolicies {
+        ...OrganizationRegionalConsentPolicyFragment
+      }
+    }
+  }
+
+  ${orgRegionalConsentPolicy}
+`;
+
 export default Controller.extend(ActionMixin, OrgQueryMixin, {
   errorNotifier: inject(),
 
@@ -44,6 +57,20 @@ export default Controller.extend(ActionMixin, OrgQueryMixin, {
         const input = { policyId: this.model.id, payload };
         const variables = { input };
         await this.mutate({ mutation, variables }, 'updateOrganizationRegionalConsentPolicy');
+        await closeModal();
+      } catch (e) {
+        this.errorNotifier.show(e);
+      } finally {
+        this.endAction();
+      }
+    },
+
+    async delete(closeModal) {
+      try {
+        this.startAction();
+        const input = { policyId: this.model.id };
+        const variables = { input };
+        await this.mutate({ mutation: remove, variables }, 'removeOrganizationRegionalConsentPolicy');
         await closeModal();
       } catch (e) {
         this.errorNotifier.show(e);

@@ -44,6 +44,16 @@
 
     {{#modal.footer}}
       <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+      {{#if this.onDelete}}
+        <FormElements::ActionButton
+          @label="Delete"
+          @icon="trash"
+          @type="warning"
+          @isLoading={{this.isActionRunning}}
+          @mustConfirm={{true}}
+          @onClick={{action this.onDelete modal.actions.hide}}
+        />
+      {{/if}}
     {{/modal.footer}}
   </form>
 </BsModal>
