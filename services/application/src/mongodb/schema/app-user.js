@@ -14,13 +14,13 @@ const stripLines = (value) => {
 };
 
 const regionalConsentSchema = new Schema({
-  ca: {
-    type: Boolean,
-    default: false,
+  _id: {
+    type: String,
+    enum: ['ca', 'eu'],
   },
-  eu: {
-    type: Boolean,
-    default: false,
+  date: {
+    type: Date,
+    required: true,
   },
 });
 
@@ -70,11 +70,11 @@ const schema = new Schema({
     default: false,
   },
   /**
-   * Consent flags
+   * Regional consent flags
    */
   regionalConsent: {
-    type: regionalConsentSchema,
-    default: () => ({}),
+    type: [regionalConsentSchema],
+    default: () => [],
   },
   lastLoggedIn: {
     type: Date,
