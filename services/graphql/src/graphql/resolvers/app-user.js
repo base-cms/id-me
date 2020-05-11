@@ -269,6 +269,15 @@ module.exports = {
     /**
      *
      */
+    setAppUserRegionalConsent: (_, { input }, { user }) => {
+      const id = user.getId();
+      const { region, given } = input;
+      return applicationService.request('user.setRegionalConsent', { id, region, given });
+    },
+
+    /**
+     *
+     */
     updateAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { id, payload } = input;
