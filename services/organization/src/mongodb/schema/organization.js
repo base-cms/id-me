@@ -44,6 +44,11 @@ const regionalConsentPolicySchema = new Schema({
   countryCodes: {
     type: [String],
     default: () => [],
+    validate: {
+      validator(codes) {
+        return Boolean(codes.length);
+      },
+    },
   },
   enabled: {
     type: Boolean,
