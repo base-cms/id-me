@@ -4,7 +4,11 @@ export default gql`
   fragment OrganizationRegionalConsentPolicyFragment on OrganizationRegionalConsentPolicy {
     id
     name
-    countryCodes
+    countries {
+      id
+      name
+      flag
+    }
     enabled
     message
     required

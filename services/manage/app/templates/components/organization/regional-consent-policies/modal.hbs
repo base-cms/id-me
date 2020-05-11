@@ -19,7 +19,7 @@
           <Input @id="content-policy.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.name}} />
         </div>
 
-        <Organization::RegionalConsentPolicies::Countries @dropdownClass="in-modal-dropdown" @value={{this.model.countryCodes}} />
+        <Organization::RegionalConsentPolicies::Countries @dropdownClass="in-modal-dropdown" @value={{this.model.countries}} />
 
         <div class="form-group">
           <FormElements::Label @for="consent-policy.message" @required={{true}}>Message</FormElements::Label>
