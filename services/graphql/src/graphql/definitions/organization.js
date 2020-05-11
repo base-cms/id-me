@@ -29,6 +29,7 @@ type Organization {
   emailConsentRequest: String @projection
 
   company: OrganizationCompany @projection
+  regionalConsentPolicies: OrganizationRegionalConsentPolicies! @projection
 
   applications: [Application!]! @projection(localField: "_id")
 }
@@ -59,6 +60,17 @@ type OrganizationInvitation {
   role: OrganizationRole!
   invitedBy: User!
   createdAt: Date
+}
+
+type OrganizationRegionalConsentPolicies {
+  ca: OrganizationRegionalConsentPolicy!
+  eu: OrganizationRegionalConsentPolicy!
+}
+
+type OrganizationRegionalConsentPolicy {
+  enabled: Boolean!
+  message: String
+  required: Boolean!
 }
 
 input OrganizationQueryInput {
