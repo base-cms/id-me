@@ -1,11 +1,12 @@
 const { UserInputError } = require('apollo-server-express');
 const { get } = require('object-path');
-const { applicationService } = require('@identity-x/service-clients');
+const { applicationService, organizationService } = require('@identity-x/service-clients');
 
 class AppContext {
   constructor(id) {
     this.id = id;
     this.app = {};
+    this.org = {};
   }
 
   async load() {
@@ -13,6 +14,8 @@ class AppContext {
     if (id) {
       try {
         this.app = await applicationService.request('findById', { id }) || {};
+        const orgId = this.getOrgId();
+        if (orgId) this.org = await organizationService.request('findById', { id: orgId }) || {};
       } catch (e) {
         this.error = e;
       }
