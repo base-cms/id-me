@@ -18,6 +18,10 @@ extend type Mutation {
   setOrganizationPhotoURL(input: SetOrganizationPhotoURLMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 
   setOrganizationCompanyInfo(input: SetOrganizationCompanyInfoMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+
+  addOrganizationRegionalConsentPolicy(input: AddOrganizationRegionalConsentPolicyMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+  removeOrganizationRegionalConsentPolicy(input: RemoveOrganizationRegionalConsentPolicyMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
+  updateOrganizationRegionalConsentPolicy(input: UpdateOrganizationRegionalConsentPolicyMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
 type Organization {
@@ -122,6 +126,27 @@ input UpdateOrganizationPayloadInput {
 input UpdateOrganizationMutationInput {
   id: String!
   payload: UpdateOrganizationPayloadInput!
+}
+
+input OrganizationRegionalConsentPolicyPayloadInput {
+  name: String!
+  countryCodes: [String!]!
+  enabled: Boolean
+  message: String!
+  required: Boolean
+}
+
+input AddOrganizationRegionalConsentPolicyMutationInput {
+  payload: OrganizationRegionalConsentPolicyPayloadInput!
+}
+
+input UpdateOrganizationRegionalConsentPolicyMutationInput {
+  policyId: String!
+  payload: OrganizationRegionalConsentPolicyPayloadInput!
+}
+
+input RemoveOrganizationRegionalConsentPolicyMutationInput {
+  policyId: String!
 }
 
 `;
