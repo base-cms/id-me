@@ -148,7 +148,7 @@ module.exports = {
     updateOrganizationRegionalConsentPolicy(_, { input }, { org }) {
       const id = org.getId();
       const { policyId, payload } = input;
-      return organizationService.request('regionalConsentPolicy.remove', { id, policyId, payload });
+      return organizationService.request('regionalConsentPolicy.update', { id, policyId, payload });
     },
   },
 };
