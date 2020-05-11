@@ -33,11 +33,6 @@ enum AppUserSortField {
   lastLoggedIn
 }
 
-enum AppUserConsentRegion {
-  ca
-  eu
-}
-
 type AppContentAccess {
   canAccess: Boolean!
   isLoggedIn: Boolean!
@@ -77,14 +72,16 @@ type AppUser {
   verified: Boolean @projection
   banned: Boolean @projection
   receiveEmail: Boolean @projection
-  regionalConsent: [AppUserRegionalConsent!]! @projection
+  regionalConsentAnswers: [AppUserRegionalConsentAnswer!]! @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
 
-type AppUserRegionalConsent {
-  id: AppUserConsentRegion!
+type AppUserRegionalConsentAnswer {
+  id: String!
+  given: Boolean
   date: Date!
+  policy: OrganizationRegionalConsentPolicy!
 }
 
 type AppUserConnection @projectUsing(type: "AppUser") {
@@ -186,8 +183,12 @@ input SetAppUserBannedMutationInput {
 }
 
 input SetAppUserRegionalConsentMutationInput {
-  "The region to set the consent flag to."
-  region: AppUserConsentRegion!
+  answers: [SetAppUserRegionalConsentAnswerInput!] = []
+}
+
+input SetAppUserRegionalConsentAnswerInput {
+  "The region policy identifier to use - must match a regional policy from the Organization."
+  policyId: String!
   "Whether consent was given for this region."
   given: Boolean!
 }

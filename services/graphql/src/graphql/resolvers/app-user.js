@@ -31,6 +31,20 @@ module.exports = {
       return localeService.request('region.asObject', { countryCode, regionCode });
     },
     name: ({ givenName, familyName }) => [givenName, familyName].filter(v => v).join(' '),
+
+    regionalConsentAnswers: ({ regionalConsentAnswers }, _, { app }) => {
+      const { regionalConsentPolicies } = app.org;
+      const policyIds = regionalConsentPolicies.map(policy => policy._id);
+      return regionalConsentAnswers.filter(answer => policyIds.includes(answer._id));
+    },
+  },
+
+  AppUserRegionalConsentAnswer: {
+    id: answer => answer._id,
+    policy: (answer, _, { app }) => {
+      const { regionalConsentPolicies } = app.org;
+      return regionalConsentPolicies.find(policy => policy._id === answer._id);
+    },
   },
 
   Query: {
@@ -271,8 +285,8 @@ module.exports = {
      */
     setAppUserRegionalConsent: (_, { input }, { user }) => {
       const id = user.getId();
-      const { region, given } = input;
-      return applicationService.request('user.setRegionalConsent', { id, region, given });
+      const { answers } = input;
+      return applicationService.request('user.regionalConsentAnswer.setMany', { id, answers });
     },
 
     /**
