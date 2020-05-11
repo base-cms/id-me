@@ -4,9 +4,7 @@
   </div>
   <ul class="list-group list-group-flush">
     {{#each policies as |policy|}}
-      <li class="list-group-item">
-        <h5>{{policy.name}}</h5>
-      </li>
+      <Organization::RegionalConsentPolicies::ListItem @policy={{policy}} />
     {{else}}
       <li class="list-group-item text-muted text-center">
         No policies found
