@@ -17,6 +17,12 @@ module.exports = {
   Organization: {
     id: org => org._id,
     applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
+    regionalConsentPolicies: ({ regionalConsentPolicies }, { input }) => {
+      const { status } = input;
+      if (status === 'all') return regionalConsentPolicies;
+      if (status === 'enabled') return regionalConsentPolicies.filter(policy => policy.enabled);
+      return regionalConsentPolicies.filter(policy => !policy.enabled);
+    },
   },
   OrganizationCompany: {
     id: company => company._id,

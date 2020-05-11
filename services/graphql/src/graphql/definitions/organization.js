@@ -24,6 +24,12 @@ extend type Mutation {
   updateOrganizationRegionalConsentPolicy(input: UpdateOrganizationRegionalConsentPolicyMutationInput!): Organization! @requiresOrgRole(roles: [Owner, Administrator])
 }
 
+enum RegionalConsentPolicyStatus {
+  all
+  enabled
+  disabled
+}
+
 type Organization {
   id: String! @projection(localField: "_id")
   name: String! @projection
@@ -33,7 +39,7 @@ type Organization {
   emailConsentRequest: String @projection
 
   company: OrganizationCompany @projection
-  regionalConsentPolicies: [OrganizationRegionalConsentPolicy!]! @projection
+  regionalConsentPolicies(input: OrganizationRegionalConsentPoliciesInput = {}): [OrganizationRegionalConsentPolicy!]! @projection
 
   applications: [Application!]! @projection(localField: "_id")
 }
@@ -147,6 +153,10 @@ input UpdateOrganizationRegionalConsentPolicyMutationInput {
 
 input RemoveOrganizationRegionalConsentPolicyMutationInput {
   policyId: String!
+}
+
+input OrganizationRegionalConsentPoliciesInput {
+  status: RegionalConsentPolicyStatus = all
 }
 
 `;
