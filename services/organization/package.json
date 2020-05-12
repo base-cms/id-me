@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/organization-service",
-  "version": "0.12.8",
+  "version": "0.12.10",
   "description": "The IdentityX organization service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
