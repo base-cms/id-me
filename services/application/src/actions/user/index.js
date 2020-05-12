@@ -11,6 +11,7 @@ const findByEmail = require('./find-by-email');
 const login = require('./login');
 const logout = require('./logout');
 const manageCreate = require('./manage-create');
+const regionalConsentAnswer = require('./regional-constent-answer');
 const sendLoginLink = require('./send-login-link');
 const updateOne = require('./update-one');
 const verifyAuth = require('./verify-auth');
@@ -26,6 +27,7 @@ module.exports = {
   logout,
   manageCreate,
   matchForApp: params => matchForApp(AppUser, params),
+  regionalConsentAnswer,
   sendLoginLink,
   updateField: params => updateField(AppUser, params),
   updateFieldWithApp: params => updateFieldWithApp(AppUser, params),

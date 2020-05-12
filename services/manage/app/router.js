@@ -23,7 +23,11 @@ Router.map(function() {
         this.route('edit', { path: '/edit/:org_id' });
       });
       this.route('view', { path: ':org_id' }, function() {
-        this.route('settings');
+        this.route('settings', function() {
+          this.route('regional-consent', function() {
+            this.route('edit', { path: ':consent_id' });
+          })
+        });
         this.route('users', function() {
           this.route('invite');
         });

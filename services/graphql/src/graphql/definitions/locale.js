@@ -3,8 +3,8 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
-  localeCountries(input: LocaleCountriesQueryInput = {}): [LocaleCountry!]! @requiresApp
-  localeRegions(input: LocaleRegionsQueryInput = {}): [LocaleRegion!]! @requiresApp
+  localeCountries(input: LocaleCountriesQueryInput = {}): [LocaleCountry!]!
+  localeRegions(input: LocaleRegionsQueryInput = {}): [LocaleRegion!]!
 }
 
 "A list of regional category designations."

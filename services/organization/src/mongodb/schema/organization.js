@@ -36,6 +36,33 @@ const companySchema = new Schema({
 
 companySchema.plugin(emailPlugin, { name: 'supportEmail', options: { required: false } });
 
+const regionalConsentPolicySchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  countryCodes: {
+    type: [String],
+    default: () => [],
+    validate: {
+      validator(codes) {
+        return Boolean(codes.length);
+      },
+    },
+  },
+  enabled: {
+    type: Boolean,
+    default: false,
+  },
+  message: {
+    type: String,
+  },
+  required: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const schema = new Schema({
   name: {
     type: String,
@@ -60,6 +87,10 @@ const schema = new Schema({
   emailConsentRequest: {
     type: String,
     trim: true,
+  },
+  regionalConsentPolicies: {
+    type: [regionalConsentPolicySchema],
+    default: () => [],
   },
   company: {
     type: companySchema,

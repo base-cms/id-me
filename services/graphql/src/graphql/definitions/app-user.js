@@ -22,6 +22,7 @@ extend type Mutation {
   logoutAppUser(input: LogoutAppUserMutationInput!): String! @requiresApp # must be public
 
   setAppUserBanned(input: SetAppUserBannedMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
+  setAppUserRegionalConsent(input: SetAppUserRegionalConsentMutationInput!): AppUser! @requiresAuth(type: AppUser) # can only be set by self
 }
 
 enum AppUserSortField {
@@ -71,8 +72,16 @@ type AppUser {
   verified: Boolean @projection
   banned: Boolean @projection
   receiveEmail: Boolean @projection
+  regionalConsentAnswers: [AppUserRegionalConsentAnswer!]! @projection
   createdAt: Date @projection
   updatedAt: Date @projection
+}
+
+type AppUserRegionalConsentAnswer {
+  id: String!
+  given: Boolean
+  date: Date!
+  policy: OrganizationRegionalConsentPolicy!
 }
 
 type AppUserConnection @projectUsing(type: "AppUser") {
@@ -171,6 +180,17 @@ input SetAppUserBannedMutationInput {
   id: String!
   "Whether the user will be banned or not."
   value: Boolean!
+}
+
+input SetAppUserRegionalConsentMutationInput {
+  answers: [SetAppUserRegionalConsentAnswerInput!] = []
+}
+
+input SetAppUserRegionalConsentAnswerInput {
+  "The region policy identifier to use - must match a regional policy from the Organization."
+  policyId: String!
+  "Whether consent was given for this region."
+  given: Boolean!
 }
 
 input UpdateAppUserPayloadInput {

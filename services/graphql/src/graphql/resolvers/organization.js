@@ -3,6 +3,7 @@ const {
   membershipService,
   organizationService,
   userService,
+  localeService,
 } = require('@identity-x/service-clients');
 const { getAsObject } = require('@base-cms/object-path');
 
@@ -16,6 +17,12 @@ module.exports = {
   Organization: {
     id: org => org._id,
     applications: ({ _id }) => applicationService.request('listForOrg', { id: _id }),
+    regionalConsentPolicies: ({ regionalConsentPolicies }, { input }) => {
+      const { status } = input;
+      if (status === 'all') return regionalConsentPolicies;
+      if (status === 'enabled') return regionalConsentPolicies.filter(policy => policy.enabled);
+      return regionalConsentPolicies.filter(policy => !policy.enabled);
+    },
   },
   OrganizationCompany: {
     id: company => company._id,
@@ -25,6 +32,11 @@ module.exports = {
     ...membershipResolvers,
   },
   OrganizationMembership: membershipResolvers,
+
+  OrganizationRegionalConsentPolicy: {
+    id: policy => policy._id,
+    countries: ({ countryCodes }) => localeService.request('country.asObjects', { codes: countryCodes }),
+  },
 
   Query: {
     organization: (_, { input }) => {
@@ -116,6 +128,33 @@ module.exports = {
     setOrganizationPhotoURL: (_, { input }) => {
       const { id, value } = input;
       return organizationService.request('updateField', { id, path: 'photoURL', value });
+    },
+
+    /**
+     *
+     */
+    addOrganizationRegionalConsentPolicy(_, { input }, { org }) {
+      const id = org.getId();
+      const { payload } = input;
+      return organizationService.request('regionalConsentPolicy.add', { id, payload });
+    },
+
+    /**
+     *
+     */
+    removeOrganizationRegionalConsentPolicy(_, { input }, { org }) {
+      const id = org.getId();
+      const { policyId } = input;
+      return organizationService.request('regionalConsentPolicy.remove', { id, policyId });
+    },
+
+    /**
+     *
+     */
+    updateOrganizationRegionalConsentPolicy(_, { input }, { org }) {
+      const id = org.getId();
+      const { policyId, payload } = input;
+      return organizationService.request('regionalConsentPolicy.update', { id, policyId, payload });
     },
   },
 };
