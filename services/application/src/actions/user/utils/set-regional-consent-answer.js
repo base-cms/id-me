@@ -6,7 +6,7 @@ module.exports = ({ user, policyId, given }) => {
   const now = new Date();
   const policy = user.regionalConsentAnswers.id(policyId);
   if (policy) {
-    policy.set('data', now);
+    policy.set('date', now);
     policy.set('given', given);
   } else {
     user.regionalConsentAnswers.push({ _id: policyId, given, date: now });
