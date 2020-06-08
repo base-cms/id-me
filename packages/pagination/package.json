@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/pagination",
-  "version": "0.12.5",
+  "version": "0.13.0",
   "description": "IdentityX pagination functions.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
