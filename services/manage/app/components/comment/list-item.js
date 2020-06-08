@@ -67,6 +67,10 @@ export default Component.extend(ActionMixin, AppQueryMixin, {
     return [{ id: this.get('node.user.id'), email: this.get('node.user.email') }];
   }),
 
+  bodyHtml: computed('node.body', function() {
+    return this.node.body.replace(/\n/g, '<br>');
+  }),
+
   actions: {
     async toggleApproval() {
       try {

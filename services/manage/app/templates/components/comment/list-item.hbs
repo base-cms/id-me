@@ -10,7 +10,8 @@
       {{/if}}
     </h3>
 
-    <p class="card-text">{{this.node.body}}</p>
+    {{!-- template-lint-disable no-triple-curlies  --}}
+    <p class="card-text">{{{this.bodyHtml}}}</p>
 
     <div>
       {{#if this.node.user.banned}}
