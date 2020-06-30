@@ -181,7 +181,7 @@ module.exports = {
     /**
      *
      */
-    exportAppUsers: async (_, __, { app, user }) => {
+    exportAppUsers: (_, __, { app, user }) => {
       const applicationId = app.getId();
       const email = user.get('email');
       exportService.request('user.exportForApp', { applicationId, email })
