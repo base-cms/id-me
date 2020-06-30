@@ -15,6 +15,8 @@ const executor = async (args) => {
     action,
     params,
     limit = 500,
+    fields,
+    regionalConsentPolicies,
     stream,
   } = args;
   const pagination = getAsObject(params, 'pagination');
@@ -25,7 +27,17 @@ const executor = async (args) => {
       limit,
     },
   });
-  const nodes = getAsArray(data, 'edges').map(edge => edge.node);
+  const nodes = getAsArray(data, 'edges').map((edge) => {
+    const { node } = edge;
+    const row = fields.reduce((o, field) => ({ ...o, [field]: node[field] }), {});
+    const consentAnswers = getAsArray(node, 'regionalConsentAnswers');
+    const answers = regionalConsentPolicies.reduce((o, policy) => {
+      const answer = consentAnswers.find(v => v._id === policy._id);
+      const given = answer ? answer.given : false;
+      return { ...o, [`Consent: ${policy.name}`]: given };
+    }, {});
+    return { ...row, ...answers };
+  });
   stream.push(JSON.stringify(nodes));
   const { hasNextPage, endCursor } = getAsObject(data, 'pageInfo');
   if (hasNextPage) {

@@ -1,5 +1,6 @@
 const { applicationService, exportService, localeService } = require('@identity-x/service-clients');
 const { UserInputError } = require('apollo-server-express');
+const newrelic = require('../../newrelic');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
 
@@ -183,7 +184,8 @@ module.exports = {
     exportAppUsers: (_, __, { app, user }) => {
       const applicationId = app.getId();
       const email = user.get('email');
-      exportService.request('user.exportForApp', { applicationId, email });
+      exportService.request('user.exportForApp', { applicationId, email })
+        .catch(newrelic.noticeError.bind(newrelic));
       return 'ok';
     },
 

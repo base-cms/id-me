@@ -1,5 +1,7 @@
+const { createError } = require('micro');
 const { service } = require('@base-cms/micro');
-const { applicationService } = require('@identity-x/service-clients');
+const { applicationService, organizationService } = require('@identity-x/service-clients');
+const { getAsArray } = require('@base-cms/object-path');
 const { AsyncParser } = require('json2csv');
 const newrelic = require('../../newrelic');
 const { sendFailure, sendSuccess, streamResults } = require('../../utils');
@@ -35,10 +37,15 @@ module.exports = async ({
   if (!applicationId) throw createRequiredParamError('applicationId');
   if (!Array.isArray(fields) || !fields.length) throw createRequiredParamError('fields');
 
+  // load the app and org
+  const app = await applicationService.request('findById', { id: applicationId, fields: ['name', 'organizationId'] });
+  if (!app) throw createError(404, 'No application found for the provided ID.');
+  const org = await organizationService.request('findById', { id: app.organizationId, fields: ['name', 'regionalConsentPolicies'] });
+
   try {
     const contents = await new Promise((resolve, reject) => {
       let csv = '';
-      const parser = new AsyncParser({ fields });
+      const parser = new AsyncParser();
       parser.processor
         // eslint-disable-next-line no-return-assign
         .on('data', chunk => csv += chunk.toString())
@@ -47,10 +54,11 @@ module.exports = async ({
       streamResults({
         client: applicationService,
         action: 'user.listForApp',
+        fields,
+        regionalConsentPolicies: getAsArray(org, 'regionalConsentPolicies'),
         params: {
           id: applicationId,
-          fields: fields.reduce((obj, k) => ({ ...obj, [k]: 1 }), {}),
-          sort: { field: 'id', direction: 'desc' },
+          sort: { field: 'updatedAt', order: 'desc' },
         },
         stream: parser.input,
       });
