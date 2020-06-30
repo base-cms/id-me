@@ -27,7 +27,8 @@ const executor = async (args) => {
       limit,
     },
   });
-  const nodes = getAsArray(data, 'edges').map(edge => edge.node).map((node) => {
+  const nodes = getAsArray(data, 'edges').map((edge) => {
+    const { node } = edge;
     const row = fields.reduce((o, field) => ({ ...o, [field]: node[field] }), {});
     const consentAnswers = getAsArray(node, 'regionalConsentAnswers');
     const answers = regionalConsentPolicies.reduce((o, policy) => {
