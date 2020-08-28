@@ -58,7 +58,7 @@ module.exports = async ({
         regionalConsentPolicies: getAsArray(org, 'regionalConsentPolicies'),
         params: {
           id: applicationId,
-          sort: { field: 'updatedAt', order: 'desc' },
+          sort: { field: 'createdAt', order: 'desc' },
         },
         stream: parser.input,
       });
