@@ -30,11 +30,7 @@ const executor = async (args) => {
   const nodes = getAsArray(data, 'edges').map((edge) => {
     const { node } = edge;
 
-    const reducer = (o, field) => {
-      const v = (node[field] === undefined) ? '' : node[field];
-      return { ...o, [field]: v };
-    };
-    const row = fields.reduce(reducer, {});
+    const row = fields.reduce((o, field) => ({ ...o, [field]: node[field] == null ? '' : node[field] }), {});
 
     const consentAnswers = getAsArray(node, 'regionalConsentAnswers');
     const answers = regionalConsentPolicies.reduce((o, policy) => {
