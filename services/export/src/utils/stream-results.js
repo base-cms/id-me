@@ -29,7 +29,9 @@ const executor = async (args) => {
   });
   const nodes = getAsArray(data, 'edges').map((edge) => {
     const { node } = edge;
-    const row = fields.reduce((o, field) => ({ ...o, [field]: node[field] }), {});
+
+    const row = fields.reduce((o, field) => ({ ...o, [field]: node[field] == null ? '' : node[field] }), {});
+
     const consentAnswers = getAsArray(node, 'regionalConsentAnswers');
     const answers = regionalConsentPolicies.reduce((o, policy) => {
       const answer = consentAnswers.find(v => v._id === policy._id);
