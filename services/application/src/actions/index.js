@@ -15,6 +15,7 @@ const comment = require('./comment');
 const commentStream = require('./comment-stream');
 const checkAccess = require('./check-access');
 const create = require('./create');
+const field = require('./field');
 const loadContext = require('./load-context');
 const removeContext = require('./remove-context');
 const team = require('./team');
@@ -26,6 +27,7 @@ module.exports = {
   addContext,
   comment,
   'comment-stream': commentStream,
+  field,
   team,
   user,
   checkAccess,
