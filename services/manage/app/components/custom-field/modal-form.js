@@ -7,6 +7,7 @@ export default Component.extend({
   tagName: '',
   title: null,
   isActionRunning: false,
+  isUpdating: false,
 
   init() {
     this._super(...arguments);
@@ -15,7 +16,12 @@ export default Component.extend({
 
   actions: {
     removeOption(option) {
-      this.get('model.options').removeObject(option);
+      const confirm = `Are you sure you want to remove option ${option.label}? All users who previously selected ${option.label} will no longer have this data as an answer.`;
+      if (this.isUpdating) {
+        if (window.confirm(confirm)) this.get('model.options').removeObject(option);
+      } else {
+        this.get('model.options').removeObject(option);
+      }
     },
 
     reorderOptions(options) {
