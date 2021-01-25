@@ -1,4 +1,5 @@
 const { applicationService } = require('@identity-x/service-clients');
+const { UserInputError } = require('apollo-server-express');
 const typeProjection = require('../utils/type-projection');
 
 const { isArray } = Array;
@@ -62,6 +63,35 @@ module.exports = {
       } = input;
       const applicationId = app.getId();
       return applicationService.request('field.create', {
+        type: 'select',
+        applicationId,
+        payload: {
+          name,
+          label,
+          multiple,
+          options,
+        },
+      });
+    },
+
+    /**
+     *
+     */
+    /**
+     *
+     */
+    updateSelectField: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const {
+        id,
+        name,
+        label,
+        multiple,
+        options,
+      } = input;
+      if (!options.length) throw new UserInputError('The select field options cannot be empty.');
+      return applicationService.request('field.updateOne', {
+        id,
         type: 'select',
         applicationId,
         payload: {

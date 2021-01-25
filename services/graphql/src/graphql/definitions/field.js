@@ -14,6 +14,8 @@ extend type Query {
 extend type Mutation {
   "Creates a new select field for the current application context."
   createSelectField(input: CreateSelectFieldMutationInput!): SelectField! @requiresAppRole(roles: [Owner, Administrator, Member])
+  "Updates an existing select field with the provided input."
+  updateSelectField(input: UpdateSelectFieldMutationInput!): SelectField! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 enum FieldInterfaceSortField {
@@ -110,6 +112,26 @@ input MatchFieldsQueryInput {
 
 input SelectFieldQueryInput {
   id: String!
+}
+
+input UpdateSelectFieldMutationInput {
+  "The select field identifier to update."
+  id: String!
+  "The internal name of the field."
+  name: String!
+  "The user-facing field label. This is what will appear on a form."
+  label: String!
+  "Whether the select field supports multiple answers."
+  multiple: Boolean = false
+  "The options for the select field. Options with IDs will be updated (where found). Options missing IDs will be treated as new."
+  options: [UpdateSelectFieldOptionInput!]!
+}
+
+input UpdateSelectFieldOptionInput {
+  "The select option ID. When present, the existing option will be updated. When empty, a new option will be created/assigned to the field."
+  id: String
+  "The select option label. This is the value the user will see within the form control."
+  label: String!
 }
 
 `;
