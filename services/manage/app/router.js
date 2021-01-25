@@ -57,6 +57,10 @@ Router.map(function() {
             this.route('comments', function() {
               this.route('edit', { path: ':comment_id' });
             });
+            this.route('fields', function() {
+              this.route('create');
+              this.route('edit', { path: ':field_id' });
+            });
           });
         });
       })

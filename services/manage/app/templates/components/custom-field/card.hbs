@@ -1,0 +1,11 @@
+<ListCard>
+  <div class="card-body">
+    <h2 class="card-title">{{field.name}}</h2>
+    <p class="card-text">{{field.label}}</p>
+  </div>
+  <div class="card-footer">
+    {{#link-to "manage.orgs.view.apps.view.fields.edit" field.id class="btn btn-primary" role="button"}}
+      {{entypo-icon "edit" class="mr-1"}} Modify
+    {{/link-to}}
+  </div>
+</ListCard>

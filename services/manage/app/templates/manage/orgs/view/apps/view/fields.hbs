@@ -1,0 +1,48 @@
+<h1 class="mb-4">
+  <CustomField::Icon /> Custom Fields
+  <span class="text-muted">({{format-number this.model.totalCount "0,0"}})</span>
+</h1>
+
+<ListControls
+  @class="mb-5"
+  @sortOptions={{sortOptions}}
+  @sortField={{sortField}}
+  @sortOrder={{sortOrder}}
+  @phrase={{phrase}}
+  @position={{position}}
+  @searchFields={{searchFields}}
+  @field={{field}}
+  @onClear={{action "reset"}}
+  @search={{action "search"}}
+/>
+
+<div class="row">
+  <FetchMore
+    @query={{this.observable}}
+    @edges={{this.model.edges}}
+    @hasNextPage={{this.model.pageInfo.hasNextPage}}
+    @endCursor={{this.model.pageInfo.endCursor}}
+    @resultKey={{this.resultKey}}
+    as |fetch|
+  >
+    {{#each fetch.nodes as |node|}}
+      <CustomField::Card @field={{node}} />
+    {{else}}
+      <p class="col">No custom fields were found.</p>
+    {{/each}}
+
+    {{#if fetch.hasNextPage}}
+      <InView @on-viewport-enter={{action fetch.actions.loadMore}} />
+    {{/if}}
+
+    {{#if fetch.isFetching}}
+      <FetchMoreLoading @class="my-0" />
+    {{/if}}
+  </FetchMore>
+</div>
+
+<aside class="footer-controls left">
+  <Button::Create @routeName="manage.orgs.view.apps.view.fields.create" @title="Create New Custom Field" />
+</aside>
+
+{{outlet}}
