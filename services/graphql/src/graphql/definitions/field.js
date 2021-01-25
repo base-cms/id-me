@@ -7,6 +7,8 @@ extend type Query {
   fields(input: FieldsQueryInput = {}): FieldInterfaceConnection!
   "Matches fields based in the provided match input for the current application context. The result is paginated."
   matchFields(input: MatchFieldsQueryInput!): FieldInterfaceConnection! @requiresAppRole
+  "Finds a single select field by ID."
+  selectField(input: SelectFieldQueryInput!): SelectField
 }
 
 extend type Mutation {
@@ -104,6 +106,10 @@ input MatchFieldsQueryInput {
   phrase: String!
   position: MatchPosition = contains
   excludeIds: [String!] = []
+}
+
+input SelectFieldQueryInput {
+  id: String!
 }
 
 `;

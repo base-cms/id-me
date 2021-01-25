@@ -1,4 +1,5 @@
 const { applicationService } = require('@identity-x/service-clients');
+const typeProjection = require('../utils/type-projection');
 
 const { isArray } = Array;
 
@@ -114,6 +115,15 @@ module.exports = {
         sort,
         excludeIds,
       });
+    },
+
+    /**
+     *
+     */
+    selectField: (_, { input }, ctx, info) => {
+      const { id } = input;
+      const fields = typeProjection(info);
+      return applicationService.request('field.findById', { id, type: 'select', fields });
     },
   },
 };
