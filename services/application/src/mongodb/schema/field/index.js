@@ -1,4 +1,5 @@
 const { Schema } = require('mongoose');
+const { applicationPlugin } = require('@identity-x/mongoose-plugins');
 
 const schema = new Schema({
   /**
@@ -22,5 +23,7 @@ const schema = new Schema({
   discriminatorKey: '_type',
   timestamps: true,
 });
+
+schema.plugin(applicationPlugin);
 
 module.exports = schema;
