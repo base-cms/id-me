@@ -14,8 +14,13 @@ const mutation = gql`
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   errorNotifier: inject(),
+  router: inject(),
 
   actions: {
+    /**
+     *
+     * @param {*} closeModal
+     */
     async create(closeModal) {
       try {
         this.startAction();
@@ -36,6 +41,10 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
       } finally {
         this.endAction();
       }
+    },
+
+    returnToList() {
+      return this.router.transitionTo('manage.orgs.view.apps.view.fields');
     },
   },
 });
