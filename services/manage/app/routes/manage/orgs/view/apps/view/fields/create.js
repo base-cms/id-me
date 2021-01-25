@@ -4,6 +4,7 @@ export default Route.extend({
   model() {
     return {
       options: [],
+      multiple: false,
     };
   },
 });

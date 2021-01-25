@@ -17,6 +17,10 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
   router: inject(),
 
   actions: {
+    removeOption(option) {
+      this.get('model.options').removeObject(option);
+    },
+
     /**
      *
      * @param {*} closeModal
@@ -27,10 +31,14 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
         const {
           name,
           label,
+          options,
+          multiple,
         } = this.get('model');
         const input = {
           name,
           label,
+          options: options.map(({ label }) => ({ label })),
+          multiple,
         };
         const variables = { input };
         const refetchQueries = ['AppFields'];

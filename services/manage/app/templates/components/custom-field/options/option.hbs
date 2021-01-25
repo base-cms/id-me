@@ -1,0 +1,21 @@
+<div class="input-group mb-1">
+  <Input
+    @value={{option.label}}
+    @required={{true}}
+    @disabled={{this.disabled}}
+    type="text"
+    class="form-control"
+    placeholder="Enter option label"
+    aria-label="Enter option label"
+  />
+  <div class="input-group-append">
+    <FormElements::Button
+      title="Remove option"
+      class="btn btn-outline-danger"
+      @click={{action "remove"}}
+      @disabled={{this.disabled}}
+    >
+      <EntypoIcon @name="circle-with-cross" />
+    </FormElements::Button>
+  </div>
+</div>

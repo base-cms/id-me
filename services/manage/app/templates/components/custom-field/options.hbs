@@ -1,0 +1,21 @@
+<FormElements::Label>Options / Answers</FormElements::Label>
+
+<div>
+  {{#each options as |option|}}
+    <CustomField::Options::Option
+      @option={{option}}
+      @disabled={{this.disabled}}
+      @remove={{action this.remove}}
+    />
+  {{/each}}
+</div>
+
+<FormElements::Button
+  title="Add option"
+  class="btn btn-outline-success"
+  @click={{action "add"}}
+  @disabled={{this.disabled}}
+>
+  <EntypoIcon @name="circle-with-plus" />
+  Add
+</FormElements::Button>
