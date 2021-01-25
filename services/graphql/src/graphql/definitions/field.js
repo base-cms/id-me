@@ -4,6 +4,7 @@ module.exports = gql`
 
 extend type Query {
   fields(input: FieldsQueryInput = {}): FieldInterfaceConnection!
+  matchFields(input: MatchFieldsQueryInput!): FieldInterfaceConnection! @requiresAppRole
 }
 
 extend type Mutation {
@@ -40,11 +41,6 @@ type FieldInterfaceConnection {
 type FieldInterfaceEdge {
   node: FieldInterface!
   cursor: String!
-}
-
-input FieldInterfaceSortInput {
-  field: FieldInterfaceSortField = id
-  order: SortOrder = desc
 }
 
 type SelectField implements FieldInterface {
@@ -88,9 +84,23 @@ input CreateSelectFieldOptionInput {
   label: String!
 }
 
+input FieldInterfaceSortInput {
+  field: FieldInterfaceSortField = id
+  order: SortOrder = desc
+}
+
 input FieldsQueryInput {
   sort: FieldInterfaceSortInput = {}
   pagination: PaginationInput = {}
+}
+
+input MatchFieldsQueryInput {
+  sort: FieldInterfaceSortInput = {}
+  pagination: PaginationInput = {}
+  field: String!
+  phrase: String!
+  position: MatchPosition = contains
+  excludeIds: [String!] = []
 }
 
 `;

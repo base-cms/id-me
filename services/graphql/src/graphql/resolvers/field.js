@@ -85,5 +85,31 @@ module.exports = {
         pagination,
       });
     },
+
+    /**
+     *
+     */
+    matchFields: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+
+      const {
+        field,
+        phrase,
+        position,
+        pagination,
+        sort,
+        excludeIds,
+      } = input;
+
+      return applicationService.request('field.matchForApp', {
+        applicationId,
+        field,
+        phrase,
+        position,
+        pagination,
+        sort,
+        excludeIds,
+      });
+    },
   },
 };
