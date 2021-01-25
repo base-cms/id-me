@@ -21,6 +21,10 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
       this.get('model.options').removeObject(option);
     },
 
+    reorderOptions(options) {
+      this.set('model.options', options);
+    },
+
     /**
      *
      * @param {*} closeModal
