@@ -16,7 +16,7 @@ const createSelect = async ({
     name,
     label,
     multiple,
-    options,
+    options: options.map((option, index) => ({ ...option, index })),
   });
   await select.save();
   return select;

@@ -9,6 +9,14 @@ const optionSchema = new Schema({
     required: true,
     trim: true,
   },
+
+  /**
+   * The option index number. Used for sorting.
+   */
+  index: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const schema = new Schema({
