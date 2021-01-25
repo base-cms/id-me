@@ -3,11 +3,14 @@ const gql = require('graphql-tag');
 module.exports = gql`
 
 extend type Query {
+  "Finds all fields for the current application context. The result is paginated."
   fields(input: FieldsQueryInput = {}): FieldInterfaceConnection!
+  "Matches fields based in the provided match input for the current application context. The result is paginated."
   matchFields(input: MatchFieldsQueryInput!): FieldInterfaceConnection! @requiresAppRole
 }
 
 extend type Mutation {
+  "Creates a new select field for the current application context."
   createSelectField(input: CreateSelectFieldMutationInput!): SelectField! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
