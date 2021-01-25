@@ -68,4 +68,22 @@ module.exports = {
       });
     },
   },
+
+  /**
+   *
+   */
+  Query: {
+    /**
+     *
+     */
+    fields: (_, { input }, { app }) => {
+      const id = app.getId();
+      const { sort, pagination } = input;
+      return applicationService.request('field.listForApp', {
+        id,
+        sort,
+        pagination,
+      });
+    },
+  },
 };
