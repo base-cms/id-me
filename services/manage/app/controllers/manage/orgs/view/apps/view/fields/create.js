@@ -14,17 +14,8 @@ const mutation = gql`
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
   errorNotifier: inject(),
-  router: inject(),
 
   actions: {
-    removeOption(option) {
-      this.get('model.options').removeObject(option);
-    },
-
-    reorderOptions(options) {
-      this.set('model.options', options);
-    },
-
     /**
      *
      * @param {*} closeModal
@@ -53,10 +44,6 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
       } finally {
         this.endAction();
       }
-    },
-
-    returnToList() {
-      return this.router.transitionTo('manage.orgs.view.apps.view.fields');
     },
   },
 });
