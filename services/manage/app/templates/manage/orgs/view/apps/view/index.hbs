@@ -35,6 +35,17 @@
   </ListCard>
 
   <ListCard>
+    {{#link-to "manage.orgs.view.apps.view.fields"}}
+      <div class="card-body">
+        <h2 class="card-title"><CustomField::Icon /> Custom Fields</h2>
+        <p class="card-text">
+          Create and modify custom questions and answers that can be displayed on various forms within your app.
+        </p>
+      </div>
+    {{/link-to}}
+  </ListCard>
+
+  <ListCard>
     {{#link-to "manage.orgs.view.apps.view.comments"}}
       <div class="card-body">
         <h2 class="card-title"><Comment::Icon /> Comments</h2>
