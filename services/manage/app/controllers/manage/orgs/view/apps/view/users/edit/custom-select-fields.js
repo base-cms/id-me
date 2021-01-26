@@ -3,15 +3,20 @@ import ActionMixin from '@identity-x/manage/mixins/action-mixin';
 import AppQueryMixin from '@identity-x/manage/mixins/app-query';
 import gql from 'graphql-tag';
 import { inject } from '@ember/service';
-import fragment from '@identity-x/manage/graphql/fragments/app-user-list';
 
 const mutation = gql`
-  mutation AppUserEdit($input: UpdateAppUserMutationInput!) {
-    updateAppUser(input: $input) {
-      ...AppUserListFragment
+  mutation AppUserEditCustomSelectFields($input: UpdateAppUserCustomSelectAnswersMutationInput!) {
+    updateAppUserCustomSelectAnswers(input: $input) {
+      id
+      customSelectFieldAnswers {
+        id
+        answers {
+          id
+          label
+        }
+      }
     }
   }
-  ${fragment}
 `;
 
 export default Controller.extend(ActionMixin, AppQueryMixin, {
@@ -21,14 +26,15 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
     async save() {
       try {
         this.startAction();
-        const { customSelectFieldAnswers } = this.get('model');
-
-        const data = customSelectFieldAnswers.map(({ field, answers }) => {
-          const optionIds = answers.map((answer) => answer.id);
-          return { fieldId: field.id, optionIds };
-        });
-
-        console.log(data);
+        const input = {
+          id: this.get('model.id'),
+          answers: this.get('model.customSelectFieldAnswers').map(({ field, answers }) => {
+            const optionIds = answers.map((answer) => answer.id);
+            return { fieldId: field.id, optionIds };
+          })
+        };
+        const variables = { input };
+        await this.mutate({ mutation, variables }, 'updateAppUserCustomSelectAnswers');
       } catch (e) {
         this.errorNotifier.show(e);
       } finally {

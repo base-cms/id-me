@@ -19,7 +19,6 @@ const query = gql`
             label
           }
         }
-        hasAnswered
         answers {
           id
           label

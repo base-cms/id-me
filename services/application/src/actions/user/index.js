@@ -13,6 +13,7 @@ const logout = require('./logout');
 const manageCreate = require('./manage-create');
 const regionalConsentAnswer = require('./regional-constent-answer');
 const sendLoginLink = require('./send-login-link');
+const updateCustomSelectAnswers = require('./update-custom-select-answers');
 const updateOne = require('./update-one');
 const verifyAuth = require('./verify-auth');
 
@@ -31,6 +32,7 @@ module.exports = {
   sendLoginLink,
   updateField: params => updateField(AppUser, params),
   updateFieldWithApp: params => updateFieldWithApp(AppUser, params),
+  updateCustomSelectAnswers,
   updateOne,
   verifyAuth,
   setLastSeen: async ({ id }) => {

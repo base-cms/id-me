@@ -342,6 +342,19 @@ module.exports = {
     /**
      *
      */
+    updateAppUserCustomSelectAnswers: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, answers } = input;
+      return applicationService.request('user.updateCustomSelectAnswers', {
+        id,
+        applicationId,
+        answers,
+      });
+    },
+
+    /**
+     *
+     */
     updateOwnAppUser: (_, { input }, { user }) => {
       const id = user.getId();
       const applicationId = user.getAppId();

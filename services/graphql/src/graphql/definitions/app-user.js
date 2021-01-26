@@ -23,6 +23,8 @@ extend type Mutation {
 
   setAppUserBanned(input: SetAppUserBannedMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   setAppUserRegionalConsent(input: SetAppUserRegionalConsentMutationInput!): AppUser! @requiresAuth(type: AppUser) # can only be set by self
+
+  updateAppUserCustomSelectAnswers(input: UpdateAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
 }
 
 enum AppUserSortField {
@@ -231,6 +233,20 @@ input UpdateAppUserPayloadInput {
 input UpdateAppUserMutationInput {
   id: String!
   payload: UpdateAppUserPayloadInput!
+}
+
+input UpdateAppUserCustomSelectAnswersMutationInput {
+  "The user id to update."
+  id: String!
+  "The answers to set/update. An empty array will _unset_ all existing answers. A null value will do nothing."
+  answers: [UpdateAppUserCustomSelectAnswer!]
+}
+
+input UpdateAppUserCustomSelectAnswer {
+  "The custom select field ID."
+  fieldId: String!
+  "The selected option IDs to select. This must always been an array, even if the question only supports one answer. An empty array will unset any existing options."
+  optionIds: [String!]!
 }
 
 input UpdateOwnAppUserMutationInput {
