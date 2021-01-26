@@ -38,6 +38,17 @@ module.exports = {
       const policyIds = regionalConsentPolicies.map(policy => policy._id);
       return regionalConsentAnswers.filter(answer => policyIds.includes(answer._id));
     },
+
+    customSelectFieldAnswers: ({ customSelectFieldAnswers }, { input }, { app }) => {
+      const { fieldIds, onlyAnswered, sort } = input;
+      return applicationService.request('field.userSelectAnswers', {
+        applicationId: app.getId(),
+        fieldIds,
+        customSelectFieldAnswers,
+        onlyAnswered,
+        sort,
+      });
+    },
   },
 
   AppUserRegionalConsentAnswer: {

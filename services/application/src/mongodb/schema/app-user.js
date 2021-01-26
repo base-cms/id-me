@@ -24,6 +24,24 @@ const regionalConsentAnswerSchema = new Schema({
   },
 });
 
+const customSelectFieldAnswerSchema = new Schema({
+  fieldId: {
+    type: Schema.Types.ObjectId,
+    required: true,
+  },
+
+  /**
+   * The custom select field answer(s).
+   *
+   * These are always stored as an array of answered option IDs,
+   * regardless if the question is single or multi.
+   */
+  values: {
+    type: [Schema.Types.ObjectId],
+    default: () => [],
+  },
+});
+
 const schema = new Schema({
   email: {
     type: String,
@@ -98,6 +116,10 @@ const schema = new Schema({
     type: String,
     trim: true,
     set: stripLines,
+  },
+  customSelectFieldAnswers: {
+    type: [customSelectFieldAnswerSchema],
+    default: () => [],
   },
 }, { timestamps: true });
 

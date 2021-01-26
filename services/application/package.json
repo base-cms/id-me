@@ -18,6 +18,7 @@
     "@base-cms/object-path": "^1.9.0",
     "@base-cms/utils": "^1.9.0",
     "@identity-x/mongoose-plugins": "^0.13.0",
+    "@identity-x/pagination": "^0.13.0",
     "@identity-x/service-clients": "^0.13.0",
     "@identity-x/utils": "^0.13.0",
     "burner-email-providers": "^1.0.13",
