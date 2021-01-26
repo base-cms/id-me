@@ -14,64 +14,7 @@
     {{/modal.header}}
 
     {{#modal.body}}
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="app-user.given-name">First Name</FormElements::Label>
-            <Input @id="app-user.given-name" @type="text" @class="form-control" @value={{this.model.givenName}} />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="app-user.family-name">Last Name</FormElements::Label>
-            <Input @id="app-user.family-name" @type="text" @class="form-control" @value={{this.model.familyName}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="app-user.email" @required={{true}}>Email Address</FormElements::Label>
-            <Input @id="app-user.email" @type="email" @required={{true}} @disabled={{this.model.verified}} @class="form-control" @value={{this.model.email}} />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <AppUser::Fields::Country @value={{this.model.countryCode}} @on-change={{action "setCountryCode"}} />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <AppUser::Fields::Region @value={{this.model.regionCode}} @countryCode={{this.model.countryCode}} @on-change={{action "setRegionCode"}} />
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="app-user.postal-code">Postal/ZIP Code</FormElements::Label>
-            <Input @id="app-user.postal-code" @type="text" @class="form-control" @value={{this.model.postalCode}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="app-user.organization">Company Name</FormElements::Label>
-            <Input @id="app-user.organization" @type="text" @class="form-control" @value={{this.model.organization}} />
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="form-group">
-            <FormElements::Label @for="app-user.organization-title">Job Title</FormElements::Label>
-            <Input @id="app-user.organization-title" @type="text" @class="form-control" @value={{this.model.organizationTitle}} />
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-6">
-          <AppUser::Fields::AccessLevels @dropdownClass="in-modal-dropdown" @value={{this.model.accessLevels}} @on-change={{action "setAccessLevels"}} />
-        </div>
-        <div class="col-lg-6">
-          <AppUser::Fields::Teams @dropdownClass="in-modal-dropdown" @value={{this.model.teams}} @on-change={{action "setTeams"}} />
-        </div>
-      </div>
+      <AppUser::ModalForm::GeneralFields @model={{this.model}} />
     {{/modal.body}}
 
     {{#modal.footer}}
