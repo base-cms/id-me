@@ -40,12 +40,18 @@ module.exports = {
     },
 
     customSelectFieldAnswers: ({ customSelectFieldAnswers }, { input }, { app }) => {
-      const { fieldIds, onlyAnswered, sort } = input;
+      const {
+        fieldIds,
+        onlyAnswered,
+        onlyActive,
+        sort,
+      } = input;
       return applicationService.request('field.userSelectAnswers', {
         applicationId: app.getId(),
         fieldIds,
         customSelectFieldAnswers,
         onlyAnswered,
+        onlyActive,
         sort,
       });
     },

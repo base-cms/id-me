@@ -125,6 +125,8 @@ input AppUserCustomSelectFieldAnswersInput {
   fieldIds: [String!] = []
   "If true, will only return answers the user has set. Otherwise, all questions will be return, with empty answers where not set. This will also be filtered by the fieldIds input."
   onlyAnswered: Boolean = false
+  "If true, will only return active questions. This will also be filtered by the fieldIds and onlyAnswered inputs."
+  onlyActive: Boolean = false
   "Optionally sort by fields on the custom field."
   sort: FieldInterfaceSortInput = {}
 }

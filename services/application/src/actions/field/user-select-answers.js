@@ -8,12 +8,14 @@ module.exports = async ({
   fieldIds,
   customSelectFieldAnswers,
   onlyAnswered,
+  onlyActive,
   sort,
 } = {}) => {
   const $sort = new Sort(sort);
   const fieldQuery = {
     applicationId,
     ...(isArray(fieldIds) && fieldIds.length && { _id: { $in: fieldIds } }),
+    ...(onlyActive && { active: { $ne: false } }),
   };
   const fields = await SelectField.find(fieldQuery, {}, { sort: $sort.value });
 
