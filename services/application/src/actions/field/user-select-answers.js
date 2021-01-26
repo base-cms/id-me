@@ -29,6 +29,7 @@ module.exports = async ({
   if (onlyAnswered && !customFieldAnswers.length) return [];
 
   const mapped = fields.map((field) => {
+    const { multiple } = field;
     const fieldAnswer = customFieldAnswers.find(answer => `${answer.fieldId}` === `${field._id}`);
     const answeredOptions = fieldAnswer && isArray(fieldAnswer.values)
       ? fieldAnswer.values
@@ -40,7 +41,7 @@ module.exports = async ({
       id: field._id,
       field,
       hasAnswered: Boolean(answeredOptions.length),
-      answers: answeredOptions,
+      answers: multiple ? answeredOptions : [answeredOptions[0]].filter(v => v),
     };
   });
   return onlyAnswered ? mapped.filter(field => field.hasAnswered) : mapped;
