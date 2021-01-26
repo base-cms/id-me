@@ -59,6 +59,7 @@ module.exports = {
         name,
         label,
         required,
+        active,
         multiple,
         options,
       } = input;
@@ -70,6 +71,7 @@ module.exports = {
           name,
           label,
           required,
+          active,
           multiple,
           options,
         },
@@ -89,6 +91,7 @@ module.exports = {
         name,
         label,
         required,
+        active,
         multiple,
         options,
       } = input;
@@ -101,6 +104,7 @@ module.exports = {
           name,
           label,
           required,
+          active,
           multiple,
           options,
         },

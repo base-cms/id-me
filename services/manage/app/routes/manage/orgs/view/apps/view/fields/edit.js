@@ -10,6 +10,7 @@ const query = gql`
       label
       multiple
       required
+      active
       options {
         id
         label

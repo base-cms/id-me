@@ -12,6 +12,7 @@ const fields = gql`
           name
           label
           required
+          active
         }
       }
       pageInfo {
@@ -32,6 +33,7 @@ const matchFields = gql`
           name
           label
           required
+          active
         }
       }
       pageInfo {

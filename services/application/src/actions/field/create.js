@@ -9,6 +9,7 @@ const createSelect = async ({
   name,
   label,
   required,
+  active,
   multiple,
   options,
 } = {}) => {
@@ -17,6 +18,7 @@ const createSelect = async ({
     name,
     label,
     required,
+    active,
     multiple,
     options: options.map((option, index) => ({ ...option, index })),
   });

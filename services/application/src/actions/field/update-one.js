@@ -18,6 +18,7 @@ const updateSelect = async ({
     label,
     multiple,
     required,
+    active,
     options,
   } = payload;
 
@@ -32,6 +33,7 @@ const updateSelect = async ({
     label,
     multiple,
     required,
+    active,
     options: options.map((option, index) => ({
       ...option,
       ...(option.id && { _id: option.id }),

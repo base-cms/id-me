@@ -28,6 +28,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           label,
           options,
           required,
+          active,
           multiple,
         } = this.get('model');
         const input = {
@@ -35,6 +36,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           label,
           options: options.map(({ label }) => ({ label })),
           required,
+          active,
           multiple,
         };
         const variables = { input };

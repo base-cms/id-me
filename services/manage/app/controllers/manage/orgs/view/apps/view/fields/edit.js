@@ -12,6 +12,7 @@ const mutation = gql`
       label
       multiple
       required
+      active
       options {
         id
         label
@@ -33,6 +34,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           label,
           multiple,
           required,
+          active,
           options,
         } = this.get('model');
 
@@ -42,6 +44,7 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           label,
           multiple,
           required,
+          active,
           options: options.map((option) => ({ id: option.id, label: option.label })),
         };
         const variables = { input };

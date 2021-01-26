@@ -27,6 +27,14 @@ const schema = new Schema({
     type: Boolean,
     default: false,
   },
+
+  /**
+   * Whether the field is currently active
+   */
+  active: {
+    type: Boolean,
+    default: true,
+  },
 }, {
   discriminatorKey: '_type',
   timestamps: true,

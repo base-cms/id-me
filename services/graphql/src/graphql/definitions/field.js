@@ -35,6 +35,8 @@ interface FieldInterface {
   label: String! @projection
   "Whether the field is globally required."
   required: Boolean! @projection
+  "Whether the field is currently active."
+  active: Boolean! @projection
   "The date the field was created."
   createdAt: Date! @projection
   "The date the field was updated."
@@ -61,6 +63,8 @@ type SelectField implements FieldInterface {
   label: String! @projection
   "Whether the field is globally required."
   required: Boolean! @projection
+  "Whether the field is currently active."
+  active: Boolean! @projection
   "The date the field was created."
   createdAt: Date! @projection
   "The date the field was updated."
@@ -86,6 +90,8 @@ input CreateSelectFieldMutationInput {
   label: String!
   "Whether the field is globally required."
   required: Boolean = false
+  "Whether the field is currently active."
+  active: Boolean = true
   "Whether the select field supports multiple answers."
   multiple: Boolean = false
   "The initial options for the select field. By default, no options are set."
@@ -129,6 +135,8 @@ input UpdateSelectFieldMutationInput {
   label: String!
   "Whether the field is globally required."
   required: Boolean = false
+  "Whether the field is currently active."
+  active: Boolean = true
   "Whether the select field supports multiple answers."
   multiple: Boolean = false
   "The options for the select field. Options with IDs will be updated (where found). Options missing IDs will be treated as new."
