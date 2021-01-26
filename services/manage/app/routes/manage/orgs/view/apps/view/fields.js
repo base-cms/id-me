@@ -13,6 +13,12 @@ const fields = gql`
           label
           required
           active
+          ... on SelectField {
+            options {
+              id
+              label
+            }
+          }
         }
       }
       pageInfo {
