@@ -1,7 +1,9 @@
 <div class="form-group">
   <FormElements::Label>
     {{this.label}}
+    <br>
     <span class="small text-muted">({{this.name}})</span>
+    {{#if (not this.active)}}<span class="small text-warning">[inactive]</span>{{/if}}
   </FormElements::Label>
   {{#if this.multiple}}
     {{#power-select-multiple
