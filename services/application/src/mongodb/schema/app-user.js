@@ -24,12 +24,11 @@ const regionalConsentAnswerSchema = new Schema({
   },
 });
 
+/**
+ * The built-in `_id` field of this sub-document represents
+ * the custom select field id.
+ */
 const customSelectFieldAnswerSchema = new Schema({
-  fieldId: {
-    type: Schema.Types.ObjectId,
-    required: true,
-  },
-
   /**
    * The custom select field answer(s).
    *
