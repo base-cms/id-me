@@ -32,7 +32,9 @@ interface FieldInterface {
   "The internal name of the field."
   name: String! @projection
   "The user-facing field label. This is what will appear on a form."
-  label: String!
+  label: String! @projection
+  "Whether the field is globally required."
+  required: Boolean! @projection
   "The date the field was created."
   createdAt: Date! @projection
   "The date the field was updated."
@@ -57,6 +59,8 @@ type SelectField implements FieldInterface {
   name: String! @projection
   "The user-facing field label. This is what will appear on a form."
   label: String! @projection
+  "Whether the field is globally required."
+  required: Boolean! @projection
   "The date the field was created."
   createdAt: Date! @projection
   "The date the field was updated."
@@ -80,6 +84,8 @@ input CreateSelectFieldMutationInput {
   name: String!
   "The user-facing field label. This is what will appear on a form."
   label: String!
+  "Whether the field is globally required."
+  required: Boolean = false
   "Whether the select field supports multiple answers."
   multiple: Boolean = false
   "The initial options for the select field. By default, no options are set."
@@ -121,6 +127,8 @@ input UpdateSelectFieldMutationInput {
   name: String!
   "The user-facing field label. This is what will appear on a form."
   label: String!
+  "Whether the field is globally required."
+  required: Boolean = false
   "Whether the select field supports multiple answers."
   multiple: Boolean = false
   "The options for the select field. Options with IDs will be updated (where found). Options missing IDs will be treated as new."

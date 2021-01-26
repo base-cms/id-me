@@ -9,6 +9,7 @@ const query = gql`
       name
       label
       multiple
+      required
       options {
         id
         label

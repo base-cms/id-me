@@ -27,12 +27,14 @@ export default Controller.extend(ActionMixin, AppQueryMixin, {
           name,
           label,
           options,
+          required,
           multiple,
         } = this.get('model');
         const input = {
           name,
           label,
           options: options.map(({ label }) => ({ label })),
+          required,
           multiple,
         };
         const variables = { input };

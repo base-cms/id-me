@@ -19,6 +19,14 @@ const schema = new Schema({
     required: true,
     trim: true,
   },
+
+  /**
+   * Whether the field is globally required.
+   */
+  required: {
+    type: Boolean,
+    default: false,
+  },
 }, {
   discriminatorKey: '_type',
   timestamps: true,

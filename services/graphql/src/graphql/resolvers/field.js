@@ -58,6 +58,7 @@ module.exports = {
       const {
         name,
         label,
+        required,
         multiple,
         options,
       } = input;
@@ -68,6 +69,7 @@ module.exports = {
         payload: {
           name,
           label,
+          required,
           multiple,
           options,
         },
@@ -86,6 +88,7 @@ module.exports = {
         id,
         name,
         label,
+        required,
         multiple,
         options,
       } = input;
@@ -97,6 +100,7 @@ module.exports = {
         payload: {
           name,
           label,
+          required,
           multiple,
           options,
         },
