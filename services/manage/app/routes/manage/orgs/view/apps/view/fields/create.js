@@ -5,6 +5,8 @@ export default Route.extend({
     return {
       options: [],
       multiple: false,
+      active: false,
+      required: false,
     };
   },
 });
