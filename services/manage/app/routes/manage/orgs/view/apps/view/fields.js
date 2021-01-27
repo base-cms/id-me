@@ -18,6 +18,7 @@ const fields = gql`
               id
               label
             }
+            multiple
           }
         }
       }
