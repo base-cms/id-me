@@ -10,8 +10,8 @@ export default ListController.extend({
       { key: 'createdAt', label: 'Created' },
       { key: 'updatedAt', label: 'Updated' },
     ]);
-    this.set('sortField', 'updatedAt');
-    this.set('sortOrder', 'desc');
+    this.set('sortField', 'name');
+    this.set('sortOrder', 'asc');
 
     this.set('searchFields', [
       { key: 'name', label: 'Name' },
