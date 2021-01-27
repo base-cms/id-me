@@ -25,6 +25,7 @@ extend type Mutation {
   setAppUserRegionalConsent(input: SetAppUserRegionalConsentMutationInput!): AppUser! @requiresAuth(type: AppUser) # can only be set by self
 
   updateAppUserCustomSelectAnswers(input: UpdateAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
+  updateOwnAppUserCustomSelectAnswers(input: UpdateOwnAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAuth(type: AppUser)
 }
 
 enum AppUserSortField {
@@ -241,6 +242,11 @@ input UpdateAppUserCustomSelectAnswersMutationInput {
   "The user id to update."
   id: String!
   "The answers to set/update. An empty array will _unset_ all existing answers. A null value will do nothing."
+  answers: [UpdateAppUserCustomSelectAnswer!]
+}
+
+input UpdateOwnAppUserCustomSelectAnswersMutationInput {
+  "The answers to set/update for the current user. An empty array will _unset_ all existing answers. A null value will do nothing."
   answers: [UpdateAppUserCustomSelectAnswer!]
 }
 
