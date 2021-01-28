@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/mongoose-plugins",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "A collection of Mongoose plugins for IdentityX schemas.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@identity-x/pagination": "^0.13.0",
-    "@identity-x/utils": "^0.13.0",
+    "@identity-x/pagination": "^0.14.0",
+    "@identity-x/utils": "^0.14.0",
     "mongoose": "^5.5.11",
     "validator": "^11.0.0"
   },

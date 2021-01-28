@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/mailer-service",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "The IdentityX mailer service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",

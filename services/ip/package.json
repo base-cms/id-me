@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/ip-service",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "The IdentityX ip service.",
   "main": "src/index.js",
   "author": "Josh Worden <josh@limit0.io>",

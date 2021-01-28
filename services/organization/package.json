@@ -1,6 +1,6 @@
 {
   "name": "@identity-x/organization-service",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "The IdentityX organization service.",
   "main": "src/index.js",
   "author": "Jacob Bare <jacob@limit0.io>",
@@ -16,8 +16,8 @@
     "@base-cms/env": "^1.0.0",
     "@base-cms/micro": "^1.21.5",
     "@base-cms/utils": "^1.9.0",
-    "@identity-x/mongoose-plugins": "^0.13.0",
-    "@identity-x/utils": "^0.13.0",
+    "@identity-x/mongoose-plugins": "^0.14.0",
+    "@identity-x/utils": "^0.14.0",
     "micro": "^9.3.4",
     "mongoose": "^5.5.11",
     "newrelic": "^6.4.0",
