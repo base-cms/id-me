@@ -6,6 +6,7 @@ const appUser = require('./app-user');
 const application = require('./application');
 const comment = require('./comment');
 const commentStream = require('./comment-stream');
+const field = require('./field');
 const locale = require('./locale');
 const organization = require('./organization');
 const team = require('./team');
@@ -18,6 +19,7 @@ module.exports = deepAssign(
   application,
   comment,
   commentStream,
+  field,
   locale,
   organization,
   team,

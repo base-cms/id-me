@@ -1,0 +1,11 @@
+<form {{action "update" on="submit"}}>
+  <fieldset disabled={{this.isActionRunning}}>
+    <BsModal::Body>
+      <AppUser::ModalForm::GeneralFields @model={{this.model}} />
+    </BsModal::Body>
+
+    <BsModal::Footer>
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+    </BsModal::Footer>
+  </fieldset>
+</form>

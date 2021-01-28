@@ -38,6 +38,23 @@ module.exports = {
       const policyIds = regionalConsentPolicies.map(policy => policy._id);
       return regionalConsentAnswers.filter(answer => policyIds.includes(answer._id));
     },
+
+    customSelectFieldAnswers: ({ customSelectFieldAnswers }, { input }, { app }) => {
+      const {
+        fieldIds,
+        onlyAnswered,
+        onlyActive,
+        sort,
+      } = input;
+      return applicationService.request('field.userSelectAnswers', {
+        applicationId: app.getId(),
+        fieldIds,
+        customSelectFieldAnswers,
+        onlyAnswered,
+        onlyActive,
+        sort,
+      });
+    },
   },
 
   AppUserRegionalConsentAnswer: {
@@ -325,6 +342,33 @@ module.exports = {
           regionCode,
           postalCode,
         },
+      });
+    },
+
+    /**
+     *
+     */
+    updateAppUserCustomSelectAnswers: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const { id, answers } = input;
+      return applicationService.request('user.updateCustomSelectAnswers', {
+        id,
+        applicationId,
+        answers,
+      });
+    },
+
+    /**
+     *
+     */
+    updateOwnAppUserCustomSelectAnswers: (_, { input }, { user }) => {
+      const id = user.getId();
+      const applicationId = user.getAppId();
+      const { answers } = input;
+      return applicationService.request('user.updateCustomSelectAnswers', {
+        id,
+        applicationId,
+        answers,
       });
     },
 

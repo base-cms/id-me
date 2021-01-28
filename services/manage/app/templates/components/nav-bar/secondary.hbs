@@ -18,6 +18,11 @@
       {{/link-to}}
     </li>
     <li class="nav-item">
+      {{#link-to "manage.orgs.view.apps.view.fields" context.appId class="nav-link"}}
+        <NavBar::Item @icon="list">Custom Fields</NavBar::Item>
+      {{/link-to}}
+    </li>
+    <li class="nav-item">
       {{#link-to "manage.orgs.view.apps.view.comments" context.appId class="nav-link"}}
         <NavBar::Item @icon="message">Comments</NavBar::Item>
       {{/link-to}}

@@ -52,10 +52,16 @@ Router.map(function() {
             });
             this.route('users', function() {
               this.route('create');
-              this.route('edit', { path: ':email' });
+              this.route('edit', { path: ':email' }, function() {
+                this.route('custom-select-fields');
+              });
             });
             this.route('comments', function() {
               this.route('edit', { path: ':comment_id' });
+            });
+            this.route('fields', function() {
+              this.route('create');
+              this.route('edit', { path: ':field_id' });
             });
           });
         });

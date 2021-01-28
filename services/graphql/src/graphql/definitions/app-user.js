@@ -23,6 +23,9 @@ extend type Mutation {
 
   setAppUserBanned(input: SetAppUserBannedMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   setAppUserRegionalConsent(input: SetAppUserRegionalConsentMutationInput!): AppUser! @requiresAuth(type: AppUser) # can only be set by self
+
+  updateAppUserCustomSelectAnswers(input: UpdateAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
+  updateOwnAppUserCustomSelectAnswers(input: UpdateOwnAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAuth(type: AppUser)
 }
 
 enum AppUserSortField {
@@ -73,6 +76,8 @@ type AppUser {
   banned: Boolean @projection
   receiveEmail: Boolean @projection
   regionalConsentAnswers: [AppUserRegionalConsentAnswer!]! @projection
+  "Shows all answers to custom select questions. By default this will include all questions, even if the user has not answered."
+  customSelectFieldAnswers(input: AppUserCustomSelectFieldAnswersInput = {}): [AppUserCustomSelectFieldAnswer!]! @projection
   createdAt: Date @projection
   updatedAt: Date @projection
 }
@@ -82,6 +87,17 @@ type AppUserRegionalConsentAnswer {
   given: Boolean
   date: Date!
   policy: OrganizationRegionalConsentPolicy!
+}
+
+type AppUserCustomSelectFieldAnswer {
+  "The user-to-answer identifier."
+  id: String!
+  "The custom select field that was answered."
+  field: SelectField!
+  "Whether the user has answered the question."
+  hasAnswered: Boolean!
+  "The answered field option(s). This will always be an array, even if the field is a single-select only. An empty value signifies a non, or no longer valid, answer. It's up to the implementing components to account for this."
+  answers: [SelectFieldOption!]!
 }
 
 type AppUserConnection @projectUsing(type: "AppUser") {
@@ -103,6 +119,17 @@ type AppUserAuthentication {
 type AppUserAuthToken {
   id: String!
   value: String!
+}
+
+input AppUserCustomSelectFieldAnswersInput {
+  "Only return answers for the provided field IDs. An empty value will return all answers."
+  fieldIds: [String!] = []
+  "If true, will only return answers the user has set. Otherwise, all questions will be return, with empty answers where not set. This will also be filtered by the fieldIds input."
+  onlyAnswered: Boolean = false
+  "If true, will only return active questions. This will also be filtered by the fieldIds and onlyAnswered inputs."
+  onlyActive: Boolean = false
+  "Optionally sort by fields on the custom field."
+  sort: FieldInterfaceSortInput = {}
 }
 
 input AppUserQueryInput {
@@ -209,6 +236,25 @@ input UpdateAppUserPayloadInput {
 input UpdateAppUserMutationInput {
   id: String!
   payload: UpdateAppUserPayloadInput!
+}
+
+input UpdateAppUserCustomSelectAnswersMutationInput {
+  "The user id to update."
+  id: String!
+  "The answers to set/update. An empty array will _unset_ all existing answers. A null value will do nothing."
+  answers: [UpdateAppUserCustomSelectAnswer!]
+}
+
+input UpdateOwnAppUserCustomSelectAnswersMutationInput {
+  "The answers to set/update for the current user. An empty array will _unset_ all existing answers. A null value will do nothing."
+  answers: [UpdateAppUserCustomSelectAnswer!]
+}
+
+input UpdateAppUserCustomSelectAnswer {
+  "The custom select field ID."
+  fieldId: String!
+  "The selected option IDs to select. This must always been an array, even if the question only supports one answer. An empty array will unset any existing options."
+  optionIds: [String!]!
 }
 
 input UpdateOwnAppUserMutationInput {

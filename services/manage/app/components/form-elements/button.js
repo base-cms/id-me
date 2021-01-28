@@ -5,6 +5,7 @@ export default Component.extend({
   attributeBindings: [
     'disabled',
     'type',
+    'form',
   ],
 
   disabled: false,

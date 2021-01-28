@@ -13,31 +13,9 @@ export default Component.extend({
     if (!this.model) this.set('model', {});
   },
 
-  formatTerm(term) {
-    return term.trim().toLowerCase();
-  },
-
   actions: {
     returnToList() {
       return this.router.transitionTo('manage.orgs.view.apps.view.users');
-    },
-
-    setAccessLevels(accessLevels) {
-      this.set('model.accessLevels', accessLevels);
-    },
-
-    setTeams(teams) {
-      this.set('model.teams', teams);
-    },
-
-    setCountryCode(countryCode) {
-      this.set('model.countryCode', countryCode);
-      this.send('setRegionCode', '');
-    },
-
-    setRegionCode(regionCode) {
-      this.set('model.regionCode', regionCode);
-      this.set('model.postalCode', '');
     },
   },
 });

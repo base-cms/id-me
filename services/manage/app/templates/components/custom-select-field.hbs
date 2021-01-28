@@ -1,0 +1,34 @@
+<div class="form-group">
+  <FormElements::Label>
+    {{this.label}}
+    <br>
+    <span class="small text-muted">({{this.name}})</span>
+    {{#if (not this.active)}}<span class="small text-warning">[inactive]</span>{{/if}}
+  </FormElements::Label>
+  {{#if this.multiple}}
+    {{#power-select-multiple
+      selected=this.selected
+      dropdownClass=this.dropdownClass
+      options=this.formattedOptions
+      onchange=(action "handleChange")
+      closeOnSelect=false
+      disabled=disabled
+      as |item|
+    }}
+      {{ item.label }}
+    {{/power-select-multiple}}
+  {{else}}
+    {{#power-select
+      selected=this.selected
+      dropdownClass=this.dropdownClass
+      options=this.formattedOptions
+      onchange=(action "handleChange")
+      allowClear=true
+      searchEnabled=false
+      disabled=disabled
+      as |item|
+    }}
+      {{ item.label }}
+    {{/power-select}}
+  {{/if}}
+</div>

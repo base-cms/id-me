@@ -1,0 +1,73 @@
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+  <form {{action this.onSubmit modal.actions.hide on="submit"}}>
+    <fieldset disabled={{this.isActionRunning}}>
+      {{#modal.header}}
+        <h2 class="modal-title">{{this.title}}</h2>
+        <button
+          type="button"
+          class="close"
+          aria-label="Close"
+          {{action modal.actions.hide}}
+        >
+          {{entypo-icon "cross"}}
+        </button>
+      {{/modal.header}}
+
+      {{#modal.body}}
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <FormElements::Label @for="custom-field.name" @required={{true}}>Name</FormElements::Label>
+              <Input @id="custom-field.name" @type="text" @required={{true}} @autofocus={{true}} @class="form-control" @value={{this.model.name}} />
+              <small id="custom-field.name-help" class="form-text text-muted">
+                {{entypo-icon "info-with-circle" class="text-info"}}
+                The internal field name. This will not be visible to end-users.
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <FormElements::Label @for="custom-field.label" @required={{true}}>Label</FormElements::Label>
+              <Input @id="custom-field.label" @type="text" @required={{true}} @class="form-control" @value={{this.model.label}} />
+              <small id="custom-field.label-help" class="form-text text-muted">
+                {{entypo-icon "info-with-circle" class="text-info"}}
+                The external field/question label. This will be visible to end-users.
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <CustomField::Options
+                @options={{this.model.options}}
+                @disabled={{this.isActionRunning}}
+                @reorder={{action "reorderOptions"}}
+                @remove={{action "removeOption"}}
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mt-3 ml-n2">
+          <FormElements::ToggleButton @value={{this.model.multiple}} @onLabel="Allow Multiple Answers" />
+        </div>
+
+        <div class="d-flex justify-content-between mt-3 ml-n2">
+          <FormElements::ToggleButton @value={{this.model.required}} @onLabel="Globally Required" />
+        </div>
+
+        <div class="d-flex justify-content-between mt-3 ml-n2">
+          <FormElements::ToggleButton @value={{this.model.active}} @onLabel="Active" />
+        </div>
+      {{/modal.body}}
+
+      {{#modal.footer}}
+        <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+      {{/modal.footer}}
+    </fieldset>
+  </form>
+</BsModal>

@@ -1,0 +1,48 @@
+<FormElements::Label>Options / Answers</FormElements::Label>
+
+<div>
+  <div {{sortable-group onChange=(action this.reorder)}}>
+    {{#each options as |option|}}
+      <div class="input-group mb-1" {{sortable-item model=option}}>
+        <Input
+          @value={{option.label}}
+          @required={{true}}
+          @disabled={{this.disabled}}
+          type="text"
+          class="form-control"
+          placeholder="Enter option label"
+          aria-label="Enter option label"
+        />
+        <div class="input-group-append">
+          <button
+            type="button"
+            title="Drag to re-order option"
+            class="btn btn-outline-secondary handle"
+            {{sortable-handle}}
+          >
+            &varr;
+          </button>
+
+          <FormElements::Button
+            title="Remove option"
+            class="btn btn-outline-danger"
+            @click={{action this.remove option}}
+            @disabled={{this.disabled}}
+          >
+            <EntypoIcon @name="circle-with-cross" />
+          </FormElements::Button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<FormElements::Button
+  title="Add option"
+  class="btn btn-outline-success"
+  @click={{action "add"}}
+  @disabled={{this.disabled}}
+>
+  <EntypoIcon @name="circle-with-plus" />
+  Add
+</FormElements::Button>

@@ -1,0 +1,19 @@
+<ListCard>
+  <div class="card-body">
+    <h2 class="card-title">{{field.name}}</h2>
+    <p class="card-text">{{field.label}}</p>
+
+    <div class="app-user-details app-user-details--locale">
+      <p>Active: {{#if field.active}}Yes{{else}}No{{/if}}</p>
+      <p>Allow Multiple Answers: {{#if field.multiple}}Yes{{else}}No{{/if}}</p>
+      <p>Globally Required: {{#if field.required}}Yes{{else}}No{{/if}}</p>
+    </div>
+
+    <ArrayList @label="Options" @values={{options}} />
+  </div>
+  <div class="card-footer">
+    {{#link-to "manage.orgs.view.apps.view.fields.edit" field.id class="btn btn-primary" role="button"}}
+      {{entypo-icon "edit" class="mr-1"}} Modify
+    {{/link-to}}
+  </div>
+</ListCard>

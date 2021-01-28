@@ -1,0 +1,28 @@
+<form {{action "save" on="submit"}}>
+  <fieldset disabled={{this.isActionRunning}}>
+    <BsModal::Body>
+      <div class="row">
+        {{#each this.model.customSelectFieldAnswers as |answer|}}
+          <div class="col-sm-6">
+            <CustomSelectField
+              @dropdownClass="in-modal-dropdown"
+              @label={{answer.field.label}}
+              @name={{answer.field.name}}
+              @active={{answer.field.active}}
+              @multiple={{answer.field.multiple}}
+              @answers={{answer.answers}}
+              @options={{answer.field.options}}
+              @disabled={{this.isActionRunning}}
+            />
+          </div>
+        {{else}}
+          <p class="text-muted">No custom fields have been created.</p>
+        {{/each}}
+      </div>
+    </BsModal::Body>
+
+    <BsModal::Footer>
+      <FormElements::SubmitButton @class="btn btn-success" @isSaving={{this.isActionRunning}} />
+    </BsModal::Footer>
+  </fieldset>
+</form>

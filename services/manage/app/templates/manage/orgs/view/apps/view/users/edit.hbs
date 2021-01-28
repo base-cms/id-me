@@ -1,6 +1,25 @@
-<AppUser::ModalForm
-  @model={{this.model}}
-  @onSubmit={{action "update"}}
-  @title="Modify User"
-  @isActionRunning={{this.isActionRunning}}
-/>
+<BsModal @show={{true}} @backdrop="static" @size="large" @onClose={{action "returnToList"}} as |modal|>
+  {{#modal.header}}
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        {{#link-to "manage.orgs.view.apps.view.users.edit.index" class="nav-link"}}
+          General
+        {{/link-to}}
+      </li>
+      <li class="nav-item">
+        {{#link-to "manage.orgs.view.apps.view.users.edit.custom-select-fields" class="nav-link"}}
+          Custom Fields
+        {{/link-to}}
+      </li>
+    </ul>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      {{action modal.actions.hide}}
+    >
+      {{entypo-icon "cross"}}
+    </button>
+  {{/modal.header}}
+  {{outlet}}
+</BsModal>
