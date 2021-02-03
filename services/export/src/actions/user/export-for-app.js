@@ -40,7 +40,21 @@ module.exports = async ({
   // load the app and org
   const app = await applicationService.request('findById', { id: applicationId, fields: ['name', 'organizationId'] });
   if (!app) throw createError(404, 'No application found for the provided ID.');
-  const org = await organizationService.request('findById', { id: app.organizationId, fields: ['name', 'regionalConsentPolicies'] });
+  const [org, customFieldConnection] = await Promise.all([
+    organizationService.request('findById', { id: app.organizationId, fields: ['name', 'regionalConsentPolicies'] }),
+    applicationService.request('field.listForApp', {
+      id: applicationId,
+      fields: {
+        name: 1,
+        label: 1,
+        active: 1,
+        multiple: 1,
+        options: 1,
+      },
+      pagination: { limit: 0, sort: { field: 'name', order: 1 } },
+    }),
+  ]);
+  const customSelectFields = customFieldConnection.edges.map(edge => edge.node);
 
   try {
     const contents = await new Promise((resolve, reject) => {
@@ -56,6 +70,7 @@ module.exports = async ({
         action: 'user.listForApp',
         fields,
         regionalConsentPolicies: getAsArray(org, 'regionalConsentPolicies'),
+        customSelectFields,
         params: {
           id: applicationId,
           sort: { field: 'createdAt', order: 'desc' },

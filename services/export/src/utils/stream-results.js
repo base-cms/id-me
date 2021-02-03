@@ -1,5 +1,7 @@
 const { getAsArray, getAsObject } = require('@base-cms/object-path');
 
+const { isArray } = Array;
+
 /**
  * Pipes results to the passed input stream
  * @param {object} args The function args
@@ -17,6 +19,7 @@ const executor = async (args) => {
     limit = 500,
     fields,
     regionalConsentPolicies,
+    customSelectFields,
     stream,
   } = args;
   const pagination = getAsObject(params, 'pagination');
@@ -38,7 +41,22 @@ const executor = async (args) => {
       const given = answer ? answer.given : false;
       return { ...o, [`Consent: ${policy.name}`]: given };
     }, {});
-    return { ...row, ...answers };
+
+    const customSelectAnswers = customSelectFields.reduce((o, customSelect) => {
+      let rowLabel = `Custom: ${customSelect.name}`;
+      if (!customSelect.active) rowLabel = `${rowLabel} [inactive]`;
+      const userAnswers = getAsArray(node, 'customSelectFieldAnswers');
+      const fieldAnswer = userAnswers.find(answer => `${answer._id}` === `${customSelect._id}`);
+      const answeredOptions = fieldAnswer && isArray(fieldAnswer.values)
+        ? fieldAnswer.values
+          .map(value => customSelect.options.find(option => `${option._id}` === `${value}`))
+          .filter(option => option)
+          .map(option => option.label)
+        : [];
+      return { ...o, [rowLabel]: customSelect.multiple ? answeredOptions.join('|') : (answeredOptions[0] || '') };
+    }, {});
+
+    return { ...row, ...customSelectAnswers, ...answers };
   });
   stream.push(JSON.stringify(nodes));
   const { hasNextPage, endCursor } = getAsObject(data, 'pageInfo');
