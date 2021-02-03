@@ -49,8 +49,9 @@ const executor = async (args) => {
       const fieldAnswer = userAnswers.find(answer => `${answer._id}` === `${customSelect._id}`);
       const answeredOptions = fieldAnswer && isArray(fieldAnswer.values)
         ? fieldAnswer.values
-          .map(value => customSelect.options.find(option => `${option._id}` === `${value}`).label)
+          .map(value => customSelect.options.find(option => `${option._id}` === `${value}`))
           .filter(option => option)
+          .map(option => option.label)
         : [];
       return { ...o, [rowLabel]: customSelect.multiple ? answeredOptions.join('|') : (answeredOptions[0] || '') };
     }, {});
