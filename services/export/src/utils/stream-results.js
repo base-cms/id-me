@@ -44,7 +44,6 @@ const executor = async (args) => {
 
     const customSelectAnswers = customSelectFields.reduce((o, customSelect) => {
       let rowLabel = `Custom: ${customSelect.name}`;
-      const { multiple } = customSelect;
       if (!customSelect.active) rowLabel = `${rowLabel} [inactive]`;
       const userAnswers = getAsArray(node, 'customSelectFieldAnswers');
       const fieldAnswer = userAnswers.find(answer => `${answer._id}` === `${customSelect._id}`);
@@ -53,9 +52,7 @@ const executor = async (args) => {
           .map(value => customSelect.options.find(option => `${option._id}` === `${value}`).label)
           .filter(option => option)
         : [];
-      console.log(answeredOptions);
-
-      return { ...o, [rowLabel]: multiple ? answeredOptions.join('|') : (answeredOptions[0] || '') };
+      return { ...o, [rowLabel]: customSelect.multiple ? answeredOptions.join('|') : (answeredOptions[0] || '') };
     }, {});
 
     return { ...row, ...customSelectAnswers, ...answers };
