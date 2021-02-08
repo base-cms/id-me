@@ -311,6 +311,41 @@ module.exports = {
     /**
      *
      */
+    setAppUserUnverifiedData: (_, { input }, { app }) => {
+      const applicationId = app.getId();
+      const {
+        email,
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        countryCode,
+        regionCode,
+        postalCode,
+        regionalConsentAnswers,
+      } = input;
+
+      const payload = {
+        givenName,
+        familyName,
+        organization,
+        organizationTitle,
+        countryCode,
+        regionCode,
+        postalCode,
+        regionalConsentAnswers,
+      };
+
+      return applicationService.request('user.setUnverifiedData', {
+        applicationId,
+        email,
+        payload,
+      });
+    },
+
+    /**
+     *
+     */
     updateAppUser: (_, { input }, { app }) => {
       const applicationId = app.getId();
       const { id, payload } = input;
