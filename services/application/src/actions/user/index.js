@@ -13,6 +13,7 @@ const logout = require('./logout');
 const manageCreate = require('./manage-create');
 const regionalConsentAnswer = require('./regional-constent-answer');
 const sendLoginLink = require('./send-login-link');
+const setUnverifiedData = require('./set-unverified-data');
 const updateCustomSelectAnswers = require('./update-custom-select-answers');
 const updateOne = require('./update-one');
 const verifyAuth = require('./verify-auth');
@@ -30,6 +31,7 @@ module.exports = {
   matchForApp: params => matchForApp(AppUser, params),
   regionalConsentAnswer,
   sendLoginLink,
+  setUnverifiedData,
   updateField: params => updateField(AppUser, params),
   updateFieldWithApp: params => updateFieldWithApp(AppUser, params),
   updateCustomSelectAnswers,

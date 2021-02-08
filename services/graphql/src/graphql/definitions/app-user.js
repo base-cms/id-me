@@ -26,6 +26,9 @@ extend type Mutation {
 
   updateAppUserCustomSelectAnswers(input: UpdateAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAppRole(roles: [Owner, Administrator, Member])
   updateOwnAppUserCustomSelectAnswers(input: UpdateOwnAppUserCustomSelectAnswersMutationInput!): AppUser! @requiresAuth(type: AppUser)
+
+  "Sets field data to an unverified app user only. Is used for collecting user info before a login link is sent/used."
+  setAppUserUnverifiedData(input: SetAppUserUnverifiedDataMutationInput!): AppUser! @requiresApp # must be public
 }
 
 enum AppUserSortField {
@@ -218,6 +221,21 @@ input SetAppUserRegionalConsentAnswerInput {
   policyId: String!
   "Whether consent was given for this region."
   given: Boolean!
+}
+
+input SetAppUserUnverifiedDataMutationInput {
+  "The email address of the unverified user to set."
+  email: String!
+
+  givenName: String
+  familyName: String
+  organization: String
+  organizationTitle: String
+  countryCode: String
+  regionCode: String
+  postalCode: String
+
+  regionalConsentAnswers: [SetAppUserRegionalConsentAnswerInput!] = []
 }
 
 input UpdateAppUserPayloadInput {
