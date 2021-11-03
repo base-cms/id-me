@@ -11,7 +11,7 @@
     "@identity-x/pagination": "^0.14.0",
     "@identity-x/utils": "^0.14.0",
     "mongoose": "^5.5.11",
-    "validator": "^11.0.0"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
