@@ -99,7 +99,7 @@ input CreateCommentMutationInput {
   "The stream this comment should be posted to. Also allows for upserting the stream info."
   stream: CreateCommentMutationStreamInput!
   "Recaptcha token used to validate the request"
-  recaptchaToken: String!
+  recaptchaToken: String
 }
 
 input CreateCommentMutationStreamInput {
