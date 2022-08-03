@@ -2,6 +2,7 @@ const { applicationService } = require('@identity-x/service-clients');
 const { AuthenticationError } = require('apollo-server-express');
 const connectionProjection = require('../utils/connection-projection');
 const typeProjection = require('../utils/type-projection');
+const recaptcha = require('../utils/recaptcha');
 
 module.exports = {
   /**
@@ -130,10 +131,13 @@ module.exports = {
     /**
      *
      */
-    createComment: (_, { input }, { app, user }) => {
+    createComment: async (_, { input }, { app, user }) => {
       const { body, displayName, stream } = input;
       const applicationId = app.getId();
       const appUserId = user.getId();
+      // Check reCAPTCHA before continuing
+      if (!await recaptcha.validate(recaptchaToken)) throw new Error('Failed reCAPTCHA');
+
       return applicationService.request('comment.create', {
         applicationId,
         appUserId,
